@@ -1,0 +1,31 @@
+{
+  "name": "starter-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "cc": "node scripts/create_component $1"
+  },
+  "dependencies": {
+    "@babel/core": "^7.15.8",
+    "@emotion/core": "^11.0.0",
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
+    "axios": "^0.22.0",
+    "mobx": "^6.3.3",
+    "mobx-keystone": "^0.63.1",
+    "mobx-react-lite": "^3.2.1",
+    "next": "11.1.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "typescript": "^4.4.3"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.15.8",
+    "@types/node": "^16.10.3",
+    "@types/react": "^17.0.27",
+    "@types/react-dom": "^17.0.9"
+  }
+}

@@ -1,0 +1,113 @@
+import axios from 'axios';
+import { TOKKO_TOKEN, API_URI } from 'config';
+
+interface GetPropertiesProps {
+  params: any;
+}
+
+interface ContactProps {
+  name: string;
+  email: string;
+  phone: string;
+  text?: string;
+  properties?: string;
+}
+
+const baseParams = {
+  key: TOKKO_TOKEN,
+  lang: "es_ar",
+  format: "json",
+}
+
+export const getProperties = async ({params}: GetPropertiesProps) => {
+  const url = `${API_URI}/property/search`;
+
+  let dataParams: any = {
+    price_from: params.price_from || 0,
+    price_to: params.price_to || 9999999999,
+    operation_types: params.operation_types || [1,2,3],
+    property_types: params.property_types || [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19],
+    with_custom_tags: [],
+    currency: "USD",
+    filters: [],
+    current_localization_type: "state" // division
+  };
+
+  if(params.filters) dataParams["filters"] = [...dataParams["filters"], ...params.filters]
+
+  let baseParamsExtended = {
+    ...baseParams,
+    order_by: "price",
+    order: "DESC",
+    data: dataParams,
+    limit: params.limit || 26,
+    offset: params.offset || 0,
+  }
+
+  const { data } = await axios.get(url, { params: baseParamsExtended })
+  return data;
+}
+
+export const getPropertyById = async (id: number) => {
+  const url = `${API_URI}/property/${id}`;
+
+  const { data } = await axios.get(url, { params: baseParams })
+  return data;
+}
+
+export const getDevelopments = async () => {
+  const url = `${API_URI}/development`;
+
+  let baseParamsExtended = {
+    ...baseParams,
+    limit: 200
+  }
+
+  const { data } = await axios.get(url, { params: baseParamsExtended })
+  return data;
+}
+
+export const getPropertyTypes = () => {
+  return [
+    {key: "Todos", value: -1},
+    {key: "Terreno", value: 1},
+    {key: "Departamento", value: 2},
+    {key: "Casa", value: 3},
+    {key: "Emprendimiento", value: 4},
+    {key: "Oficina", value: 5},
+    {key: "PH", value: 13},
+    {key: "Local", value: 7},
+    {key: "Campo", value: 9},
+    {key: "Cochera", value: 10},
+  ]
+}
+
+export const sendContact = async (params: ContactProps) => {
+  const { data } = await axios.post(`${API_URI}/webcontact`, { ...params })
+  return data;
+}
+
+export const getNeighborhoods = async () => {
+  const url = `${API_URI}/property/get_search_summary/`;
+
+  let dataParams: any = {
+    price_from: 0,
+    price_to: 9999999999,
+    operation_types: [1,2,3],
+    property_types: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19],
+    with_custom_tags: [],
+    currency: "USD",
+    filters: [],
+    current_localization_type: "state" // division
+  };
+
+  let baseParamsExtended = {
+    ...baseParams,
+    order_by: "price",
+    order: "DESC",
+    data: dataParams,
+  }
+
+  const { data } = await axios.get(url, { params: baseParamsExtended })
+  return data;
+}

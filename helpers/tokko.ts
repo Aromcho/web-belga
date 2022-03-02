@@ -53,7 +53,5 @@ export const parseTokkoParameters = (query: any) => {
   }
 
   console.log(query)
-  return {
-
-  }
+  return query
 }

@@ -108,6 +108,6 @@ export const getNeighborhoods = async () => {
     data: dataParams,
   }
 
-  const { data } = await axios.get(url, { params: baseParamsExtended })
+  const { data }: any = await axios.get(url, { params: baseParamsExtended })
   return data;
 }

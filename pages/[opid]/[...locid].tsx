@@ -2,39 +2,31 @@ import React from 'react';
 import { GetServerSideProps } from 'next'
 import { Layout, Container } from 'components/layout';
 import { getProperties } from 'services';
-import { observer } from 'mobx-react-lite';
-import { useStore } from 'stores';
+import { parseTokkoParameters } from 'helpers/tokko';
 
-const Home = observer(({properties}: any) => {
-
-  const {
-    rootStore: { userStore }
-  } = useStore();
-
+const PropertySearch = ({properties}: any) => {
+  
   
   return (
     <Layout>
       <Container>
+        {/* {console.log(properties)} */}
       </Container>
     </Layout>
   )
-});
+}
 
 export const getServerSideProps: GetServerSideProps = async ({query}) => {
 
-  // Only get starred & ventas
   const { objects } = await getProperties({
-    params: {
-      filters: [["is_starred_on_web","=",true]],
-      operation_types: [1]
-    }
+    params: parseTokkoParameters({...query})
   })
 
   return {
     props: {
-      properties: objects
+      properties: objects 
     }
   }
 }
 
-export default Home;
+export default PropertySearch;

@@ -6,11 +6,11 @@ import { parseTokkoParameters } from 'helpers/tokko';
 
 const PropertySearch = ({properties}: any) => {
   
-  // console.log(properties)
   
   return (
     <Layout>
       <Container>
+        {console.log(properties)}
       </Container>
     </Layout>
   )
@@ -18,12 +18,8 @@ const PropertySearch = ({properties}: any) => {
 
 export const getServerSideProps: GetServerSideProps = async ({query}) => {
 
-  parseTokkoParameters({...query})
-
   const { objects } = await getProperties({
-    params: {
-      operation_types: [1]
-    }
+    params: parseTokkoParameters({...query})
   })
 
   return {

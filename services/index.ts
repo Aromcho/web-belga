@@ -111,3 +111,16 @@ export const getNeighborhoods = async () => {
   const { data }: any = await axios.get(url, { params: baseParamsExtended })
   return data;
 }
+
+export const getPropertiesById = async (list: number[]) => {
+  const url = `${API_URI}/property/`;
+
+  let baseParamsExtended = {
+    ...baseParams,
+    limit: list.length,
+    id__in: list.join(',')
+  }
+
+  const { data }: any = await axios.get(url, { params: baseParamsExtended })
+  return data;
+}

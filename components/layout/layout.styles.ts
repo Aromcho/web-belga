@@ -193,7 +193,7 @@ export const GlobalStyles = css`
       * {
         box-sizing: border-box;
         /* Google font */
-        font-family: "Roboto", sans-serif;
+        font-family: 'Montserrat', sans-serif;
         font-weight: normal;
       }
     }

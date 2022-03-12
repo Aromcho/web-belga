@@ -10,7 +10,6 @@ const PropertySearch = ({properties}: any) => {
   return (
     <Layout>
       <Container>
-        {console.log(properties)}
       </Container>
     </Layout>
   )

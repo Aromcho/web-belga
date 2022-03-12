@@ -10,6 +10,6 @@ export interface FooterProps {
 
 export const Footer = ({}: FooterProps) => {
   return (
-    <div></div>
+    <div>Footer</div>
   );
 };

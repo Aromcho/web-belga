@@ -15,12 +15,13 @@ const Home = observer(({properties}: any) => {
   return (
     <Layout>
       <Container>
+        Home
       </Container>
     </Layout>
   )
 });
 
-export const getServerSideProps: GetServerSideProps = async ({query}) => {
+/* export const getServerSideProps: GetServerSideProps = async ({query}) => {
 
   // Only get starred & ventas
   const { objects } = await getProperties({
@@ -35,6 +36,6 @@ export const getServerSideProps: GetServerSideProps = async ({query}) => {
       properties: objects
     }
   }
-}
+} */
 
 export default Home;

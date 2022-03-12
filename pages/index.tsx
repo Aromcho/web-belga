@@ -6,19 +6,27 @@ import { getProperties } from 'services';
 import { observer } from 'mobx-react-lite';
 import { useStore } from 'stores';
 
+
+import {
+  HeroWrapper
+} from 'components/pages/home.styles'
+
 const Home = observer(({ properties }: any) => {
 
   const {
     rootStore: { userStore }
   } = useStore();
 
-  
-  {console.log(properties)}
   return (
     <Layout>
       <Head>
         <title>Belga Inmobiliaria</title>
       </Head>
+
+      <HeroWrapper style={{backgroundImage: 'url(/images/home_bg_hero.jpg)'}}>
+
+      </HeroWrapper>
+
       <Container>
         Home
       </Container>

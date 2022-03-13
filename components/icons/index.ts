@@ -7,7 +7,10 @@ export {
   FacebookCircleIcon,
   YoutubeCircleIcon,
   MessengerCircleIcon,
-  MenuBurguerIcon,
+  MenuBurgerIcon,
   TwitterIcon,
   TelIcon,
+  BelgaIsoIcon,
+  MailIcon,
+  LocationIcon
 } from "./icons";

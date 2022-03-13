@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const BurguerButton = styled.ul`
+export const BurgerButton = styled.ul`
   width: 65px;
   height: 65px;
   align-items: center;
@@ -30,7 +30,7 @@ export const MenuItem = styled.li`
   align-items: center;
   display: flex;
   margin-right: 30px;
-  
+
   .menu--link {
     width: 100%;
     min-width: 180px;
@@ -150,7 +150,7 @@ export const MenuContainer = styled.div`
   width: 100%;
   height: auto;
   background-color: transparent;
-  z-index: 9999;
+  z-index: 999999;
   position: fixed;
   top: 0;
   left: 0;

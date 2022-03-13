@@ -17,11 +17,11 @@ import {
   MenuInfo,
   MenuInfoItem,
   MenuInfoList,
-  BurguerButton
+  BurgerButton
 } from "./menu.styles";
 
 /*Icons*/
-import { TelIcon, WhatsappIcon, MenuBurguerIcon } from "components/icons";
+import { TelIcon, WhatsappIcon, MenuBurgerIcon } from "components/icons";
 
 export const Menu = observer(() => {
   const {
@@ -36,7 +36,7 @@ export const Menu = observer(() => {
           <MenuInfoItem>La imprenta</MenuInfoItem>
           <MenuInfoItem>Belgrano C</MenuInfoItem>
           <MenuInfoItem>Belgrano R</MenuInfoItem>
-          
+
           <MenuInfoItem><Link href='tel:+541152633393' ><a className='info--link'><TelIcon /> +54 11 5263 3393</a></Link></MenuInfoItem>
           <MenuInfoItem><Link href='https://api.whatsapp.com/send?phone=5491169462894&text=Hola%20Belga!%20%F0%9F%91%8B%20Quisiera%20hacerles%20una%20consulta.' ><a className='info--link' target='_blank'><WhatsappIcon /> +54 11 6946 2894</a></Link></MenuInfoItem>
         </MenuInfoList>
@@ -58,10 +58,10 @@ export const Menu = observer(() => {
           </MenuList>
 
         </Container>
-        
-        <BurguerButton>
-          <MenuBurguerIcon />
-        </BurguerButton>
+
+        <BurgerButton>
+          <MenuBurgerIcon />
+        </BurgerButton>
 
       </MenuWrapper>
     </MenuContainer >

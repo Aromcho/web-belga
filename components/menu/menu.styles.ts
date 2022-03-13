@@ -72,10 +72,11 @@ export const MenuBrandWrapper = styled.div`
   background-color: ${(props: any) => props.theme.primary};
   display: flex;
   justify-content: center;
+  margin-left: 25px;
   &:hover {
     cursor: pointer;
     ${MenuBrand} {
-      opacity: 0.75;
+      opacity: 0.65;
     }
   }
 `;

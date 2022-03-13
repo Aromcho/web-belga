@@ -6,6 +6,7 @@ import { getProperties } from 'services';
 import { observer } from 'mobx-react-lite';
 import { useStore } from 'stores';
 
+import { SocialSidebar } from 'components/socialsidebar';
 
 import {
   HeroWrapper
@@ -23,13 +24,14 @@ const Home = observer(({ properties }: any) => {
         <title>Belga Inmobiliaria</title>
       </Head>
 
-      <HeroWrapper style={{backgroundImage: 'url(/images/home_bg_hero.jpg)'}}>
+      <SocialSidebar />
 
+      <HeroWrapper style={{ backgroundImage: 'url(/images/home_bg_hero.jpg)' }}>
+        <Container>
+          Home
+        </Container>
       </HeroWrapper>
 
-      <Container>
-        Home
-      </Container>
     </Layout>
   )
 });

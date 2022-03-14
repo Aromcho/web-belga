@@ -34,10 +34,18 @@ export const Menu = observer(() => {
     rootStore: { userStore },
   } = useStore();
 
+  /* Handle Menu */
   const [showMenu, setShowMenu] = React.useState<boolean>(false)
-  console.log(showMenu)
+  const [sticky, setSticky] = React.useState<boolean>(false)
+  if (typeof window !== "undefined") {
+    window.addEventListener("scroll", function () {
+      const st = window.pageYOffset;
+      st > 0 ? setSticky(true) : setSticky(false)
+    }, false);
+  }
+
   return (
-    <MenuContainer>
+    <MenuContainer className={classes({ sticky })}>
       <MenuInfo>
         <MenuInfoList>
           <MenuInfoItem>La imprenta</MenuInfoItem>
@@ -55,13 +63,14 @@ export const Menu = observer(() => {
           <Link href={PATHS.ROOT}><a>
             <MenuBrandWrapper>
               <MenuBrand src="./images/brand_red.svg" alt="Belga inmobiliaria" title="Belga inmobiliaria" />
+              <BelgaIsoIcon className='isobrand--img' />
             </MenuBrandWrapper>
           </a></Link>
 
           <MenuList>
             <MenuItem><Link href='#'><a className='menu--link'>Quiero comprar</a></Link></MenuItem>
             <MenuItem><Link href='#'><a className='menu--link'>Emprendimientos</a></Link></MenuItem>
-            <MenuItem><Button text='Quiero vender' /></MenuItem>
+            <MenuItem><Button text='Quiero vender' className='button--menu' /></MenuItem>
           </MenuList>
 
         </Container>

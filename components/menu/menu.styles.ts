@@ -150,7 +150,12 @@ export const MenuBrand = styled.img`
   width: 100%;
   max-width: 140px;
   height: auto;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.4s cubic-bezier(0.74, 0.04, 0.24, 1.04);
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
 `;
 
 export const MenuBrandWrapper = styled.div`
@@ -161,11 +166,25 @@ export const MenuBrandWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-left: 25px;
+  transition: all 0.4s cubic-bezier(0.74, 0.04, 0.24, 1.04);
+  position: relative;
   &:hover {
     cursor: pointer;
     ${MenuBrand} {
       opacity: 0.65;
     }
+  }
+  .isobrand--img {
+    width: 100%;
+    max-width: 40px;
+    height: auto;
+    color: ${(props: any) => props.theme.secondary};
+    transition: all 0.4s cubic-bezier(0.74, 0.04, 0.24, 1.04);
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
   }
 `;
 
@@ -221,10 +240,11 @@ export const MenuInfo = styled.div`
 
 export const MenuWrapper = styled.div`
   width: 100%;
-  height: auto;
-  background-color: transparent;
+  height: 65px;
   align-items: center;
+  background-color: transparent;
   display: flex;
+  transition: all 0.4s cubic-bezier(0.74, 0.04, 0.24, 1.04);
   .menu--container {
     max-width: 96%;
     justify-content: space-between;
@@ -238,8 +258,62 @@ export const MenuContainer = styled.div`
   width: 100%;
   height: auto;
   background-color: transparent;
+  transition: all 0.4s cubic-bezier(0.74, 0.04, 0.24, 1.04);
   z-index: 999999;
   position: fixed;
   top: 0;
   left: 0;
+  &.sticky {
+    top: -32px;
+    box-shadow: 0px 7px 29px -1px rgba(0, 0, 0, 0.26);
+    ${MenuWrapper} {
+      height: 55px;
+      background-color: ${(props: any) => props.theme.white};
+      ${BurgerButton} {
+        height: 55px;
+        ${IconWrapper} {
+          svg {
+            color: ${(props: any) => props.theme.black};
+          }
+        }
+      }
+      ${BurgerMenu} {
+        top: 87px;
+      }
+    }
+    ${MenuBrandWrapper} {
+      height: 55px;
+      ${MenuBrand} {
+        opacity: 0;
+      }
+      .isobrand--img {
+        opacity: 1;
+      }
+      &:hover {
+        .isobrand--img {
+          opacity: 0.65;
+        }
+      }
+    }
+    ${MenuList} {
+      ${MenuItem} {
+        .menu--link {
+          color: ${(props: any) => props.theme.black};
+          padding: 5px 0;
+          &:hover {
+            border-bottom-color: ${(props: any) => props.theme.black};
+          }
+        }
+      }
+
+      .button--menu {
+        color: ${(props: any) => props.theme.black};
+        border-color: ${(props: any) => props.theme.black};
+        &:hover {
+          border-color: ${(props: any) => props.theme.secondary};
+          color: ${(props: any) => props.theme.white};
+        }
+      }
+    }
+  }
 `;

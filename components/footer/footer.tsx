@@ -113,7 +113,13 @@ export const Footer = ({ }: FooterProps) => {
         </FooterCenter>
 
         <FooterRight>
-          <FooterInfo></FooterInfo>
+          <FooterInfo>
+            <RightInfo>
+              <FooterTitle className='black'>
+                <BelgaIsoIcon /> <FooterTitleText>¿Cómo te podemos ayudar?</FooterTitleText>
+              </FooterTitle>
+            </RightInfo>
+          </FooterInfo>
           <FooterInfoBottom>
             <RightInfo>
               <LegalText>*Para los casos de alquiler de vivienda, el monto máximo de comisión que se le puede requerir a los propietarios será el equivalente al cuatro con quince centésimos por ciento (4,15%) del valor total del respectivo contrato. Se encuentra prohibido cobrar comisiones inmobiliarias y gastos de gestoría de informes a los inquilinos que sean personas físicas.</LegalText>

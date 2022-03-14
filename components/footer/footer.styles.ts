@@ -27,6 +27,15 @@ export const FooterTitle = styled.div`
     position: relative;
     top: -5px;
   }
+  &.black {
+    svg {
+      color: ${(props: any) => props.theme.black};
+    }
+    ${FooterTitleText} {
+      border-color: ${(props: any) => props.theme.black};
+      color: ${(props: any) => props.theme.black};
+    }
+  }
 `;
 
 export const FooterInfo = styled.div`

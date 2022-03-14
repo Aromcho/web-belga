@@ -1,6 +1,10 @@
 import React from 'react';
 import Link from "next/link";
 
+import { Button } from 'components/button';
+import { Input } from 'components/input';
+import { Textarea } from 'components/textarea';
+
 import {
   FooterContainer,
   FooterWrapper,
@@ -25,7 +29,8 @@ import {
   LocationItem,
   HeadLocation,
   BodyLocation,
-  Loc
+  Loc,
+  FormContact
 } from './footer.styles';
 
 import {
@@ -40,6 +45,8 @@ import {
   WhatsappIcon,
   YoutubeCircleIcon
 } from 'components/icons';
+
+
 
 export interface FooterProps {
 
@@ -118,6 +125,29 @@ export const Footer = ({ }: FooterProps) => {
               <FooterTitle className='black'>
                 <BelgaIsoIcon /> <FooterTitleText>¿Cómo te podemos ayudar?</FooterTitleText>
               </FooterTitle>
+
+              <FormContact>
+                <Input
+                  placeHolder='Nombre'
+                  type='text'
+                />
+
+                <Input
+                  placeHolder='Email'
+                  type='email'
+                />
+
+                <Input
+                  placeHolder='Teléfono'
+                  type='tel'
+                />
+
+                <Textarea
+                  placeHolder='Mensaje'
+                />
+                <Button text='Enviar' secondary className='button--send' />
+              </FormContact>
+
             </RightInfo>
           </FooterInfo>
           <FooterInfoBottom>

@@ -16,19 +16,20 @@ export interface ButtonProps {
   arrowText?: boolean;
   style?: string;
   icon?: boolean;
+  secondary?: boolean;
 }
 
-export const Button = ({ link = '#', target = '_self', text, className, type, onClick, children, arrowText = false, icon = true }: ButtonProps) => {
+export const Button = ({ link = '#', target = '_self', text, className, type, onClick, children, secondary }: ButtonProps) => {
   if (onClick) {
     return (
-      <ButtonWrapper className={classes(className, { linear: type === 'linear' })} onClick={onClick}>
+      <ButtonWrapper className={classes(className, { secondary })} onClick={onClick}>
         {text}
       </ButtonWrapper>
     );
   }
   return (
     <Link href={link} passHref>
-      <ButtonWrapper target={target} className={classes(className, { linear: type === 'linear' })} >
+      <ButtonWrapper target={target} className={classes(className, { secondary })} >
         {children || text}
       </ButtonWrapper>
     </Link>

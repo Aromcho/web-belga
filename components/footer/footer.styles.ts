@@ -87,6 +87,16 @@ export const LegalText = styled.div`
   text-align: left;
 `;
 
+export const FormContact = styled.div`
+  width: 100%;
+  max-width: 330px;
+  margin: 70px auto 0;
+  .button--send {
+    max-width: 220px;
+    margin: 80px auto 0;
+  }
+`;
+
 export const RightInfo = styled.div`
   width: 100%;
   max-width: 430px;

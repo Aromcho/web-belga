@@ -145,7 +145,7 @@ export const Footer = ({ }: FooterProps) => {
                 <Textarea
                   placeHolder='Mensaje'
                 />
-                <Button text='Enviar' secondary className='button--send' />
+                <Button text='Enviar' type='secondary' className='button--send' />
               </FormContact>
 
             </RightInfo>

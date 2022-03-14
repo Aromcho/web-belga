@@ -33,4 +33,15 @@ export const ButtonWrapper = styled.a`
       color: ${(props: any) => props.theme.black};
     }
   }
+
+  &.outline {
+    border: 2px solid ${(props: any) => props.theme.secondary};
+    background-color: ${(props: any) => props.theme.white};
+    color: ${(props: any) => props.theme.black};
+    &:hover {
+      border-color: ${(props: any) => props.theme.primary};
+      background-color: ${(props: any) => props.theme.primary};
+      color: ${(props: any) => props.theme.white};
+    }
+  }
 `;

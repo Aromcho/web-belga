@@ -9,8 +9,14 @@ import { useStore } from 'stores';
 import { SocialSidebar } from 'components/socialsidebar';
 
 import {
-  HeroWrapper
+  HeroWrapper,
+  Hero,
+  SeleccionSection,
+  Seleccion,
+  InversionSection,
+  Inversion
 } from 'components/pages/home.styles'
+import { Title } from 'components/title';
 
 const Home = observer(({ properties }: any) => {
 
@@ -24,13 +30,90 @@ const Home = observer(({ properties }: any) => {
         <title>Belga Inmobiliaria</title>
       </Head>
 
-      <SocialSidebar />
 
       <HeroWrapper style={{ backgroundImage: 'url(/images/home_bg_hero.jpg)' }}>
         <Container>
-          Home
+          <Hero>
+            <SocialSidebar />
+
+          </Hero>
+
         </Container>
       </HeroWrapper>
+
+      <SeleccionSection>
+        <Seleccion><SocialSidebar color='red' /></Seleccion>
+
+        <Container className='seleccion--container'>
+          <Title title='Nuestra Selección' />
+
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+        </Container>
+      </SeleccionSection>
+
+      <InversionSection>
+        <Inversion><SocialSidebar color='black' /></Inversion>
+
+        <Container className='inversion--container'>
+          <Title title='Tu próxima inversión' />
+
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+        </Container>
+      </InversionSection>
 
     </Layout>
   )

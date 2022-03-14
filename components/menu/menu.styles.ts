@@ -1,5 +1,97 @@
 import styled from "@emotion/styled";
 
+export const LinkText = styled.span`
+  width: auto;
+  max-width: 190px;
+  height: 30px;
+  align-items: center;
+  border-bottom: 2px solid transparent;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  transition: all 0.3s ease-in-out;
+`;
+
+export const BurgerMenuItem = styled.li`
+  width: 100%;
+  max-width: 190px;
+  height: 30px;
+  margin-bottom: 12px;
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+  &:hover {
+    ${LinkText} {
+      border-bottom-color: ${(props: any) => props.theme.black};
+    }
+  }
+  .burger--menu-link {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    color: ${(props: any) => props.theme.black};
+
+    text-transform: uppercase;
+    svg {
+      width: 25px;
+      height: auto;
+      display: block;
+      margin-right: 20px;
+    }
+  }
+`;
+
+export const BurgerMenuList = styled.ul`
+  width: 100%;
+  max-width: 190px;
+  height: 100%;
+  align-items: center;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  margin: 0 auto;
+`;
+
+export const BurgerMenu = styled.div`
+  width: 360px;
+  height: 230px;
+  align-items: center;
+  display: flex;
+  background-color: ${(props: any) => props.theme.white};
+  justify-content: center;
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease-in-out;
+  top: 97px;
+  right: 0;
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+`;
+
+export const IconWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  position: relative;
+  svg {
+    width: 30px;
+    height: auto;
+    color: ${(props: any) => props.theme.white};
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    &.active {
+      opacity: 1;
+    }
+  }
+`;
+
 export const BurgerButton = styled.ul`
   width: 65px;
   height: 65px;
@@ -9,13 +101,9 @@ export const BurgerButton = styled.ul`
   justify-content: center;
   margin-left: 40px;
   transition: all 0.3s ease-in-out;
-  svg {
-    width: 30px;
-    height: auto;
-    color: ${(props: any) => props.theme.white};
-    transition: all 0.3s ease-in-out;
-  }
-  &:hover {
+
+  &:hover,
+  &.active {
     cursor: pointer;
     background-color: ${(props: any) => props.theme.white};
     svg {

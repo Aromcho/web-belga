@@ -8,9 +8,12 @@ export {
   YoutubeCircleIcon,
   MessengerCircleIcon,
   MenuBurgerIcon,
+  CloseIcon,
   TwitterIcon,
   TelIcon,
   BelgaIsoIcon,
   MailIcon,
-  LocationIcon
+  LocationIcon,
+  SearchIcon,
+  HeartIcon
 } from "./icons";

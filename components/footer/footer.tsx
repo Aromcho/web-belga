@@ -80,7 +80,7 @@ export const Footer = ({ }: FooterProps) => {
                 </LocationItem>
 
                 <LocationItem>
-                  <HeadLocation><LocationIcon />Sucursal BELGRANO R</HeadLocation>
+                  <HeadLocation><LocationIcon />Sucursal BELGRANO R </HeadLocation>
                   <BodyLocation>
                     <Loc>Superí 1485</Loc>
                     <Loc>(Esquina Av. de los Incas)</Loc>

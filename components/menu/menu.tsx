@@ -17,19 +17,26 @@ import {
   MenuInfo,
   MenuInfoItem,
   MenuInfoList,
-  BurgerButton
+  BurgerButton,
+  IconWrapper,
+  BurgerMenu,
+  BurgerMenuList,
+  BurgerMenuItem,
+  LinkText
 } from "./menu.styles";
 
 /*Icons*/
-import { TelIcon, WhatsappIcon, MenuBurgerIcon } from "components/icons";
+import { TelIcon, WhatsappIcon, MenuBurgerIcon, CloseIcon, BelgaIsoIcon, SearchIcon, HeartIcon } from "components/icons";
+import { classes } from "helpers";
 
 export const Menu = observer(() => {
   const {
     rootStore: { userStore },
   } = useStore();
 
+  const [showMenu, setShowMenu] = React.useState<boolean>(false)
+  console.log(showMenu)
   return (
-
     <MenuContainer>
       <MenuInfo>
         <MenuInfoList>
@@ -59,9 +66,34 @@ export const Menu = observer(() => {
 
         </Container>
 
-        <BurgerButton>
-          <MenuBurgerIcon />
+        <BurgerButton onClick={() => setShowMenu(!showMenu)} className={classes({ active: showMenu })}>
+          <IconWrapper>
+            <MenuBurgerIcon className={classes({ active: !showMenu })} />
+            <CloseIcon className={classes({ active: showMenu })} />
+          </IconWrapper>
         </BurgerButton>
+        <BurgerMenu className={classes({ active: showMenu })}>
+
+          <BurgerMenuList>
+            <BurgerMenuItem>
+              <Link href={PATHS.ROOT}><a className="burger--menu-link"><HeartIcon /> <LinkText>Favoritos</LinkText></a></Link>
+            </BurgerMenuItem>
+
+            <BurgerMenuItem>
+              <Link href={PATHS.ROOT}><a className="burger--menu-link"><SearchIcon /> <LinkText>Búsquedas</LinkText></a></Link>
+            </BurgerMenuItem>
+
+            <BurgerMenuItem>
+              <Link href={PATHS.ROOT}><a className="burger--menu-link"><BelgaIsoIcon /> <LinkText>Conocé Belga</LinkText></a></Link>
+            </BurgerMenuItem>
+
+            <BurgerMenuItem>
+              <Link href={PATHS.ROOT}><a className="burger--menu-link"><TelIcon /> <LinkText>Contáctanos</LinkText></a></Link>
+            </BurgerMenuItem>
+          </BurgerMenuList>
+
+        </BurgerMenu>
+
 
       </MenuWrapper>
     </MenuContainer >

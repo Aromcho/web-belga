@@ -14,9 +14,11 @@ import {
   SeleccionSection,
   Seleccion,
   InversionSection,
-  Inversion
+  Inversion,
+  PropList
 } from 'components/pages/home.styles'
 import { Title } from 'components/title';
+import { CardProp } from 'components/cardprop';
 
 const Home = observer(({ properties }: any) => {
 
@@ -47,35 +49,35 @@ const Home = observer(({ properties }: any) => {
         <Container className='seleccion--container'>
           <Title title='Nuestra Selección' />
 
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia corporis facere earum magni cupiditate laborum non modi saepe expedita perferendis officiis, tenetur nostrum, deserunt quidem illum aut amet neque?
+          <PropList>
+            <CardProp
+              className='card--prop-home'
+              operation='Venta'
+              currency='USD'
+              price='1.500.000'
+              description='Casa en Belgrano R'
+              address='Virrey del Pino al 3400'
+              m2='550'
+              bedroom='5'
+              bathroom='3'
+              garage='3'
+            />
+
+            <CardProp
+              className='card--prop-home'
+              operation='Venta'
+              currency='USD'
+              price='1.500.000'
+              description='Casa en Belgrano R'
+              address='Virrey del Pino al 3400'
+              m2='550'
+              bedroom='5'
+              bathroom='3'
+              garage='3'
+            />
+          </PropList>
         </Container>
+
       </SeleccionSection>
 
       <InversionSection>

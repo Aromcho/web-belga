@@ -66,8 +66,13 @@ export const SearchIcon = (props: any) => (
 );
 
 export const HeartIcon = (props: any) => (
-  <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g transform="translate(-400 364)"><rect width="24" height="24" transform="translate(400 -364)" fill="none" /><path d="M18.458,1.616a5.182,5.182,0,0,0-7.5,0L10,2.6l-.944-1A5.231,5.231,0,0,0,5.3,0,5.166,5.166,0,0,0,1.55,1.6a5.6,5.6,0,0,0,0,7.734l7.934,8.278a.688.688,0,0,0,.512.224.7.7,0,0,0,.52-.224l7.942-8.278a5.6,5.6,0,0,0,0-7.718Zm-.8,6.718-7.686,8-7.686-8a4.343,4.343,0,0,1,0-5.966A3.863,3.863,0,0,1,5.093,1.136,3.9,3.9,0,0,1,7.916,2.367l1.528,1.6A.735.735,0,0,0,9.98,4.2a.8.8,0,0,0,.536-.232l1.511-1.6a3.823,3.823,0,0,1,5.6,0,4.327,4.327,0,0,1,.032,5.966Z" transform="translate(402 -361)" fill={'currentColor' || '#043e22'} /></g></svg>
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g transform="translate(-242 -222)"><rect width="24" height="24" transform="translate(242 222)" fill="none" /><path d="M17.931,7.932a4.241,4.241,0,0,0,.946-2.838,4.608,4.608,0,0,0-8.513-2.432h0L9.689,3.743,9.013,2.662a.132.132,0,0,0-.135-.135V2.392h0A5.162,5.162,0,0,0,5.094.5,4.556,4.556,0,0,0,.5,5.094,4.605,4.605,0,0,0,1.986,8.472h0l7.837,7.972,7.567-7.837L17.8,8.2l.135-.27Z" transform="translate(244.311 225.928)" fill='#ffffff' stroke='#ffffff' strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" strokeWidth="1.01" /></g></svg>
 );
+
+export const ImageIcon = (props: any) => (
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g transform="translate(-156 91)"><rect width="24" height="24" transform="translate(156 -91)" fill="none" /><path d="M19.509,18.258H0V2H19.509ZM18.7,2.813H.813V17.445H18.7Zm-.813,13.006H2.439L5.69,9.729l2.439,2.478L12.2,6.064ZM8.253,13.49l-2.366-2.4L3.795,15.006H16.47L12.159,7.6,8.253,13.49ZM4.471,4.439A2.032,2.032,0,1,1,2.439,6.471,2.033,2.033,0,0,1,4.471,4.439Zm0,.813A1.219,1.219,0,1,1,3.252,6.471,1.22,1.22,0,0,1,4.471,5.252Z" transform="translate(158.245 -89.129)" fill={'currentColor' || '#043e22'} /></g></svg>
+);
+
 
 
 

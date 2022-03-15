@@ -1,5 +1,15 @@
 import styled from "@emotion/styled";
 
+export const PropList = styled.div`
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  .card--prop-home {
+    width: 48%;
+  }
+`;
+
 export const Inversion = styled.div`
   width: 100%;
   height: 100%;
@@ -61,6 +71,7 @@ export const HeroWrapper = styled.div`
   background-repeat: no-repeat;
   overflow: hidden;
   position: relative;
+  
   &:after {
     width: 100%;
     height: 100%;

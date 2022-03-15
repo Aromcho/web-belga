@@ -15,5 +15,6 @@ export {
   MailIcon,
   LocationIcon,
   SearchIcon,
-  HeartIcon
+  HeartIcon,
+  ImageIcon
 } from "./icons";

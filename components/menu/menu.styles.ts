@@ -278,7 +278,7 @@ export const MenuContainer = styled.div`
         }
       }
       ${BurgerMenu} {
-        top: 87px;
+        top: 86px;
       }
     }
     ${MenuBrandWrapper} {

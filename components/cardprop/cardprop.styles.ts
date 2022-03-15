@@ -1,0 +1,206 @@
+import styled from "@emotion/styled";
+
+export const LikeWrapper = styled.div`
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+  z-index: 1;
+  svg {
+    width: 100%;
+    height: auto;
+    transition: all 0.3s ease-in-out;
+    path {
+      transition: all 0.3s ease-in-out;
+      fill: transparent;
+      stroke: ${(props: any) => props.theme.black};
+    }
+  }
+  &:hover {
+    cursor: pointer;
+    svg {
+      transform: scale(1.2);
+    }
+  }
+  &.liked {
+    svg {
+      path {
+        fill: ${(props: any) => props.theme.black};
+        stroke: ${(props: any) => props.theme.black};
+      }
+    }
+    &:hover {
+      svg {
+        transform: scale(0.8);
+      }
+    }
+  }
+`;
+
+export const Address = styled.div`
+  width: 100%;
+  max-width: 250px;
+  font-size: 14px;
+  font-weight: 500;
+  color: ${(props: any) => props.theme.black};
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+`;
+
+export const Desc = styled.div`
+  width: 100%;
+  max-width: 300px;
+  font-size: 16px;
+  font-weight: 700;
+  color: ${(props: any) => props.theme.black};
+  margin-bottom: 5px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+`;
+
+export const DescWrapper = styled.div`
+  width: 100%;
+`;
+
+export const Info = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 30px 0;
+`;
+
+export const FeatureImg = styled.img`
+  width: 100%;
+  max-width: 44px;
+  height: auto;
+  margin: 0 auto;
+`;
+
+export const FeatureText = styled.div`
+  width: 100%;
+  color: ${(props: any) => props.theme.black};
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 3px;
+`;
+
+export const FeaturesItem = styled.li`
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+`;
+
+export const FeaturesList = styled.ul`
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const FeaturesWrapper = styled.div`
+  width: 100%;
+  padding: 20px 0;
+`;
+
+export const FooterProp = styled.div`
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+`;
+
+export const EmptyText = styled.span`
+  width: 90%;
+  max-width: 200px;
+  color: ${(props: any) => props.theme.black};
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0 auto;
+  text-align: center;
+  opacity: 0.5;
+`;
+
+export const EmptyMedia = styled.div`
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: ${(props: any) => props.theme.gray10};
+  svg {
+    width: 100%;
+    max-width: 120px;
+    height: auto;
+    color: ${(props: any) => props.theme.black};
+    opacity: 0.25;
+  }
+`;
+
+export const ImageWrapper = styled.div`
+  width: 100%;
+  height: 380px;
+  position: relative;
+`;
+
+export const Currency = styled.div`
+  color: ${(props: any) => props.theme.black};
+  font-size: 14px;
+  font-weight: 600;
+  display: block;
+  text-transform: uppercase;
+  white-space: nowrap;
+  margin-right: 8px;
+`;
+
+export const Price = styled.div`
+  align-items: center;
+  justify-content: flex-end;
+  color: ${(props: any) => props.theme.black};
+  display: flex;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  white-space: nowrap;
+  margin-left: auto;
+`;
+
+export const Operation = styled.div`
+  width: auto;
+  color: ${(props: any) => props.theme.black};
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  text-transform: uppercase;
+`;
+
+export const HeadProp = styled.div`
+  width: 100%;
+  height: 50px;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  padding: 0 30px;
+`;
+
+export const CardPropContainer = styled.div`
+  width: 100%;
+  max-width: 580px;
+  height: 580px;
+  border: 1px solid ${(props: any) => props.theme.black};
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+      rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+  }
+`;

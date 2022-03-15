@@ -42,7 +42,7 @@ export interface CardPropProps {
   bedroom?: string;
   bathroom?: string;
   garage?: string;
-  like?: boolean;
+  liked?: boolean;
 }
 
 

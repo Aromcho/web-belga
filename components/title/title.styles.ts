@@ -24,4 +24,17 @@ export const TitleContainer = styled.div`
   align-items: center;
   display: flex;
   margin: 0 auto 70px;
+
+  &.vertical{
+    height: 100%;
+    flex-flow: column;
+    ${Line} {
+      width: 1px;
+      height: 100%;
+      background-color: ${(props: any) => props.theme.black};
+    }
+    ${TitleText} {
+      margin: 0 0 15px 0;
+    }
+  }
 `;

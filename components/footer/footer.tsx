@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Button } from 'components/button';
 import { Input } from 'components/input';
 import { Textarea } from 'components/textarea';
+import { FeedbackMsg } from 'components/feedbackmsg';
 
 import {
   FooterContainer,
@@ -45,6 +46,7 @@ import {
   WhatsappIcon,
   YoutubeCircleIcon
 } from 'components/icons';
+
 
 
 
@@ -145,6 +147,12 @@ export const Footer = ({ }: FooterProps) => {
                 <Textarea
                   placeHolder='Mensaje'
                 />
+
+                {/* <FeedbackMsg
+                  className='success'
+                  msg='Alguno de los campos tienen información incorrecta'
+                /> */}
+
                 <Button text='Enviar' type='secondary' className='button--send' />
               </FormContact>
 

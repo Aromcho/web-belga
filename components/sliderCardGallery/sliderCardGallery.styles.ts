@@ -65,7 +65,7 @@ export const SwiperContainerGallery = styled.div`
         background-size: 15px;
         content: "";
         transition: all 0.3s ease-in-out;
-        opacity: 0.6;
+        opacity: 0.7;
       }
       &:hover {
         &:after {
@@ -78,7 +78,7 @@ export const SwiperContainerGallery = styled.div`
       background: rgb(0, 0, 0);
       background: linear-gradient(
         90deg,
-        rgba(0, 0, 0, 0.20) 0%,
+        rgba(0, 0, 0, 0.25) 0%,
         rgba(0, 0, 0, 0) 88%
       );
       &:before {
@@ -95,7 +95,7 @@ export const SwiperContainerGallery = styled.div`
       background: linear-gradient(
         90deg,
         rgba(0, 0, 0, 0) 9%,
-        rgba(0, 0, 0, 0.20) 100%
+        rgba(0, 0, 0, 0.25) 100%
       );
       &:before {
         right: 0;

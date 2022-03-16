@@ -10,6 +10,19 @@ export const PropList = styled.div`
   }
 `;
 
+export const InversionItem = styled.li`
+  width: 30%;
+  height: 100%;
+`;
+
+export const InversionList = styled.ul`
+  width: 100%;
+  height: 730px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
 export const Inversion = styled.div`
   width: 100%;
   height: 100%;
@@ -71,7 +84,7 @@ export const HeroWrapper = styled.div`
   background-repeat: no-repeat;
   overflow: hidden;
   position: relative;
-  
+
   &:after {
     width: 100%;
     height: 100%;

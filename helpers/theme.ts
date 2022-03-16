@@ -3,5 +3,7 @@ export const theme = {
   secondary: '#C62025',
   white: '#ffffff',
   black: '#000000',
-  gray10: '#F8F8F8'  
+  gray10: '#F8F8F8', 
+  error: '#c40000',
+  success: '#00ba7f'  
 };

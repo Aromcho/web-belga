@@ -43,5 +43,10 @@ export const ButtonWrapper = styled.a`
       background-color: ${(props: any) => props.theme.primary};
       color: ${(props: any) => props.theme.white};
     }
+
+    &.black {
+      border: 2px solid ${(props: any) => props.theme.black};
+      color: ${(props: any) => props.theme.black};
+    }
   }
 `;

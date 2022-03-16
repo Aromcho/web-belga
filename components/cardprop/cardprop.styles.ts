@@ -40,6 +40,17 @@ export const LikeWrapper = styled.div`
   }
 `;
 
+export const Bedrooms = styled.div`
+  width: 100%;
+  max-width: 250px;
+  font-size: 14px;
+  font-weight: 500;
+  color: ${(props: any) => props.theme.white};
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+`;
+
 export const Address = styled.div`
   width: 100%;
   max-width: 250px;
@@ -145,6 +156,15 @@ export const EmptyMedia = styled.div`
   }
 `;
 
+export const IsolatedImage = styled.img`
+  width: 100%;
+  height: 570px;
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  transform: scale(1.05);
+`;
+
 export const ImageWrapper = styled.div`
   width: 100%;
   height: 380px;
@@ -198,9 +218,58 @@ export const CardPropContainer = styled.div`
   border: 1px solid ${(props: any) => props.theme.black};
   overflow: hidden;
   transition: all 0.3s ease-in-out;
+  position: relative;
   &:hover {
     transform: translateY(-5px);
     box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
       rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+  }
+
+  .inversion--link {
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    position: absolute;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &.inversion {
+    max-width: 380px;
+    height: 730px;
+    background-color: ${(props: any) => props.theme.black};
+    ${HeadProp} {
+      background-color: ${(props: any) => props.theme.black};
+      justify-content: flex-end;
+      ${Price} {
+        color: ${(props: any) => props.theme.white};
+        ${Currency} {
+          color: ${(props: any) => props.theme.white};
+          margin-left: 10px;
+        }
+      }
+    }
+
+    ${ImageWrapper} {
+      height: 570px;
+      overflow: hidden;
+    }
+
+    ${FooterProp} {
+      ${Info} {
+        background-color: ${(props: any) => props.theme.black};
+        ${DescWrapper} {
+          ${Desc} {
+            color: ${(props: any) => props.theme.white};
+            margin-bottom: 10px;
+          }
+          ${Address} {
+            color: ${(props: any) => props.theme.white};
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
   }
 `;

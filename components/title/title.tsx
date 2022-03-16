@@ -8,23 +8,34 @@ import {
   TitleText,
   Line
 } from './title.styles';
+import { classes } from 'helpers';
 
 
 export interface TitleProps {
+  className?: string;
   title?: string;
   textButton?: string;
   linkButton?: string;
   onClick?: () => void;
   link?: () => void;
-
+  vertical?: boolean;
+  buttonStyle?: string;
 }
 
-export const Title = ({ title, textButton = 'Ver más', onClick, linkButton }: TitleProps) => {
+export const Title = ({
+  className,
+  title,
+  textButton = 'Ver más',
+  onClick,
+  linkButton,
+  vertical,
+  buttonStyle='outline'
+}: TitleProps) => {
   return (
-    <TitleContainer>
+    <TitleContainer className={classes(className, { vertical })}>
       <TitleText>{title}</TitleText>
       <Line />
-      <Button text={textButton} type='outline' onClick={onClick} link={linkButton} />
+      <Button text={textButton} type={buttonStyle} onClick={onClick} link={linkButton} />
     </TitleContainer>
   );
 };

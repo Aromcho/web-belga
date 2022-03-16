@@ -93,7 +93,7 @@ export const FormContact = styled.div`
   margin: 70px auto 0;
   .button--send {
     max-width: 220px;
-    margin: 80px auto 0;
+    margin: 30px auto 0;
   }
 `;
 

@@ -1,7 +1,8 @@
 import React from 'react';
-import Link from "next/link";
+
 
 import { Button } from 'components/button';
+import { SliderCardGallery } from 'components/sliderCardGallery';
 
 import {
   CardPropContainer,
@@ -36,6 +37,7 @@ export interface CardPropProps {
   currency: string;
   price: string;
   media?: any;
+  link?: string;
   description?: string;
   address?: string;
   m2?: string;
@@ -43,6 +45,7 @@ export interface CardPropProps {
   bathroom?: string;
   garage?: string;
   liked?: boolean;
+  onLiked?: (e: boolean) => void;
 }
 
 
@@ -53,6 +56,7 @@ export const CardProp = ({
   currency,
   price,
   media,
+  link,
   description,
   address,
   m2,
@@ -60,10 +64,16 @@ export const CardProp = ({
   bathroom,
   garage,
   liked = false,
+  onLiked
 }: CardPropProps) => {
 
   /* Handle like prop*/
   const [isLiked, setIsLiked] = React.useState<boolean>(liked)
+  React.useEffect(() => {
+    if (onLiked) onLiked(isLiked)
+  }, [isLiked, liked])
+
+  const imgProp = [`https://picsum.photos/600/300?random=1`, `https://picsum.photos/600/300?random=2`, `https://picsum.photos/600/300?random=3`]
 
   return (
     <CardPropContainer className={className}>
@@ -73,14 +83,18 @@ export const CardProp = ({
       </HeadProp>
 
       <ImageWrapper>
-        {media
-          ? <></>
+        <SliderCardGallery
+          img={imgProp}
+          galleryLink={link}
+        />
+        {/* {media
+          ? <SliderCardGallery img={imgProp} />
 
           : <EmptyMedia>
             <ImageIcon />
             <EmptyText>Sin material multimedia</EmptyText>
           </EmptyMedia>
-        }
+        } */}
       </ImageWrapper>
 
       <FooterProp>

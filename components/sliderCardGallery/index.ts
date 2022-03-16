@@ -1,0 +1,1 @@
+export { SliderCardGallery } from './sliderCardGallery';

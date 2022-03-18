@@ -43,7 +43,7 @@ export interface CardPropProps {
   description?: string;
   address?: string;
   neighborhood?: string;
-  m2?: string;
+  m2?: string | number;
   bedroom?: string;
   bathroom?: string;
   garage?: string;

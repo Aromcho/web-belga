@@ -10,6 +10,7 @@ import { SocialSidebar } from 'components/socialsidebar';
 
 import {
   HeroWrapper,
+  BlackLayer,
   Hero,
   SeleccionSection,
   Seleccion,
@@ -17,16 +18,23 @@ import {
   Inversion,
   InversionList,
   InversionItem,
-  PropList
+  PropList,
+  SearchFormWrapper,
+  SearchRow
 } from 'components/pages/home.styles'
 import { Title } from 'components/title';
 import { CardProp } from 'components/cardprop';
+import { Input } from 'components/input';
+import { Button } from 'components/button';
+
 
 const Home = observer(({ properties }: any) => {
+
 
   const {
     rootStore: { userStore }
   } = useStore();
+
 
   return (
     <Layout>
@@ -36,12 +44,43 @@ const Home = observer(({ properties }: any) => {
 
 
       <HeroWrapper style={{ backgroundImage: 'url(/images/home_bg_hero.jpg)' }}>
-        <Container>
-          <Hero>
-            <SocialSidebar />
+        <BlackLayer />
+        <Hero><SocialSidebar /></Hero>
+        <Container className='align--center'>
+          <SearchFormWrapper>
+            <SearchRow className='first--row'>
+              <Input
+                className='white first--row-input'
+                type='text'
+                placeHolder='Tipo de operación'
+              />
 
-          </Hero>
+              <Input
+                className='white first--row-input'
+                type='text'
+                placeHolder='Tipo de propiedad'
+              />
 
+              <Input
+                className='white first--row-input'
+                type='text'
+                placeHolder='Dormitorios'
+              />
+            </SearchRow>
+
+            <SearchRow className='second--row'>
+              <Input
+                className='white second--row-input'
+                type='text'
+                placeHolder='Barrio'
+              />
+            </SearchRow>
+
+            <SearchRow className='third--row'>
+              <Button className='third--row-button' text='Buscar' type='secondary' />
+            </SearchRow>
+
+          </SearchFormWrapper>
         </Container>
       </HeroWrapper>
 
@@ -52,31 +91,22 @@ const Home = observer(({ properties }: any) => {
           <Title title='Nuestra Selección' />
 
           <PropList>
-            <CardProp
-              className='card--prop-home'
-              operation='Venta'
-              currency='USD'
-              price='1.500.000'
-              description='Casa en Belgrano R'
-              address='Virrey del Pino al 3400'
-              m2='550'
-              bedroom='5'
-              bathroom='3'
-              garage='3'
-            />
 
-            <CardProp
+            {properties.slice(0,2).map((item: any) => {
+              return <>
+              <CardProp
               className='card--prop-home'
-              operation='Venta'
-              currency='USD'
-              price='1.500.000'
-              description='Casa en Belgrano R'
-              address='Virrey del Pino al 3400'
-              m2='550'
-              bedroom='5'
-              bathroom='3'
-              garage='3'
-            />
+              operation={item?.operations[0].operation_type}
+              currency={item?.operations[0].prices[0].currency}
+              price={item?.operations[0].prices[0].price}
+              description={item?.location?.name}
+              address={item?.address}
+              m2={Math.round(item?.total_surface)}
+              bedroom={item?.room_amount}
+              bathroom={item?.bathroom_amount}
+              garage={item?.parking_lot_amount}
+            /></>
+            })}
           </PropList>
         </Container>
 

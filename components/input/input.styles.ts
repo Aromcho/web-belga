@@ -64,6 +64,14 @@ export const InputWrapper = styled.div`
   width: 100%;
   margin: 0 auto 15px;
   position: relative;
+  &.white {
+    ${InputStyled} {
+      border-color: ${(props: any) => props.theme.white};
+      background-color: ${(props: any) => props.theme.white};
+      border-radius: 0;
+    }
+  }
+
   &.error {
     margin: 0 auto 20px;
     ${InputStyled} {

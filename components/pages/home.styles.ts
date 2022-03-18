@@ -76,6 +76,41 @@ export const Hero = styled.div`
   left: 0;
 `;
 
+export const BlackLayer = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  content: " ";
+  position: absolute;
+  top: 0;
+  left: 0;
+`;
+
+export const SearchRow = styled.div`
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  &.first--row {
+    .first--row-input {
+      width: 32%;
+      margin: 0 0 15px 0;
+    }
+  }
+  &.second--row {
+  }
+  &.third--row {
+  }
+`;
+
+export const SearchFormWrapper = styled.div`
+  width: 100%;
+  max-width: 710px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 6;
+`;
+
 export const HeroWrapper = styled.div`
   width: 100%;
   height: 100vh;
@@ -84,14 +119,4 @@ export const HeroWrapper = styled.div`
   background-repeat: no-repeat;
   overflow: hidden;
   position: relative;
-
-  &:after {
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    content: " ";
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
 `;

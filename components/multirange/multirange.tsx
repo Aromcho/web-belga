@@ -15,11 +15,19 @@ export interface MultiRangeProps {
   customWidth?: number;
   min?: number;
   max?: number;
+  step?: number;
   withValues?: boolean;
   onChange?: (e: any) => void;
 }
 
-export const MultiRange = ({ customWidth = 300, min, max, withValues, onChange }: MultiRangeProps) => {
+export const MultiRange = ({
+  customWidth = 300,
+  min,
+  max,
+  withValues,
+  onChange,
+  step
+}: MultiRangeProps) => {
 
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);
@@ -47,12 +55,12 @@ export const MultiRange = ({ customWidth = 300, min, max, withValues, onChange }
 
   // Get min and max values when their state changes
   useEffect(() => {
-    if (onChange) onChange({ min: minVal, max: maxVal });
-  }, [minVal, maxVal, onChange]);
+    if (onChange) onChange({ minVal: minVal, maxVal: maxVal });
+  }, [minVal, maxVal]);
 
 
   return (
-    <Container>
+    <Container style={{ width: `${customWidth}px` }}>
 
       <input
         className="thumb thumb--left"
@@ -66,6 +74,7 @@ export const MultiRange = ({ customWidth = 300, min, max, withValues, onChange }
           setMinVal(value);
           minValRef.current = value;
         }}
+        step={step}
       />
       <input
         className="thumb thumb--right"
@@ -79,6 +88,7 @@ export const MultiRange = ({ customWidth = 300, min, max, withValues, onChange }
           setMaxVal(value);
           maxValRef.current = value;
         }}
+        step={step}
       />
 
       <Slider style={{ width: `${customWidth}px` }}>

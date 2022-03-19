@@ -72,6 +72,31 @@ export const InputWrapper = styled.div`
     }
   }
 
+  &.bottomLine {
+    ${InputStyled} {
+      height: 32px;
+      align-items: center;
+      border: none;
+      border-bottom: 2px solid ${(props: any) => props.theme.white};
+      border-radius: 0;
+      background-color: transparent;
+      color: ${(props: any) => props.theme.white};
+      font-weight: 500;
+      justify-content: center;
+      text-align: center;
+      padding: 0 5px;
+      &:focus,
+      &:focus-within,
+      &:not(:placeholder-shown) {
+        background-color: transparent;
+      }
+      &::placeholder {
+        color: ${(props: any) => props.theme.white};
+        opacity: 1;
+      }
+    }
+  }
+
   &.error {
     margin: 0 auto 20px;
     ${InputStyled} {

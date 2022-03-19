@@ -8,7 +8,7 @@ import {
   ErrorText
 } from './input.styles';
 
-export interface InputProps { 
+export interface InputProps {
   label?: string;
   placeHolder?: string;
   value?: string;
@@ -18,17 +18,30 @@ export interface InputProps {
   className?: string;
   maxLength?: number;
   onChange?: (e: any) => void;
+  onBlur?: (e: any) => void;
+  onClick?: () => void;
   required?: boolean;
 }
 
-export const Input = ({label, placeHolder, value, type, bottomText, className, errorText, onChange, maxLength, required }: InputProps) => {
+export const Input = ({
+  label,
+  placeHolder,
+  value,
+  type,
+  bottomText,
+  className,
+  errorText,
+  onChange,
+  maxLength,
+  required
+}: InputProps) => {
   return (
     <InputWrapper className={className}>
       {label && <Label>{label}</Label>}
-      <InputStyled 
-        type={type} 
+      <InputStyled
+        type={type}
         value={value}
-        placeholder={placeHolder} 
+        placeholder={placeHolder}
         onChange={onChange}
         autoComplete='off'
         maxLength={maxLength}

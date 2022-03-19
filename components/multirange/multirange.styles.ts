@@ -50,8 +50,7 @@ export const Slider = styled.div`
 `;
 
 export const Container = styled.div`
-  width: 100%;
-
+position: relative;
   /* Removing the default appearance */
   .thumb,
   .thumb::-webkit-slider-thumb {

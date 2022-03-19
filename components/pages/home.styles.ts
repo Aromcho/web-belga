@@ -86,6 +86,43 @@ export const BlackLayer = styled.div`
   left: 0;
 `;
 
+export const PriceRange = styled.div`
+  width: 100%;
+  max-width: 360px;
+`;
+
+export const InputDivider = styled.div`
+  width: 10px;
+  height: 2px;
+  margin: 0 20px;
+  background-color: ${(props: any) => props.theme.white};
+`;
+
+export const PriceInputWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5px;
+
+  .input--price {
+    pointer-events: none;
+  }
+`;
+
+export const PriceText = styled.div`
+  color: ${(props: any) => props.theme.white};
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0 30px 0 20px;
+`;
+export const RangeWrapper = styled.div`
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+`;
+
 export const SearchRow = styled.div`
   width: 100%;
   align-items: center;

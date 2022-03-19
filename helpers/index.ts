@@ -37,6 +37,26 @@ export const getCookie = (c_name: string) => {
   return c_value;
 };
 
-export const numberWithDots = (n: string | number) => {
-  return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+export const formatToMoney = (
+  number: string | number,
+  withCurrency: boolean = false,
+  currency: string = "USD",
+  short: boolean = false
+) => {
+  if (withCurrency) {
+    if (short) {
+      if (number.toString().length >= 7) {
+        const n = number.toString().slice(0, -6);
+        return `${currency} ${n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} M`;
+      } else {
+        return `${currency} ${number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`;
+      }
+    } else {
+      return `${currency} ${number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`;
+    }
+  }
+  
+  if(!withCurrency || !short){
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
 };

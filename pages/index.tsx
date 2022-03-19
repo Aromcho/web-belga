@@ -5,7 +5,8 @@ import { Layout, Container } from 'components/layout';
 import { getProperties } from 'services';
 import { observer } from 'mobx-react-lite';
 import { useStore } from 'stores';
-import { numberWithDots } from 'helpers';
+import { formatToMoney } from 'helpers';
+import { useMergeState } from 'helpers/hooks';
 
 import { SocialSidebar } from 'components/socialsidebar';
 import { Title } from 'components/title';
@@ -26,7 +27,12 @@ import {
   InversionItem,
   PropList,
   SearchFormWrapper,
-  SearchRow
+  SearchRow,
+  RangeWrapper,
+  PriceRange,
+  PriceText,
+  PriceInputWrapper,
+  InputDivider
 } from 'components/pages/home.styles'
 
 const Home = observer(({ properties }: any) => {
@@ -34,6 +40,12 @@ const Home = observer(({ properties }: any) => {
   const {
     rootStore: { userStore }
   } = useStore();
+
+  /* Handle price */
+  const [searchPrice, setSearchPrice] = useMergeState({
+    minPrice: 0,
+    maxPrice: 0
+  })
 
   return (
     <Layout>
@@ -76,12 +88,37 @@ const Home = observer(({ properties }: any) => {
             </SearchRow>
 
             <SearchRow className='third--row'>
-              <MultiRange
-                min={0}
-                max={500}
-                withValues
-                //onChange={({ min, max }: any) => console.log(`min = ${min}, max = ${max}`)}
-              />
+              <RangeWrapper>
+                <PriceText>Price</PriceText>
+
+                <PriceRange>
+                  <MultiRange
+                    customWidth={360}
+                    min={0}
+                    max={4000000}
+                    step={10000}
+                    onChange={({ minVal, maxVal }: any) => {
+                      setSearchPrice({ minPrice: minVal, maxPrice: maxVal })
+                    }}
+                  />
+                  <PriceInputWrapper>
+                    <Input
+                      className='input--price bottomLine'
+                      type='text'
+                      maxLength={15}
+                      value={formatToMoney(searchPrice.minPrice.toString(), true, 'USD', true)}
+                    />
+                    <InputDivider />
+                    <Input
+                      className='input--price bottomLine'
+                      type='text'
+                      maxLength={15}
+                      value={formatToMoney(searchPrice.maxPrice.toString(), true, 'USD', true)}
+                    />
+                  </PriceInputWrapper>
+                </PriceRange>
+
+              </RangeWrapper>
               <Button className='third--row-button' text='Buscar' type='secondary' />
             </SearchRow>
 
@@ -98,8 +135,6 @@ const Home = observer(({ properties }: any) => {
           <Title title='Nuestra Selección' />
 
           <PropList>
-
-
             {properties.slice(0, 2).map((item: any, k: number) => {
               return (
                 <CardProp
@@ -107,7 +142,7 @@ const Home = observer(({ properties }: any) => {
                   className='card--prop-home'
                   operation={item?.operations[0].operation_type}
                   currency={item?.operations[0].prices[0].currency}
-                  price={numberWithDots(item?.operations[0].prices[0].price)}
+                  price={formatToMoney(item?.operations[0].prices[0].price)}
                   description={item?.location?.name}
                   address={item?.address}
                   m2={Math.round(item?.total_surface)}
@@ -136,27 +171,21 @@ const Home = observer(({ properties }: any) => {
               />
             </InversionItem>
 
-            <InversionItem>
-              <CardProp
-                price='1.500.000'
-                currency='USD'
-                description='Casa en Belgrano R'
-                neighborhood='Belgrano R'
-                bedroom='2 a 5 ambientes'
-                inversion
-              />
-            </InversionItem>
-
-            <InversionItem>
-              <CardProp
-                price='1.500.000'
-                currency='USD'
-                description='Casa en Belgrano R'
-                neighborhood='Belgrano R'
-                bedroom='2 a 5 ambientes'
-                inversion
-              />
-            </InversionItem>
+            {properties.slice(2, 4).map((item: any, k: number) => {
+              return (
+                <InversionItem>
+                  <CardProp
+                    key={k}
+                    price={formatToMoney(item?.operations[0].prices[0].price)}
+                    currency={item?.operations[0].prices[0].currency}
+                    description={item?.location?.name}
+                    neighborhood={item?.location?.name}
+                    bedroom={`${item?.room_amount} ambientes`}
+                    inversion
+                  />
+                </InversionItem>
+              )
+            })}
           </InversionList>
         </Container>
       </InversionSection>

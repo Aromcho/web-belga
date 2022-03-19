@@ -5,8 +5,14 @@ import { Layout, Container } from 'components/layout';
 import { getProperties } from 'services';
 import { observer } from 'mobx-react-lite';
 import { useStore } from 'stores';
+import { numberWithDots } from 'helpers';
 
 import { SocialSidebar } from 'components/socialsidebar';
+import { Title } from 'components/title';
+import { CardProp } from 'components/cardprop';
+import { Input } from 'components/input';
+import { Button } from 'components/button';
+import { MultiRange } from 'components/multirange';
 
 import {
   HeroWrapper,
@@ -22,19 +28,12 @@ import {
   SearchFormWrapper,
   SearchRow
 } from 'components/pages/home.styles'
-import { Title } from 'components/title';
-import { CardProp } from 'components/cardprop';
-import { Input } from 'components/input';
-import { Button } from 'components/button';
-
 
 const Home = observer(({ properties }: any) => {
-
 
   const {
     rootStore: { userStore }
   } = useStore();
-
 
   return (
     <Layout>
@@ -77,6 +76,12 @@ const Home = observer(({ properties }: any) => {
             </SearchRow>
 
             <SearchRow className='third--row'>
+              <MultiRange
+                min={0}
+                max={500}
+                withValues
+                //onChange={({ min, max }: any) => console.log(`min = ${min}, max = ${max}`)}
+              />
               <Button className='third--row-button' text='Buscar' type='secondary' />
             </SearchRow>
 
@@ -87,25 +92,30 @@ const Home = observer(({ properties }: any) => {
       <SeleccionSection>
         <Seleccion><SocialSidebar color='red' /></Seleccion>
 
+
+
         <Container className='seleccion--container'>
           <Title title='Nuestra Selección' />
 
           <PropList>
 
-            {properties.slice(0,2).map((item: any) => {
-              return <>
-              <CardProp
-              className='card--prop-home'
-              operation={item?.operations[0].operation_type}
-              currency={item?.operations[0].prices[0].currency}
-              price={item?.operations[0].prices[0].price}
-              description={item?.location?.name}
-              address={item?.address}
-              m2={Math.round(item?.total_surface)}
-              bedroom={item?.room_amount}
-              bathroom={item?.bathroom_amount}
-              garage={item?.parking_lot_amount}
-            /></>
+
+            {properties.slice(0, 2).map((item: any, k: number) => {
+              return (
+                <CardProp
+                  key={k}
+                  className='card--prop-home'
+                  operation={item?.operations[0].operation_type}
+                  currency={item?.operations[0].prices[0].currency}
+                  price={numberWithDots(item?.operations[0].prices[0].price)}
+                  description={item?.location?.name}
+                  address={item?.address}
+                  m2={Math.round(item?.total_surface)}
+                  bedroom={item?.room_amount}
+                  bathroom={item?.bathroom_amount}
+                  garage={item?.parking_lot_amount}
+                />
+              )
             })}
           </PropList>
         </Container>
@@ -150,6 +160,8 @@ const Home = observer(({ properties }: any) => {
           </InversionList>
         </Container>
       </InversionSection>
+
+
 
     </Layout>
   )

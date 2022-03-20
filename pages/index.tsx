@@ -137,19 +137,23 @@ const Home = observer(({ properties }: any) => {
           <PropList>
             {properties.slice(0, 2).map((item: any, k: number) => {
               return (
-                <CardProp
-                  key={k}
-                  className='card--prop-home'
-                  operation={item?.operations[0].operation_type}
-                  currency={item?.operations[0].prices[0].currency}
-                  price={formatToMoney(item?.operations[0].prices[0].price)}
-                  description={item?.location?.name}
-                  address={item?.address}
-                  m2={Math.round(item?.total_surface)}
-                  bedroom={item?.room_amount}
-                  bathroom={item?.bathroom_amount}
-                  garage={item?.parking_lot_amount}
-                />
+                <>
+                  <CardProp
+                    key={k}
+                    className='card--prop-home'
+                    operation={item?.operations[0].operation_type}
+                    currency={item?.operations[0].prices[0].currency}
+                    price={formatToMoney(item?.operations[0].prices[0].price)}
+                    description={item?.location?.name}
+                    address={item?.address}
+                    m2={Math.round(item?.total_surface)}
+                    bedroom={item?.room_amount}
+                    bathroom={item?.bathroom_amount}
+                    garage={item?.parking_lot_amount}
+                    media={item.photos.slice(0, 10).map((photo: any) => { return photo.image })}
+                    link={`/propiedad/${item?.id.toString()}`}
+                  />
+                </>
               )
             })}
           </PropList>
@@ -181,6 +185,8 @@ const Home = observer(({ properties }: any) => {
                     description={item?.location?.name}
                     neighborhood={item?.location?.name}
                     bedroom={`${item?.room_amount} ambientes`}
+                    inversionCover={item.photos.slice(0, 1).map((photo: any) => { return photo.image })}
+                    link={`/propiedad/${item?.id.toString()}`}
                     inversion
                   />
                 </InversionItem>

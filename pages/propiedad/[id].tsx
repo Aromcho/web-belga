@@ -3,21 +3,25 @@ import { GetServerSideProps } from 'next'
 import { Layout, Container } from 'components/layout';
 import { getPropertyById } from 'services';
 
-const PropertyDetail = ({property, statusCode}: any) => {
-  if(statusCode === 404) return <>404</>
+import {
+  PropContainer
+} from 'components/pages/propiedad.styles';
 
-  if(statusCode === 500) return <>500</>
-  
+const PropertyDetail = ({ property, statusCode }: any) => {
+  if (statusCode === 404) return <>404</>
+
+  if (statusCode === 500) return <>500</>
+
   return (
     <Layout>
-      <Container>
+      <PropContainer>
         {property.address}
-      </Container>
+      </PropContainer>
     </Layout>
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({query}) => {
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
   let props: any = {}
 
@@ -26,7 +30,7 @@ export const getServerSideProps: GetServerSideProps = async ({query}) => {
     props = {
       property
     }
-  } catch(e: any) {
+  } catch (e: any) {
     props = {
       statusCode: e.response.status
     }

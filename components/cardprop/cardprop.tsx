@@ -38,7 +38,8 @@ export interface CardPropProps {
   operation?: string;
   currency?: string;
   price?: string;
-  media?: any;
+  media?: string[];
+  inversionCover?: string;
   link?: string;
   description?: string;
   address?: string;
@@ -60,6 +61,7 @@ export const CardProp = ({
   currency,
   price,
   media,
+  inversionCover,
   link,
   description,
   address,
@@ -78,7 +80,6 @@ export const CardProp = ({
     if (onLiked) onLiked(isLiked)
   }, [isLiked, liked])
 
-  const imgProp = [`https://picsum.photos/600/300?random=1`, `https://picsum.photos/600/300?random=2`, `https://picsum.photos/600/300?random=3`]
 
   return (
     <CardPropContainer className={classes(className, { inversion })}>
@@ -90,19 +91,18 @@ export const CardProp = ({
 
       <ImageWrapper>
         {inversion
-          ? <IsolatedImage style={{ backgroundImage: 'url(https://picsum.photos/600/300?random=1)' }} />
-          : <SliderCardGallery img={imgProp} galleryLink={link} />
-          /* (media
+          ? <IsolatedImage style={{ backgroundImage: `url(${inversionCover})` }} />
+          : (media
             ? <SliderCardGallery
-              img={imgProp}
+              img={media}
               galleryLink={link}
             />
-  
+
             : <EmptyMedia>
               <ImageIcon />
               <EmptyText>Sin material multimedia</EmptyText>
             </EmptyMedia>
-          ) */
+          )
         }
       </ImageWrapper>
 

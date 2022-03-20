@@ -104,7 +104,6 @@ export const PriceInputWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-top: 5px;
-
   .input--price {
     pointer-events: none;
   }

@@ -30,6 +30,10 @@ export const SwiperContainerGallery = styled.div`
       display: flex;
       justify-content: center;
       transition: all 0.3s ease-in-out;
+      .link--gallery{
+        width: 100%;
+        height: 100%;
+      }
     }
     &.swiper-initialized.swiper-horizontal.swiper-pointer-events {
       height: 100%;

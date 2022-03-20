@@ -6,6 +6,9 @@ export const SidebarContainer = styled.div`
   position: fixed;
   top: 50%;
   right: 30px;
+  @media screen and (max-width: 1360px) {
+    display: none;
+  }
   .social--link {
     display: block;
     margin-bottom: 10px;

@@ -62,7 +62,7 @@ export const Menu = observer(() => {
 
           <Link href={PATHS.ROOT}><a>
             <MenuBrandWrapper>
-              <MenuBrand src="./images/brand_red.svg" alt="Belga inmobiliaria" title="Belga inmobiliaria" />
+              <MenuBrand src="/images/brand_red.svg" alt="Belga inmobiliaria" title="Belga inmobiliaria" />
               <BelgaIsoIcon className='isobrand--img' />
             </MenuBrandWrapper>
           </a></Link>

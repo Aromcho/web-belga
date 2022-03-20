@@ -21,6 +21,7 @@ export interface InputProps {
   onBlur?: (e: any) => void;
   onClick?: () => void;
   required?: boolean;
+  readonly?: boolean;
 }
 
 export const Input = ({
@@ -33,7 +34,8 @@ export const Input = ({
   errorText,
   onChange,
   maxLength,
-  required
+  required,
+  readonly= false,
 }: InputProps) => {
   return (
     <InputWrapper className={className}>
@@ -46,6 +48,7 @@ export const Input = ({
         autoComplete='off'
         maxLength={maxLength}
         required={required || false}
+        readOnly={readonly}
       />
       {className === 'error' && <ErrorText>{errorText}</ErrorText>}
       {bottomText && <BottomText>{bottomText}</BottomText>}

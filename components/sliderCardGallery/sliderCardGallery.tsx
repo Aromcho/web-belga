@@ -33,13 +33,12 @@ export const SliderCardGallery = ({ img, className, galleryLink }: sliderCardGal
         allowTouchMove={true}
         navigation={{}}
       >
-        {img?.map((i: any, key: number = 0) => (
-          < SwiperSlide key={key + 1}>
-            {galleryLink 
-            ? <Link href={galleryLink}><a><SlideContainer style={{ backgroundImage: `url(${i})` }}></SlideContainer></a></Link>
-            : <SlideContainer style={{ backgroundImage: `url(${i})` }}></SlideContainer>
+        {img?.map((i: any, k: number) => (
+          < SwiperSlide key={k}>
+            {galleryLink
+              ? <Link href={galleryLink}><a className='link--gallery'><SlideContainer style={{ backgroundImage: `url(${i})` }}></SlideContainer></a></Link>
+              : <SlideContainer style={{ backgroundImage: `url(${i})` }}></SlideContainer>
             }
-            
           </SwiperSlide>
         ))}
 

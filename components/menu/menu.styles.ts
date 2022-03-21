@@ -38,6 +38,14 @@ export const BurgerMenuItem = styled.li`
       height: auto;
       display: block;
       margin-right: 20px;
+      &.heart--icon {
+        transition: all 0.3s ease-in-out;
+        path {
+          transition: all 0.3s ease-in-out;
+          fill: transparent;
+          stroke: ${(props: any) => props.theme.black};
+        }
+      }
     }
   }
 `;

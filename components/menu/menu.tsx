@@ -85,7 +85,7 @@ export const Menu = observer(() => {
 
           <BurgerMenuList>
             <BurgerMenuItem>
-              <Link href={PATHS.ROOT}><a className="burger--menu-link"><HeartIcon /> <LinkText>Favoritos</LinkText></a></Link>
+              <Link href={PATHS.ROOT}><a className="burger--menu-link"><HeartIcon className='heart--icon' /> <LinkText>Favoritos</LinkText></a></Link>
             </BurgerMenuItem>
 
             <BurgerMenuItem>

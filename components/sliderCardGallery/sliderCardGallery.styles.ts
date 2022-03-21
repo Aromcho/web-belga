@@ -1,5 +1,14 @@
 import styled from "@emotion/styled";
 
+export const WrapperImage = styled.div`
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: relative;
+`;
+
 export const SlideContainer = styled.div`
   width: 100%;
   height: 100%;
@@ -11,7 +20,10 @@ export const SlideContainer = styled.div`
   margin: 0 auto;
   text-align: center;
   transition: all 0.3s ease-in-out;
-  position: relative;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
   &:hover {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     cursor: pointer;
@@ -30,9 +42,14 @@ export const SwiperContainerGallery = styled.div`
       display: flex;
       justify-content: center;
       transition: all 0.3s ease-in-out;
-      .link--gallery{
-        width: 100%;
+      .link--gallery {
+        width: 75%;
         height: 100%;
+        transform: translateX(-50%);
+        z-index: 2;
+        position: absolute;
+        top: 0;
+        left: 50%;
       }
     }
     &.swiper-initialized.swiper-horizontal.swiper-pointer-events {
@@ -73,8 +90,8 @@ export const SwiperContainerGallery = styled.div`
       }
       &:hover {
         &:after {
-        opacity: 1;
-      }
+          opacity: 1;
+        }
       }
     }
     .swiper-button-prev {

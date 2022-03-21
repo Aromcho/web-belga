@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import {
   SwiperContainerGallery,
   SlideContainer,
+  WrapperImage,
 } from './sliderCardGallery.styles';
 
 import 'swiper/css';
@@ -36,7 +37,11 @@ export const SliderCardGallery = ({ img, className, galleryLink }: sliderCardGal
         {img?.map((i: any, k: number) => (
           < SwiperSlide key={k}>
             {galleryLink
-              ? <Link href={galleryLink}><a className='link--gallery'><SlideContainer style={{ backgroundImage: `url(${i})` }}></SlideContainer></a></Link>
+              ? <WrapperImage>
+                <Link href={galleryLink}><a className='link--gallery'></a></Link>
+                <SlideContainer style={{ backgroundImage: `url(${i})` }}></SlideContainer>
+              </WrapperImage>
+
               : <SlideContainer style={{ backgroundImage: `url(${i})` }}></SlideContainer>
             }
           </SwiperSlide>

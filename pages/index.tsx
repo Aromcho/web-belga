@@ -95,10 +95,11 @@ const Home = observer(({ properties }: any) => {
                   <MultiRange
                     customWidth={360}
                     min={0}
-                    max={4000000}
+                    max={3000001}
                     step={10000}
                     onChange={({ minVal, maxVal }: any) => {
                       setSearchPrice({ minPrice: minVal, maxPrice: maxVal })
+                      console.log()
                     }}
                   />
                   <PriceInputWrapper>
@@ -113,7 +114,11 @@ const Home = observer(({ properties }: any) => {
                       className='input--price bottomLine'
                       type='text'
                       maxLength={15}
-                      value={formatToMoney(searchPrice.maxPrice.toString(), true, 'USD', true)}
+                      value={
+                        searchPrice.maxPrice >= 3000000
+                          ? formatToMoney(searchPrice.maxPrice.toString(), true, 'USD +', true)
+                          : formatToMoney(searchPrice.maxPrice.toString(), true, 'USD', true)
+                      }
                     />
                   </PriceInputWrapper>
                 </PriceRange>

@@ -50,6 +50,31 @@ export const SwiperContainerGallery = styled.div`
         position: absolute;
         top: 0;
         left: 50%;
+
+        &::after {
+          width: 150%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: rgba(0, 0, 0, 0.6);
+          content: 'Ver más info';
+          color: ${(props: any) => props.theme.white};
+          font-size: 16px;
+          font-weight: 500;
+          transition: all 0.3s ease-in-out;
+          transform: translateX(-50%);
+          opacity: 0;
+          position: absolute;
+          top: 0;
+          left: 50%;
+        }
+
+        &:hover {
+          &::after {
+            opacity: 1;
+          }
+        }
       }
     }
     &.swiper-initialized.swiper-horizontal.swiper-pointer-events {

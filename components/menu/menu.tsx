@@ -23,11 +23,12 @@ import {
   BurgerMenu,
   BurgerMenuList,
   BurgerMenuItem,
-  LinkText
+  LinkText,
+  //MenuMobile
 } from "./menu.styles";
 
 /*Icons*/
-import { TelIcon, WhatsappIcon, MenuBurgerIcon, CloseIcon, BelgaIsoIcon, SearchIcon, HeartIcon } from "components/icons";
+import { TelIcon, WhatsappIcon, MenuBurgerIcon, CloseIcon, BelgaIsoIcon, SearchIcon, HeartIcon, EmprendimientosIcon } from "components/icons";
 import { classes } from "helpers";
 
 export const Menu = observer(() => {
@@ -91,9 +92,14 @@ export const Menu = observer(() => {
             <CloseIcon className={classes({ active: showMenu })} />
           </IconWrapper>
         </BurgerButton>
+
         <BurgerMenu className={classes({ active: showMenu })}>
 
           <BurgerMenuList>
+            <BurgerMenuItem className='emprendimientos--link'>
+              <Link href={PATHS.ROOT}><a className="burger--menu-link "><EmprendimientosIcon /> <LinkText>Emprendimientos</LinkText></a></Link>
+            </BurgerMenuItem>
+
             <BurgerMenuItem>
               <Link href={PATHS.ROOT}><a className="burger--menu-link"><HeartIcon className='heart--icon' /> <LinkText>Favoritos</LinkText></a></Link>
             </BurgerMenuItem>
@@ -110,6 +116,8 @@ export const Menu = observer(() => {
               <Link href={PATHS.ROOT}><a className="burger--menu-link"><TelIcon /> <LinkText>Contáctanos</LinkText></a></Link>
             </BurgerMenuItem>
           </BurgerMenuList>
+
+          <Button text='Quiero comprar' className='outline black comprar--button-mobile' />
 
         </BurgerMenu>
 

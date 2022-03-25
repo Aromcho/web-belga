@@ -10,13 +10,21 @@ export const LinkText = styled.span`
   font-weight: 600;
   display: flex;
   transition: all 0.3s ease-in-out;
+  @media screen and (max-width: 840px) {
+    font-size: 18px;
+    white-space: nowrap;
+  }
 `;
 
-export const BurgerMenuItem = styled.li`
+export const BurgerMenuItem = styled.div`
   width: 100%;
   max-width: 190px;
   height: 30px;
   margin-bottom: 12px;
+  @media screen and (max-width: 840px) {
+    max-width: 100%;
+    margin-bottom: 18px;
+  }
   &:last-of-type {
     margin-bottom: 0;
   }
@@ -31,13 +39,15 @@ export const BurgerMenuItem = styled.li`
     align-items: center;
     display: flex;
     color: ${(props: any) => props.theme.black};
-
     text-transform: uppercase;
     svg {
       width: 25px;
       height: auto;
       display: block;
       margin-right: 20px;
+      @media screen and (max-width: 840px) {
+        width: 35px;
+      }
       &.heart--icon {
         transition: all 0.3s ease-in-out;
         path {
@@ -48,9 +58,15 @@ export const BurgerMenuItem = styled.li`
       }
     }
   }
+  &.emprendimientos--link {
+    display: none;
+    @media screen and (max-width: 840px) {
+      display: flex;
+    }
+  }
 `;
 
-export const BurgerMenuList = styled.ul`
+export const BurgerMenuList = styled.div`
   width: 100%;
   max-width: 190px;
   height: 100%;
@@ -59,6 +75,13 @@ export const BurgerMenuList = styled.ul`
   flex-flow: column;
   justify-content: center;
   margin: 0 auto;
+  @media screen and (max-width: 840px) {
+    max-width: 260px;
+    height: auto;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 40px 0 0;
+  }
 `;
 
 export const BurgerMenu = styled.div`
@@ -82,7 +105,37 @@ export const BurgerMenu = styled.div`
     top: 64px;
   }
   @media screen and (max-width: 840px) {
+    width: 100%;
+    height: calc(100vh - 55px);
+    align-items: flex-start;
+    background-color: ${(props: any) => props.theme.white};
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    opacity: 1;
+    overflow-x: hidden;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: all 0.4s cubic-bezier(0.74, 0.04, 0.24, 1.04);
+    position: fixed;
+    top: 55px;
+    right: 0;
+    bottom: 0;
+    &.active {
+      pointer-events: all;
+      transform: translateX(0);
+    }
+  }
+
+  .comprar--button-mobile {
+    width: 90%;
+    max-width: 300px;
     display: none;
+    flex: 0 0 auto;
+    margin: 50px auto 30px;
+    @media screen and (max-width: 840px) {
+      display: flex;
+    }
   }
 `;
 
@@ -325,6 +378,9 @@ export const MenuContainer = styled.div`
       }
       ${BurgerMenu} {
         top: 86px;
+        @media screen and (max-width: 992px) {
+          top: 55px;
+        }
       }
     }
     ${MenuBrandWrapper} {

@@ -16,5 +16,6 @@ export {
   LocationIcon,
   SearchIcon,
   HeartIcon,
-  ImageIcon
+  ImageIcon,
+  EmprendimientosIcon
 } from "./icons";

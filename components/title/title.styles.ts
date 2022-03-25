@@ -1,10 +1,12 @@
 import styled from "@emotion/styled";
 
-
 export const Line = styled.h2`
   width: 100%;
   height: 1px;
   background-color: ${(props: any) => props.theme.secondary};
+  @media screen and (max-width: 992px) {
+    display: none;
+  }
 `;
 
 export const TitleText = styled.h2`
@@ -17,6 +19,11 @@ export const TitleText = styled.h2`
   margin: 0 15px 0 0;
   text-align: left;
   white-space: nowrap;
+  @media screen and (max-width: 992px) {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
 `;
 
 export const TitleContainer = styled.div`
@@ -24,10 +31,22 @@ export const TitleContainer = styled.div`
   align-items: center;
   display: flex;
   margin: 0 auto 70px;
+  @media screen and (max-width: 992px) {
+    margin: 0 auto 40px;
+  }
 
-  &.vertical{
+  .button--title {
+    @media screen and (max-width: 992px) {
+      display: none;
+    }
+  }
+
+  &.vertical {
     height: 100%;
     flex-flow: column;
+    @media screen and (max-width: 840px) {
+      flex-flow: row;
+    }
     ${Line} {
       width: 1px;
       height: 100%;
@@ -35,6 +54,9 @@ export const TitleContainer = styled.div`
     }
     ${TitleText} {
       margin: 0 0 15px 0;
+      @media screen and (max-width: 992px) {
+        margin-bottom: 0;
+      }
     }
   }
 `;

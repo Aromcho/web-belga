@@ -35,7 +35,7 @@ export const Title = ({
     <TitleContainer className={classes(className, { vertical })}>
       <TitleText>{title}</TitleText>
       <Line />
-      <Button text={textButton} type={buttonStyle} onClick={onClick} link={linkButton} />
+      <Button className='button--title' text={textButton} type={buttonStyle} onClick={onClick} link={linkButton} />
     </TitleContainer>
   );
 };

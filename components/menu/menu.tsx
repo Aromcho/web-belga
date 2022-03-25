@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PATHS } from "config";
 import { observer } from "mobx-react-lite";
 import { useStore } from "stores";
+import { useRouter } from 'next/router'
 
 import { Container } from "components/layout";
 import { Button } from "components/button";
@@ -34,9 +35,13 @@ export const Menu = observer(() => {
     rootStore: { userStore },
   } = useStore();
 
+
+  const router = useRouter()
+
   /* Handle Menu */
   const [showMenu, setShowMenu] = React.useState<boolean>(false)
   const [sticky, setSticky] = React.useState<boolean>(false)
+  const [menuColor, setMenuColor] = React.useState<string>('transparent')
   if (typeof window !== "undefined") {
     window.addEventListener("scroll", function () {
       const st = window.pageYOffset;
@@ -44,8 +49,12 @@ export const Menu = observer(() => {
     }, false);
   }
 
+  React.useEffect(() => {
+    if (router.asPath !== '/') { setMenuColor('white') }
+  }, [])
+
   return (
-    <MenuContainer className={classes({ sticky })}>
+    <MenuContainer className={classes(menuColor, { sticky })}>
       <MenuInfo>
         <MenuInfoList>
           <MenuInfoItem>La imprenta</MenuInfoItem>
@@ -65,6 +74,7 @@ export const Menu = observer(() => {
               <MenuBrand src="/images/brand_red.svg" alt="Belga inmobiliaria" title="Belga inmobiliaria" />
               <BelgaIsoIcon className='isobrand--img' />
             </MenuBrandWrapper>
+
           </a></Link>
 
           <MenuList>

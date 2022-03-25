@@ -7,12 +7,35 @@ export const PropList = styled.div`
   justify-content: space-between;
   .card--prop-home {
     width: 48%;
+    @media screen and (max-width: 840px) {
+      width: 100%;
+    }
+    &:last-of-type {
+      @media screen and (max-width: 840px) {
+        display: none;
+      }
+    }
   }
 `;
 
 export const InversionItem = styled.li`
   width: 30%;
   height: 100%;
+  @media screen and (max-width: 992px) {
+    width: 48%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    &:first-of-type {
+      width: 100%;
+    }
+  }
+  @media screen and (max-width: 740px) {
+    width: 100%;
+    &:last-of-type {
+      display: none;
+    }
+  }
 `;
 
 export const InversionList = styled.ul`
@@ -21,6 +44,13 @@ export const InversionList = styled.ul`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @media screen and (max-width: 992px) {
+    flex-flow: row wrap;
+    height: auto;
+  }
+  @media screen and (max-width: 740px) {
+    justify-content: center;
+  }
 `;
 
 export const Inversion = styled.div`
@@ -57,13 +87,16 @@ export const Seleccion = styled.div`
 
 export const SeleccionSection = styled.div`
   width: 100%;
-  padding: 80px 0;
   background-color: ${(props: any) => props.theme.white};
   margin: 0 auto;
+  padding: 80px 0;
   position: relative;
   .seleccion--container {
     z-index: 6;
     position: relative;
+  }
+  @media screen and (max-width: 992px) {
+    padding: 40px 0;
   }
 `;
 
@@ -145,6 +178,9 @@ export const SearchFormWrapper = styled.div`
   margin: 0 auto;
   position: relative;
   z-index: 6;
+  @media screen and (max-width: 992px) {
+    display: none;
+  }
 `;
 
 export const HeroWrapper = styled.div`

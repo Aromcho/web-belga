@@ -182,7 +182,7 @@ const Home = observer(({ properties }: any) => {
 
             {properties.slice(2, 4).map((item: any, k: number) => {
               return (
-                <InversionItem>
+                <InversionItem >
                   <CardProp
                     key={k}
                     price={formatToMoney(item?.operations[0].prices[0].price)}

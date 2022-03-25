@@ -18,6 +18,7 @@ import {
   FooterInfoBottom,
   SocialList,
   RightInfo,
+  RightInfoMobile,
   LegalText,
   LegalLink,
   Mp,
@@ -49,12 +50,29 @@ import {
 
 
 
-
 export interface FooterProps {
 
 }
 
 export const Footer = ({ }: FooterProps) => {
+
+  const legalInfo = {
+    text: '*Para los casos de alquiler de vivienda, el monto máximo de comisión que se le puede requerir a los propietarios será el equivalente al cuatro con quince centésimos por ciento (4,15%) del valor total del respectivo contrato. Se encuentra prohibido cobrar comisiones inmobiliarias y gastos de gestoría de informes a los inquilinos que sean personas físicas.',
+    linkText: 'Términos y Condiciones',
+    link: '#',
+    mp: 'CUCICBA MN 5111 CMCPSI MAT. 6528'
+  }
+
+  const socialInfo = [
+    { link: 'https://www.instagram.com/belgainmobiliaria/', icon: <InstaCircleIcon /> },
+    { link: 'https://www.facebook.com/inmobiliariabelga/', icon: <FacebookCircleIcon /> },
+    { link: 'https://www.youtube.com/channel/UCZ2ZZIQeRORMAUTS0mLDEfg/featured', icon: <YoutubeCircleIcon /> },
+    { link: 'https://ar.linkedin.com/company/belga-inmobiliaria', icon: <LinkedinCircleIcon /> },
+    { link: 'https://www.facebook.com/messages/t/inmobiliariabelga', icon: <MessengerCircleIcon /> },
+
+  ]
+
+
   return (
     <FooterContainer>
       <FooterWrapper>
@@ -101,11 +119,9 @@ export const Footer = ({ }: FooterProps) => {
           </FooterInfo>
           <FooterInfoBottom>
             <SocialList>
-              <Link href='https://www.instagram.com/belgainmobiliaria/' ><a className='social--link' target='_blank'><InstaCircleIcon /></a></Link>
-              <Link href='https://www.facebook.com/inmobiliariabelga/' ><a className='social--link' target='_blank'><FacebookCircleIcon /></a></Link>
-              <Link href='https://www.youtube.com/channel/UCZ2ZZIQeRORMAUTS0mLDEfg/featured' ><a className='social--link' target='_blank'><YoutubeCircleIcon /></a></Link>
-              <Link href='https://ar.linkedin.com/company/belga-inmobiliaria' ><a className='social--link' target='_blank'><LinkedinCircleIcon /></a></Link>
-              <Link href='https://www.facebook.com/messages/t/inmobiliariabelga' ><a className='social--link' target='_blank'><MessengerCircleIcon /></a></Link>
+              {socialInfo.map((i: any, k: number) => {
+                return (<Link href={`${i?.link.toString()}`}><a key={k} className='social--link' target='_blank'>{i.icon}</a></Link>)
+              })}
             </SocialList>
           </FooterInfoBottom>
         </FooterLeft>
@@ -118,6 +134,11 @@ export const Footer = ({ }: FooterProps) => {
           </FooterInfo>
           <FooterInfoBottom>
             <BrandFooter src="./images/brand_red.svg" alt="Belga inmobiliaria" title="Belga inmobiliaria" />
+            <SocialList className='social--list-mobile'>
+              {socialInfo.map((i: any, k: number) => {
+                return (<Link href={`${i?.link.toString()}`}><a key={k} className='social--link' target='_blank'>{i.icon}</a></Link>)
+              })}
+            </SocialList>
           </FooterInfoBottom>
         </FooterCenter>
 
@@ -160,14 +181,20 @@ export const Footer = ({ }: FooterProps) => {
           </FooterInfo>
           <FooterInfoBottom>
             <RightInfo>
-              <LegalText>*Para los casos de alquiler de vivienda, el monto máximo de comisión que se le puede requerir a los propietarios será el equivalente al cuatro con quince centésimos por ciento (4,15%) del valor total del respectivo contrato. Se encuentra prohibido cobrar comisiones inmobiliarias y gastos de gestoría de informes a los inquilinos que sean personas físicas.</LegalText>
-              <LegalLink><Link href='#'><a>Términos y Condiciones</a></Link></LegalLink>
-              <Mp>CUCICBA MN 5111 CMCPSI Mat. 6528 </Mp>
+              <LegalText>{legalInfo.text}</LegalText>
+              <LegalLink><Link href={legalInfo.link}><a>{legalInfo.linkText}</a></Link></LegalLink>
+              <Mp>{legalInfo.mp}</Mp>
             </RightInfo>
           </FooterInfoBottom>
         </FooterRight>
 
+        <RightInfoMobile>
+          <LegalText>{legalInfo.text}</LegalText>
+          <LegalLink><Link href={legalInfo.link}><a>{legalInfo.linkText}</a></Link></LegalLink>
+          <Mp>{legalInfo.mp}</Mp>
+        </RightInfoMobile>
+
       </FooterWrapper>
-    </FooterContainer>
+    </FooterContainer >
   );
 };

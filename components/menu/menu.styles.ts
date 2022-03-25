@@ -78,6 +78,12 @@ export const BurgerMenu = styled.div`
     opacity: 1;
     pointer-events: all;
   }
+  @media screen and (max-width: 992px) {
+    top: 64px;
+  }
+  @media screen and (max-width: 840px) {
+    display: none;
+  }
 `;
 
 export const IconWrapper = styled.div`
@@ -97,6 +103,9 @@ export const IconWrapper = styled.div`
     &.active {
       opacity: 1;
     }
+    @media screen and (max-width: 840px) {
+      width: 40px;
+    }
   }
 `;
 
@@ -109,13 +118,23 @@ export const BurgerButton = styled.ul`
   justify-content: center;
   margin-left: 40px;
   transition: all 0.3s ease-in-out;
-
+  @media screen and (max-width: 840px) {
+    width: 95px;
+    height: 55px;
+    margin-left: 0;
+  }
   &:hover,
   &.active {
     cursor: pointer;
     background-color: ${(props: any) => props.theme.white};
+    @media screen and (max-width: 992px) {
+      background-color: transparent;
+    }
     svg {
       color: ${(props: any) => props.theme.black};
+      @media screen and (max-width: 992px) {
+        color: ${(props: any) => props.theme.white};
+      }
     }
   }
 `;
@@ -152,6 +171,9 @@ export const MenuList = styled.ul`
   align-items: center;
   display: flex;
   margin-left: auto;
+  @media screen and (max-width: 1100px) {
+    display: none;
+  }
 `;
 
 export const MenuBrand = styled.img`
@@ -164,6 +186,9 @@ export const MenuBrand = styled.img`
   position: absolute;
   top: 50%;
   left: 50%;
+  @media screen and (max-width: 840px) {
+    max-width: 115px;
+  }
 `;
 
 export const MenuBrandWrapper = styled.div`
@@ -176,6 +201,10 @@ export const MenuBrandWrapper = styled.div`
   margin-left: 25px;
   transition: all 0.4s cubic-bezier(0.74, 0.04, 0.24, 1.04);
   position: relative;
+  @media screen and (max-width: 840px) {
+    max-width: 180px;
+    height: 55px;
+  }
   &:hover {
     cursor: pointer;
     ${MenuBrand} {
@@ -244,6 +273,9 @@ export const MenuInfo = styled.div`
   background-color: ${(props: any) => props.theme.black};
   display: flex;
   justify-content: flex-end;
+  @media screen and (max-width: 992px) {
+    display: none;
+  }
 `;
 
 export const MenuWrapper = styled.div`
@@ -253,6 +285,9 @@ export const MenuWrapper = styled.div`
   background-color: transparent;
   display: flex;
   transition: all 0.4s cubic-bezier(0.74, 0.04, 0.24, 1.04);
+  @media screen and (max-width: 840px) {
+    height: 55px;
+  }
   .menu--container {
     max-width: 96%;
     justify-content: space-between;
@@ -274,6 +309,9 @@ export const MenuContainer = styled.div`
   &.sticky {
     top: -32px;
     box-shadow: 0px 7px 29px -1px rgba(0, 0, 0, 0.26);
+    @media screen and (max-width: 992px) {
+      top: 0;
+    }
     ${MenuWrapper} {
       height: 55px;
       background-color: ${(props: any) => props.theme.white};
@@ -291,6 +329,9 @@ export const MenuContainer = styled.div`
     }
     ${MenuBrandWrapper} {
       height: 55px;
+      @media screen and (max-width: 840px) {
+        width: 120px;
+      }
       ${MenuBrand} {
         opacity: 0;
       }
@@ -308,6 +349,38 @@ export const MenuContainer = styled.div`
         .menu--link {
           color: ${(props: any) => props.theme.black};
           padding: 5px 0;
+          &:hover {
+            border-bottom-color: ${(props: any) => props.theme.black};
+          }
+        }
+      }
+
+      .button--menu {
+        color: ${(props: any) => props.theme.black};
+        border-color: ${(props: any) => props.theme.black};
+        &:hover {
+          border-color: ${(props: any) => props.theme.secondary};
+          color: ${(props: any) => props.theme.white};
+        }
+      }
+    }
+  }
+
+  &.white {
+    ${MenuWrapper} {
+      background-color: ${(props: any) => props.theme.white};
+      ${BurgerButton} {
+        ${IconWrapper} {
+          svg {
+            color: ${(props: any) => props.theme.black};
+          }
+        }
+      }
+    }
+    ${MenuList} {
+      ${MenuItem} {
+        .menu--link {
+          color: ${(props: any) => props.theme.black};
           &:hover {
             border-bottom-color: ${(props: any) => props.theme.black};
           }

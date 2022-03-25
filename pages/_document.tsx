@@ -15,7 +15,7 @@ class Document extends NextDocument<Props> {
                     <meta property="og:url" content="https://www.belga.com.ar/" />
                     <meta property="og:type" content="Website" />
                     <meta property="og:site_name" content="Belga Inmobiliaria" />
-                    <meta property="og:image" content="https://static.tokkobroker.com/original_pictures/50242869626259789232425915918542333780608342984522080246409466407414716602040.jpg" />
+                    <meta property="og:image" content="https://web-belga.vercel.app/images/og_image.png" />
 
                     {/* Favicon */}
                     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />

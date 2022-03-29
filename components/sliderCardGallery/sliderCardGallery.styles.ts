@@ -93,6 +93,9 @@ export const SwiperContainerGallery = styled.div`
       top: 22px;
       -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
       -webkit-tap-highlight-color: transparent;
+      @media screen and (max-width: 992px) {
+        width: 60px;
+      }
       &.swiper-button-disabled {
         opacity: 0;
       }

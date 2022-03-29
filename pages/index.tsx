@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head'
+import Link from "next/link";
 import { GetServerSideProps } from 'next'
 import { Layout, Container } from 'components/layout';
 import { getProperties } from 'services';
@@ -32,8 +33,10 @@ import {
   PriceRange,
   PriceText,
   PriceInputWrapper,
-  InputDivider
+  InputDivider,
+  HeroFooter
 } from 'components/pages/home.styles'
+import { TelIcon } from 'components/icons';
 
 const Home = observer(({ properties }: any) => {
 
@@ -54,26 +57,26 @@ const Home = observer(({ properties }: any) => {
       </Head>
 
 
-      <HeroWrapper style={{ backgroundImage: 'url(/images/home_bg_hero.jpg)' }}>
+      <HeroWrapper>
         <BlackLayer />
         <Hero><SocialSidebar /></Hero>
-        <Container className='align--center'>
+        <Container className='hero--container align--center'>
           <SearchFormWrapper>
             <SearchRow className='first--row'>
               <Input
-                className='white first--row-input'
+                className='white first--row-input input--general'
                 type='text'
                 placeHolder='Tipo de operación'
               />
 
               <Input
-                className='white first--row-input'
+                className='white first--row-input input--general'
                 type='text'
                 placeHolder='Tipo de propiedad'
               />
 
               <Input
-                className='white first--row-input'
+                className='white first--row-input input--general'
                 type='text'
                 placeHolder='Dormitorios'
               />
@@ -81,7 +84,7 @@ const Home = observer(({ properties }: any) => {
 
             <SearchRow className='second--row'>
               <Input
-                className='white second--row-input'
+                className='white second--row-input input--general'
                 type='text'
                 placeHolder='Barrio'
               />
@@ -124,17 +127,28 @@ const Home = observer(({ properties }: any) => {
                 </PriceRange>
 
               </RangeWrapper>
+
               <Button className='third--row-button' text='Buscar' type='secondary' />
             </SearchRow>
 
+            <SearchRow className='fourth--row'>
+              <Button className='fourth--row-button' text='Quiero vender' />
+            </SearchRow>
+
+            <HeroFooter>
+              <Link href="#"><a className='head--footer-link' target='_blank' ><TelIcon /></a></Link>
+              <Link href="#"><a className='head--footer-link' target='_blank' ><TelIcon /></a></Link>
+              <Link href="#"><a className='head--footer-link' target='_blank' ><TelIcon /></a></Link>
+            </HeroFooter>
+
           </SearchFormWrapper>
+
         </Container>
+
       </HeroWrapper>
 
       <SeleccionSection>
         <Seleccion><SocialSidebar color='red' /></Seleccion>
-
-
 
         <Container className='seleccion--container'>
           <Title title='Nuestra Selección' />
@@ -162,6 +176,9 @@ const Home = observer(({ properties }: any) => {
               )
             })}
           </PropList>
+
+          <Button className='button--mobile' text='Ver más' type='outline black' />
+
         </Container>
 
       </SeleccionSection>
@@ -198,6 +215,9 @@ const Home = observer(({ properties }: any) => {
               )
             })}
           </InversionList>
+
+          <Button className='button--mobile' text='Ver más' type='outline black' />
+
         </Container>
       </InversionSection>
 

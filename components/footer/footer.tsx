@@ -47,6 +47,7 @@ import {
   WhatsappIcon,
   YoutubeCircleIcon
 } from 'components/icons';
+import { classes } from 'helpers';
 
 
 
@@ -71,7 +72,6 @@ export const Footer = ({ }: FooterProps) => {
     { link: 'https://www.facebook.com/messages/t/inmobiliariabelga', icon: <MessengerCircleIcon /> },
 
   ]
-
 
   return (
     <FooterContainer>
@@ -133,7 +133,7 @@ export const Footer = ({ }: FooterProps) => {
             </MapFooter>
           </FooterInfo>
           <FooterInfoBottom>
-            <BrandFooter src="./images/brand_red.svg" alt="Belga inmobiliaria" title="Belga inmobiliaria" />
+            <BrandFooter src="/images/brand_red.svg" alt="Belga inmobiliaria" title="Belga inmobiliaria" />
             <SocialList className='social--list-mobile'>
               {socialInfo.map((i: any, k: number) => {
                 return (<Link href={`${i?.link.toString()}`}><a key={k} className='social--link' target='_blank'>{i.icon}</a></Link>)

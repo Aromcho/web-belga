@@ -12,6 +12,7 @@ import {
 } from './multirange.styles';
 
 export interface MultiRangeProps {
+  className?: string;
   customWidth?: number;
   min?: number;
   max?: number;
@@ -21,6 +22,7 @@ export interface MultiRangeProps {
 }
 
 export const MultiRange = ({
+  className,
   customWidth = 300,
   min,
   max,
@@ -60,7 +62,7 @@ export const MultiRange = ({
 
 
   return (
-    <Container style={{ width: `${customWidth}px` }}>
+    <Container style={{ width: `${customWidth}px` }} className={className}>
 
       <input
         className="thumb thumb--left"

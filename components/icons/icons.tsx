@@ -77,6 +77,11 @@ export const ImageIcon = (props: any) => (
   <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g transform="translate(-156 91)"><rect width="24" height="24" transform="translate(156 -91)" fill="none" /><path d="M19.509,18.258H0V2H19.509ZM18.7,2.813H.813V17.445H18.7Zm-.813,13.006H2.439L5.69,9.729l2.439,2.478L12.2,6.064ZM8.253,13.49l-2.366-2.4L3.795,15.006H16.47L12.159,7.6,8.253,13.49ZM4.471,4.439A2.032,2.032,0,1,1,2.439,6.471,2.033,2.033,0,0,1,4.471,4.439Zm0,.813A1.219,1.219,0,1,1,3.252,6.471,1.22,1.22,0,0,1,4.471,5.252Z" transform="translate(158.245 -89.129)" fill={'currentColor' || '#043e22'} /></g></svg>
 );
 
+export const ArrowBackIcon = (props: any) => (
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g transform="translate(317 23)"><rect width="24" height="24" transform="translate(-317 -23)" fill="none" /><path d="M9.218.107A.376.376,0,0,1,9.333.38a.406.406,0,0,1-.115.273L1.478,8.386h15.7a.382.382,0,0,1,.382.382.388.388,0,0,1-.382.388H1.484L9.218,16.89a.39.39,0,0,1-.551.551L0,8.768,8.655.107a.382.382,0,0,1,.563,0Z" transform="translate(-314 -19.983)" fill={'currentColor' || '#043e22'} /></g></svg>
+);
+
+
 
 
 

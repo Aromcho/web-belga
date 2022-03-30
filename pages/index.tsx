@@ -166,7 +166,7 @@ const Home = observer(({ properties }: any) => {
                     description={item?.location?.name}
                     address={item?.address}
                     m2={Math.round(item?.total_surface)}
-                    bedroom={item?.room_amount}
+                    bedroom={item?.suite_amount}
                     bathroom={item?.bathroom_amount}
                     garage={item?.parking_lot_amount}
                     media={item.photos.slice(0, 10).map((photo: any) => { return photo.image })}
@@ -206,7 +206,7 @@ const Home = observer(({ properties }: any) => {
                     currency={item?.operations[0].prices[0].currency}
                     description={item?.location?.name}
                     neighborhood={item?.location?.name}
-                    bedroom={`${item?.room_amount} ambientes`}
+                    bedroom={`${item?.suite_amount} ambientes`}
                     inversionCover={item.photos.slice(0, 1).map((photo: any) => { return photo.image })}
                     link={`/propiedad/${item?.id.toString()}`}
                     inversion

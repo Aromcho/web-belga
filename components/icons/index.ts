@@ -17,5 +17,6 @@ export {
   SearchIcon,
   HeartIcon,
   ImageIcon,
-  EmprendimientosIcon
+  EmprendimientosIcon,
+  ArrowBackIcon
 } from "./icons";

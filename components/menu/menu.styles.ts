@@ -425,6 +425,7 @@ export const MenuContainer = styled.div`
   &.white {
     ${MenuWrapper} {
       background-color: ${(props: any) => props.theme.white};
+      box-shadow: 0px 7px 29px -1px rgba(0, 0, 0, 0.1);
       ${BurgerButton} {
         ${IconWrapper} {
           svg {

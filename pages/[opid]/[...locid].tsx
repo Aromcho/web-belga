@@ -4,27 +4,27 @@ import { Layout, Container } from 'components/layout';
 import { getProperties } from 'services';
 import { parseTokkoParameters } from 'helpers/tokko';
 
-const PropertySearch = ({properties}: any) => {
-  
-  
+const PropertySearch = ({ properties }: any) => {
+
+
   return (
     <Layout>
+      {console.log(properties)}
       <Container>
-        {/* {console.log(properties)} */}
       </Container>
     </Layout>
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({query}) => {
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
   const { objects } = await getProperties({
-    params: parseTokkoParameters({...query})
+    params: parseTokkoParameters({ ...query })
   })
 
   return {
     props: {
-      properties: objects 
+      properties: objects
     }
   }
 }

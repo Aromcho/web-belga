@@ -194,8 +194,9 @@ export const GlobalStyles = css`
       * {
         box-sizing: border-box;
         /* Google font */
-        font-family: 'Montserrat', sans-serif;
+        font-family: "Montserrat", sans-serif;
         font-weight: normal;
+        -webkit-tap-highlight-color: transparent;
       }
     }
   }

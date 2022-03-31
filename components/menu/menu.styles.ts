@@ -91,9 +91,9 @@ export const BurgerMenu = styled.div`
   display: flex;
   background-color: ${(props: any) => props.theme.white};
   justify-content: center;
-  position: absolute;
   opacity: 0;
   pointer-events: none;
+  position: absolute;
   transition: all 0.3s ease-in-out;
   top: 97px;
   right: 0;
@@ -379,6 +379,7 @@ export const MenuContainer = styled.div`
       ${BurgerMenu} {
         top: 86px;
         @media screen and (max-width: 992px) {
+          z-index: 9999991;
           top: 55px;
         }
       }

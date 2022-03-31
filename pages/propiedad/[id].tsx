@@ -96,6 +96,9 @@ const PropertyDetail = ({ property, statusCode }: any) => {
             <HeadInfoShare>
               <HeadInfo>{property.location?.name}</HeadInfo>
               <HeadShare>
+                <LikeWrapper className={classes('mobile', { liked: isLiked })} onClick={() => setIsLiked(!isLiked)}>
+                  <HeartIcon className='icon--heart' />
+                </LikeWrapper>
                 Enviar por
                 <Link href={`https://api.whatsapp.com/send?text=Encontr%C3%A9%20esta%20excelente%20propiedad!%0D%0Ahttps://web-belga.vercel.app/propiedad/${property.id.toString()}`}><a target='_blank'><WhatsappIcon /></a></Link>
                 <Link href={`mailto:mail@server.com?subject=Encontr%C3%A9%20esta%20excelente%20propiedad!&body=Direcci%C3%B3n%3A%0D%0A${property.address}%0D%0A%0D%0ADescripci%C3%B3n%3A%0D%0A${property.location?.name}%0D%0A%0D%0APrecio%3A%0D%0A${property.operations[0].operation_type} ${property.operations[0].prices[0].currency} ${formatToMoney(property.operations[0].prices[0].price)}`}><a target='_blank'><MailIcon /></a></Link>
@@ -109,14 +112,26 @@ const PropertyDetail = ({ property, statusCode }: any) => {
               <Swiper
                 className='swiper--prop-gallery'
                 modules={[Navigation]}
-                spaceBetween={20}
-                slidesPerView={2.3}
                 loop={false}
                 centeredSlides={false}
                 allowTouchMove={true}
                 navigation={{}}
                 grabCursor={true}
                 draggable={true}
+                breakpoints={{
+                  // when window width is >= 1366px
+                  1: {
+                    spaceBetween: 0,
+                    slidesPerView: 1,
+                    slidesPerGroup: 1,
+                    allowTouchMove: true
+                  },
+                  700: {
+                    spaceBetween: 20,
+                    slidesPerView: 2.8,
+                    allowTouchMove: true
+                  }
+                }}
               >
                 {property?.photos?.map((photo: any, k: number) => {
                   return (

@@ -130,10 +130,19 @@ export const SwiperContainerGallery = styled.div`
 export const GalleryProp = styled.div`
   width: 100vw;
   height: 440px;
-  margin-bottom: 70px;
+  margin: 0 auto 70px;
   transform: translateX(-50%);
   position: relative;
   left: 50%;
+  @media screen and (max-width: 1300px) {
+    height: 300px;
+  }
+  @media screen and (max-width: 1100px) {
+    margin: 0 auto 40px;
+  }
+  @media screen and (max-width: 992px) {
+    height: 230px;
+  }
 `;
 
 export const DescText = styled.div`
@@ -142,6 +151,10 @@ export const DescText = styled.div`
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
+  @media screen and (max-width: 992px) {
+    font-size: 16px;
+    line-height: 22px;
+  }
 `;
 
 export const DescTitle = styled.div`
@@ -158,6 +171,9 @@ export const MoreItemText = styled.div`
   font-size: 14px;
   white-space: nowrap;
   margin-bottom: 20px;
+  @media screen and (max-width: 992px) {
+    font-size: 16px;
+  }
   b {
     font-weight: 600;
   }
@@ -179,6 +195,9 @@ export const MoreItem = styled.div`
     align-items: baseline;
     display: flex;
     flex-flow: row wrap;
+    @media screen and (max-width: 992px) {
+      flex-flow: column;
+    }
     ${MoreItemTitle} {
       width: 100%;
     }
@@ -193,6 +212,9 @@ export const MoreInfo = styled.div`
   display: flex;
   flex-flow: row wrap;
   margin-top: 60px;
+  @media screen and (max-width: 992px) {
+    flex-flow: column;
+  }
 `;
 
 export const FeaturesFooter = styled.div`
@@ -271,6 +293,13 @@ export const BodyProp = styled.div`
     justify-content: center;
     align-items: center;
   }
+  @media screen and (max-width: 992px) {
+    width: 100%;
+    max-width: 500px;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const HeadShare = styled.div`
@@ -280,6 +309,16 @@ export const HeadShare = styled.div`
   display: flex;
   font-size: 16px;
   font-weight: 500;
+  @media screen and (max-width: 992px) {
+    width: 100%;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 12px;
+    margin: 35px 0 0 auto;
+    position: relative;
+  }
   a {
     svg {
       width: 20px;
@@ -287,6 +326,10 @@ export const HeadShare = styled.div`
       color: ${(props: any) => props.theme.black};
       margin-left: 10px;
       transition: all 0.3s ease-in-out;
+      @media screen and (max-width: 992px) {
+        width: 27px;
+        margin-left: 12px;
+      }
     }
     &:hover {
       svg {
@@ -303,6 +346,10 @@ export const HeadInfo = styled.div`
   display: flex;
   font-size: 16px;
   font-weight: 500;
+  @media screen and (max-width: 992px) {
+    width: 100%;
+    text-align: left;
+  }
 `;
 
 export const HeadInfoShare = styled.div`
@@ -310,6 +357,10 @@ export const HeadInfoShare = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
+  @media screen and (max-width: 992px) {
+    width: 100%;
+    flex-flow: column;
+  }
 `;
 
 export const HeadDivisor = styled.div`
@@ -317,6 +368,9 @@ export const HeadDivisor = styled.div`
   height: 1px;
   background-color: ${(props: any) => props.theme.black};
   margin: 20px auto;
+  @media screen and (max-width: 992px) {
+    display: none;
+  }
 `;
 
 export const HeadPrice = styled.div`
@@ -326,6 +380,12 @@ export const HeadPrice = styled.div`
   display: flex;
   font-size: 24px;
   font-weight: 500;
+  @media screen and (max-width: 992px) {
+    width: 100%;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
 `;
 
 export const LikeWrapper = styled.div`
@@ -339,8 +399,20 @@ export const LikeWrapper = styled.div`
   transition: all 0.3s ease-in-out;
   z-index: 1;
   @media screen and (max-width: 992px) {
-    width: 38px;
-    height: 38px;
+    display: none;
+  }
+  &.mobile {
+    -webkit-tap-highlight-color: transparent;
+    @media screen and (max-width: 992px) {
+      width: 38px;
+      height: 38px;
+      display: flex;
+      margin-left: 0;
+      transform: translateY(-50%);
+      position: absolute;
+      left: 0;
+      top: 50%;
+    }
   }
   svg {
     width: 100%;
@@ -386,6 +458,11 @@ export const HeadAddress = styled.div`
   font-size: 24px;
   font-weight: 500;
   margin-right: 5px;
+  @media screen and (max-width: 992px) {
+    width: 100%;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
 `;
 
 export const HeadAddressPrice = styled.div`
@@ -393,11 +470,18 @@ export const HeadAddressPrice = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
+  @media screen and (max-width: 992px) {
+    align-items: flex-start;
+    flex-flow: column;
+  }
 `;
 
 export const HeadProp = styled.div`
   width: 100%;
-  margin: 60px 0 40px;
+  margin: 60px auto 40px;
+  @media screen and (max-width: 992px) {
+    margin: 30px auto;
+  }
 `;
 
 export const BackWrapper = styled.div`
@@ -426,4 +510,7 @@ export const BackWrapper = styled.div`
 export const PropContainer = styled.div`
   width: 100%;
   padding: 150px 0 50px;
+  @media screen and (max-width: 992px) {
+    padding: 100px 0 50px;
+  }
 `;

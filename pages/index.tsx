@@ -154,7 +154,7 @@ const Home = observer(({ properties }: any) => {
           <Title title='Nuestra Selección' />
 
           <PropList>
-            {properties.slice(0, 2).map((item: any, k: number) => {
+            {properties.slice(4, 6).map((item: any, k: number) => {
               return (
                 <>
                   <CardProp

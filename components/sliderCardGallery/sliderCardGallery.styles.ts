@@ -65,7 +65,6 @@ export const SwiperContainerGallery = styled.div`
       align-items: center;
       display: flex;
       justify-content: center;
-      transition: all 0.3s ease-in-out;
       .link--gallery {
         width: 70%;
         height: 100%;

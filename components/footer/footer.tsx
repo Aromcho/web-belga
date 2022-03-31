@@ -1,16 +1,13 @@
 import React from 'react';
 import Link from "next/link";
+import { classes } from 'helpers';
+import { useRouter } from 'next/router'
 
-import { Button } from 'components/button';
-import { Input } from 'components/input';
-import { Textarea } from 'components/textarea';
-import { FeedbackMsg } from 'components/feedbackmsg';
+import { ContactForm } from 'components/contactform';
 
 import {
   FooterContainer,
   FooterWrapper,
-  FooterTitleText,
-  FooterTitle,
   FooterLeft,
   FooterCenter,
   FooterRight,
@@ -31,8 +28,7 @@ import {
   LocationItem,
   HeadLocation,
   BodyLocation,
-  Loc,
-  FormContact
+  Loc
 } from './footer.styles';
 
 import {
@@ -47,7 +43,7 @@ import {
   WhatsappIcon,
   YoutubeCircleIcon
 } from 'components/icons';
-import { classes } from 'helpers';
+import { TitleWithIcon } from 'components/titlewithicon';
 
 
 
@@ -56,6 +52,8 @@ export interface FooterProps {
 }
 
 export const Footer = ({ }: FooterProps) => {
+
+  const router = useRouter()
 
   const legalInfo = {
     text: '*Para los casos de alquiler de vivienda, el monto máximo de comisión que se le puede requerir a los propietarios será el equivalente al cuatro con quince centésimos por ciento (4,15%) del valor total del respectivo contrato. Se encuentra prohibido cobrar comisiones inmobiliarias y gastos de gestoría de informes a los inquilinos que sean personas físicas.',
@@ -73,15 +71,19 @@ export const Footer = ({ }: FooterProps) => {
 
   ]
 
+  /* Handle footer style */
+  const [smallFooter, setSmallFooter] = React.useState<string>('')
+  React.useEffect(() => {
+    if (router.asPath !== '/') { setSmallFooter('small') }
+  }, [])
+
   return (
-    <FooterContainer>
+    <FooterContainer className={classes(smallFooter)}>
       <FooterWrapper>
         <FooterLeft>
           <FooterInfo>
             <LeftInfo>
-              <FooterTitle>
-                <BelgaIsoIcon /> <FooterTitleText>¿Querés contactarnos?</FooterTitleText>
-              </FooterTitle>
+              <TitleWithIcon text='¿Querés contactarnos?' />
 
               <LeftContact>
                 <ContactItem><Link href='tel:+541152633393' ><a className='info--link'><TelIcon /> +54 11 5263 3393</a></Link></ContactItem>
@@ -145,38 +147,7 @@ export const Footer = ({ }: FooterProps) => {
         <FooterRight>
           <FooterInfo>
             <RightInfo>
-              <FooterTitle className='black'>
-                <BelgaIsoIcon /> <FooterTitleText>¿Cómo te podemos ayudar?</FooterTitleText>
-              </FooterTitle>
-
-              <FormContact>
-                <Input
-                  placeHolder='Nombre'
-                  type='text'
-                />
-
-                <Input
-                  placeHolder='Email'
-                  type='email'
-                />
-
-                <Input
-                  placeHolder='Teléfono'
-                  type='tel'
-                />
-
-                <Textarea
-                  placeHolder='Mensaje'
-                />
-
-                {/* <FeedbackMsg
-                  className='success'
-                  msg='Alguno de los campos tienen información incorrecta'
-                /> */}
-
-                <Button text='Enviar' type='secondary' className='button--send' />
-              </FormContact>
-
+              <ContactForm className='contact--form-footer' />
             </RightInfo>
           </FooterInfo>
           <FooterInfoBottom>

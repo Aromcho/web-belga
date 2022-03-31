@@ -1,7 +1,139 @@
 import styled from "@emotion/styled";
 
-export const GalleryProp = styled.div`
+export const MapProp = styled.div`
+  width: 100vw;
+  height: 0;
+  margin-bottom: 80px;
+  padding-bottom: 45%;
+  transform: translateX(-50%);
+  position: relative;
+  left: 50%;
+  @media screen and (max-width: 992px) {
+    padding-bottom: 120%;
+  }
+  iframe {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+`;
+
+export const MediaImg = styled.div`
   width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+`;
+
+export const MediaWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+`;
+
+export const SwiperContainerGallery = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  margin: 0 auto;
+  .swiper--prop-gallery {
+    width: 100%;
+    .swiper-slide {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+    }
+    &.swiper-initialized.swiper-horizontal.swiper-pointer-events {
+      height: 100%;
+    }
+    .swiper-button-prev,
+    .swiper-button-next {
+      width: 90px;
+      height: 100%;
+      align-items: center;
+      background-color: ${(props: any) => props.theme.white}95;
+      display: flex;
+      justify-content: center;
+      transition: all 0.2s ease-in-out;
+      transform: none;
+      position: absolute;
+      top: 22px;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      -webkit-tap-highlight-color: transparent;
+      @media screen and (max-width: 992px) {
+        width: 60px;
+      }
+      &.swiper-button-disabled {
+        opacity: 0;
+      }
+      &:before {
+        width: 60px;
+        height: 60px;
+        content: "";
+        position: absolute;
+      }
+      &:after {
+        width: 30px;
+        height: 60px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 15px;
+        content: "";
+        transition: all 0.3s ease-in-out;
+        opacity: 0.7;
+      }
+      &:hover {
+        &:after {
+          opacity: 1;
+        }
+      }
+    }
+    .swiper-button-prev {
+      left: 0;
+      background: rgb(0, 0, 0);
+      background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.25) 0%,
+        rgba(0, 0, 0, 0) 88%
+      );
+      &:before {
+        left: 0;
+      }
+      &:after {
+        background-image: url("../images/arrow_prev_slider.svg");
+        background-position: center center;
+      }
+    }
+    .swiper-button-next {
+      right: 0;
+      background: rgb(0, 0, 0);
+      background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0) 9%,
+        rgba(0, 0, 0, 0.25) 100%
+      );
+      &:before {
+        right: 0;
+      }
+      &:after {
+        background-image: url("../images/arrow_next_slider.svg");
+        background-position: center center;
+      }
+    }
+  }
+`;
+
+export const GalleryProp = styled.div`
+  width: 100vw;
+  height: 440px;
+  margin-bottom: 70px;
+  transform: translateX(-50%);
+  position: relative;
+  left: 50%;
 `;
 
 export const DescText = styled.div`
@@ -19,6 +151,58 @@ export const DescTitle = styled.div`
   font-weight: 600;
   margin-bottom: 20px;
   text-transform: uppercase;
+`;
+
+export const MoreItemText = styled.div`
+  color: ${(props: any) => props.theme.black};
+  font-size: 14px;
+  white-space: nowrap;
+  margin-bottom: 20px;
+  b {
+    font-weight: 600;
+  }
+`;
+
+export const MoreItemTitle = styled.div`
+  color: ${(props: any) => props.theme.black};
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+`;
+
+export const MoreItem = styled.div`
+  width: 50%;
+  margin-bottom: 40px;
+  &.large {
+    width: 100%;
+    align-items: baseline;
+    display: flex;
+    flex-flow: row wrap;
+    ${MoreItemTitle} {
+      width: 100%;
+    }
+    ${MoreItemText} {
+      width: 50%;
+    }
+  }
+`;
+
+export const MoreInfo = styled.div`
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  margin-top: 60px;
+`;
+
+export const FeaturesFooter = styled.div`
+  width: 100%;
+  border-bottom: 1px solid ${(props: any) => props.theme.black};
+  padding-bottom: 25px;
+  margin: 60px auto 0;
+  .button--planos {
+    margin: 0 auto;
+  }
 `;
 
 export const FtBottom = styled.div`
@@ -61,19 +245,32 @@ export const FeaturesGrid = styled.div`
 
 export const BodyFeatures = styled.div`
   width: 50%;
+  @media screen and (max-width: 1100px) {
+    width: 100%;
+  }
 `;
 
 export const BodyDesc = styled.div`
   width: 50%;
+  @media screen and (max-width: 1100px) {
+    width: 100%;
+  }
 `;
 
 export const BodyProp = styled.div`
   width: 98%;
   display: flex;
-  gap: 3%;
+  gap: 5%;
   justify-content: space-between;
   margin-bottom: 30px;
-  margin: 0 auto;
+  margin: 0 auto 80px;
+  @media screen and (max-width: 1100px) {
+    width: 95%;
+    max-width: 500px;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const HeadShare = styled.div`
@@ -131,6 +328,57 @@ export const HeadPrice = styled.div`
   font-weight: 500;
 `;
 
+export const LikeWrapper = styled.div`
+  width: 28px;
+  height: 28px;
+  align-items: center;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  margin-left: 15px;
+  transition: all 0.3s ease-in-out;
+  z-index: 1;
+  @media screen and (max-width: 992px) {
+    width: 38px;
+    height: 38px;
+  }
+  svg {
+    width: 100%;
+    height: auto;
+    transition: all 0.3s ease-in-out;
+    path {
+      transition: all 0.3s ease-in-out;
+      fill: transparent;
+      stroke: ${(props: any) => props.theme.black};
+    }
+  }
+  &:hover {
+    cursor: pointer;
+    svg {
+      transform: scale(1.2);
+      @media screen and (max-width: 992px) {
+        transform: none;
+      }
+    }
+  }
+  &.liked {
+    svg {
+      path {
+        fill: ${(props: any) => props.theme.black};
+        stroke: ${(props: any) => props.theme.black};
+      }
+    }
+    &:hover {
+      svg {
+        transform: scale(0.8);
+        @media screen and (max-width: 992px) {
+          transform: none;
+        }
+      }
+    }
+  }
+`;
+
 export const HeadAddress = styled.div`
   align-items: center;
   color: ${(props: any) => props.theme.black};
@@ -149,7 +397,7 @@ export const HeadAddressPrice = styled.div`
 
 export const HeadProp = styled.div`
   width: 100%;
-  margin: 80px 0 40px;
+  margin: 60px 0 40px;
 `;
 
 export const BackWrapper = styled.div`

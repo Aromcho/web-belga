@@ -1,0 +1,1 @@
+export { TitleWithIcon } from './titlewithicon';

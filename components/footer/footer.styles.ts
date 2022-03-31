@@ -1,44 +1,5 @@
 import styled from "@emotion/styled";
 
-export const FooterTitleText = styled.div`
-  width: 100%;
-  max-width: 280px;
-  height: 42px;
-  align-items: center;
-  border: 2px solid ${(props: any) => props.theme.white};
-  border-radius: 0 5px 5px 5px;
-  color: ${(props: any) => props.theme.white};
-  display: flex;
-  font-size: 16px;
-  font-weight: 500;
-  justify-content: center;
-  white-space: nowrap;
-`;
-
-export const FooterTitle = styled.div`
-  display: flex;
-  justify-content: center;
-  svg {
-    width: 30px;
-    height: auto;
-    color: ${(props: any) => props.theme.white};
-    display: block;
-    flex: 0 0 auto;
-    margin-right: 10px;
-    position: relative;
-    top: -5px;
-  }
-  &.black {
-    svg {
-      color: ${(props: any) => props.theme.black};
-    }
-    ${FooterTitleText} {
-      border-color: ${(props: any) => props.theme.black};
-      color: ${(props: any) => props.theme.black};
-    }
-  }
-`;
-
 export const FooterInfo = styled.div`
   width: 100%;
   max-width: 450px;
@@ -116,16 +77,6 @@ export const RightInfoMobile = styled.div`
   padding: 70px 8%;
   @media screen and (max-width: 1100px) {
     display: block;
-  }
-`;
-
-export const FormContact = styled.div`
-  width: 100%;
-  max-width: 330px;
-  margin: 70px auto 0;
-  .button--send {
-    max-width: 220px;
-    margin: 30px auto 0;
   }
 `;
 
@@ -374,4 +325,18 @@ export const FooterContainer = styled.footer`
   width: 100%;
   position: relative;
   z-index: 999996;
+
+  &.small {
+    ${FooterRight} {
+      @media screen and (max-width: 1100px) {
+        display: none;
+      }
+    }
+    ${FooterInfo} {
+      display: none;
+      @media screen and (max-width: 1100px) {
+        display: flex;
+      }
+    }
+  }
 `;

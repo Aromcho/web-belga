@@ -23,7 +23,7 @@ export const BurgerMenuItem = styled.div`
   margin-bottom: 12px;
   @media screen and (max-width: 840px) {
     max-width: 100%;
-    margin-bottom: 18px;
+    margin-bottom: 30px;
   }
   &:last-of-type {
     margin-bottom: 0;

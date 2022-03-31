@@ -4,10 +4,12 @@ import { Layout, Container } from 'components/layout';
 import { getPropertyById } from 'services';
 import { PATHS } from 'config';
 import Link from "next/link";
-import { formatToMoney } from 'helpers';
+import { classes, formatToMoney } from 'helpers';
 import Head from 'next/head'
+import { Navigation } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { SocialSidebar } from 'components/socialsidebar';
+import { Button } from 'components/button';
 
 import {
   PropContainer,
@@ -18,9 +20,13 @@ import {
   HeadInfoShare,
   HeadAddress,
   HeadPrice,
+  LikeWrapper,
   HeadInfo,
   HeadShare,
   GalleryProp,
+  SwiperContainerGallery,
+  MediaWrapper,
+  MediaImg,
   BodyProp,
   BodyFeatures,
   FeaturesGrid,
@@ -30,9 +36,22 @@ import {
   Feature,
   FtHead,
   FtImg,
-  FtBottom
+  FtBottom,
+  FeaturesFooter,
+  MoreInfo,
+  MoreItemTitle,
+  MoreItem,
+  MoreItemText,
+  MapProp
 } from 'components/pages/propiedad.styles';
-import { ArrowBackIcon, MailIcon, WhatsappIcon } from 'components/icons';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+import { ArrowBackIcon, HeartIcon, MailIcon, WhatsappIcon } from 'components/icons';
+import { ContactForm } from 'components/contactform';
+
 
 const PropertyDetail = ({ property, statusCode }: any) => {
   if (statusCode === 404) return <>404</>
@@ -40,6 +59,10 @@ const PropertyDetail = ({ property, statusCode }: any) => {
   if (statusCode === 500) return <>500</>
 
   console.log(property)
+
+  /* Handle like prop*/
+  const [isLiked, setIsLiked] = React.useState<boolean>(false)
+
   return (
     < Layout >
       <Head>
@@ -54,15 +77,17 @@ const PropertyDetail = ({ property, statusCode }: any) => {
         <meta property="og:image" content="https://web-belga.vercel.app/images/og_image.png" />
       </Head>
 
-      <SocialSidebar color='red' />
-
       <PropContainer>
         <Container>
           <BackWrapper><Link href={PATHS.ROOT}><a className='back--link'><ArrowBackIcon />Volver a la búsqueda</a></Link> </BackWrapper>
 
           <HeadProp>
             <HeadAddressPrice>
-              <HeadAddress>{property.address}</HeadAddress>
+              <HeadAddress>{property.address}
+                <LikeWrapper className={classes({ liked: isLiked })} onClick={() => setIsLiked(!isLiked)}>
+                  <HeartIcon className='icon--heart' />
+                </LikeWrapper>
+              </HeadAddress>
               <HeadPrice>{`${property.operations[0].operation_type} ${property.operations[0].prices[0].currency} ${formatToMoney(property.operations[0].prices[0].price)}`}</HeadPrice>
             </HeadAddressPrice>
 
@@ -78,7 +103,36 @@ const PropertyDetail = ({ property, statusCode }: any) => {
             </HeadInfoShare>
           </HeadProp>
 
-          <GalleryProp>Gallery</GalleryProp>
+          <GalleryProp>
+            <SwiperContainerGallery>
+
+              <Swiper
+                className='swiper--prop-gallery'
+                modules={[Navigation]}
+                spaceBetween={20}
+                slidesPerView={2.3}
+                loop={false}
+                centeredSlides={false}
+                allowTouchMove={true}
+                navigation={{}}
+                grabCursor={true}
+                draggable={true}
+              >
+                {property?.photos?.map((photo: any, k: number) => {
+                  return (
+                    < SwiperSlide key={k}>
+                      <MediaWrapper>
+                        <MediaImg style={{ backgroundImage: `url(${photo.image})` }} />
+                      </MediaWrapper>
+                    </SwiperSlide>
+                  )
+                })
+                }
+
+              </Swiper>
+
+            </SwiperContainerGallery>
+          </GalleryProp>
 
           <BodyProp>
             <BodyFeatures>
@@ -93,7 +147,38 @@ const PropertyDetail = ({ property, statusCode }: any) => {
                 <Feature><FtHead>{property?.web_price ? 'Si' : 'No'}</FtHead><FtImg src='/images/icons/prop_credito.svg' /><FtBottom>Apto Crédito</FtBottom></Feature>
                 <Feature><FtHead>{formatToMoney(Math.round(property?.expenses), true, '$')}</FtHead><FtImg src='/images/icons/prop_expensas.svg' /><FtBottom>Expensas</FtBottom></Feature>
               </FeaturesGrid>
+
+              <FeaturesFooter>
+                <Button className='button--planos' text='Ver planos' type='outline red' />
+              </FeaturesFooter>
+
+              <MoreInfo>
+                <MoreItem>
+                  <MoreItemTitle>Información</MoreItemTitle>
+                  {property?.room_amount && <MoreItemText><b>Ambientes:</b> {property?.room_amount}</MoreItemText>}
+                  {property?.disposition && <MoreItemText><b>Disposición:</b> {property?.disposition}</MoreItemText>}
+                  {property?.orientation && <MoreItemText><b>Orientación:</b> </MoreItemText>}
+                  {property?.property_condition && <MoreItemText><b>Condición:</b> {property?.property_condition}</MoreItemText>}
+                </MoreItem>
+
+                <MoreItem>
+                  <MoreItemTitle>Información</MoreItemTitle>
+                  <MoreItemText><b>Sup. Cubierta:</b> {`${Math.round(property?.roofed_surface)} m2`}</MoreItemText>
+                  <MoreItemText><b>Sup. Semicubierta:</b> {`${Math.round(property?.semiroofed_surface)} m2`}</MoreItemText>
+                  <MoreItemText><b>Sup. Descubieta:</b> {`${Math.round(property?.unroofed_surface)} m2`}</MoreItemText>
+                  <MoreItemText><b>Sup. Total:</b> {`${Math.round(property?.total_surface)} m2`}</MoreItemText>
+                </MoreItem>
+
+                <MoreItem className='large'>
+                  <MoreItemTitle>Adicionales</MoreItemTitle>
+                  {property?.tags?.map((tag: any, k: number) => {
+                    return (<MoreItemText key={k}>{tag.name.toString()}</MoreItemText>)
+                  })}
+                </MoreItem>
+              </MoreInfo>
             </BodyFeatures>
+
+
             <BodyDesc>
               <DescTitle>Decripción</DescTitle>
               <DescText>{property.rich_description ?? property.description}</DescText>
@@ -101,6 +186,11 @@ const PropertyDetail = ({ property, statusCode }: any) => {
 
           </BodyProp>
 
+          <MapProp>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6567.948790442833!2d-58.38486108228965!3d-34.60480896825873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4aa9f0a6da5edb%3A0x11bead4e234e558b!2sObelisco!5e0!3m2!1ses-419!2sar!4v1648690340385!5m2!1ses-419!2sar" />
+          </MapProp>
+
+          <ContactForm className='full' />
 
         </Container>
       </PropContainer>

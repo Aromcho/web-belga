@@ -190,6 +190,7 @@ export const GlobalStyles = css`
     padding: env(safe-area-inset);
     body {
       white-space: pre-line;
+      overflow-x: hidden;
       * {
         box-sizing: border-box;
         /* Google font */

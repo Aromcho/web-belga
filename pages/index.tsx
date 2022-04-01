@@ -37,6 +37,7 @@ import {
   HeroFooter
 } from 'components/pages/home.styles'
 import { TelIcon } from 'components/icons';
+import { InputAutoComplete } from 'components/inputautocomplete';
 
 const Home = observer(({ properties }: any) => {
 
@@ -49,6 +50,9 @@ const Home = observer(({ properties }: any) => {
     minPrice: 0,
     maxPrice: 0
   })
+
+  const localidades = ['Agronomía', 'Almagro', 'Balvanera', 'Barracas', 'Belgrano', 'Boedo', 'Caballito', 'Chacarita', 'Coghlan', 'Colegiales', 'Constitución', 'Flores', 'Floresta', 'La Boca', 'La Paternal', 'Liniers', 'Mataderos', 'Monte Castro', 'Montserrat', 'Nueva Pompeya', 'Nuñez', 'Palermo', 'Parque Avellaneda', 'Parque Chacabuco', 'Parque Chas', 'Parque Patricios', 'Puerto Madero', 'Recoleta', 'Retiro', 'Saavedra', 'San Cristóbal', 'San Nicolás', 'San Telmo', 'Versalles', 'Villa Crespo', 'Villa Devoto', 'Villa General Mitre', 'Villa Lugano', 'Villa Luro', 'Villa Ortúzar', 'Villa Pueyrredón', 'Villa Real', 'Villa Riachuelo', 'Villa Santa Rita', 'Villa Soldati', 'Villa Urquiza', 'Villa del Parque', 'Vélez Sarsfield']
+  const [barrio, setBarrio] = React.useState('Barrio')
 
   return (
     <Layout>
@@ -83,11 +87,13 @@ const Home = observer(({ properties }: any) => {
             </SearchRow>
 
             <SearchRow className='second--row'>
-              <Input
+
+              <InputAutoComplete
                 className='white second--row-input input--general'
-                type='text'
                 placeHolder='Barrio'
+                suggestions={localidades}
               />
+
             </SearchRow>
 
             <SearchRow className='third--row'>
@@ -102,7 +108,6 @@ const Home = observer(({ properties }: any) => {
                     step={10000}
                     onChange={({ minVal, maxVal }: any) => {
                       setSearchPrice({ minPrice: minVal, maxPrice: maxVal })
-                      console.log()
                     }}
                   />
                   <PriceInputWrapper>

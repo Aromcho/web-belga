@@ -9,6 +9,7 @@ export const PropList = styled.div`
     width: 48%;
     @media screen and (max-width: 740px) {
       width: 100%;
+      margin-bottom: 30px;
     }
   }
 `;
@@ -42,8 +43,8 @@ export const MediaImg = styled.img`
   width: auto;
   height: 100%;
   @media screen and (max-width: 460px) {
-    width: auto;
-    height: 100%;
+    width: 100%;
+    height: auto;
     transform: translate(-50%, -50%);
     position: absolute;
     top: 50%;

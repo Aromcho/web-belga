@@ -1,24 +1,5 @@
 import styled from "@emotion/styled";
 
-export const OverlayHover = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: ${(props: any) => props.theme.white};
-  font-size: 16px;
-  font-weight: 500;
-  transition: all 0.3s ease-in-out;
-  transform: translateX(-50%);
-  opacity: 0;
-  z-index: 2;
-  position: absolute;
-  top: 0;
-  left: 50%;
-`;
-
 export const WrapperImage = styled.div`
   width: 100%;
   height: 100%;
@@ -26,11 +7,6 @@ export const WrapperImage = styled.div`
   display: flex;
   justify-content: center;
   position: relative;
-  &:hover {
-    ${OverlayHover} {
-      opacity: 1;
-    }
-  }
 `;
 
 export const SlideContainer = styled.div`

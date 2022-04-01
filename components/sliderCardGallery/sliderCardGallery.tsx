@@ -6,8 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import {
   SwiperContainerGallery,
   SlideContainer,
-  WrapperImage,
-  OverlayHover
+  WrapperImage
 } from './sliderCardGallery.styles';
 
 import 'swiper/css';
@@ -39,8 +38,7 @@ export const SliderCardGallery = ({ img, className, galleryLink }: sliderCardGal
           < SwiperSlide key={k}>
             {galleryLink
               ? <WrapperImage>
-                <OverlayHover>Ver más info</OverlayHover >
-                <Link href={galleryLink}><a className='link--gallery'></a></Link>
+                {/* <Link href={galleryLink}><a className='link--gallery overlay--hover'>Ver más info</a></Link> */}
                 <SlideContainer style={{ backgroundImage: `url(${i})` }}></SlideContainer>
               </WrapperImage>
 

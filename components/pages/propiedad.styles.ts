@@ -1,5 +1,23 @@
 import styled from "@emotion/styled";
 
+export const PropList = styled.div`
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  .card--prop {
+    width: 48%;
+    @media screen and (max-width: 740px) {
+      width: 100%;
+    }
+  }
+`;
+
+export const SimilarProps = styled.div`
+  width: 100%;
+  margin-bottom: 80px;
+`;
+
 export const MapProp = styled.div`
   width: 100vw;
   height: 0;
@@ -8,7 +26,7 @@ export const MapProp = styled.div`
   transform: translateX(-50%);
   position: relative;
   left: 50%;
-  @media screen and (max-width: 992px) {
+  @media screen and (max-width: 460px) {
     padding-bottom: 120%;
   }
   iframe {

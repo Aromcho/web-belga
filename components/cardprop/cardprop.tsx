@@ -93,10 +93,10 @@ export const CardProp = ({
         {inversion
           ? <IsolatedImage style={{ backgroundImage: `url(${inversionCover})` }} />
           : (media
-            ? <SliderCardGallery
-              img={media}
-              galleryLink={link}
-            />
+            ?
+            <Link href={link ?? '#'}><a className='link--gallery overlay--hover'>
+              <SliderCardGallery img={media} />
+            </a></Link>
 
             : <EmptyMedia>
               <ImageIcon />

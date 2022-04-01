@@ -1,15 +1,18 @@
 import React from 'react';
 import { GetServerSideProps } from 'next'
 import { Layout, Container } from 'components/layout';
-import { getPropertyById } from 'services';
+import { getProperties, getPropertyById } from 'services';
 import { PATHS } from 'config';
 import Link from "next/link";
-import { classes, formatToMoney } from 'helpers';
+import { classes, formatToMoney, randomNumber } from 'helpers';
 import Head from 'next/head'
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { Button } from 'components/button';
+import { ContactForm } from 'components/contactform';
+import { Title } from 'components/title';
+import { CardProp } from 'components/cardprop';
 
 import {
   PropContainer,
@@ -42,7 +45,9 @@ import {
   MoreItemTitle,
   MoreItem,
   MoreItemText,
-  MapProp
+  MapProp,
+  SimilarProps,
+  PropList
 } from 'components/pages/propiedad.styles';
 
 import 'swiper/css';
@@ -50,15 +55,13 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 import { ArrowBackIcon, HeartIcon, MailIcon, WhatsappIcon } from 'components/icons';
-import { ContactForm } from 'components/contactform';
 
 
-const PropertyDetail = ({ property, statusCode }: any) => {
+
+const PropertyDetail = ({ properties, property, statusCode }: any) => {
   if (statusCode === 404) return <>404</>
 
   if (statusCode === 500) return <>500</>
-
-  console.log(property)
 
   /* Handle like prop*/
   const [isLiked, setIsLiked] = React.useState<boolean>(false)
@@ -205,6 +208,34 @@ const PropertyDetail = ({ property, statusCode }: any) => {
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6567.948790442833!2d-58.38486108228965!3d-34.60480896825873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4aa9f0a6da5edb%3A0x11bead4e234e558b!2sObelisco!5e0!3m2!1ses-419!2sar!4v1648690340385!5m2!1ses-419!2sar" />
           </MapProp>
 
+          <SimilarProps>
+            <Title title='Propiedades similares' />
+
+            <PropList>
+              {properties.filter((i: any) => i.address !== property.address ).slice(0,2).map((item: any, k: number) => {
+                return (
+                  <>
+                    <CardProp
+                      key={k}
+                      className='card--prop'
+                      operation={item?.operations[0].operation_type}
+                      currency={item?.operations[0].prices[0].currency}
+                      price={formatToMoney(item?.operations[0].prices[0].price)}
+                      description={item?.location?.name}
+                      address={item?.address}
+                      m2={Math.round(item?.total_surface)}
+                      bedroom={item?.suite_amount}
+                      bathroom={item?.bathroom_amount}
+                      garage={item?.parking_lot_amount}
+                      media={item.photos.slice(0, 10).map((photo: any) => { return photo.image })}
+                      link={`/propiedad/${item?.id.toString()}`}
+                    />
+                  </>
+                )
+              })}
+            </PropList>
+          </SimilarProps>
+
           <ContactForm className='full' />
 
         </Container>
@@ -219,8 +250,18 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
   try {
     const property = await getPropertyById(parseInt(query.id as string))
+
+    // Only get starred & ventas
+    const { objects } = await getProperties({
+      params: {
+        filters: [["is_starred_on_web", "=", true]],
+        operation_types: [1]
+      }
+    })
+
     props = {
-      property
+      property,
+      properties: objects
     }
   } catch (e: any) {
     props = {
@@ -233,5 +274,6 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   }
 
 }
+
 
 export default PropertyDetail;

@@ -4,7 +4,7 @@ import { Layout, Container } from 'components/layout';
 import { getProperties, getPropertyById } from 'services';
 import { PATHS } from 'config';
 import Link from "next/link";
-import { classes, formatToMoney, randomNumber } from 'helpers';
+import { classes, formatToMoney } from 'helpers';
 import Head from 'next/head'
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -28,7 +28,7 @@ import {
   HeadShare,
   GalleryProp,
   SwiperContainerGallery,
-  MediaWrapper,
+  IframeWrapper,
   MediaImg,
   BodyProp,
   BodyFeatures,
@@ -65,6 +65,15 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
 
   /* Handle like prop*/
   const [isLiked, setIsLiked] = React.useState<boolean>(false)
+
+  /* Handle media content*/
+  const images = property?.photos?.map((item: any, k: number) => {
+    return (<MediaImg src={item.image} />)
+  })
+  const videos = property?.videos?.map((item: any, k: number) => {
+    return (<IframeWrapper><iframe src={item.player_url} /></IframeWrapper>)
+  })
+  const allMedia = [...videos, ...images]
 
   return (
     < Layout >
@@ -124,26 +133,19 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
                 breakpoints={{
                   // when window width is >= 1366px
                   1: {
-                    spaceBetween: 0,
+                    spaceBetween: 10,
                     slidesPerView: 1,
-                    slidesPerGroup: 1,
                     allowTouchMove: true
                   },
                   700: {
                     spaceBetween: 20,
-                    slidesPerView: 2.8,
+                    slidesPerView: 2.3,
                     allowTouchMove: true
                   }
                 }}
               >
-                {property?.photos?.map((photo: any, k: number) => {
-                  return (
-                    < SwiperSlide key={k}>
-                      <MediaWrapper>
-                        <MediaImg style={{ backgroundImage: `url(${photo.image})` }} />
-                      </MediaWrapper>
-                    </SwiperSlide>
-                  )
+                {allMedia?.map((item: any, k: number) => {
+                  return < SwiperSlide key={k}>{item}</SwiperSlide>
                 })
                 }
 
@@ -212,7 +214,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
             <Title title='Propiedades similares' />
 
             <PropList>
-              {properties.filter((i: any) => i.address !== property.address ).slice(0,2).map((item: any, k: number) => {
+              {properties.filter((i: any) => i.address !== property.address).slice(0, 2).map((item: any, k: number) => {
                 return (
                   <>
                     <CardProp

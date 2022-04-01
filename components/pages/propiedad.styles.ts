@@ -38,12 +38,31 @@ export const MapProp = styled.div`
   }
 `;
 
-export const MediaImg = styled.div`
+export const MediaImg = styled.img`
+  width: auto;
+  height: 100%;
+  @media screen and (max-width: 460px) {
+    width: auto;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+`;
+
+export const IframeWrapper = styled.div`
   width: 100%;
   height: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  overflow: hidden;
+  overflow-y: scroll !important;
+  -webkit-overflow-scrolling: touch !important;
+  * {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+  }
 `;
 
 export const MediaWrapper = styled.div`
@@ -64,6 +83,9 @@ export const SwiperContainerGallery = styled.div`
       align-items: center;
       display: flex;
       justify-content: center;
+      @media screen and (max-width: 992px) {
+        padding: 0;
+      }
     }
     &.swiper-initialized.swiper-horizontal.swiper-pointer-events {
       height: 100%;
@@ -78,12 +100,16 @@ export const SwiperContainerGallery = styled.div`
       justify-content: center;
       transition: all 0.2s ease-in-out;
       transform: none;
+      z-index: 99999999999999999;
       position: absolute;
       top: 22px;
       -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
       -webkit-tap-highlight-color: transparent;
       @media screen and (max-width: 992px) {
         width: 60px;
+      }
+      @media screen and (max-width: 460px) {
+        width: 40px;
       }
       &.swiper-button-disabled {
         opacity: 0;

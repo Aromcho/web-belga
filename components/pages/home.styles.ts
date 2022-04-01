@@ -162,7 +162,7 @@ export const BlackLayer = styled.div`
   top: 0;
   left: 0;
   @media screen and (max-width: 992px) {
-    background-color: rgba(0, 0, 0, 0.65);
+    background-color: rgba(0, 0, 0, 0.75);
   }
 `;
 

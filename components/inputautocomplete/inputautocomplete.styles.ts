@@ -23,6 +23,9 @@ export const ListWrapper = styled.div`
   max-height: 200px;
   overflow-x: hidden;
   overflow-y: auto;
+  @media screen and (max-width: 840px) {
+    max-height: 250px;
+  }
   ::-webkit-scrollbar {
     width: 4px; /* Mostly for vertical scrollbars */
     height: 26px; /* Mostly for horizontal scrollbars */
@@ -43,11 +46,13 @@ export const ListStyled = styled.div`
   height: auto;
   background-color: ${(props: any) => props.theme.white};
   border-radius: 8px;
-  
   padding: 5px 5px 5px 20px;
   z-index: 6;
   position: absolute;
   top: 45px;
+  @media screen and (max-width: 840px) {
+    top: 55px;
+  }
 `;
 
 export const ErrorText = styled.div`

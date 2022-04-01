@@ -21,6 +21,7 @@ export interface InputProps {
   maxLength?: number;
   onBlur?: (e: any) => void;
   onClick?: () => void;
+  onChangeValue?: (value: string) => void;
   required?: boolean;
   readonly?: boolean;
   suggestions: string[];
@@ -36,7 +37,8 @@ export const InputAutoComplete = ({
   maxLength,
   required,
   readonly = false,
-  suggestions
+  suggestions,
+  onChangeValue
 }: InputProps) => {
 
   const [filteredSuggestions, setFilteredSuggestions] = React.useState<string[]>([]);
@@ -71,6 +73,11 @@ export const InputAutoComplete = ({
       setFilteredSuggestions([])
     }
   }
+
+  React.useEffect(() => {
+    if (onChangeValue) onChangeValue(input)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [input])
 
   const SuggestionsListComponent = () => {
     return filteredSuggestions.length ? (

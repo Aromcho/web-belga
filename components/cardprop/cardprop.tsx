@@ -83,7 +83,7 @@ export const CardProp = ({
 
   return (
     <CardPropContainer className={classes(className, { inversion })}>
-      {(inversion && link) && <Link href={link}><a className='inversion--link'></a></Link>}
+      {(inversion && link) && <Link href={link} passHref><a className='inversion--link'></a></Link>}
       <HeadProp>
         {!inversion && <Operation>{operation}</Operation>}
         <Price>{inversion && 'Desde'}<Currency>{currency}</Currency>{price}</Price>

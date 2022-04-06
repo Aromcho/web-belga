@@ -39,24 +39,17 @@ export const MapProp = styled.div`
   }
 `;
 
-export const MediaImg = styled.img`
-  width: auto;
+export const MediaImg = styled.div`
+  width: 100%;
   height: 100%;
-  @media screen and (max-width: 460px) {
-    width: 100%;
-    height: auto;
-    transform: translate(-50%, -50%);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-  }
+  background-size: cover;
+  background-position: center;
 `;
 
 export const IframeWrapper = styled.div`
   width: 100%;
   height: 100%;
   overflow: hidden;
-  overflow-y: scroll !important;
   -webkit-overflow-scrolling: touch !important;
   * {
     width: 100%;
@@ -142,7 +135,7 @@ export const SwiperContainerGallery = styled.div`
       background: rgb(0, 0, 0);
       background: linear-gradient(
         90deg,
-        rgba(0, 0, 0, 0.25) 0%,
+        rgba(0, 0, 0, 0.4) 0%,
         rgba(0, 0, 0, 0) 88%
       );
       &:before {
@@ -159,7 +152,7 @@ export const SwiperContainerGallery = styled.div`
       background: linear-gradient(
         90deg,
         rgba(0, 0, 0, 0) 9%,
-        rgba(0, 0, 0, 0.25) 100%
+        rgba(0, 0, 0, 0.4) 100%
       );
       &:before {
         right: 0;
@@ -188,11 +181,26 @@ export const GalleryProp = styled.div`
   @media screen and (max-width: 992px) {
     height: 230px;
   }
+
+  &.inversion {
+    margin: 0 auto;
+    position: relative;
+    &:after {
+      width: 100%;
+      max-width: 1200px;
+      height: 100%;
+      content: " ";
+      background-color: ${(props: any) => props.theme.black};
+      transform: translate(-50%, -50%);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+    }
+  }
 `;
 
 export const DescText = styled.div`
   width: 100%;
-  color: ${(props: any) => props.theme.black};
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
@@ -204,7 +212,6 @@ export const DescText = styled.div`
 
 export const DescTitle = styled.div`
   width: 100%;
-  color: ${(props: any) => props.theme.black};
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 20px;
@@ -212,7 +219,6 @@ export const DescTitle = styled.div`
 `;
 
 export const MoreItemText = styled.div`
-  color: ${(props: any) => props.theme.black};
   font-size: 14px;
   white-space: nowrap;
   margin-bottom: 20px;
@@ -225,7 +231,6 @@ export const MoreItemText = styled.div`
 `;
 
 export const MoreItemTitle = styled.div`
-  color: ${(props: any) => props.theme.black};
   font-size: 16px;
   font-weight: 600;
   text-transform: uppercase;
@@ -234,6 +239,7 @@ export const MoreItemTitle = styled.div`
 
 export const MoreItem = styled.div`
   width: 50%;
+  color: ${(props: any) => props.theme.black};
   margin-bottom: 40px;
   &.large {
     width: 100%;
@@ -273,7 +279,6 @@ export const FeaturesFooter = styled.div`
 `;
 
 export const FtBottom = styled.div`
-  color: ${(props: any) => props.theme.black};
   font-size: 12px;
   font-weight: 500;
   margin: 0 auto;
@@ -287,13 +292,13 @@ export const FtImg = styled.img`
 `;
 
 export const FtHead = styled.div`
-  color: ${(props: any) => props.theme.black};
   font-size: 15px;
   font-weight: 600;
   margin: 0 auto 20px;
 `;
 
 export const Feature = styled.div`
+  color: ${(props: any) => props.theme.black};
   width: 100%;
   text-align: center;
   position: relative;
@@ -344,6 +349,69 @@ export const BodyProp = styled.div`
     flex-flow: column;
     justify-content: center;
     align-items: center;
+  }
+
+  &.inversion {
+    width: 100%;
+    margin: 0 auto;
+    @media screen and (max-width: 992px) {
+      width: 100vw;
+      max-width: 100vw;
+      transform: translateX(-50%);
+      position: relative;
+      left: 50%;
+    }
+    ${BodyDesc} {
+      padding-top: 50px;
+      @media screen and (max-width: 992px) {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 50px;
+      }
+    }
+    ${BodyFeatures} {
+      padding: 50px 40px 90px;
+      background-color: ${(props: any) => props.theme.black};
+      ${FeaturesGrid} {
+        @media screen and (max-width: 992px) {
+          width: 100%;
+          max-width: 500px;
+          margin: 0 auto;
+        }
+        ${Feature} {
+          color: ${(props: any) => props.theme.white};
+          ${FtImg} {
+            filter: invert(100%) sepia(3%) saturate(901%) hue-rotate(343deg)
+              brightness(118%) contrast(100%);
+          }
+        }
+      }
+
+      ${FeaturesFooter} {
+        border-bottom: 1px solid ${(props: any) => props.theme.white};
+        .button--planos {
+          background-color: ${(props: any) => props.theme.black};
+          border-color: ${(props: any) => props.theme.white};
+          color: ${(props: any) => props.theme.white};
+          &:hover {
+            background-color: ${(props: any) => props.theme.white};
+            color: ${(props: any) => props.theme.black};
+          }
+        }
+      }
+
+      ${MoreInfo} {
+        @media screen and (max-width: 992px) {
+          width: 100%;
+          max-width: 500px;
+          margin: 60px auto 0;
+        }
+        ${MoreItem} {
+          color: ${(props: any) => props.theme.white};
+        }
+      }
+    }
   }
 `;
 
@@ -447,6 +515,7 @@ export const LikeWrapper = styled.div`
     display: none;
   }
   &.mobile {
+    display: none;
     -webkit-tap-highlight-color: transparent;
     @media screen and (max-width: 992px) {
       width: 38px;
@@ -494,6 +563,22 @@ export const LikeWrapper = styled.div`
       }
     }
   }
+
+  &.inversion {
+    svg {
+      path {
+        stroke: ${(props: any) => props.theme.white};
+      }
+    }
+    &.liked {
+      svg {
+        path {
+          fill: ${(props: any) => props.theme.white};
+          stroke: ${(props: any) => props.theme.white};
+        }
+      }
+    }
+  }
 `;
 
 export const HeadAddress = styled.div`
@@ -527,9 +612,52 @@ export const HeadProp = styled.div`
   @media screen and (max-width: 992px) {
     margin: 30px auto;
   }
+
+  &.inversion {
+    background-color: ${(props: any) => props.theme.black};
+    color: ${(props: any) => props.theme.black};
+    margin: 40px auto 0;
+    padding: 40px 50px;
+
+    @media screen and (max-width: 992px) {
+      width: 100vw;
+      transform: translateX(-50%);
+      position: relative;
+      left: 50%;
+    }
+    ${HeadAddressPrice} {
+      ${HeadAddress} {
+        color: ${(props: any) => props.theme.white};
+      }
+      ${HeadPrice} {
+        color: ${(props: any) => props.theme.white};
+      }
+    }
+    ${HeadDivisor} {
+      background-color: ${(props: any) => props.theme.white};
+    }
+
+    ${HeadInfoShare} {
+      ${HeadInfo} {
+        color: ${(props: any) => props.theme.white};
+      }
+      ${HeadShare} {
+        color: ${(props: any) => props.theme.white};
+        a svg {
+          color: ${(props: any) => props.theme.white};
+        }
+      }
+    }
+  }
 `;
 
 export const BackWrapper = styled.div`
+  &.inversion {
+    padding-left: 50px;
+    @media screen and (max-width: 992px) {
+      padding-left: 0;
+    }
+  }
   .back--link {
     align-items: center;
     display: flex;

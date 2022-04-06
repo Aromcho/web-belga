@@ -213,7 +213,7 @@ const Home = observer(({ properties }: any) => {
                     neighborhood={item?.location?.name}
                     bedroom={`${item?.suite_amount} ambientes`}
                     inversionCover={item.photos.slice(0, 1).map((photo: any) => { return photo.image })}
-                    link={`/propiedad/${item?.id.toString()}`}
+                    link={`/inversion/${item?.id.toString()}`}
                     inversion
                   />
                 </InversionItem>

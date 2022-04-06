@@ -68,7 +68,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
 
   /* Handle media content*/
   const images = property?.photos?.map((item: any, k: number) => {
-    return (<MediaImg style={{backgroundImage: `url(${item.image})`}} />)
+    return (<MediaImg style={{ backgroundImage: `url(${item.image})` }} />)
   })
   const videos = property?.videos?.map((item: any, k: number) => {
     return (<IframeWrapper><iframe src={item.player_url} /></IframeWrapper>)
@@ -86,17 +86,17 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
         <meta property="og:url" content={`https://www.belga.com.ar/${property.id.toString()}`} />
         <meta property="og:type" content="Website" />
         <meta property="og:site_name" content="Belga Inmobiliaria" />
-        <meta property="og:image" content="https://web-belga.vercel.app/images/og_image.png" />
+        <meta property="og:image" content={`${property?.photos[0]?.image}`} />
       </Head>
 
       <PropContainer>
         <Container>
-          <BackWrapper><Link href={PATHS.ROOT}><a className='back--link'><ArrowBackIcon />Volver a la búsqueda</a></Link> </BackWrapper>
+          <BackWrapper className={classes('inversion')}><Link href={PATHS.ROOT}><a className='back--link'><ArrowBackIcon />Volver a la búsqueda</a></Link> </BackWrapper>
 
-          <HeadProp>
+          <HeadProp className={classes('inversion')}>
             <HeadAddressPrice>
               <HeadAddress>{property.address}
-                <LikeWrapper className={classes({ liked: isLiked })} onClick={() => setIsLiked(!isLiked)}>
+                <LikeWrapper className={classes('inversion', { liked: isLiked })} onClick={() => setIsLiked(!isLiked)}>
                   <HeartIcon className='icon--heart' />
                 </LikeWrapper>
               </HeadAddress>
@@ -108,7 +108,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
             <HeadInfoShare>
               <HeadInfo>{property.location?.name}</HeadInfo>
               <HeadShare>
-                <LikeWrapper className={classes('mobile', { liked: isLiked })} onClick={() => setIsLiked(!isLiked)}>
+                <LikeWrapper className={classes('mobile', 'inversion', { liked: isLiked })} onClick={() => setIsLiked(!isLiked)}>
                   <HeartIcon className='icon--heart' />
                 </LikeWrapper>
                 Enviar por
@@ -118,7 +118,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
             </HeadInfoShare>
           </HeadProp>
 
-          <GalleryProp>
+          <GalleryProp className={classes('inversion')}>
             <SwiperContainerGallery>
 
               <Swiper
@@ -154,7 +154,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
             </SwiperContainerGallery>
           </GalleryProp>
 
-          <BodyProp>
+          <BodyProp className={classes('inversion')}>
             <BodyFeatures>
               <FeaturesGrid>
                 <Feature><FtHead>{property?.age}</FtHead><FtImg src='/images/icons/prop_antiguedad.svg' /><FtBottom>Antigüedad</FtBottom></Feature>
@@ -209,34 +209,6 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
           <MapProp>
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6567.948790442833!2d-58.38486108228965!3d-34.60480896825873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4aa9f0a6da5edb%3A0x11bead4e234e558b!2sObelisco!5e0!3m2!1ses-419!2sar!4v1648690340385!5m2!1ses-419!2sar" />
           </MapProp>
-
-          <SimilarProps>
-            <Title title='Propiedades similares' />
-
-            <PropList>
-              {properties.filter((i: any) => i.address !== property.address).slice(0, 2).map((item: any, k: number) => {
-                return (
-                  <>
-                    <CardProp
-                      key={k}
-                      className='card--prop'
-                      operation={item?.operations[0].operation_type}
-                      currency={item?.operations[0].prices[0].currency}
-                      price={formatToMoney(item?.operations[0].prices[0].price)}
-                      description={item?.location?.name}
-                      address={item?.address}
-                      m2={Math.round(item?.total_surface)}
-                      bedroom={item?.suite_amount}
-                      bathroom={item?.bathroom_amount}
-                      garage={item?.parking_lot_amount}
-                      media={item.photos.slice(0, 10).map((photo: any) => { return photo.image })}
-                      link={`/propiedad/${item?.id.toString()}`}
-                    />
-                  </>
-                )
-              })}
-            </PropList>
-          </SimilarProps>
 
           <ContactForm className='full' />
 

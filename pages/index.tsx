@@ -39,6 +39,7 @@ import {
 } from 'components/pages/home.styles'
 import { TelIcon } from 'components/icons';
 import { InputAutoComplete } from 'components/inputautocomplete';
+import { neighborhoods } from 'helpers/neighborhoods';
 
 const Home = observer(({ properties, emprendimientos }: any) => {
 
@@ -52,8 +53,20 @@ const Home = observer(({ properties, emprendimientos }: any) => {
     maxPrice: 0
   })
 
-  const localidades = ['Agronomía', 'Almagro', 'Balvanera', 'Barracas', 'Belgrano', 'Boedo', 'Caballito', 'Chacarita', 'Coghlan', 'Colegiales', 'Constitución', 'Flores', 'Floresta', 'La Boca', 'La Paternal', 'Liniers', 'Mataderos', 'Monte Castro', 'Montserrat', 'Nueva Pompeya', 'Nuñez', 'Palermo', 'Parque Avellaneda', 'Parque Chacabuco', 'Parque Chas', 'Parque Patricios', 'Puerto Madero', 'Recoleta', 'Retiro', 'Saavedra', 'San Cristóbal', 'San Nicolás', 'San Telmo', 'Versalles', 'Villa Crespo', 'Villa Devoto', 'Villa General Mitre', 'Villa Lugano', 'Villa Luro', 'Villa Ortúzar', 'Villa Pueyrredón', 'Villa Real', 'Villa Riachuelo', 'Villa Santa Rita', 'Villa Soldati', 'Villa Urquiza', 'Villa del Parque', 'Vélez Sarsfield']
-  const [barrio, setBarrio] = React.useState('Barrio')
+  const handleSearchPick = () => {
+    const loc = formData.locations;
+    // setFormData({locations})
+  }
+
+  const findNeighborhood = (location: string) => {
+    return neighborhoods.find(item => location === item.location_name)
+  }
+
+  const [formData, setFormData] = useMergeState({
+    locations: []
+  })
+
+  const localidades = neighborhoods.map(item => item.location_name)
 
   return (
     <Layout>
@@ -93,13 +106,14 @@ const Home = observer(({ properties, emprendimientos }: any) => {
                 className='white second--row-input input--general'
                 placeHolder='Barrio'
                 suggestions={localidades}
+                onChangeValue={(item) => setFormData({locations: findNeighborhood(item)})}
               />
 
             </SearchRow>
 
             <SearchRow className='third--row'>
               <RangeWrapper>
-                <PriceText>Price</PriceText>
+                <PriceText>Precio</PriceText>
 
                 <PriceRange>
                   <MultiRange

@@ -4,10 +4,12 @@ import { Layout, Container } from 'components/layout';
 import { getDevelopmentById, getProperties } from 'services';
 import { PATHS } from 'config';
 import Link from "next/link";
+import { useMergeState } from 'helpers/hooks';
 import { classes, formatToMoney } from 'helpers';
 import Head from 'next/head'
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import Lightbox, { ImagesListType } from 'react-spring-lightbox';
 
 import { Button } from 'components/button';
 import { ContactForm } from 'components/contactform';
@@ -45,14 +47,20 @@ import {
   MoreItemText,
   MapProp,
   SimilarProps,
-  PropList
+  PropList,
+
+  /* LigthBox */
+  ArrowGallery,
+  HeaderGallery,
+  IndexCounter
 } from 'components/pages/propiedad.styles';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-import { ArrowBackIcon, HeartIcon, MailIcon, WhatsappIcon } from 'components/icons';
+import { ArrowBackIcon, ArrowSubmitIcon, CloseIcon, HeartIcon, MailIcon, WhatsappIcon } from 'components/icons';
+
 
 
 
@@ -67,7 +75,23 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
   /* Handle media content */
   const images = property?.photos?.map((item: any, k: number) => <MediaImg key={k} style={{ backgroundImage: `url(${item.image})` }} />)
   const videos = property?.videos?.map((item: any, k: number) => <IframeWrapper key={k}><iframe src={item.player_url} /></IframeWrapper>)
-  const allMedia = [...videos, ...images]
+
+
+  /* Handle modal gallery */
+  const [modalContent, setModalContent] = useMergeState({ open: false, content: 'fotos' })
+  const [currentImageIndex, setCurrentIndex] = React.useState(0);
+  const onClose = () => setModalContent({ open: false });
+
+  const gotoPrevious = () => currentImageIndex > 0 && setCurrentIndex(currentImageIndex - 1);
+  const gotoNext = () => currentImageIndex + 1 < (modalContent.content === 'fotos' ? photoGallery.length : planoGallery.length) && setCurrentIndex(currentImageIndex + 1);
+
+  const photoGallery: ImagesListType = property?.photos?.map((item: any, k: number) => {
+    return ({ src: `${item.image}`, loading: 'lazy' })
+  })
+
+  const planoGallery: ImagesListType = property?.photos?.map((item: any, k: number) => {
+    return ({ src: `${item.image}`, loading: 'lazy' })
+  })
 
   return (
     <Layout>
@@ -113,13 +137,41 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
           </HeadProp>
 
           <GalleryProp className={classes('inversion')}>
+            <Lightbox
+              className='propiedad--gallery'
+              isOpen={modalContent.open}
+              onPrev={gotoPrevious}
+              onNext={gotoNext}
+              images={modalContent.content === 'fotos' ? photoGallery : planoGallery}
+              currentIndex={currentImageIndex}
+              onClose={onClose}
+              style={{ background: "rgba(0,0,0,0.95)", zIndex:99999999 }}
+              singleClickToZoom
+              renderPrevButton={() => (
+                <ArrowGallery className={classes('arrow--prev', { disabled: currentImageIndex === 0 })} onClick={gotoPrevious}>
+                  <ArrowSubmitIcon className='gallery--arrow ' />
+                </ArrowGallery>
+              )}
+              renderNextButton={() => (
+                <ArrowGallery className={classes('arrow--next', { disabled: (currentImageIndex + 1) === (modalContent.content === 'fotos' ? photoGallery.length : planoGallery.length) })} onClick={gotoNext}>
+                  <ArrowSubmitIcon className='gallery--arrow' />
+                </ArrowGallery>
+              )}
+              renderHeader={() => (
+                <HeaderGallery>
+                  <IndexCounter>{currentImageIndex + 1} de {(modalContent.content === 'fotos' ? photoGallery.length : planoGallery.length)}</IndexCounter>
+                  <CloseIcon onClick={onClose} className='gallery--close-icon' />
+                </HeaderGallery >
+              )}
+            />
+
             <SwiperContainerGallery>
 
               <Swiper
                 className='swiper--prop-gallery'
                 modules={[Navigation]}
                 loop={false}
-                centeredSlides={false}
+                centeredSlides={images.length + videos.length === 1 ? true : false}
                 allowTouchMove={true}
                 navigation={{}}
                 grabCursor={true}
@@ -129,7 +181,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
                   1: {
                     spaceBetween: 20,
                     slidesPerView: 1,
-                    allowTouchMove: true
+                    allowTouchMove: true,
                   },
                   700: {
                     spaceBetween: 20,
@@ -138,8 +190,13 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
                   }
                 }}
               >
-                {allMedia?.map((item: any, k: number) => {
+                {videos.length > 0 && videos?.map((item: any, k: number) => {
                   return <SwiperSlide key={k}>{item}</SwiperSlide>
+                })
+                }
+
+                {images.length > 0 && images?.map((item: any, k: number) => {
+                  return <SwiperSlide key={k} onClick={() => { setModalContent({ open: true, content: 'fotos' }); setCurrentIndex(k) }}>{item}</SwiperSlide>
                 })
                 }
 

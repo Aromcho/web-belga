@@ -9,6 +9,9 @@ import { classes, formatToMoney } from 'helpers';
 import Head from 'next/head'
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { MapProps } from 'components/map/map';
+import { useMergeState } from 'helpers/hooks';
+import Lightbox, { ImagesListType } from 'react-spring-lightbox';
 
 import { Button } from 'components/button';
 import { ContactForm } from 'components/contactform';
@@ -51,15 +54,20 @@ import {
   MoreItemText,
   MapProp,
   SimilarProps,
-  PropList
+  PropList,
+
+  /* LigthBox */
+  ArrowGallery,
+  HeaderGallery,
+  IndexCounter
 } from 'components/pages/propiedad.styles';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-import { ArrowBackIcon, HeartIcon, MailIcon, WhatsappIcon } from 'components/icons';
-import { MapProps } from 'components/map/map';
+import { ArrowBackIcon, ArrowSubmitIcon, CloseIcon, HeartIcon, MailIcon, WhatsappIcon } from 'components/icons';
+
 
 const PropertyDetail = ({ properties, property, statusCode }: any) => {
   if (statusCode === 404) return <>404</>
@@ -69,10 +77,26 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
   /* Handle like prop*/
   const [isLiked, setIsLiked] = React.useState<boolean>(false)
 
-  /* Handle media content*/
-  const images = property?.photos?.map((item: any, k: number) => <MediaImg key={k} style={{backgroundImage: `url(${item.image})`}} />)
+  /* Handle media content */
+  const images = property?.photos?.map((item: any, k: number) => <MediaImg key={k} style={{ backgroundImage: `url(${item.image})` }} />)
   const videos = property?.videos?.map((item: any, k: number) => <IframeWrapper key={k}><iframe src={item.player_url} /></IframeWrapper>)
-  const allMedia = [...videos, ...images]
+
+
+  /* Handle modal gallery */
+  const [modalContent, setModalContent] = useMergeState({ open: false, content: 'fotos' })
+  const [currentImageIndex, setCurrentIndex] = React.useState(0);
+  const onClose = () => setModalContent({ open: false });
+
+  const gotoPrevious = () => currentImageIndex > 0 && setCurrentIndex(currentImageIndex - 1);
+  const gotoNext = () => currentImageIndex + 1 < (modalContent.content === 'fotos' ? photoGallery.length : planoGallery.length) && setCurrentIndex(currentImageIndex + 1);
+
+  const photoGallery: ImagesListType = property?.photos?.map((item: any, k: number) => {
+    return ({ src: `${item.image}`, loading: 'lazy' })
+  })
+
+  const planoGallery: ImagesListType = property?.photos?.map((item: any, k: number) => {
+    return ({ src: `${item.image}`, loading: 'lazy' })
+  })
 
   return (
     <Layout>
@@ -119,13 +143,40 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
           </HeadProp>
 
           <GalleryProp>
+            <Lightbox
+              className='propiedad--gallery'
+              isOpen={modalContent.open}
+              onPrev={gotoPrevious}
+              onNext={gotoNext}
+              images={modalContent.content === 'fotos' ? photoGallery : planoGallery}
+              currentIndex={currentImageIndex}
+              onClose={onClose}
+              style={{ background: "rgba(0,0,0,0.95)", zIndex: 99999999 }}
+              singleClickToZoom
+              renderPrevButton={() => (
+                <ArrowGallery className={classes('arrow--prev', { disabled: currentImageIndex === 0 })} onClick={gotoPrevious}>
+                  <ArrowSubmitIcon className='gallery--arrow ' />
+                </ArrowGallery>
+              )}
+              renderNextButton={() => (
+                <ArrowGallery className={classes('arrow--next', { disabled: (currentImageIndex + 1) === (modalContent.content === 'fotos' ? photoGallery.length : planoGallery.length) })} onClick={gotoNext}>
+                  <ArrowSubmitIcon className='gallery--arrow' />
+                </ArrowGallery>
+              )}
+              renderHeader={() => (
+                <HeaderGallery>
+                  <IndexCounter>{currentImageIndex + 1} de {(modalContent.content === 'fotos' ? photoGallery.length : planoGallery.length)}</IndexCounter>
+                  <CloseIcon onClick={onClose} className='gallery--close-icon' />
+                </HeaderGallery >
+              )}
+            />
             <SwiperContainerGallery>
 
               <Swiper
                 className='swiper--prop-gallery'
                 modules={[Navigation]}
                 loop={false}
-                centeredSlides={false}
+                centeredSlides={images.length + videos.length === 1 ? true : false}
                 allowTouchMove={true}
                 navigation={{}}
                 grabCursor={true}
@@ -144,7 +195,15 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
                   }
                 }}
               >
-                {allMedia?.map((item: any, k: number) => <SwiperSlide key={k}>{item}</SwiperSlide>)}
+                {videos.length > 0 && videos?.map((item: any, k: number) => {
+                  return <SwiperSlide key={k}>{item}</SwiperSlide>
+                })
+                }
+
+                {images.length > 0 && images?.map((item: any, k: number) => {
+                  return <SwiperSlide key={k} onClick={() => { setModalContent({ open: true, content: 'fotos' }); setCurrentIndex(k) }}>{item}</SwiperSlide>
+                })
+                }
               </Swiper>
 
             </SwiperContainerGallery>
@@ -202,7 +261,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
 
           <MapProp>
             {/* <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6567.948790442833!2d-58.38486108228965!3d-34.60480896825873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4aa9f0a6da5edb%3A0x11bead4e234e558b!2sObelisco!5e0!3m2!1ses-419!2sar!4v1648690340385!5m2!1ses-419!2sar" /> */}
-            <DynamicMap marker={{lon: property.branch.geo_long, lat: property.branch.geo_lat}} center={{lon: property.branch.geo_long, lat: property.branch.geo_lat}} zoom={15} />
+            <DynamicMap marker={{ lon: property.branch.geo_long, lat: property.branch.geo_lat }} center={{ lon: property.branch.geo_long, lat: property.branch.geo_lat }} zoom={15} />
           </MapProp>
 
           <SimilarProps>

@@ -3,14 +3,15 @@ import { GetServerSideProps } from 'next'
 import { Layout, Container } from 'components/layout';
 import { getProperties } from 'services';
 import { parseTokkoParameters } from 'helpers/tokko';
+import { PropertyList } from 'components/propertylist';
 
-const PropertySearch = ({ properties }: any) => {
+const PropertySearch = ({ data }: any) => {
 
 
   return (
     <Layout>
-      {console.log(properties)}
       <Container>
+        <PropertyList properties={data.objects} meta={data.meta} />
       </Container>
     </Layout>
   )
@@ -18,13 +19,13 @@ const PropertySearch = ({ properties }: any) => {
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
-  const { objects } = await getProperties({
+  const data = await getProperties({
     params: parseTokkoParameters({ ...query })
   })
 
   return {
     props: {
-      properties: objects
+      data
     }
   }
 }

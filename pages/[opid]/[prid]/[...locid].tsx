@@ -2,15 +2,16 @@ import React from 'react';
 import { GetServerSideProps } from 'next'
 import { Layout, Container } from 'components/layout';
 import { getProperties } from 'services';
-import { parseTokkoParameters, operationTypes } from 'helpers/tokko';
+import { parseTokkoParameters } from 'helpers/tokko';
 import { PropertyList } from 'components/propertylist';
 
-const PropertySearch = ({data, statusCode}: any) => {
+const PropertySearch = ({ data, statusCode }: any) => {
 
   if (statusCode === 404) return <>404</>
 
   if (statusCode === 500) return <>500</>
-  
+
+
   return (
     <Layout>
       <Container>
@@ -20,20 +21,17 @@ const PropertySearch = ({data, statusCode}: any) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({query}) => {
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
-  const op = operationTypes[query.opid as string];
   const props: any = {}
-  if (op){
-    try {
-      props['data'] = await getProperties({
-        params: parseTokkoParameters({...query})
-      })
-    } catch (error: any) {
-      props['statusCode'] = error.response.status
-    }
-  } else {
-    props['statusCode'] = 404
+
+  try {
+    props['data'] = await getProperties({
+      params: parseTokkoParameters({ ...query })
+    })
+  } catch (error: any) {
+    props['statusCode'] = error?.response?.status || 500;
+
   }
 
 

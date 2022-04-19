@@ -1,7 +1,7 @@
 import React from 'react';
 import { GetServerSideProps } from 'next'
 import { Layout, Container } from 'components/layout';
-import { getProperties, getPropertyById } from 'services';
+import { getDevelopmentById, getProperties } from 'services';
 import { PATHS } from 'config';
 import Link from "next/link";
 import { classes, formatToMoney } from 'helpers';
@@ -11,8 +11,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { Button } from 'components/button';
 import { ContactForm } from 'components/contactform';
-import { Title } from 'components/title';
-import { CardProp } from 'components/cardprop';
 
 import {
   PropContainer,
@@ -63,20 +61,16 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
 
   if (statusCode === 500) return <>500</>
 
-  /* Handle like prop*/
+  /* Handle like prop */
   const [isLiked, setIsLiked] = React.useState<boolean>(false)
 
-  /* Handle media content*/
-  const images = property?.photos?.map((item: any, k: number) => {
-    return (<MediaImg style={{ backgroundImage: `url(${item.image})` }} />)
-  })
-  const videos = property?.videos?.map((item: any, k: number) => {
-    return (<IframeWrapper><iframe src={item.player_url} /></IframeWrapper>)
-  })
+  /* Handle media content */
+  const images = property?.photos?.map((item: any, k: number) => <MediaImg key={k} style={{ backgroundImage: `url(${item.image})` }} />)
+  const videos = property?.videos?.map((item: any, k: number) => <IframeWrapper key={k}><iframe src={item.player_url} /></IframeWrapper>)
   const allMedia = [...videos, ...images]
 
   return (
-    < Layout >
+    <Layout>
       <Head>
         {/*OpenGraph metadata*/}
         <title>Propiedad | {property.address}</title>
@@ -100,7 +94,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
                   <HeartIcon className='icon--heart' />
                 </LikeWrapper>
               </HeadAddress>
-              <HeadPrice>{`${property.operations[0].operation_type} ${property.operations[0].prices[0].currency} ${formatToMoney(property.operations[0].prices[0].price)}`}</HeadPrice>
+              {/* <HeadPrice>{`${property.operations[0].operation_type} ${property.operations[0].prices[0].currency} ${formatToMoney(property.operations[0].prices[0].price)}`}</HeadPrice> */}
             </HeadAddressPrice>
 
             <HeadDivisor />
@@ -113,7 +107,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
                 </LikeWrapper>
                 Enviar por
                 <Link href={`https://api.whatsapp.com/send?text=Encontr%C3%A9%20esta%20excelente%20propiedad!%0D%0Ahttps://web-belga.vercel.app/propiedad/${property.id.toString()}`}><a target='_blank'><WhatsappIcon /></a></Link>
-                <Link href={`mailto:mail@server.com?subject=Encontr%C3%A9%20esta%20excelente%20propiedad!&body=Direcci%C3%B3n%3A%0D%0A${property.address}%0D%0A%0D%0ADescripci%C3%B3n%3A%0D%0A${property.location?.name}%0D%0A%0D%0APrecio%3A%0D%0A${property.operations[0].operation_type} ${property.operations[0].prices[0].currency} ${formatToMoney(property.operations[0].prices[0].price)}`}><a target='_blank'><MailIcon /></a></Link>
+                <Link href={`mailto:mail@server.com?subject=Encontr%C3%A9%20esta%20excelente%20propiedad!&body=Direcci%C3%B3n%3A%0D%0A${property.address}%0D%0A%0D%0ADescripci%C3%B3n%3A%0D%0A${property.location?.name}%0D%0A%0D%0A`}><a target='_blank'><MailIcon /></a></Link>
               </HeadShare>
             </HeadInfoShare>
           </HeadProp>
@@ -145,7 +139,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
                 }}
               >
                 {allMedia?.map((item: any, k: number) => {
-                  return < SwiperSlide key={k}>{item}</SwiperSlide>
+                  return <SwiperSlide key={k}>{item}</SwiperSlide>
                 })
                 }
 
@@ -214,7 +208,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
 
         </Container>
       </PropContainer>
-    </Layout >
+    </Layout>
   )
 }
 
@@ -223,7 +217,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   let props: any = {}
 
   try {
-    const property = await getPropertyById(parseInt(query.id as string))
+    const property = await getDevelopmentById(parseInt(query.id as string))
 
     // Only get starred & ventas
     const { objects } = await getProperties({

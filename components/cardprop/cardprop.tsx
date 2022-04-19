@@ -28,70 +28,42 @@ import {
 } from './cardprop.styles';
 
 import { HeartIcon, ImageIcon } from 'components/icons';
-import { classes } from 'helpers';
-
-
+import { classes, formatToMoney, Property } from 'helpers';
 
 export interface CardPropProps {
   className?: string;
-  inversion?: boolean;
-  operation?: string;
-  currency?: string;
-  price?: string;
-  media?: string[];
-  inversionCover?: string;
-  link?: string;
-  description?: string;
-  address?: string;
-  neighborhood?: string;
-  m2?: string | number;
-  bedroom?: string;
-  bathroom?: string;
-  garage?: string;
   liked?: boolean;
-  onLiked?: (e: boolean) => void;
+  onLiked?: () => void;
+  property: Property;
+  inversion?: boolean;
 }
-
-
 
 export const CardProp = ({
   className,
-  inversion,
-  operation,
-  currency,
-  price,
-  media,
-  inversionCover,
-  link,
-  description,
-  address,
-  neighborhood,
-  m2,
-  bedroom,
-  bathroom,
-  garage,
   liked = false,
-  onLiked
+  onLiked,
+  inversion = false,
+  property
 }: CardPropProps) => {
 
-  /* Handle like prop*/
-  const [isLiked, setIsLiked] = React.useState<boolean>(liked)
-  React.useEffect(() => {
-    if (onLiked) onLiked(isLiked)
-  }, [isLiked, liked])
+  const link = inversion ? `/emprendimientos/${property.id.toString()}` : `/propiedad/${property.id.toString()}`;
+  const media = property.photos.slice(0, 10).map((photo: any) => photo.image );
 
+  const handleLike = () => {
+    if(onLiked) onLiked();
+  }
 
   return (
     <CardPropContainer className={classes(className, { inversion })}>
       {(inversion && link) && <Link href={link} passHref><a className='inversion--link'></a></Link>}
       <HeadProp>
-        {!inversion && <Operation>{operation}</Operation>}
-        <Price>{inversion && 'Desde'}<Currency>{currency}</Currency>{price}</Price>
+        {!inversion && <Operation>{property.operations[0].operation_type}</Operation>}
+        {!inversion && <Price>{inversion && 'Desde'}<Currency>{property.operations[0].prices[0].currency}</Currency>{formatToMoney(property.operations[0].prices[0].price)}</Price>}
       </HeadProp>
 
       <ImageWrapper>
         {inversion
-          ? <IsolatedImage style={{ backgroundImage: `url(${inversionCover})` }} />
+          ? <IsolatedImage style={{ backgroundImage: `url(${property.photos.slice(0, 1).map((photo: any) => photo.image )})` }} />
           : (media
             ? <SliderCardGallery img={media} galleryLink={link} />
             : <EmptyMedia>
@@ -105,12 +77,12 @@ export const CardProp = ({
       <FooterProp>
         <Info>
           <DescWrapper>
-            <Desc>{description}</Desc>
-            <Address>{inversion ? neighborhood : address}</Address>
-            {inversion && <Bedrooms>{bedroom}</Bedrooms>}
+            <Desc>{inversion ? property.name : property.location?.name}</Desc>
+            <Address>{inversion ? property.location?.name : property.address}</Address>
+            {inversion && <Bedrooms>{`${property.suite_amount} ambientes`}</Bedrooms>}
           </DescWrapper>
           {!inversion &&
-            <LikeWrapper className={classes({ liked: isLiked })} onClick={() => setIsLiked(!isLiked)}>
+            <LikeWrapper className={classes({ liked: liked })} onClick={handleLike}>
               <HeartIcon className='icon--heart' />
             </LikeWrapper>
           }
@@ -120,22 +92,22 @@ export const CardProp = ({
             <FeaturesList>
               <FeaturesItem>
 
-                <FeatureText>{m2}</FeatureText>
+                <FeatureText>{Math.round(property.total_surface)}</FeatureText>
                 <FeatureImg src='/images/icons/prop_m2.svg' />
               </FeaturesItem>
 
               <FeaturesItem>
-                <FeatureText>{bedroom}</FeatureText>
+                <FeatureText>{property.suite_amount}</FeatureText>
                 <FeatureImg src='/images/icons/prop_cuarto.svg' />
               </FeaturesItem>
 
               <FeaturesItem>
-                <FeatureText>{bathroom}</FeatureText>
+                <FeatureText>{property.bathroom_amount}</FeatureText>
                 <FeatureImg src='/images/icons/prop_ducha.svg' />
               </FeaturesItem>
 
               <FeaturesItem>
-                <FeatureText>{garage}</FeatureText>
+                <FeatureText>{property.parking_lot_amount}</FeatureText>
                 <FeatureImg src='/images/icons/prop_cochera.svg' />
               </FeaturesItem>
 

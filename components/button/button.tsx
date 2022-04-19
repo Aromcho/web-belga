@@ -28,7 +28,7 @@ export const Button = ({ link = '#', target = '_self', text, className, onClick,
   }
   return (
     <Link href={link} passHref>
-      <ButtonWrapper target={target} className={classes(className, type)} >
+      <ButtonWrapper target={target} className={classes(className, type)}>
         {children || text}
       </ButtonWrapper>
     </Link>

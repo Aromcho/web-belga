@@ -18,5 +18,6 @@ export {
   HeartIcon,
   ImageIcon,
   EmprendimientosIcon,
-  ArrowBackIcon
+  ArrowBackIcon,
+  CirclePlusIcon
 } from "./icons";

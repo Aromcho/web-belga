@@ -60,3 +60,27 @@ export const formatToMoney = (
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 };
+
+
+export interface Property {
+  location: {
+    name: string;
+  };
+  operations: {
+    operation_type: string;
+    prices: {
+      currency: string;
+      price: number;
+    }[];
+  }[];
+  address: string;
+  total_surface: number;
+  suite_amount: number;
+  bathroom_amount: number;
+  parking_lot_amount: number;
+  photos: {
+    image: string;
+  }[];
+  id: number;
+  name?: string;
+}

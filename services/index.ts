@@ -30,11 +30,14 @@ export const getProperties = async ({params}: GetPropertiesProps) => {
     with_custom_tags: [],
     currency: "USD",
     filters: [],
-    current_localization_type: "state" // division
+    current_localization_type: "division" // division
   };
+
+  if(params.current_localization_id) dataParams['current_localization_id'] = params.current_localization_id;
 
   if(params.filters) dataParams["filters"] = [...dataParams["filters"], ...params.filters]
 
+  
   let baseParamsExtended = {
     ...baseParams,
     order_by: "price",
@@ -55,15 +58,22 @@ export const getPropertyById = async (id: number) => {
   return data;
 }
 
-export const getDevelopments = async () => {
+export const getDevelopments = async ({params}: GetPropertiesProps) => {
   const url = `${API_URI}/development`;
 
   let baseParamsExtended = {
     ...baseParams,
-    limit: 200
+    limit: params.limit || 200,
   }
 
   const { data } = await axios.get(url, { params: baseParamsExtended })
+  return data;
+}
+
+export const getDevelopmentById = async (id: number) => {
+  const url = `${API_URI}/development/${id}`;
+
+  const { data } = await axios.get(url, { params: baseParams })
   return data;
 }
 
@@ -112,13 +122,13 @@ export const getNeighborhoods = async () => {
   return data;
 }
 
-export const getPropertiesById = async (list: number[]) => {
+export const getPropertiesById = async (list: number[] | string) => {
   const url = `${API_URI}/property/`;
 
   let baseParamsExtended = {
     ...baseParams,
     limit: list.length,
-    id__in: list.join(',')
+    id__in: typeof list === "string" ? list : list.join(',')
   }
 
   const { data }: any = await axios.get(url, { params: baseParamsExtended })

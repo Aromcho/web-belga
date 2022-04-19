@@ -3,10 +3,10 @@ import Head from 'next/head'
 import Link from "next/link";
 import { GetServerSideProps } from 'next'
 import { Layout, Container } from 'components/layout';
-import { getProperties } from 'services';
+import { getDevelopments, getProperties } from 'services';
 import { observer } from 'mobx-react-lite';
 import { useStore } from 'stores';
-import { formatToMoney } from 'helpers';
+import { formatToMoney, Property } from 'helpers';
 import { useMergeState } from 'helpers/hooks';
 
 import { SocialSidebar } from 'components/socialsidebar';
@@ -15,6 +15,7 @@ import { CardProp } from 'components/cardprop';
 import { Input } from 'components/input';
 import { Button } from 'components/button';
 import { MultiRange } from 'components/multirange';
+import { PATHS } from 'config';
 
 import {
   HeroWrapper,
@@ -39,7 +40,7 @@ import {
 import { TelIcon } from 'components/icons';
 import { InputAutoComplete } from 'components/inputautocomplete';
 
-const Home = observer(({ properties }: any) => {
+const Home = observer(({ properties, emprendimientos }: any) => {
 
   const {
     rootStore: { userStore }
@@ -141,9 +142,9 @@ const Home = observer(({ properties }: any) => {
             </SearchRow>
 
             <HeroFooter>
-              <Link href="#"><a className='head--footer-link' target='_blank' ><TelIcon /></a></Link>
-              <Link href="#"><a className='head--footer-link' target='_blank' ><TelIcon /></a></Link>
-              <Link href="#"><a className='head--footer-link' target='_blank' ><TelIcon /></a></Link>
+              <Link href="#"><a className='head--footer-link' target='_blank'><TelIcon /></a></Link>
+              <Link href="#"><a className='head--footer-link' target='_blank'><TelIcon /></a></Link>
+              <Link href="#"><a className='head--footer-link' target='_blank'><TelIcon /></a></Link>
             </HeroFooter>
 
           </SearchFormWrapper>
@@ -156,33 +157,22 @@ const Home = observer(({ properties }: any) => {
         <Seleccion><SocialSidebar color='red' /></Seleccion>
 
         <Container className='seleccion--container'>
-          <Title title='Nuestra Selección' />
-
+          <Title title='Nuestra Selección' linkButton={PATHS.HIGHLIGHTED} />
           <PropList>
-            {properties.slice(0, 2).map((item: any, k: number) => {
+            {properties.map((item: Property, k: number) => {
               return (
-                <>
-                  <CardProp
-                    key={k}
-                    className='card--prop-home'
-                    operation={item?.operations[0].operation_type}
-                    currency={item?.operations[0].prices[0].currency}
-                    price={formatToMoney(item?.operations[0].prices[0].price)}
-                    description={item?.location?.name}
-                    address={item?.address}
-                    m2={Math.round(item?.total_surface)}
-                    bedroom={item?.suite_amount}
-                    bathroom={item?.bathroom_amount}
-                    garage={item?.parking_lot_amount}
-                    media={item.photos.slice(0, 10).map((photo: any) => { return photo.image })}
-                    link={`/propiedad/${item?.id.toString()}`}
-                  />
-                </>
+                <CardProp
+                  key={k}
+                  className='card--prop-home'
+                  property={item}
+                  liked={userStore.favorites.includes(item.id)}
+                  onLiked={() => userStore.toggleFavorite(item.id)}
+                />
               )
             })}
           </PropList>
 
-          <Button className='button--mobile' text='Ver más' type='outline black' />
+          <Link href={PATHS.HIGHLIGHTED} passHref><Button link={PATHS.HIGHLIGHTED} className='button--mobile' text='Ver más' type='outline black' /></Link>
 
         </Container>
 
@@ -199,21 +189,16 @@ const Home = observer(({ properties }: any) => {
                 title='Tu próxima inversión'
                 buttonStyle='outline black'
                 vertical
+                linkButton={PATHS.EMPRENDIMIENTOS}
               />
             </InversionItem>
 
-            {properties.slice(2, 4).map((item: any, k: number) => {
+            {emprendimientos?.map((item: Property, k: number) => {
               return (
-                <InversionItem >
+                <InversionItem>
                   <CardProp
                     key={k}
-                    price={formatToMoney(item?.operations[0].prices[0].price)}
-                    currency={item?.operations[0].prices[0].currency}
-                    description={item?.location?.name}
-                    neighborhood={item?.location?.name}
-                    bedroom={`${item?.suite_amount} ambientes`}
-                    inversionCover={item.photos.slice(0, 1).map((photo: any) => { return photo.image })}
-                    link={`/inversion/${item?.id.toString()}`}
+                    property={item}
                     inversion
                   />
                 </InversionItem>
@@ -221,7 +206,7 @@ const Home = observer(({ properties }: any) => {
             })}
           </InversionList>
 
-          <Button className='button--mobile' text='Ver más' type='outline black' />
+          <Link href={PATHS.EMPRENDIMIENTOS} passHref><Button link={PATHS.EMPRENDIMIENTOS} className='button--mobile' text='Ver más' type='outline black' /></Link>
 
         </Container>
       </InversionSection>
@@ -238,13 +223,21 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { objects } = await getProperties({
     params: {
       filters: [["is_starred_on_web", "=", true]],
-      operation_types: [1]
+      operation_types: [1],
+      limit: 2
+    }
+  })
+
+  const emprendimientos: any = await getDevelopments({
+    params: {
+      limit: 2
     }
   })
 
   return {
     props: {
-      properties: objects
+      properties: objects,
+      emprendimientos: emprendimientos.objects
     }
   }
 }

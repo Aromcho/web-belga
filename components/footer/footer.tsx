@@ -86,9 +86,9 @@ export const Footer = ({ }: FooterProps) => {
               <TitleWithIcon text='¿Querés contactarnos?' />
 
               <LeftContact>
-                <ContactItem><Link href='tel:+541152633393' ><a className='info--link'><TelIcon /> +54 11 5263 3393</a></Link></ContactItem>
-                <ContactItem><Link href='https://api.whatsapp.com/send?phone=5491169462894&text=Hola%20Belga!%20%F0%9F%91%8B%20Quisiera%20hacerles%20una%20consulta.' ><a className='info--link' target='_blank'><WhatsappIcon /> +54 11 6946 2894</a></Link></ContactItem>
-                <ContactItem><Link href='mailto:info@belga.com.ar' ><a target='_blank' className='info--link'><MailIcon />info@belga.com.ar</a></Link></ContactItem>
+                <ContactItem><Link href='tel:+541152633393'><a className='info--link'><TelIcon /> +54 11 5263 3393</a></Link></ContactItem>
+                <ContactItem><Link href='https://api.whatsapp.com/send?phone=5491169462894&text=Hola%20Belga!%20%F0%9F%91%8B%20Quisiera%20hacerles%20una%20consulta.'><a className='info--link' target='_blank'><WhatsappIcon /> +54 11 6946 2894</a></Link></ContactItem>
+                <ContactItem><Link href='mailto:info@belga.com.ar'><a target='_blank' className='info--link'><MailIcon />info@belga.com.ar</a></Link></ContactItem>
               </LeftContact>
 
               <LeftLocation>
@@ -121,9 +121,7 @@ export const Footer = ({ }: FooterProps) => {
           </FooterInfo>
           <FooterInfoBottom>
             <SocialList>
-              {socialInfo.map((i: any, k: number) => {
-                return (<Link href={`${i?.link.toString()}`}><a key={k} className='social--link' target='_blank'>{i.icon}</a></Link>)
-              })}
+              {socialInfo.map((i: any, k: number) => <Link href={`${i?.link.toString()}`} key={k}><a className='social--link' target='_blank'>{i.icon}</a></Link>)}
             </SocialList>
           </FooterInfoBottom>
         </FooterLeft>
@@ -138,7 +136,7 @@ export const Footer = ({ }: FooterProps) => {
             <BrandFooter src="/images/brand_red.svg" alt="Belga inmobiliaria" title="Belga inmobiliaria" />
             <SocialList className='social--list-mobile'>
               {socialInfo.map((i: any, k: number) => {
-                return (<Link href={`${i?.link.toString()}`}><a key={k} className='social--link' target='_blank'>{i.icon}</a></Link>)
+                return (<Link href={`${i?.link.toString()}`} key={k}><a className='social--link' target='_blank'>{i.icon}</a></Link>)
               })}
             </SocialList>
           </FooterInfoBottom>
@@ -166,6 +164,6 @@ export const Footer = ({ }: FooterProps) => {
         </RightInfoMobile>
 
       </FooterWrapper>
-    </FooterContainer >
+    </FooterContainer>
   );
 };

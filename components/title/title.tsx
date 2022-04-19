@@ -16,8 +16,6 @@ export interface TitleProps {
   title?: string;
   textButton?: string;
   linkButton?: string;
-  onClick?: () => void;
-  link?: () => void;
   vertical?: boolean;
   buttonStyle?: string;
 }
@@ -26,7 +24,6 @@ export const Title = ({
   className,
   title,
   textButton = 'Ver más',
-  onClick,
   linkButton,
   vertical,
   buttonStyle='outline'
@@ -35,7 +32,7 @@ export const Title = ({
     <TitleContainer className={classes(className, { vertical })}>
       <TitleText>{title}</TitleText>
       <Line />
-      <Button className='button--title' text={textButton} type={buttonStyle} onClick={onClick} link={linkButton} />
+      <Button className='button--title' text={textButton} type={buttonStyle} link={linkButton}/>
     </TitleContainer>
   );
 };

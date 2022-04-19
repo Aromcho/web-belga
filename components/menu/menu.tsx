@@ -62,8 +62,8 @@ export const Menu = observer(() => {
           <MenuInfoItem>Belgrano C</MenuInfoItem>
           <MenuInfoItem>Belgrano R</MenuInfoItem>
 
-          <MenuInfoItem><Link href='tel:+541152633393' ><a className='info--link'><TelIcon /> +54 11 5263 3393</a></Link></MenuInfoItem>
-          <MenuInfoItem><Link href='https://api.whatsapp.com/send?phone=5491169462894&text=Hola%20Belga!%20%F0%9F%91%8B%20Quisiera%20hacerles%20una%20consulta.' ><a className='info--link' target='_blank'><WhatsappIcon /> +54 11 6946 2894</a></Link></MenuInfoItem>
+          <MenuInfoItem><Link href='tel:+541152633393'><a className='info--link'><TelIcon /> +54 11 5263 3393</a></Link></MenuInfoItem>
+          <MenuInfoItem><Link href='https://api.whatsapp.com/send?phone=5491169462894&text=Hola%20Belga!%20%F0%9F%91%8B%20Quisiera%20hacerles%20una%20consulta.'><a className='info--link' target='_blank'><WhatsappIcon /> +54 11 6946 2894</a></Link></MenuInfoItem>
         </MenuInfoList>
       </MenuInfo>
 
@@ -79,8 +79,8 @@ export const Menu = observer(() => {
           </a></Link>
 
           <MenuList>
-            <MenuItem><Link href='#'><a className='menu--link'>Quiero comprar</a></Link></MenuItem>
-            <MenuItem><Link href='#'><a className='menu--link'>Emprendimientos</a></Link></MenuItem>
+            <MenuItem><Link href={PATHS.ROOT}><a className='menu--link'>Quiero comprar</a></Link></MenuItem>
+            <MenuItem><Link href={PATHS.EMPRENDIMIENTOS} passHref><a className='menu--link'>Emprendimientos</a></Link></MenuItem>
             <MenuItem><Button text='Quiero vender' className='button--menu' /></MenuItem>
           </MenuList>
 
@@ -101,7 +101,7 @@ export const Menu = observer(() => {
             </BurgerMenuItem>
 
             <BurgerMenuItem>
-              <Link href={PATHS.ROOT}><a className="burger--menu-link"><HeartIcon className='heart--icon' /> <LinkText>Favoritos</LinkText></a></Link>
+              <Link href={PATHS.FAVORITES}><a className="burger--menu-link"><HeartIcon className='heart--icon' /> <LinkText>Favoritos</LinkText></a></Link>
             </BurgerMenuItem>
 
             <BurgerMenuItem>
@@ -123,6 +123,6 @@ export const Menu = observer(() => {
 
 
       </MenuWrapper>
-    </MenuContainer >
+    </MenuContainer>
   );
 });

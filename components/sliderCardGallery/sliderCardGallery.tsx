@@ -36,10 +36,10 @@ export const SliderCardGallery = ({ img, className, galleryLink }: sliderCardGal
         navigation={{}}
       >
         {img?.map((i: any, k: number) => (
-          < SwiperSlide key={k}>
+          <SwiperSlide key={k}>
             {galleryLink
               ? <WrapperImage>
-                <OverlayHover>Ver más info</OverlayHover >
+                <OverlayHover>Ver más info</OverlayHover>
                 <Link href={galleryLink} passHref><a className='link--gallery'></a></Link>
                 <SlideContainer style={{ backgroundImage: `url(${i})` }}></SlideContainer>
 
@@ -51,7 +51,7 @@ export const SliderCardGallery = ({ img, className, galleryLink }: sliderCardGal
         ))}
 
       </Swiper>
-    </SwiperContainerGallery >
+    </SwiperContainerGallery>
   );
 };
 

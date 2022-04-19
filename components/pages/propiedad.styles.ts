@@ -30,7 +30,7 @@ export const MapProp = styled.div`
   @media screen and (max-width: 460px) {
     padding-bottom: 120%;
   }
-  iframe {
+  > div {
     width: 100%;
     height: 100%;
     position: absolute;

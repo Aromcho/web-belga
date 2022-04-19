@@ -1,3 +1,5 @@
+import { neighborhoods } from "./neighborhoods"
+
 export const operationTypes: any = {
   "venta": 1,
   "alquiler": 2
@@ -19,6 +21,13 @@ export const propertyTypes: any = {
 export const parseTokkoParameters = (query: any) => {
 
   query["filters"] = []
+
+  // Locations
+  if(query.locid){
+    const locations = query.locid.map((item: string) => neighborhoods.find(loc => item.toLowerCase().replace('-', '') === loc.location_name.toLowerCase().replace(' ', '')))
+    if(locations) query['current_localization_id'] = locations.map((item: any) => item.location_id);
+    delete query.locid;
+  }
   
   // operation_types
   if(query.opid){
@@ -27,8 +36,8 @@ export const parseTokkoParameters = (query: any) => {
   }
 
   // property_types
-  if(query.prid){
-    query["operation_types"] = [propertyTypes[query.prid]]
+  if(query.prid && query.prid !== "todos"){
+    query["property_types"] = [propertyTypes[query.prid]]
     delete query.prid;
   }
 
@@ -52,6 +61,11 @@ export const parseTokkoParameters = (query: any) => {
     delete query.m2_to;
   }
 
-  console.log(query)
+  // Pagination
+  const page = parseInt(query.page);
+  if(page && page > 0){
+    query.offset = (page - 1) * 26;
+  }
+
   return query
 }

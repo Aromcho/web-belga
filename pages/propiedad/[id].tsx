@@ -1,4 +1,5 @@
 import React from 'react';
+import dynamic from 'next/dynamic'
 import { GetServerSideProps } from 'next'
 import { Layout, Container } from 'components/layout';
 import { getProperties, getPropertyById } from 'services';
@@ -13,6 +14,9 @@ import { Button } from 'components/button';
 import { ContactForm } from 'components/contactform';
 import { Title } from 'components/title';
 import { CardProp } from 'components/cardprop';
+// import { Map } from 'components/map';
+
+const DynamicMap = dynamic<MapProps>(() => import('components/map').then((mod) => mod.Map), { ssr: false })
 
 import {
   PropContainer,
@@ -55,8 +59,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 import { ArrowBackIcon, HeartIcon, MailIcon, WhatsappIcon } from 'components/icons';
-
-
+import { MapProps } from 'components/map/map';
 
 const PropertyDetail = ({ properties, property, statusCode }: any) => {
   if (statusCode === 404) return <>404</>
@@ -67,16 +70,12 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
   const [isLiked, setIsLiked] = React.useState<boolean>(false)
 
   /* Handle media content*/
-  const images = property?.photos?.map((item: any, k: number) => {
-    return (<MediaImg style={{backgroundImage: `url(${item.image})`}} />)
-  })
-  const videos = property?.videos?.map((item: any, k: number) => {
-    return (<IframeWrapper><iframe src={item.player_url} /></IframeWrapper>)
-  })
+  const images = property?.photos?.map((item: any, k: number) => <MediaImg key={k} style={{backgroundImage: `url(${item.image})`}} />)
+  const videos = property?.videos?.map((item: any, k: number) => <IframeWrapper key={k}><iframe src={item.player_url} /></IframeWrapper>)
   const allMedia = [...videos, ...images]
 
   return (
-    < Layout >
+    <Layout>
       <Head>
         {/*OpenGraph metadata*/}
         <title>Propiedad | {property.address}</title>
@@ -87,6 +86,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
         <meta property="og:type" content="Website" />
         <meta property="og:site_name" content="Belga Inmobiliaria" />
         <meta property="og:image" content="https://web-belga.vercel.app/images/og_image.png" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/css/ol.css" type="text/css"></link>
       </Head>
 
       <PropContainer>
@@ -144,11 +144,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
                   }
                 }}
               >
-                {allMedia?.map((item: any, k: number) => {
-                  return < SwiperSlide key={k}>{item}</SwiperSlide>
-                })
-                }
-
+                {allMedia?.map((item: any, k: number) => <SwiperSlide key={k}>{item}</SwiperSlide>)}
               </Swiper>
 
             </SwiperContainerGallery>
@@ -157,7 +153,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
           <BodyProp>
             <BodyFeatures>
               <FeaturesGrid>
-                <Feature><FtHead>{property?.age}</FtHead><FtImg src='/images/icons/prop_antiguedad.svg' /><FtBottom>Antigüedad</FtBottom></Feature>
+                <Feature><FtHead>{property?.age === 0 ? "A estrenar" : property?.age}</FtHead><FtImg src='/images/icons/prop_antiguedad.svg' /><FtBottom>Antigüedad</FtBottom></Feature>
                 <Feature><FtHead>{Math.round(property?.roofed_surface)}</FtHead><FtImg src='/images/icons/prop_m2.svg' /><FtBottom>Sup. Cub.</FtBottom></Feature>
                 <Feature><FtHead>{Math.round(property?.total_surface)}</FtHead><FtImg src='/images/icons/prop_m2.svg' /><FtBottom>Sup. Total</FtBottom></Feature>
                 <Feature><FtHead>{property?.suite_amount}</FtHead><FtImg src='/images/icons/prop_cuarto.svg' /><FtBottom>{property?.suite_amount > 1 ? 'Dormitorios' : 'Dormitorio'}</FtBottom></Feature>
@@ -191,9 +187,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
 
                 <MoreItem className='large'>
                   <MoreItemTitle>Adicionales</MoreItemTitle>
-                  {property?.tags?.map((tag: any, k: number) => {
-                    return (<MoreItemText key={k}>{tag.name.toString()}</MoreItemText>)
-                  })}
+                  {property?.tags?.map((tag: any, k: number) => <MoreItemText key={k}>{tag.name.toString()}</MoreItemText>)}
                 </MoreItem>
               </MoreInfo>
             </BodyFeatures>
@@ -207,34 +201,21 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
           </BodyProp>
 
           <MapProp>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6567.948790442833!2d-58.38486108228965!3d-34.60480896825873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4aa9f0a6da5edb%3A0x11bead4e234e558b!2sObelisco!5e0!3m2!1ses-419!2sar!4v1648690340385!5m2!1ses-419!2sar" />
+            {/* <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6567.948790442833!2d-58.38486108228965!3d-34.60480896825873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4aa9f0a6da5edb%3A0x11bead4e234e558b!2sObelisco!5e0!3m2!1ses-419!2sar!4v1648690340385!5m2!1ses-419!2sar" /> */}
+            <DynamicMap marker={{lon: property.branch.geo_long, lat: property.branch.geo_lat}} center={{lon: property.branch.geo_long, lat: property.branch.geo_lat}} zoom={15} />
           </MapProp>
 
           <SimilarProps>
             <Title title='Propiedades similares' />
 
             <PropList>
-              {properties.filter((i: any) => i.address !== property.address).slice(0, 2).map((item: any, k: number) => {
-                return (
-                  <>
-                    <CardProp
-                      key={k}
-                      className='card--prop'
-                      operation={item?.operations[0].operation_type}
-                      currency={item?.operations[0].prices[0].currency}
-                      price={formatToMoney(item?.operations[0].prices[0].price)}
-                      description={item?.location?.name}
-                      address={item?.address}
-                      m2={Math.round(item?.total_surface)}
-                      bedroom={item?.suite_amount}
-                      bathroom={item?.bathroom_amount}
-                      garage={item?.parking_lot_amount}
-                      media={item.photos.slice(0, 10).map((photo: any) => { return photo.image })}
-                      link={`/propiedad/${item?.id.toString()}`}
-                    />
-                  </>
-                )
-              })}
+              {properties.map((item: any, k: number) => (
+                <CardProp
+                  key={k}
+                  className='card--prop'
+                  property={item}
+                />
+              ))}
             </PropList>
           </SimilarProps>
 
@@ -242,7 +223,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
 
         </Container>
       </PropContainer>
-    </Layout >
+    </Layout>
   )
 }
 
@@ -257,7 +238,8 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     const { objects } = await getProperties({
       params: {
         filters: [["is_starred_on_web", "=", true]],
-        operation_types: [1]
+        operation_types: [1],
+        limit: 2
       }
     })
 

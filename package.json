@@ -18,6 +18,8 @@
     "mobx-keystone": "^0.63.1",
     "mobx-react-lite": "^3.2.1",
     "next": "11.1.2",
+    "nextjs-progressbar": "^0.0.14",
+    "ol": "^6.14.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "swiper": "^8.0.7",
@@ -26,6 +28,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.15.8",
     "@types/node": "^16.10.3",
+    "@types/openlayers": "^4.6.18",
     "@types/react": "^17.0.27",
     "@types/react-dom": "^17.0.9"
   }

@@ -199,5 +199,8 @@ export const GlobalStyles = css`
         -webkit-tap-highlight-color: transparent;
       }
     }
+    #nprogress .bar {
+      z-index: 9999999999999;
+    }
   }
 `;

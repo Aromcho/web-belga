@@ -81,7 +81,7 @@ export const InputAutoComplete = ({
 
   const SuggestionsListComponent = () => {
     return filteredSuggestions.length ? (
-      <ListStyled >
+      <ListStyled>
         <ListWrapper>
           {filteredSuggestions.map((suggestion, index) => {
             let className;

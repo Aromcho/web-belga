@@ -21,7 +21,7 @@ export const ContactForm = ({ className }: ContactFormProps) => {
   return (
     <ContactFormContainer className={className}>
       <TitleWithIcon text='¿Cómo te podemos ayudar?' className='black' />
-      <ContactFormWrapper >
+      <ContactFormWrapper>
         <Input
           className='input--form'
           placeHolder='Nombre'

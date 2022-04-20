@@ -40,6 +40,8 @@ import {
 import { TelIcon } from 'components/icons';
 import { InputAutoComplete } from 'components/inputautocomplete';
 import { neighborhoods } from 'helpers/neighborhoods';
+import { Select } from 'components/select';
+import { propertiesSelectOptions } from 'helpers/tokko';
 
 const Home = observer(({ properties, emprendimientos }: any) => {
 
@@ -66,7 +68,9 @@ const Home = observer(({ properties, emprendimientos }: any) => {
     locations: []
   })
 
-  const localidades = neighborhoods.map(item => item.location_name)
+  const localidades = neighborhoods.map(item => {
+    return {value: item.location_id, label: item.location_name}
+  })
 
   return (
     <Layout>
@@ -81,16 +85,25 @@ const Home = observer(({ properties, emprendimientos }: any) => {
         <Container className='hero--container align--center'>
           <SearchFormWrapper>
             <SearchRow className='first--row'>
-              <Input
+              <Select 
                 className='white first--row-input input--general'
-                type='text'
-                placeHolder='Tipo de operación'
+                options={[{value: "1", label: "Venta"}, {value: "2", label: "Alquiler"}]}
+                isSearchable={false}
+                placeholder="Tipo de operación"
+                onChange={(opt) => {
+                  console.log(opt)
+                }}
               />
 
-              <Input
+              <Select 
                 className='white first--row-input input--general'
-                type='text'
-                placeHolder='Tipo de propiedad'
+                options={propertiesSelectOptions}
+                isSearchable={false}
+                // value={[{value: 0, label: "Todos"}]}
+                placeholder="Tipo de propiedad"
+                onChange={(opt) => {
+                  console.log(opt)
+                }}
               />
 
               <Input
@@ -102,11 +115,26 @@ const Home = observer(({ properties, emprendimientos }: any) => {
 
             <SearchRow className='second--row'>
 
-              <InputAutoComplete
+              {/* <InputAutoComplete
                 className='white second--row-input input--general'
                 placeHolder='Barrio'
                 suggestions={localidades}
                 onChangeValue={(item) => setFormData({locations: findNeighborhood(item)})}
+              /> */}
+              <Select 
+                options={localidades}
+                isMulti={true}
+                placeholder="Barrios"
+                hideSelectedOptions={true}
+                styles={{
+                  container: (provided: any, state: any) => ({
+                    ...provided,
+                    marginBottom: 15
+                  })
+                }}
+                onChange={(opt) => {
+                  console.log(opt)
+                }}
               />
 
             </SearchRow>

@@ -84,3 +84,26 @@ export interface Property {
   id: number;
   name?: string;
 }
+
+export const getDevelopmentsData = (list: any[]) => {
+
+  const obj: any = {};
+
+  const roofed_surface = list.map(item => Math.round(item.roofed_surface))
+  const total_surface = list.map(item => item.total_surface)
+  const unroofed_surface = list.map(item => item.unroofed_surface)
+  
+  const semiroofed_surface = list.map(item => item.total_surface)
+  const room_amount = list.map(item => item.room_amount)
+  const price = list.map(item => item.operations[0].prices[0].price)
+
+  obj['roofed_surface'] = `${Math.min(...roofed_surface)} a ${Math.max(...roofed_surface)}`
+  obj['total_surface'] = `${Math.min(...total_surface)} a ${Math.max(...total_surface)}`
+  obj['unroofed_surface'] = `${Math.min(...unroofed_surface)} a ${Math.max(...unroofed_surface)}`
+  obj['semiroofed_surface'] = `${Math.min(...semiroofed_surface)} a ${Math.max(...semiroofed_surface)}`
+  obj['room_amount'] = `${Math.min(...room_amount)} a ${Math.max(...room_amount)}`
+  obj['price'] = `${formatToMoney(Math.min(...price))} a ${formatToMoney(Math.max(...price))}`
+  obj['currency'] = list[0].operations[0].prices[0].currency;
+  
+  return obj
+}

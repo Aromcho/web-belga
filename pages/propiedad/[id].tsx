@@ -1,5 +1,6 @@
 import React from 'react';
 import dynamic from 'next/dynamic'
+import parse from 'html-react-parser';
 import { GetServerSideProps } from 'next'
 import { Layout, Container } from 'components/layout';
 import { getProperties, getPropertyById } from 'services';
@@ -124,7 +125,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
                   <HeartIcon className='icon--heart' />
                 </LikeWrapper>
               </HeadAddress>
-              <HeadPrice>{`${property.operations[0].operation_type} ${property.operations[0].prices[0].currency} ${formatToMoney(property.operations[0].prices[0].price)}`}</HeadPrice>
+              {property?.web_price && <HeadPrice>{`${property.operations[0].operation_type} ${property.operations[0].prices[0].currency} ${formatToMoney(property.operations[0].prices[0].price)}`}</HeadPrice>}
             </HeadAddressPrice>
 
             <HeadDivisor />
@@ -215,12 +216,12 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
                 <Feature><FtHead>{property?.age === 0 ? "A estrenar" : property?.age}</FtHead><FtImg src='/images/icons/prop_antiguedad.svg' /><FtBottom>Antigüedad</FtBottom></Feature>
                 <Feature><FtHead>{Math.round(property?.roofed_surface)}</FtHead><FtImg src='/images/icons/prop_m2.svg' /><FtBottom>Sup. Cub.</FtBottom></Feature>
                 <Feature><FtHead>{Math.round(property?.total_surface)}</FtHead><FtImg src='/images/icons/prop_m2.svg' /><FtBottom>Sup. Total</FtBottom></Feature>
-                <Feature><FtHead>{property?.suite_amount}</FtHead><FtImg src='/images/icons/prop_cuarto.svg' /><FtBottom>{property?.suite_amount > 1 ? 'Dormitorios' : 'Dormitorio'}</FtBottom></Feature>
-                <Feature><FtHead>{property?.bathroom_amount}</FtHead><FtImg src='/images/icons/prop_ducha.svg' /><FtBottom>{property?.bathroom_amount > 1 ? 'Baños' : 'Baño'}</FtBottom></Feature>
-                <Feature><FtHead>{property?.toilet_amount}</FtHead><FtImg src='/images/icons/prop_toilette.svg' /><FtBottom>{property?.toilet_amount > 1 ? 'Toilette' : 'Toilette'}</FtBottom></Feature>
-                <Feature><FtHead>{property?.parking_lot_amount}</FtHead><FtImg src='/images/icons/prop_cochera.svg' /><FtBottom>{property?.parking_lot_amount > 1 ? 'Cocheras' : 'Cochera'}</FtBottom></Feature>
+                {property?.suite_amount > 0 && <Feature><FtHead>{property?.suite_amount}</FtHead><FtImg src='/images/icons/prop_cuarto.svg' /><FtBottom>{property?.suite_amount > 1 ? 'Dormitorios' : 'Dormitorio'}</FtBottom></Feature>}
+                {property?.bathroom_amount > 0 && <Feature><FtHead>{property?.bathroom_amount}</FtHead><FtImg src='/images/icons/prop_ducha.svg' /><FtBottom>{property?.bathroom_amount > 1 ? 'Baños' : 'Baño'}</FtBottom></Feature>}
+                {property?.toilet_amount > 0 && <Feature><FtHead>{property?.toilet_amount}</FtHead><FtImg src='/images/icons/prop_toilette.svg' /><FtBottom>{property?.toilet_amount > 1 ? 'Toilette' : 'Toilette'}</FtBottom></Feature>}
+                {property?.parking_lot_amount > 0 && <Feature><FtHead>{property?.parking_lot_amount}</FtHead><FtImg src='/images/icons/prop_cochera.svg' /><FtBottom>{property?.parking_lot_amount > 1 ? 'Cocheras' : 'Cochera'}</FtBottom></Feature>}
                 <Feature><FtHead>{property?.web_price ? 'Si' : 'No'}</FtHead><FtImg src='/images/icons/prop_credito.svg' /><FtBottom>Apto Crédito</FtBottom></Feature>
-                <Feature><FtHead>{formatToMoney(Math.round(property?.expenses), true, '$')}</FtHead><FtImg src='/images/icons/prop_expensas.svg' /><FtBottom>Expensas</FtBottom></Feature>
+                {property?.expenses > 0 && <Feature><FtHead>{formatToMoney(Math.round(property?.expenses), true, '$')}</FtHead><FtImg src='/images/icons/prop_expensas.svg' /><FtBottom>Expensas</FtBottom></Feature>}
               </FeaturesGrid>
 
               <FeaturesFooter>
@@ -230,17 +231,17 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
               <MoreInfo>
                 <MoreItem>
                   <MoreItemTitle>Información</MoreItemTitle>
-                  {property?.room_amount && <MoreItemText><b>Ambientes:</b> {property?.room_amount}</MoreItemText>}
+                  {property?.room_amount > 0 && <MoreItemText><b>Ambientes:</b> {property?.room_amount}</MoreItemText>}
                   {property?.disposition && <MoreItemText><b>Disposición:</b> {property?.disposition}</MoreItemText>}
-                  {property?.orientation && <MoreItemText><b>Orientación:</b> </MoreItemText>}
+                  {property?.orientation && <MoreItemText><b>Orientación:</b> {property?.orientation}</MoreItemText>}
                   {property?.property_condition && <MoreItemText><b>Condición:</b> {property?.property_condition}</MoreItemText>}
                 </MoreItem>
 
                 <MoreItem>
                   <MoreItemTitle>Información</MoreItemTitle>
                   <MoreItemText><b>Sup. Cubierta:</b> {`${Math.round(property?.roofed_surface)} m2`}</MoreItemText>
-                  <MoreItemText><b>Sup. Semicubierta:</b> {`${Math.round(property?.semiroofed_surface)} m2`}</MoreItemText>
-                  <MoreItemText><b>Sup. Descubieta:</b> {`${Math.round(property?.unroofed_surface)} m2`}</MoreItemText>
+                  {Math.round(property?.semiroofed_surface) > 0 && <MoreItemText><b>Sup. Semicubierta:</b> {`${Math.round(property?.semiroofed_surface)} m2`}</MoreItemText>}
+                  {Math.round(property?.unroofed_surface) > 0 && <MoreItemText><b>Sup. Descubieta:</b> {`${Math.round(property?.unroofed_surface)} m2`}</MoreItemText>}
                   <MoreItemText><b>Sup. Total:</b> {`${Math.round(property?.total_surface)} m2`}</MoreItemText>
                 </MoreItem>
 
@@ -254,7 +255,8 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
 
             <BodyDesc>
               <DescTitle>Decripción</DescTitle>
-              <DescText>{property.rich_description ?? property.description}</DescText>
+              
+              <DescText>{parse(property.rich_description ?? property.description)}</DescText>
             </BodyDesc>
 
           </BodyProp>

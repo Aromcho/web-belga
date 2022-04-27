@@ -1,11 +1,12 @@
 import React from 'react';
+import parse from 'html-react-parser';
 import { GetServerSideProps } from 'next'
 import { Layout, Container } from 'components/layout';
-import { getDevelopmentById, getProperties } from 'services';
+import { getDevelopmentById, getDevelopmentProperties, getProperties } from 'services';
 import { PATHS } from 'config';
 import Link from "next/link";
 import { useMergeState } from 'helpers/hooks';
-import { classes, formatToMoney } from 'helpers';
+import { classes, formatToMoney, getDevelopmentsData } from 'helpers';
 import Head from 'next/head'
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -62,9 +63,7 @@ import 'swiper/css/pagination';
 import { ArrowBackIcon, ArrowSubmitIcon, CloseIcon, HeartIcon, MailIcon, WhatsappIcon } from 'components/icons';
 
 
-
-
-const PropertyDetail = ({ properties, property, statusCode }: any) => {
+const PropertyDetail = ({ properties, property, statusCode, property_subs }: any) => {
   if (statusCode === 404) return <>404</>
 
   if (statusCode === 500) return <>500</>
@@ -93,6 +92,8 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
     return ({ src: `${item.image}`, loading: 'lazy' })
   })
 
+  const devPropertiesData = getDevelopmentsData(property_subs);
+
   return (
     <Layout>
       <Head>
@@ -118,7 +119,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
                   <HeartIcon className='icon--heart' />
                 </LikeWrapper>
               </HeadAddress>
-              {/* <HeadPrice>{`${property.operations[0].operation_type} ${property.operations[0].prices[0].currency} ${formatToMoney(property.operations[0].prices[0].price)}`}</HeadPrice> */}
+              <HeadPrice>{`Venta ${devPropertiesData.currency} ${devPropertiesData.price}`}</HeadPrice>
             </HeadAddressPrice>
 
             <HeadDivisor />
@@ -208,15 +209,14 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
           <BodyProp className={classes('inversion')}>
             <BodyFeatures>
               <FeaturesGrid>
-                <Feature><FtHead>{property?.age}</FtHead><FtImg src='/images/icons/prop_antiguedad.svg' /><FtBottom>Antigüedad</FtBottom></Feature>
-                <Feature><FtHead>{Math.round(property?.roofed_surface)}</FtHead><FtImg src='/images/icons/prop_m2.svg' /><FtBottom>Sup. Cub.</FtBottom></Feature>
-                <Feature><FtHead>{Math.round(property?.total_surface)}</FtHead><FtImg src='/images/icons/prop_m2.svg' /><FtBottom>Sup. Total</FtBottom></Feature>
-                <Feature><FtHead>{property?.suite_amount}</FtHead><FtImg src='/images/icons/prop_cuarto.svg' /><FtBottom>{property?.suite_amount > 1 ? 'Dormitorios' : 'Dormitorio'}</FtBottom></Feature>
-                <Feature><FtHead>{property?.bathroom_amount}</FtHead><FtImg src='/images/icons/prop_ducha.svg' /><FtBottom>{property?.bathroom_amount > 1 ? 'Baños' : 'Baño'}</FtBottom></Feature>
-                <Feature><FtHead>{property?.toilet_amount}</FtHead><FtImg src='/images/icons/prop_toilette.svg' /><FtBottom>{property?.toilet_amount > 1 ? 'Toilette' : 'Toilette'}</FtBottom></Feature>
-                <Feature><FtHead>{property?.parking_lot_amount}</FtHead><FtImg src='/images/icons/prop_cochera.svg' /><FtBottom>{property?.parking_lot_amount > 1 ? 'Cocheras' : 'Cochera'}</FtBottom></Feature>
-                <Feature><FtHead>{property?.web_price ? 'Si' : 'No'}</FtHead><FtImg src='/images/icons/prop_credito.svg' /><FtBottom>Apto Crédito</FtBottom></Feature>
-                <Feature><FtHead>{formatToMoney(Math.round(property?.expenses), true, '$')}</FtHead><FtImg src='/images/icons/prop_expensas.svg' /><FtBottom>Expensas</FtBottom></Feature>
+                {property?.age && <Feature><FtHead>{property?.age}</FtHead><FtImg src='/images/icons/prop_antiguedad.svg' /><FtBottom>Antigüedad</FtBottom></Feature>}
+                {devPropertiesData?.roofed_surface && <Feature><FtHead>{devPropertiesData.roofed_surface}</FtHead><FtImg src='/images/icons/prop_m2.svg' /><FtBottom>Sup. Cub.</FtBottom></Feature>}
+                {devPropertiesData?.total_surface && <Feature><FtHead>{devPropertiesData?.total_surface}</FtHead><FtImg src='/images/icons/prop_m2.svg' /><FtBottom>Sup. Total</FtBottom></Feature>}
+                {devPropertiesData?.suite_amount > 0 &&<Feature><FtHead>{devPropertiesData?.suite_amount}</FtHead><FtImg src='/images/icons/prop_cuarto.svg' /><FtBottom>Dormitorios</FtBottom></Feature>}
+                {property?.bathroom_amount > 0 && <Feature><FtHead>{property?.bathroom_amount}</FtHead><FtImg src='/images/icons/prop_ducha.svg' /><FtBottom>{property?.bathroom_amount > 1 ? 'Baños' : 'Baño'}</FtBottom></Feature>}
+                {property?.toilet_amount > 0 && <Feature><FtHead>{property?.toilet_amount}</FtHead><FtImg src='/images/icons/prop_toilette.svg' /><FtBottom>{property?.toilet_amount > 1 ? 'Toilette' : 'Toilette'}</FtBottom></Feature>}
+                {property?.parking_lot_amount > 0 && <Feature><FtHead>{property?.parking_lot_amount}</FtHead><FtImg src='/images/icons/prop_cochera.svg' /><FtBottom>{property?.parking_lot_amount > 1 ? 'Cocheras' : 'Cochera'}</FtBottom></Feature>}
+                {/* <Feature><FtHead>{property?.web_price ? 'Si' : 'No'}</FtHead><FtImg src='/images/icons/prop_credito.svg' /><FtBottom>Apto Crédito</FtBottom></Feature> */}
               </FeaturesGrid>
 
               <FeaturesFooter>
@@ -226,18 +226,15 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
               <MoreInfo>
                 <MoreItem>
                   <MoreItemTitle>Información</MoreItemTitle>
-                  {property?.room_amount && <MoreItemText><b>Ambientes:</b> {property?.room_amount}</MoreItemText>}
-                  {property?.disposition && <MoreItemText><b>Disposición:</b> {property?.disposition}</MoreItemText>}
-                  {property?.orientation && <MoreItemText><b>Orientación:</b> </MoreItemText>}
-                  {property?.property_condition && <MoreItemText><b>Condición:</b> {property?.property_condition}</MoreItemText>}
+                  {devPropertiesData?.room_amount && <MoreItemText><b>Ambientes:</b> {devPropertiesData?.room_amount}</MoreItemText>}
                 </MoreItem>
 
                 <MoreItem>
                   <MoreItemTitle>Información</MoreItemTitle>
-                  <MoreItemText><b>Sup. Cubierta:</b> {`${Math.round(property?.roofed_surface)} m2`}</MoreItemText>
-                  <MoreItemText><b>Sup. Semicubierta:</b> {`${Math.round(property?.semiroofed_surface)} m2`}</MoreItemText>
-                  <MoreItemText><b>Sup. Descubieta:</b> {`${Math.round(property?.unroofed_surface)} m2`}</MoreItemText>
-                  <MoreItemText><b>Sup. Total:</b> {`${Math.round(property?.total_surface)} m2`}</MoreItemText>
+                  {devPropertiesData?.roofed_surface && <MoreItemText><b>Sup. Cubierta:</b> {`${devPropertiesData?.roofed_surface} m2`}</MoreItemText>}
+                  {devPropertiesData?.semiroofed_surface && <MoreItemText><b>Sup. Semicubierta:</b> {`${devPropertiesData?.semiroofed_surface} m2`}</MoreItemText>}
+                  {devPropertiesData?.unroofed_surface && <MoreItemText><b>Sup. Descubieta:</b> {`${devPropertiesData?.unroofed_surface} m2`}</MoreItemText>}
+                  {devPropertiesData?.total_surface && <MoreItemText><b>Sup. Total:</b> {`${devPropertiesData?.total_surface} m2`}</MoreItemText>}
                 </MoreItem>
 
                 <MoreItem className='large'>
@@ -252,7 +249,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
 
             <BodyDesc>
               <DescTitle>Decripción</DescTitle>
-              <DescText>{property.rich_description ?? property.description}</DescText>
+              <DescText>{parse(property.rich_description ?? property.description)}</DescText>
             </BodyDesc>
 
           </BodyProp>
@@ -274,7 +271,9 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   let props: any = {}
 
   try {
-    const property = await getDevelopmentById(parseInt(query.id as string))
+    const property: any = await getDevelopmentById(parseInt(query.id as string))
+
+    const property_subs = await getDevelopmentProperties(property.id)
 
     // Only get starred & ventas
     const { objects } = await getProperties({
@@ -286,7 +285,8 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
     props = {
       property,
-      properties: objects
+      properties: objects,
+      property_subs: property_subs.objects
     }
   } catch (e: any) {
     props = {

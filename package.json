@@ -14,6 +14,7 @@
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
     "axios": "^0.22.0",
+    "html-react-parser": "^1.4.12",
     "mobx": "^6.3.3",
     "mobx-keystone": "^0.63.1",
     "mobx-react-lite": "^3.2.1",

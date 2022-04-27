@@ -134,3 +134,16 @@ export const getPropertiesById = async (list: number[] | string) => {
   const { data }: any = await axios.get(url, { params: baseParamsExtended })
   return data;
 }
+
+
+export const getDevelopmentProperties = async (n: number) => {
+  const url = `${API_URI}/property/`;
+
+  let baseParamsExtended = {
+    ...baseParams,
+    development__id: n
+  }
+
+  const { data }: any = await axios.get(url, { params: baseParamsExtended })
+  return data;
+}

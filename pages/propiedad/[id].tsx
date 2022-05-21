@@ -82,7 +82,6 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
   const images = property?.photos?.map((item: any, k: number) => <MediaImg key={k} style={{ backgroundImage: `url(${item.image})` }} />)
   const videos = property?.videos?.map((item: any, k: number) => <IframeWrapper key={k}><iframe src={item.player_url} /></IframeWrapper>)
 
-
   /* Handle modal gallery */
   const [modalContent, setModalContent] = useMergeState({ open: false, content: 'fotos' })
   const [currentImageIndex, setCurrentIndex] = React.useState(0);
@@ -103,9 +102,9 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
     <Layout>
       <Head>
         {/*OpenGraph metadata*/}
-        <title>Propiedad | {property.address}</title>
+        <title>{property.address} | Belga Propiedades</title>
         <meta property="og:type" content="Website" />
-        <meta property="og:title" content={`Propiedad | ${property.address}`} />
+        <meta property="og:title" content={`${property.address} | Belga Propiedades`} />
         <meta property="og:description" content="	Nuestra misión: Ofrecer la mas alta calidad de servicios inmobiliarios, buscando continuamente mejorar y ampliar la gama de servicios ofrecidos con el fin de satisfacer las necesidades de nuestros clientes actuales y futuros" />
         <meta property="og:url" content={`https://www.belga.com.ar/${property.id.toString()}`} />
         <meta property="og:type" content="Website" />

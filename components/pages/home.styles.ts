@@ -315,3 +315,26 @@ export const HeroWrapper = styled.div`
     height: 100vh;
   }
 `;
+
+export const DropdownRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .input--general {
+    width: 100px;
+    margin: 0;
+    input {
+      -webkit-appearance: none;
+      -moz-appearance: textfield;
+      border-radius: 0;
+    }
+  }
+  & + & {
+    margin-top: 10px;
+  }
+`;
+
+export const RowLabel = styled.span`
+  font-size: 14px;
+  font-weight: 300;
+`;

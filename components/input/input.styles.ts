@@ -33,6 +33,7 @@ export const InputStyled = styled.input`
   &[type="text"],
   &[type="email"],
   &[type="password"],
+  &[type="number"],
   &[type="tel"] {
     width: 100%;
     height: 40px;
@@ -57,6 +58,10 @@ export const InputStyled = styled.input`
       color: ${(props: any) => props.theme.black};
       opacity: 1;
     }
+  }
+  &[type="number"]{
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
   }
 `;
 

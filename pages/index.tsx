@@ -1,6 +1,7 @@
 import React from 'react';
 import Head from 'next/head'
 import Link from "next/link";
+import { useRouter } from 'next/router'
 import { GetServerSideProps } from 'next'
 import { Layout, Container } from 'components/layout';
 import { getDevelopments, getProperties } from 'services';
@@ -15,6 +16,7 @@ import { CardProp } from 'components/cardprop';
 import { Input } from 'components/input';
 import { Button } from 'components/button';
 import { MultiRange } from 'components/multirange';
+import { Dropdown } from 'components/dropdown';
 import { PATHS } from 'config';
 
 import {
@@ -35,13 +37,15 @@ import {
   PriceText,
   PriceInputWrapper,
   InputDivider,
-  HeroFooter
+  HeroFooter,
+  DropdownRow,
+  RowLabel
 } from 'components/pages/home.styles'
+
 import { TelIcon } from 'components/icons';
-import { InputAutoComplete } from 'components/inputautocomplete';
 import { neighborhoods } from 'helpers/neighborhoods';
 import { Select } from 'components/select';
-import { propertiesSelectOptions } from 'helpers/tokko';
+import { getSearchUrl, propertiesSelectOptions } from 'helpers/tokko';
 
 const Home = observer(({ properties, emprendimientos }: any) => {
 
@@ -49,35 +53,30 @@ const Home = observer(({ properties, emprendimientos }: any) => {
     rootStore: { userStore }
   } = useStore();
 
-  /* Handle price */
-  const [searchPrice, setSearchPrice] = useMergeState({
-    minPrice: 0,
-    maxPrice: 0
-  })
-
-  const handleSearchPick = () => {
-    const loc = formData.locations;
-    // setFormData({locations})
-  }
-
-  const findNeighborhood = (location: string) => {
-    return neighborhoods.find(item => location === item.location_name)
-  }
+  const router = useRouter()
 
   const [formData, setFormData] = useMergeState({
-    locations: []
+    locations: [],
+    min_rooms: 0,
+    max_rooms: 0,
+    operation_type: 1,
+    property_type: 0,
+    price_from: 0,
+    price_to: 0
   })
 
-  const localidades = neighborhoods.map(item => {
-    return {value: item.location_id, label: item.location_name}
-  })
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    router.push(getSearchUrl(formData));
+  }
+
+  const localidades = neighborhoods.map(item => ({value: item.location_id, label: item.location_name}))
 
   return (
     <Layout>
       <Head>
         <title>Belga Inmobiliaria</title>
       </Head>
-
 
       <HeroWrapper>
         <BlackLayer />
@@ -87,11 +86,11 @@ const Home = observer(({ properties, emprendimientos }: any) => {
             <SearchRow className='first--row'>
               <Select 
                 className='white first--row-input input--general'
-                options={[{value: "1", label: "Venta"}, {value: "2", label: "Alquiler"}]}
+                options={[{value: 1, label: "Venta"}, {value: 2, label: "Alquiler"}]}
                 isSearchable={false}
                 placeholder="Tipo de operación"
                 onChange={(opt) => {
-                  console.log(opt)
+                  setFormData({operation_type: opt.value})
                 }}
               />
 
@@ -99,28 +98,47 @@ const Home = observer(({ properties, emprendimientos }: any) => {
                 className='white first--row-input input--general'
                 options={propertiesSelectOptions}
                 isSearchable={false}
-                // value={[{value: 0, label: "Todos"}]}
                 placeholder="Tipo de propiedad"
                 onChange={(opt) => {
-                  console.log(opt)
+                  setFormData({property_type: opt.value})
                 }}
               />
 
-              <Input
-                className='white first--row-input input--general'
-                type='text'
-                placeHolder='Dormitorios'
-              />
+              <Dropdown 
+                className="white first--row-input"
+                placeholder="Dormitorios"
+              >
+                <DropdownRow>
+                  <RowLabel>Min.</RowLabel>
+                  <Input
+                    className='input--general'
+                    type='number'
+                    placeHolder='-'
+                    min={0}
+                    value={formData.min_rooms}
+                    onChange={(e) => {
+                      setFormData({min_rooms: e.currentTarget.value})
+                    }}
+                  />
+                </DropdownRow>
+                <DropdownRow>
+                  <RowLabel>Max.</RowLabel>
+                  <Input
+                    className='input--general'
+                    type='number'
+                    placeHolder='-'
+                    min={0}
+                    value={formData.max_rooms}
+                    onChange={(e) => {
+                      setFormData({max_rooms: e.currentTarget.value})
+                    }}
+                  />
+                </DropdownRow>
+              </Dropdown>
             </SearchRow>
 
             <SearchRow className='second--row'>
 
-              {/* <InputAutoComplete
-                className='white second--row-input input--general'
-                placeHolder='Barrio'
-                suggestions={localidades}
-                onChangeValue={(item) => setFormData({locations: findNeighborhood(item)})}
-              /> */}
               <Select 
                 options={localidades}
                 isMulti={true}
@@ -133,7 +151,7 @@ const Home = observer(({ properties, emprendimientos }: any) => {
                   })
                 }}
                 onChange={(opt) => {
-                  console.log(opt)
+                  setFormData({locations: opt.map((item: {value: number}) => item.value)})
                 }}
               />
 
@@ -150,7 +168,7 @@ const Home = observer(({ properties, emprendimientos }: any) => {
                     max={3000001}
                     step={10000}
                     onChange={({ minVal, maxVal }: any) => {
-                      setSearchPrice({ minPrice: minVal, maxPrice: maxVal })
+                      setFormData({price_from: minVal, price_to: maxVal})
                     }}
                   />
                   <PriceInputWrapper>
@@ -158,7 +176,7 @@ const Home = observer(({ properties, emprendimientos }: any) => {
                       className='input--price bottomLine'
                       type='text'
                       maxLength={15}
-                      value={formatToMoney(searchPrice.minPrice.toString(), true, 'USD', true)}
+                      value={formatToMoney(formData.price_from.toString(), true, 'USD', true)}
                     />
                     <InputDivider />
                     <Input
@@ -166,9 +184,9 @@ const Home = observer(({ properties, emprendimientos }: any) => {
                       type='text'
                       maxLength={15}
                       value={
-                        searchPrice.maxPrice >= 3000000
-                          ? formatToMoney(searchPrice.maxPrice.toString(), true, 'USD +', true)
-                          : formatToMoney(searchPrice.maxPrice.toString(), true, 'USD', true)
+                        formData.price_to >= 3000000
+                          ? formatToMoney(formData.price_to.toString(), true, 'USD +', true)
+                          : formatToMoney(formData.price_to.toString(), true, 'USD', true)
                       }
                     />
                   </PriceInputWrapper>
@@ -176,7 +194,7 @@ const Home = observer(({ properties, emprendimientos }: any) => {
 
               </RangeWrapper>
 
-              <Button className='third--row-button' text='Buscar' type='secondary' />
+              <Button className='third--row-button' text='Buscar' type='secondary' onClick={handleSubmit} />
             </SearchRow>
 
             <SearchRow className='fourth--row'>

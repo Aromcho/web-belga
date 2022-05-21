@@ -7,15 +7,12 @@ import { PropertyList } from 'components/propertylist';
 
 const PropertySearch = ({ data, statusCode }: any) => {
 
-  if (statusCode === 404) return <>404</>
-
-  if (statusCode === 500) return <>500</>
-
+  if (statusCode) return <>{statusCode}</>
 
   return (
     <Layout>
       <Container>
-        <PropertyList properties={data.objects} meta={data.meta} />
+        <PropertyList properties={data?.objects} meta={data?.meta} />
       </Container>
     </Layout>
   )
@@ -31,9 +28,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     })
   } catch (error: any) {
     props['statusCode'] = error?.response?.status || 500;
-
   }
-
 
   return {
     props

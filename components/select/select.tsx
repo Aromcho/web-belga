@@ -47,7 +47,7 @@ export const Select = ({value, onChange, isSearchable = true, hideSelectedOption
             ...provided,
             color: '#000',
             fontSize: 14,
-            fontWeight: 500,
+            fontWeight: 300,
             lineHeight: 20
           }),
           placeholder: (provided: any, state: any) => ({
@@ -55,7 +55,7 @@ export const Select = ({value, onChange, isSearchable = true, hideSelectedOption
             margin: '0 2px',
             color: '#000',
             fontSize: 14,
-            fontWeight: 500,
+            fontWeight: 300,
           }),
           valueContainer: (provided: any, state: any) => ({
             ...provided,
@@ -69,7 +69,12 @@ export const Select = ({value, onChange, isSearchable = true, hideSelectedOption
             borderColor: '#fff',
             backgroundColor: '#fff',
             "&:hover": {
-              borderColor: '#fff'
+              borderColor: '#fff',
+              boxShadow: '0 0 0 1px'
+            },
+            "&:focus": {
+              borderColor: '#fff',
+              boxShadow: '0 0 0 1px'
             }
           }),
           option: (provided: any, state: any) => ({

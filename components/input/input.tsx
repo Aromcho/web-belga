@@ -11,7 +11,7 @@ import {
 export interface InputProps {
   label?: string;
   placeHolder?: string;
-  value?: string;
+  value?: string | number;
   type?: string;
   bottomText?: string;
   errorText?: string;
@@ -22,6 +22,8 @@ export interface InputProps {
   onClick?: () => void;
   required?: boolean;
   readonly?: boolean;
+  min?: number;
+  max?: number;
 }
 
 export const Input = ({
@@ -36,6 +38,8 @@ export const Input = ({
   maxLength,
   required,
   readonly= false,
+  min,
+  max
 }: InputProps) => {
   return (
     <InputWrapper className={className}>
@@ -49,6 +53,8 @@ export const Input = ({
         maxLength={maxLength}
         required={required || false}
         readOnly={readonly}
+        min={min}
+        max={max}
       />
       {className === 'error' && <ErrorText>{errorText}</ErrorText>}
       {bottomText && <BottomText>{bottomText}</BottomText>}

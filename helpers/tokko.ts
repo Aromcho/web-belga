@@ -15,9 +15,12 @@ export const propertiesSelectOptions = [
 ]
 
 export const operationTypes: any = {
+  "todos": "1,2",
   "venta": 1,
   "alquiler": 2
 }
+
+export const operationArray = [{value: 1, label: "Venta"}, {value: 2, label: "Alquiler"}];
 
 export const propertyTypes: any = {
   "todos": 0,
@@ -45,7 +48,7 @@ export const parseTokkoParameters = (query: any) => {
   }
   
   // operation_types
-  if(query.opid){
+  if(query.opid && query.opid !== "todos"){
     query["operation_types"] = [operationTypes[query.opid]]
     delete query.opid;
   }
@@ -97,7 +100,7 @@ export const parseTokkoParameters = (query: any) => {
 }
 
 export const getSearchUrl = (params: any) => {
-  let url = `/${getKeyByValue(operationTypes, params.operation_type)}`;
+  let url = params.operation_type.length > 1 ? `/todos` : `/${getKeyByValue(operationTypes, params.operation_type[0])}`;
 
   if(params.property_type || params.property_type === 0) url = url + `/${getKeyByValue(propertyTypes, params.property_type)}`
 

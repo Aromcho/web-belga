@@ -59,7 +59,7 @@ const Home = observer(({ properties, emprendimientos }: any) => {
     locations: [],
     min_rooms: 0,
     max_rooms: 0,
-    operation_type: 1,
+    operation_type: [1],
     property_type: 0,
     price_from: 0,
     price_to: 0
@@ -88,9 +88,10 @@ const Home = observer(({ properties, emprendimientos }: any) => {
                 className='white first--row-input input--general'
                 options={[{value: 1, label: "Venta"}, {value: 2, label: "Alquiler"}]}
                 isSearchable={false}
+                isMulti={true}
                 placeholder="Tipo de operación"
                 onChange={(opt) => {
-                  setFormData({operation_type: opt.value})
+                  setFormData({operation_type: opt.map((item: {value: number}) => item.value)})
                 }}
               />
 

@@ -68,6 +68,7 @@ export const Select = ({value, onChange, isSearchable = true, hideSelectedOption
             padding: '0 25px',
             borderColor: '#fff',
             backgroundColor: '#fff',
+            minHeight: "38px",
             "&:hover": {
               borderColor: '#fff',
               boxShadow: '0 0 0 1px'

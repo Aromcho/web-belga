@@ -111,3 +111,14 @@ export const getDevelopmentsData = (list: any[]) => {
 export const getKeyByValue = (object: any, value: any) => {
   return Object.keys(object).find(key => object[key] === value);
 }
+
+export const getPropertyValuesForFilter = (v: string) => {
+  switch (v) {
+    case "todos":
+      return [{value: 1, label: "Venta"}, {value: 2, label: "Alquiler"}]
+    case "venta":
+      return [{value: 1, label: "Venta"}]
+    case "alquiler":
+      return [{value: 2, label: "Alquiler"}]
+  }
+}

@@ -5,6 +5,34 @@ export const PropertyListWrapper = styled.div`
 `;
 
 export const FiltersContainer = styled.div`
+	width: 90%;
+	max-width: 1920px;
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin: 0 auto 40px;
+	.input--general{
+		width: 20%;
+		border: 1px solid #000000;
+		margin: 0;
+		&.full{
+			width: 100%;
+			margin-bottom: 10px;
+		}
+	}
+	.form--button{
+		width: 20%;
+	}
+	.dropdown--input{
+		width: 100px;
+    margin: 0;
+    input {
+      -webkit-appearance: none;
+      -moz-appearance: textfield;
+      border-radius: 0;
+    }
+	}
 `;
 
 export const ListContainer = styled.div`

@@ -5,7 +5,7 @@ import { getProperties } from 'services';
 import { parseTokkoParameters, operationTypes } from 'helpers/tokko';
 import { PropertyList } from 'components/propertylist';
 
-const PropertySearch = ({data, statusCode}: any) => {
+const PropertySearch = ({data, query, statusCode}: any) => {
 
   if (statusCode === 404) return <>404</>
 
@@ -13,9 +13,7 @@ const PropertySearch = ({data, statusCode}: any) => {
   
   return (
     <Layout>
-      <Container>
-        <PropertyList properties={data.objects} meta={data.meta} />
-      </Container>
+      <PropertyList properties={data.objects} meta={data.meta} query={query} />
     </Layout>
   )
 }
@@ -29,6 +27,7 @@ export const getServerSideProps: GetServerSideProps = async ({query}) => {
       props['data'] = await getProperties({
         params: parseTokkoParameters({...query})
       })
+      props['query'] = query
     } catch (error: any) {
       props['statusCode'] = error.response.status
     }

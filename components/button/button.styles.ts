@@ -19,6 +19,7 @@ export const ButtonWrapper = styled.a`
   transition: all 0.3s ease-in-out;
   text-transform: uppercase;
   &:hover {
+    cursor: pointer;
     background-color: ${(props: any) => props.theme.secondary};
     border-color: ${(props: any) => props.theme.secondary};
   }

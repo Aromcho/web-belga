@@ -12,7 +12,7 @@ const PropertySearch = ({data, query, statusCode}: any) => {
   if (statusCode === 500) return <>500</>
   
   return (
-    <Layout>
+    <Layout menuTheme='light'>
       <PropertyList properties={data.objects} meta={data.meta} query={query} />
     </Layout>
   )

@@ -1,24 +1,24 @@
-import React from 'react';
-import { Global as GlobalStyling } from '@emotion/react';
+import React from "react";
+import { Global as GlobalStyling } from "@emotion/react";
 
-import { Footer } from 'components/footer';
-import { Menu } from 'components/menu';
+import { Footer } from "components/footer";
+import { Menu } from "components/menu";
 
-import {
-  LayoutWrapper, GlobalStyles
-} from './layout.styles';
+import { LayoutWrapper, GlobalStyles } from "./layout.styles";
 
 export interface LayoutProps {
   children?: React.ReactNode;
+  menuTheme?: "transparent" | "light" | "dark";
+  footerSmall?:boolean,
 }
 
-export const Layout = ({children}: LayoutProps) => {
+export const Layout = ({ children, menuTheme, footerSmall }: LayoutProps) => {
   return (
     <LayoutWrapper>
       <GlobalStyling styles={GlobalStyles} />
-      <Menu />
+      <Menu theme={menuTheme} />
       {children}
-      <Footer />
+      <Footer small={footerSmall} />
     </LayoutWrapper>
   );
 };

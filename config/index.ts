@@ -5,5 +5,6 @@ export const PATHS = {
   ROOT: "/",
   FAVORITES: "/favoritos",
   HIGHLIGHTED: "/destacados",
-  EMPRENDIMIENTOS: "/emprendimientos"
+  EMPRENDIMIENTOS: "/emprendimientos",
+  QUIEROVENDER: "/quiero-vender"
 };

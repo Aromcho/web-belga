@@ -1,6 +1,6 @@
 import React from 'react';
 import * as ol from 'ol';
-import { OSM } from 'ol/source';
+import { OSM, XYZ } from 'ol/source';
 import { fromLonLat } from 'ol/proj';
 import { Tile as TileLayer } from 'ol/layer';
 import { Point } from 'ol/geom';
@@ -25,8 +25,12 @@ export const Map = ({center, zoom, marker}: MapProps) => {
     const initialMap = new ol.Map({
       layers: [
         new TileLayer({
-          source: new OSM(),
-          visible: true,
+          source: new XYZ({
+            url: `https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}.png`
+          }),
+          preload: Infinity,
+          zIndex: 2,
+          maxZoom: 28
         }),
         vectorLayer
       ],

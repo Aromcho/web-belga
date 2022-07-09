@@ -39,7 +39,7 @@ export const SliderCardGallery = ({ img, className, galleryLink }: sliderCardGal
           <SwiperSlide key={k}>
             {galleryLink
               ? <WrapperImage>
-                <OverlayHover>Ver más info</OverlayHover>
+                <OverlayHover>MÁS INFO</OverlayHover>
                 <Link href={galleryLink} passHref><a className='link--gallery'></a></Link>
                 <SlideContainer style={{ backgroundImage: `url(${i})` }}></SlideContainer>
 

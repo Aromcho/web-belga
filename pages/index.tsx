@@ -223,7 +223,7 @@ const Home = observer(({ properties, emprendimientos }: any) => {
               <Button
                 className="third--row-button"
                 text="Buscar"
-                type="secondary"
+                type="secondary shine"
                 onClick={handleSubmit}
               />
             </SearchRow>
@@ -259,7 +259,11 @@ const Home = observer(({ properties, emprendimientos }: any) => {
         </Seleccion>
 
         <Container className="seleccion--container">
-          <Title title="Nuestra Selección" linkButton={PATHS.HIGHLIGHTED} />
+          <Title
+            title="Nuestra Selección"
+            linkButton={PATHS.HIGHLIGHTED}
+            buttonStyle="outline red"
+          />
           <PropList>
             {properties.map((item: Property, k: number) => {
               return (
@@ -279,7 +283,7 @@ const Home = observer(({ properties, emprendimientos }: any) => {
               link={PATHS.HIGHLIGHTED}
               className="button--mobile"
               text="Ver más"
-              type="outline black"
+              type="outline red"
             />
           </Link>
         </Container>

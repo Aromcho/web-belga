@@ -197,11 +197,9 @@ export const MenuItem = styled.li`
   max-width: 180px;
   align-items: center;
   display: flex;
-  margin-right: 30px;
+  margin-right: 40px;
 
   .menu--link {
-    width: 100%;
-    min-width: 180px;
     height: 100%;
     border-bottom: 2px solid transparent;
     color: ${(props: any) => props.theme.white};
@@ -220,10 +218,11 @@ export const MenuItem = styled.li`
 `;
 
 export const MenuList = styled.ul`
-  width: auto;
+  width: 70%;
   align-items: center;
   display: flex;
   margin-left: auto;
+  justify-content: space-between;
   @media screen and (max-width: 1100px) {
     display: none;
   }
@@ -305,7 +304,7 @@ export const MenuInfoItem = styled.ul`
     transition: all 0.3s ease-in-out;
     text-transform: uppercase;
     &:hover {
-      color: ${(props: any) => props.theme.primary};
+      filter: drop-shadow(0 0 3px ${(props: any) => props.theme.white}80);
     }
   }
 `;
@@ -466,7 +465,8 @@ export const MenuContainer = styled.div`
             color: ${(props: any) => props.theme.white};
           }
         }
-        &:hover, &.active {
+        &:hover,
+        &.active {
           ${IconWrapper} {
             svg {
               color: ${(props: any) => props.theme.black};
@@ -501,7 +501,9 @@ export const MenuContainer = styled.div`
         .info--link {
           color: ${(props: any) => props.theme.black};
           &:hover {
-            color: ${(props: any) => props.theme.primary};
+            filter: drop-shadow(
+              30px 10px 4px ${(props: any) => props.theme.white}
+            );
           }
         }
       }

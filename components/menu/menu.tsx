@@ -117,12 +117,17 @@ export const Menu = observer(({ theme = "light" }: MenuProps) => {
               </Link>
             </MenuItem>
             <MenuItem>
-              <Button text="Quiero vender" className="button--menu" link={PATHS.QUIEROVENDER} />
+              <Button
+                text="Quiero vender"
+                className="button--menu"
+                link={PATHS.QUIEROVENDER}
+              />
             </MenuItem>
           </MenuList>
         </Container>
 
         <BurgerButton
+          onMouseEnter={() => setShowMenu(true)}
           onClick={() => setShowMenu(!showMenu)}
           className={classes({ active: showMenu })}
         >

@@ -77,7 +77,7 @@ export const Footer = ({ small = true }: FooterProps) => {
       icon: <LinkedinCircleIcon />,
     },
     {
-      link: "https://www.facebook.com/messages/t/inmobiliariabelga",
+      link: "https://m.me/inmobiliariabelga",
       icon: <MessengerCircleIcon />,
     },
   ];

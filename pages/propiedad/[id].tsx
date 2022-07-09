@@ -1,26 +1,31 @@
 import React from 'react';
 import dynamic from 'next/dynamic'
+import Link from "next/link";
+import Head from 'next/head'
 import parse from 'html-react-parser';
 import { GetServerSideProps } from 'next'
-import { Layout, Container } from 'components/layout';
-import { getProperties, getPropertyById } from 'services';
-import { PATHS } from 'config';
-import Link from "next/link";
-import { classes, formatToMoney } from 'helpers';
-import Head from 'next/head'
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { MapProps } from 'components/map/map';
-import { useMergeState } from 'helpers/hooks';
 import Lightbox, { ImagesListType } from 'react-spring-lightbox';
 
+import { Layout, Container } from 'components/layout';
 import { Button } from 'components/button';
 import { ContactForm } from 'components/contactform';
 import { Title } from 'components/title';
 import { CardProp } from 'components/cardprop';
+import { ArrowBackIcon, ArrowSubmitIcon, CloseIcon, HeartIcon, MailIcon, WhatsappIcon } from 'components/icons';
+import { LeafletMapProps } from 'components/leafletMap/leafletMap';
 // import { Map } from 'components/map';
 
-const DynamicMap = dynamic<MapProps>(() => import('components/map').then((mod) => mod.Map), { ssr: false })
+// const DynamicMap = dynamic<MapProps>(() => import('components/map').then((mod) => mod.Map), { ssr: false })
+// import { LeafletMap } from 'components/leafletMap';
+
+import { useMergeState } from 'helpers/hooks';
+import { classes, formatToMoney } from 'helpers';
+import { getProperties, getPropertyById } from 'services';
+import { PATHS } from 'config';
+
+const LeafletMap = dynamic<LeafletMapProps>(() => import('components/leafletMap').then((mod) => mod.LeafletMap), { ssr: false })
 
 import {
   PropContainer,
@@ -67,13 +72,13 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-import { ArrowBackIcon, ArrowSubmitIcon, CloseIcon, HeartIcon, MailIcon, WhatsappIcon } from 'components/icons';
-
 
 const PropertyDetail = ({ properties, property, statusCode }: any) => {
   if (statusCode === 404) return <>404</>
 
   if (statusCode === 500) return <>500</>
+
+  console.log(property)
 
   /* Handle like prop*/
   const [isLiked, setIsLiked] = React.useState<boolean>(false)
@@ -262,7 +267,9 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
 
           <MapProp>
             {/* <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6567.948790442833!2d-58.38486108228965!3d-34.60480896825873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4aa9f0a6da5edb%3A0x11bead4e234e558b!2sObelisco!5e0!3m2!1ses-419!2sar!4v1648690340385!5m2!1ses-419!2sar" /> */}
-            <DynamicMap marker={{ lon: property.branch.geo_long, lat: property.branch.geo_lat }} center={{ lon: property.branch.geo_long, lat: property.branch.geo_lat }} zoom={15} />
+            {/* <DynamicMap marker={{ lon: property.branch.geo_long, lat: property.branch.geo_lat }} center={{ lon: property.branch.geo_long, lat: property.branch.geo_lat }} zoom={15} /> */}
+            <LeafletMap />
+          
           </MapProp>
 
           <SimilarProps>

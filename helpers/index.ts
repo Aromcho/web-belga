@@ -122,3 +122,11 @@ export const getPropertyValuesForFilter = (v: string) => {
       return [{value: 2, label: "Alquiler"}]
   }
 }
+
+export const getDropdownValueRooms = (options: any) => {
+  let st = ''
+  if(options.min_rooms > 0 && options.max_rooms == 0) st = `Min: ${options.min_rooms}`
+  if(options.max_rooms > 0 && options.min_rooms == 0) st = `Max: ${options.max_rooms}`
+  if(options.max_rooms > 0 && options.min_rooms > 0) st = `${options.min_rooms} - ${options.max_rooms}`
+  return st
+}

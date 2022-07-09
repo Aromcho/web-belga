@@ -7,7 +7,7 @@ import { Layout, Container } from 'components/layout';
 import { getDevelopments, getProperties } from 'services';
 import { observer } from 'mobx-react-lite';
 import { useStore } from 'stores';
-import { formatToMoney, getDropdownValueRooms, Property } from 'helpers';
+import { formatToMoney, getDropdownValue, Property } from 'helpers';
 import { useMergeState } from 'helpers/hooks';
 
 import { SocialSidebar } from 'components/socialsidebar';
@@ -108,7 +108,7 @@ const Home = observer(({ properties, emprendimientos }: any) => {
               <Dropdown 
                 className="white first--row-input"
                 placeholder="Dormitorios"
-                value={getDropdownValueRooms(formData)}
+                value={getDropdownValue(formData.min_rooms, formData.max_rooms, 'dormitorios')}
               >
                 <DropdownRow>
                   <RowLabel>Min.</RowLabel>

@@ -116,6 +116,8 @@ export const getSearchUrl = (params: any) => {
   if(params.price_to && params.price_to > 0 && params.price_to < 3000001) query['price_to'] = params.price_to;
   if(params.min_rooms && params.min_rooms > 0) query['rooms_from'] = params.min_rooms;
   if(params.max_rooms && params.max_rooms > 0) query['rooms_to'] = params.max_rooms;
+  if(params.min_baths && params.min_baths > 0) query['baths_from'] = params.min_baths;
+  if(params.max_baths && params.max_baths > 0) query['baths_to'] = params.max_rooms;
 
   if(Object.keys(query).length > 0) url = url + '?' + Object.keys(query).map(item => `${item}=${query[item]}`).join('&');
 

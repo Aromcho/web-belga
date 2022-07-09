@@ -37,7 +37,9 @@ const Favorites = observer(() => {
       <Container>
         {status === "loading" && <p>Cargando</p>}
         {status === "empty" && <p>No posee favoritos cargados</p>}
-        <PropertyList properties={favs} filters={false} meta={{total_count: favs.length, limit: 26, offset: 0, next: '', previous: ''}} saveSearch={false}/>
+        {status === "finish" &&  
+          <PropertyList properties={favs} filters={false} meta={{total_count: favs.length, limit: 26, offset: 0, next: '', previous: ''}} saveSearch={false}/>
+        }
         <ContactForm className='full' />
       </Container>
     </Layout>

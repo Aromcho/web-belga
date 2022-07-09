@@ -46,8 +46,15 @@ export const CardProp = ({
   property
 }: CardPropProps) => {
 
+  
   const link = inversion ? `/emprendimientos/${property.id.toString()}` : `/propiedad/${property.id.toString()}`;
   const media = property.photos.slice(0, 10).map((photo: any) => photo.image );
+  
+  const [isLiked, setIsLiked] = React.useState(false);
+  
+  React.useEffect(() => {
+    setIsLiked(liked);
+  }, [liked]);
 
   const handleLike = () => {
     if(onLiked) onLiked();
@@ -82,7 +89,7 @@ export const CardProp = ({
             {inversion && <Bedrooms>{`${property.suite_amount} ambientes`}</Bedrooms>}
           </DescWrapper>
           {!inversion &&
-            <LikeWrapper className={classes({ liked: liked })} onClick={handleLike}>
+            <LikeWrapper className={classes({ liked: isLiked })} onClick={handleLike}>
               <HeartIcon className='icon--heart' />
             </LikeWrapper>
           }

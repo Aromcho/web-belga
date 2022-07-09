@@ -424,7 +424,7 @@ const PropertyDetail = ({
             </BodyFeatures>
 
             <BodyDesc>
-              <DescTitle>Decripción</DescTitle>
+              <DescTitle>Descripción</DescTitle>
               <DescText>
                 {parse(property.rich_description ?? property.description)}
               </DescText>

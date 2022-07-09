@@ -125,6 +125,7 @@ export const getPropertyValuesForFilter = (v: string) => {
 
 export const getDropdownValue = (min: any, max: any, type: string) => {
   let st = ''
+  if(min === 0 && max === 0) return ''
   if(min > 0 && max == 0) st = `Min: ${min}`
   if(max > 0 && min == 0) st = `Max: ${max}`
   if(max > 0 && min > 0) st = `${min} - ${max}`

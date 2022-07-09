@@ -9,9 +9,9 @@ import { ContactForm } from 'components/contactform';
 import { Select } from 'components/select';
 import { Container } from 'components/layout';
 
-import { classes, Property } from 'helpers';
+import { classes, getDropdownValue, Property } from 'helpers';
 import { neighborhoods } from 'helpers/neighborhoods';
-import { operationArray, operationTypes, propertiesSelectOptions, propertyTypes } from 'helpers/tokko';
+import { getSearchUrl, operationArray, operationTypes, propertiesSelectOptions, propertyTypes } from 'helpers/tokko';
 import { useMergeState } from 'helpers/hooks';
 import { useStore } from 'stores';
 import { PATHS } from 'config';
@@ -55,6 +55,8 @@ export const PropertyList = observer(({query, meta, properties, filters = true, 
     if(query?.opid) setFormData({operation_type: operationTypes[query.opid].toString()?.split(',').map((item: string) => parseInt(item))});
     if(query?.prid) setFormData({property_type: propertyTypes[query?.prid]});
     if(query?.locid) setFormData({locations: localidades.filter(item => query?.locid.includes(item.label.toLowerCase().replace(' ', '-'))).map(item => item.value)});
+    if(query?.rooms_from) setFormData({min_rooms: query?.rooms_from})
+    if(query?.rooms_to) setFormData({max_rooms: query?.rooms_to})
   }, [query])
 
   const [formData, setFormData] = useMergeState<any>({
@@ -70,6 +72,12 @@ export const PropertyList = observer(({query, meta, properties, filters = true, 
   })
 
   const router = useRouter();
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    router.push(getSearchUrl(formData));
+  };
+
   const currentPage = (meta.offset / meta.limit) + 1;
   const maxPage = Math.ceil(meta.total_count / meta.limit);
 
@@ -116,6 +124,7 @@ export const PropertyList = observer(({query, meta, properties, filters = true, 
           <Dropdown 
             className="input--general"
             placeholder="Dormitorios"
+            value={getDropdownValue(formData.min_rooms, formData.max_rooms, 'dormitorios')}
           >
             <DropdownRow>
               <RowLabel>Min.</RowLabel>
@@ -136,7 +145,7 @@ export const PropertyList = observer(({query, meta, properties, filters = true, 
                 className="dropdown--input"
                 type='number'
                 placeHolder='-'
-                min={0}
+                min={formData.min_rooms}
                 value={formData.max_rooms}
                 onChange={(e) => {
                   setFormData({max_rooms: e.currentTarget.value})
@@ -148,6 +157,7 @@ export const PropertyList = observer(({query, meta, properties, filters = true, 
           <Dropdown 
             className="input--general"
             placeholder="Baños"
+            value={getDropdownValue(formData.min_baths, formData.max_baths, 'baños')}
           >
             <DropdownRow>
               <RowLabel>Min.</RowLabel>
@@ -177,7 +187,7 @@ export const PropertyList = observer(({query, meta, properties, filters = true, 
             </DropdownRow>
           </Dropdown>
 
-          <Button className="form--button" text='Buscar' type='secondary' onClick={() => {}} />
+          <Button className="form--button" text='Buscar' type='secondary' onClick={handleSubmit} />
     
         </FiltersContainer>
       }

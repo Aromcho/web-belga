@@ -19,6 +19,7 @@ export const ButtonWrapper = styled.a`
   transition: all 0.3s ease-in-out;
   text-transform: uppercase;
   &:hover {
+    cursor: pointer;
     background-color: ${(props: any) => props.theme.secondary};
     border-color: ${(props: any) => props.theme.secondary};
   }
@@ -26,11 +27,20 @@ export const ButtonWrapper = styled.a`
   &.secondary {
     border-color: ${(props: any) => props.theme.secondary};
     background-color: ${(props: any) => props.theme.secondary};
-    color: ${(props: any) => props.theme.wite};
+    color: ${(props: any) => props.theme.white};
     &:hover {
       border-color: ${(props: any) => props.theme.primary};
       background-color: ${(props: any) => props.theme.primary};
       color: ${(props: any) => props.theme.black};
+    }
+
+    &.shine {
+      &:hover {
+        border-color: ${(props: any) => props.theme.secondary};
+        background-color: ${(props: any) => props.theme.secondary};
+        color: ${(props: any) => props.theme.white};
+        text-shadow: 0 0 3px ${(props: any) => props.theme.white}60;
+      }
     }
   }
 
@@ -47,6 +57,10 @@ export const ButtonWrapper = styled.a`
     &.black {
       border: 2px solid ${(props: any) => props.theme.black};
       color: ${(props: any) => props.theme.black};
+      &:hover {
+        background-color: ${(props: any) => props.theme.black};
+        color: ${(props: any) => props.theme.white};
+      }
     }
 
     &.red {

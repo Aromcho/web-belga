@@ -9,7 +9,7 @@ const PropertySearch = ({ data, query }: any) => {
 
 
   return (
-    <Layout>
+    <Layout menuTheme='dark'>
       <PropertyList properties={data.objects} meta={data.meta} query={query} />
     </Layout>
   )

@@ -116,12 +116,13 @@ export const MapProp = styled.div`
   margin-bottom: 80px;
   padding-bottom: 45%;
   transform: translateX(-50%);
+  overflow: hidden;
   position: relative;
   left: 50%;
   @media screen and (max-width: 460px) {
     padding-bottom: 120%;
   }
-  > div {
+  > * {
     width: 100%;
     height: 100%;
     position: absolute;

@@ -1,5 +1,5 @@
-import React from 'react';
-import Head from 'next/head'
+import React from "react";
+import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from 'next/router'
 import { GetServerSideProps } from 'next'
@@ -10,14 +10,14 @@ import { useStore } from 'stores';
 import { formatToMoney, getDropdownValue, Property } from 'helpers';
 import { useMergeState } from 'helpers/hooks';
 
-import { SocialSidebar } from 'components/socialsidebar';
-import { Title } from 'components/title';
-import { CardProp } from 'components/cardprop';
-import { Input } from 'components/input';
-import { Button } from 'components/button';
-import { MultiRange } from 'components/multirange';
-import { Dropdown } from 'components/dropdown';
-import { PATHS } from 'config';
+import { SocialSidebar } from "components/socialsidebar";
+import { Title } from "components/title";
+import { CardProp } from "components/cardprop";
+import { Input } from "components/input";
+import { Button } from "components/button";
+import { MultiRange } from "components/multirange";
+import { Dropdown } from "components/dropdown";
+import { PATHS } from "config";
 
 import {
   HeroWrapper,
@@ -39,21 +39,20 @@ import {
   InputDivider,
   HeroFooter,
   DropdownRow,
-  RowLabel
-} from 'components/pages/home.styles'
+  RowLabel,
+} from "components/pages/home.styles";
 
-import { TelIcon } from 'components/icons';
-import { neighborhoods } from 'helpers/neighborhoods';
-import { Select } from 'components/select';
-import { getSearchUrl, propertiesSelectOptions } from 'helpers/tokko';
+import { TelIcon } from "components/icons";
+import { neighborhoods } from "helpers/neighborhoods";
+import { Select } from "components/select";
+import { getSearchUrl, propertiesSelectOptions } from "helpers/tokko";
 
 const Home = observer(({ properties, emprendimientos }: any) => {
-
   const {
-    rootStore: { userStore }
+    rootStore: { userStore },
   } = useStore();
 
-  const router = useRouter()
+  const router = useRouter();
 
   const [formData, setFormData] = useMergeState({
     locations: [],
@@ -62,50 +61,62 @@ const Home = observer(({ properties, emprendimientos }: any) => {
     operation_type: [1],
     property_type: 0,
     price_from: 0,
-    price_to: 0
-  })
+    price_to: 0,
+  });
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
     router.push(getSearchUrl(formData));
-  }
+  };
 
-  const localidades = neighborhoods.map(item => ({value: item.location_id, label: item.location_name}))
+  const localidades = neighborhoods.map((item) => ({
+    value: item.location_id,
+    label: item.location_name,
+  }));
 
   return (
-    <Layout>
+    <Layout menuTheme="transparent" footerSmall={false}>
       <Head>
         <title>Belga Inmobiliaria</title>
       </Head>
 
       <HeroWrapper>
         <BlackLayer />
-        <Hero><SocialSidebar /></Hero>
-        <Container className='hero--container align--center'>
+        <Hero>
+          <SocialSidebar />
+        </Hero>
+        <Container className="hero--container align--center">
           <SearchFormWrapper>
-            <SearchRow className='first--row'>
-              <Select 
-                className='white first--row-input input--general'
-                options={[{value: 1, label: "Venta"}, {value: 2, label: "Alquiler"}]}
+            <SearchRow className="first--row">
+              <Select
+                className="white first--row-input input--general"
+                options={[
+                  { value: 1, label: "Venta" },
+                  { value: 2, label: "Alquiler" },
+                ]}
                 isSearchable={false}
                 isMulti={true}
                 placeholder="Tipo de operación"
                 onChange={(opt) => {
-                  setFormData({operation_type: opt.map((item: {value: number}) => item.value)})
+                  setFormData({
+                    operation_type: opt.map(
+                      (item: { value: number }) => item.value
+                    ),
+                  });
                 }}
               />
 
-              <Select 
-                className='white first--row-input input--general'
+              <Select
+                className="white first--row-input input--general"
                 options={propertiesSelectOptions}
                 isSearchable={false}
                 placeholder="Tipo de propiedad"
                 onChange={(opt) => {
-                  setFormData({property_type: opt.value})
+                  setFormData({ property_type: opt.value });
                 }}
               />
 
-              <Dropdown 
+              <Dropdown
                 className="white first--row-input"
                 placeholder="Dormitorios"
                 value={getDropdownValue(formData.min_rooms, formData.max_rooms, 'dormitorios')}
@@ -113,13 +124,13 @@ const Home = observer(({ properties, emprendimientos }: any) => {
                 <DropdownRow>
                   <RowLabel>Min.</RowLabel>
                   <Input
-                    className='input--general'
-                    type='number'
-                    placeHolder='-'
+                    className="input--general"
+                    type="number"
+                    placeHolder="-"
                     min={0}
                     value={formData.min_rooms}
                     onChange={(e) => {
-                      setFormData({min_rooms: e.currentTarget.value})
+                      setFormData({ min_rooms: e.currentTarget.value });
                     }}
                   />
                 </DropdownRow>
@@ -132,16 +143,15 @@ const Home = observer(({ properties, emprendimientos }: any) => {
                     min={formData.min_rooms}
                     value={formData.max_rooms}
                     onChange={(e) => {
-                      setFormData({max_rooms: e.currentTarget.value})
+                      setFormData({ max_rooms: e.currentTarget.value });
                     }}
                   />
                 </DropdownRow>
               </Dropdown>
             </SearchRow>
 
-            <SearchRow className='second--row'>
-
-              <Select 
+            <SearchRow className="second--row">
+              <Select
                 options={localidades}
                 isMulti={true}
                 placeholder="Barrios"
@@ -149,17 +159,18 @@ const Home = observer(({ properties, emprendimientos }: any) => {
                 styles={{
                   container: (provided: any, state: any) => ({
                     ...provided,
-                    marginBottom: 15
-                  })
+                    marginBottom: 15,
+                  }),
                 }}
                 onChange={(opt) => {
-                  setFormData({locations: opt.map((item: {value: number}) => item.value)})
+                  setFormData({
+                    locations: opt.map((item: { value: number }) => item.value),
+                  });
                 }}
               />
-
             </SearchRow>
 
-            <SearchRow className='third--row'>
+            <SearchRow className="third--row">
               <RangeWrapper>
                 <PriceText>Precio</PriceText>
 
@@ -170,86 +181,126 @@ const Home = observer(({ properties, emprendimientos }: any) => {
                     max={3000001}
                     step={10000}
                     onChange={({ minVal, maxVal }: any) => {
-                      setFormData({price_from: minVal, price_to: maxVal})
+                      setFormData({ price_from: minVal, price_to: maxVal });
                     }}
                   />
                   <PriceInputWrapper>
                     <Input
-                      className='input--price bottomLine'
-                      type='text'
+                      className="input--price bottomLine"
+                      type="text"
                       maxLength={15}
-                      value={formatToMoney(formData.price_from.toString(), true, 'USD', true)}
+                      value={formatToMoney(
+                        formData.price_from.toString(),
+                        true,
+                        "USD",
+                        true
+                      )}
                     />
                     <InputDivider />
                     <Input
-                      className='input--price bottomLine'
-                      type='text'
+                      className="input--price bottomLine"
+                      type="text"
                       maxLength={15}
                       value={
                         formData.price_to >= 3000000
-                          ? formatToMoney(formData.price_to.toString(), true, 'USD +', true)
-                          : formatToMoney(formData.price_to.toString(), true, 'USD', true)
+                          ? formatToMoney(
+                              formData.price_to.toString(),
+                              true,
+                              "USD +",
+                              true
+                            )
+                          : formatToMoney(
+                              formData.price_to.toString(),
+                              true,
+                              "USD",
+                              true
+                            )
                       }
                     />
                   </PriceInputWrapper>
                 </PriceRange>
-
               </RangeWrapper>
 
-              <Button className='third--row-button' text='Buscar' type='secondary' onClick={handleSubmit} />
+              <Button
+                className="third--row-button"
+                text="Buscar"
+                type="secondary shine"
+                onClick={handleSubmit}
+              />
             </SearchRow>
 
-            <SearchRow className='fourth--row'>
-              <Button className='fourth--row-button' text='Quiero vender' />
+            <SearchRow className="fourth--row">
+              <Button className="fourth--row-button" text="Quiero vender" />
             </SearchRow>
 
             <HeroFooter>
-              <Link href="#"><a className='head--footer-link' target='_blank'><TelIcon /></a></Link>
-              <Link href="#"><a className='head--footer-link' target='_blank'><TelIcon /></a></Link>
-              <Link href="#"><a className='head--footer-link' target='_blank'><TelIcon /></a></Link>
+              <Link href="#">
+                <a className="head--footer-link" target="_blank">
+                  <TelIcon />
+                </a>
+              </Link>
+              <Link href="#">
+                <a className="head--footer-link" target="_blank">
+                  <TelIcon />
+                </a>
+              </Link>
+              <Link href="#">
+                <a className="head--footer-link" target="_blank">
+                  <TelIcon />
+                </a>
+              </Link>
             </HeroFooter>
-
           </SearchFormWrapper>
-
         </Container>
-
       </HeroWrapper>
 
       <SeleccionSection>
-        <Seleccion><SocialSidebar color='red' /></Seleccion>
+        <Seleccion>
+          <SocialSidebar color="red" />
+        </Seleccion>
 
-        <Container className='seleccion--container'>
-          <Title title='Nuestra Selección' linkButton={PATHS.HIGHLIGHTED} />
+        <Container className="seleccion--container">
+          <Title
+            title="Nuestra Selección"
+            linkButton={PATHS.HIGHLIGHTED}
+            buttonStyle="outline red"
+          />
           <PropList>
             {properties.map((item: Property, k: number) => {
               return (
                 <CardProp
                   key={k}
-                  className='card--prop-home'
+                  className="card--prop-home"
                   property={item}
                   liked={userStore.favorites.includes(item.id)}
                   onLiked={() => userStore.toggleFavorite(item.id)}
                 />
-              )
+              );
             })}
           </PropList>
 
-          <Link href={PATHS.HIGHLIGHTED} passHref><Button link={PATHS.HIGHLIGHTED} className='button--mobile' text='Ver más' type='outline black' /></Link>
-
+          <Link href={PATHS.HIGHLIGHTED} passHref>
+            <Button
+              link={PATHS.HIGHLIGHTED}
+              className="button--mobile"
+              text="Ver más"
+              type="outline red"
+            />
+          </Link>
         </Container>
-
       </SeleccionSection>
 
       <InversionSection>
-        <Inversion><SocialSidebar color='black' /></Inversion>
+        <Inversion>
+          <SocialSidebar color="black" />
+        </Inversion>
 
-        <Container className='inversion--container'>
+        <Container className="inversion--container">
           <InversionList>
-
             <InversionItem>
               <Title
-                title='Tu próxima inversión'
-                buttonStyle='outline black'
+                title="Tu próxima inversión"
+                buttonStyle="outline black"
                 vertical
                 linkButton={PATHS.EMPRENDIMIENTOS}
               />
@@ -258,50 +309,48 @@ const Home = observer(({ properties, emprendimientos }: any) => {
             {emprendimientos?.map((item: Property, k: number) => {
               return (
                 <InversionItem>
-                  <CardProp
-                    key={k}
-                    property={item}
-                    inversion
-                  />
+                  <CardProp key={k} property={item} inversion />
                 </InversionItem>
-              )
+              );
             })}
           </InversionList>
 
-          <Link href={PATHS.EMPRENDIMIENTOS} passHref><Button link={PATHS.EMPRENDIMIENTOS} className='button--mobile' text='Ver más' type='outline black' /></Link>
-
+          <Link href={PATHS.EMPRENDIMIENTOS} passHref>
+            <Button
+              link={PATHS.EMPRENDIMIENTOS}
+              className="button--mobile"
+              text="Ver más"
+              type="outline black"
+            />
+          </Link>
         </Container>
       </InversionSection>
-
-
-
     </Layout>
-  )
+  );
 });
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-
   // Only get starred & ventas
   const { objects } = await getProperties({
     params: {
       filters: [["is_starred_on_web", "=", true]],
       operation_types: [1],
-      limit: 2
-    }
-  })
+      limit: 2,
+    },
+  });
 
   const emprendimientos: any = await getDevelopments({
     params: {
-      limit: 2
-    }
-  })
+      limit: 2,
+    },
+  });
 
   return {
     props: {
       properties: objects,
-      emprendimientos: emprendimientos.objects
-    }
-  }
-}
+      emprendimientos: emprendimientos.objects,
+    },
+  };
+};
 
 export default Home;

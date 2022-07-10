@@ -6,14 +6,12 @@ import { useStore } from "stores";
 import { Layout, Container } from "components/layout";
 import { ArrowBackIcon } from "components/icons";
 import { ContactForm } from "components/forms/contactform";
-
 import {
-  BusquedasContainer,
   BackWrapper,
-  Title,
+  BusquedasContainer,
   FormWrapper,
+  Title,
 } from "components/pages/busquedasGuardadas.styles";
-
 
 const BusquedasGuardadas = observer(() => {
   const {

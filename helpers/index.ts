@@ -47,20 +47,25 @@ export const formatToMoney = (
     if (short) {
       if (number.toString().length >= 7) {
         const n = number.toString().slice(0, -6);
-        return `${currency} ${n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} M`;
+        return `${currency} ${n
+          .toString()
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ".")} M`;
       } else {
-        return `${currency} ${number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`;
+        return `${currency} ${number
+          .toString()
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`;
       }
     } else {
-      return `${currency} ${number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`;
+      return `${currency} ${number
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`;
     }
   }
-  
-  if(!withCurrency || !short){
+
+  if (!withCurrency || !short) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 };
-
 
 export interface Property {
   location: {
@@ -86,49 +91,67 @@ export interface Property {
 }
 
 export const getDevelopmentsData = (list: any[]) => {
-
   const obj: any = {};
 
-  const roofed_surface = list.map(item => Math.round(item.roofed_surface))
-  const total_surface = list.map(item => item?.total_surface)
-  const unroofed_surface = list.map(item => item?.unroofed_surface)
-  
-  const semiroofed_surface = list.map(item => item?.total_surface)
-  const room_amount = list.map(item => item?.room_amount)
-  const price = list.map(item => item?.operations[0]?.prices[0]?.price)
+  const roofed_surface = list.map((item) => Math.round(item.roofed_surface));
+  const total_surface = list.map((item) => item?.total_surface);
+  const unroofed_surface = list.map((item) => item?.unroofed_surface);
 
-  obj['roofed_surface'] = `${Math.min(...roofed_surface)} a ${Math.max(...roofed_surface)}`
-  obj['total_surface'] = `${Math.min(...total_surface)} a ${Math.max(...total_surface)}`
-  obj['unroofed_surface'] = `${Math.min(...unroofed_surface)} a ${Math.max(...unroofed_surface)}`
-  obj['semiroofed_surface'] = `${Math.min(...semiroofed_surface)} a ${Math.max(...semiroofed_surface)}`
-  obj['room_amount'] = `${Math.min(...room_amount)} a ${Math.max(...room_amount)}`
-  obj['price'] = `${formatToMoney(Math.min(...price))} a ${formatToMoney(Math.max(...price))}`
-  obj['currency'] = list[0]?.operations[0]?.prices[0]?.currency;
-  
-  return obj
-}
+  const semiroofed_surface = list.map((item) => item?.total_surface);
+  const room_amount = list.map((item) => item?.room_amount);
+  const price = list.map((item) => item?.operations[0]?.prices[0]?.price);
+
+  obj["roofed_surface"] = `${Math.min(...roofed_surface)} a ${Math.max(
+    ...roofed_surface
+  )}`;
+  obj["total_surface"] = `${Math.min(...total_surface)} a ${Math.max(
+    ...total_surface
+  )}`;
+  obj["unroofed_surface"] = `${Math.min(...unroofed_surface)} a ${Math.max(
+    ...unroofed_surface
+  )}`;
+  obj["semiroofed_surface"] = `${Math.min(...semiroofed_surface)} a ${Math.max(
+    ...semiroofed_surface
+  )}`;
+  obj["room_amount"] = `${Math.min(...room_amount)} a ${Math.max(
+    ...room_amount
+  )}`;
+  obj["price"] = `${formatToMoney(Math.min(...price))} a ${formatToMoney(
+    Math.max(...price)
+  )}`;
+  obj["currency"] = list[0]?.operations[0]?.prices[0]?.currency;
+
+  return obj;
+};
 
 export const getKeyByValue = (object: any, value: any) => {
-  return Object.keys(object).find(key => object[key] === value);
-}
+  return Object.keys(object).find((key) => object[key] === value);
+};
 
 export const getPropertyValuesForFilter = (v: string) => {
   switch (v) {
     case "todos":
-      return [{value: 1, label: "Venta"}, {value: 2, label: "Alquiler"}]
+      return [
+        { value: 1, label: "Venta" },
+        { value: 2, label: "Alquiler" },
+      ];
     case "venta":
-      return [{value: 1, label: "Venta"}]
+      return [{ value: 1, label: "Venta" }];
     case "alquiler":
-      return [{value: 2, label: "Alquiler"}]
+      return [{ value: 2, label: "Alquiler" }];
   }
-}
+};
 
 export const getDropdownValue = (min: any, max: any, type: string) => {
-  let st = ''
-  if(min === 0 && max === 0) return ''
-  if(min > 0 && max == 0) st = `Min: ${min}`
-  if(max > 0 && min == 0) st = `Max: ${max}`
-  if(max > 0 && min > 0) st = `${min} - ${max}`
-  if(max === min) st = `${min} ${type}`
-  return st
-}
+  let st = "";
+  if (min === 0 && max === 0) return "";
+  if (min > 0 && max == 0) st = `Min: ${min}`;
+  if (max > 0 && min == 0) st = `Max: ${max}`;
+  if (max > 0 && min > 0) st = `${min} - ${max}`;
+  if (max === min) st = `${min} ${type}`;
+  return st;
+};
+
+export const getWindowDimensions = () => {
+  if (typeof window !== "undefined") return window.innerWidth;
+};

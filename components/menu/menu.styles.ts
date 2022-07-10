@@ -469,7 +469,7 @@ export const MenuContainer = styled.div`
         &.active {
           ${IconWrapper} {
             svg {
-              color: ${(props: any) => props.theme.black};
+              color: ${(props: any) => props.theme.white};
             }
           }
         }

@@ -4,7 +4,7 @@ import { PATHS } from "config";
 import { observer } from "mobx-react-lite";
 import { useStore } from "stores";
 import { useRouter } from "next/router";
-import { classes } from "helpers";
+import { classes, getWindowDimensions } from "helpers";
 
 import { Container } from "components/layout";
 import { Button } from "components/button";
@@ -64,6 +64,17 @@ export const Menu = observer(({ theme = "light" }: MenuProps) => {
       false
     );
   }
+
+  /* Handle resize screen */
+  const [windowDimensions, setWindowDimensions] = React.useState(
+    getWindowDimensions()
+  );
+  React.useEffect(() => {
+    const handleResize = () => setWindowDimensions(getWindowDimensions());
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  const isMobile = windowDimensions && windowDimensions <= 1100;
 
   return (
     <MenuContainer className={classes(theme, { sticky })}>
@@ -127,7 +138,7 @@ export const Menu = observer(({ theme = "light" }: MenuProps) => {
         </Container>
 
         <BurgerButton
-          onMouseEnter={() => setShowMenu(true)}
+          onMouseEnter={() => (isMobile ? " " : setShowMenu(true))}
           onClick={() => setShowMenu(!showMenu)}
           className={classes({ active: showMenu })}
         >
@@ -157,7 +168,7 @@ export const Menu = observer(({ theme = "light" }: MenuProps) => {
             </BurgerMenuItem>
 
             <BurgerMenuItem>
-              <Link href={PATHS.ROOT}>
+              <Link href={PATHS.BUSQUEDAS}>
                 <a className="burger--menu-link">
                   <SearchIcon /> <LinkText>Búsquedas</LinkText>
                 </a>

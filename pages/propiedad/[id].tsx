@@ -66,6 +66,7 @@ import {
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { BackToTop } from 'components/backtotop';
 
 
 const PropertyDetail = ({ properties, property, statusCode }: any) => {
@@ -146,6 +147,8 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
           type="text/css"
         ></link>
       </Head>
+
+      <BackToTop />
 
       <PropContainer>
         <Container>

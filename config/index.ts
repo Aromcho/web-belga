@@ -6,5 +6,6 @@ export const PATHS = {
   FAVORITES: "/favoritos",
   HIGHLIGHTED: "/destacados",
   EMPRENDIMIENTOS: "/emprendimientos",
-  QUIEROVENDER: "/quiero-vender"
+  QUIEROVENDER: "/quiero-vender",
+  BUSQUEDAS: "/busquedas-guardadas"
 };

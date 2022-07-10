@@ -18,6 +18,7 @@ import Lightbox, { ImagesListType } from "react-spring-lightbox";
 
 import { Button } from "components/button";
 import { ContactForm } from "components/forms/contactform";
+import { BackToTop } from "components/backtotop";
 
 import {
   PropContainer,
@@ -72,6 +73,7 @@ import {
   MailIcon,
   WhatsappIcon,
 } from "components/icons";
+
 
 const PropertyDetail = ({
   properties,
@@ -145,6 +147,8 @@ const PropertyDetail = ({
         <meta property="og:site_name" content="Belga Inmobiliaria" />
         <meta property="og:image" content={`${property?.photos[0]?.image}`} />
       </Head>
+
+      <BackToTop />
 
       <PropContainer>
         <Container>

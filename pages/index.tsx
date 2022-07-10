@@ -42,7 +42,7 @@ import {
   RowLabel,
 } from "components/pages/home.styles";
 
-import { TelIcon } from "components/icons";
+import { MailIcon, TelIcon, WhatsappIcon } from "components/icons";
 import { neighborhoods } from "helpers/neighborhoods";
 import { Select } from "components/select";
 import { getSearchUrl, propertiesSelectOptions } from "helpers/tokko";
@@ -242,18 +242,18 @@ const Home = observer(({ properties, emprendimientos }: any) => {
 
             <HeroFooter>
               <Link href="#">
-                <a className="head--footer-link" target="_blank">
+                <a className="head--footer-link phone" target="_blank">
                   <TelIcon />
                 </a>
               </Link>
               <Link href="#">
-                <a className="head--footer-link" target="_blank">
-                  <TelIcon />
+                <a className="head--footer-link mail" target="_blank">
+                  <MailIcon />
                 </a>
               </Link>
               <Link href="#">
-                <a className="head--footer-link" target="_blank">
-                  <TelIcon />
+                <a className="head--footer-link wsp" target="_blank">
+                  <WhatsappIcon />
                 </a>
               </Link>
             </HeroFooter>

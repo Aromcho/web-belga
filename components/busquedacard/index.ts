@@ -1,0 +1,1 @@
+export { BusquedaCard } from './busquedacard';

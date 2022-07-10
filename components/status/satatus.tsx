@@ -4,7 +4,7 @@ import { Button } from "components/button";
 
 import { StatusWrapper, Text } from "./status.styles";
 
-export interface TitleProps {
+export interface StatusProps {
   className?: string;
   text?: string;
   textButton?: string;
@@ -18,7 +18,7 @@ export const Status = ({
   textButton,
   buttonStyle,
   linkButton,
-}: TitleProps) => {
+}: StatusProps) => {
   return (
     <StatusWrapper className={className}>
       <Text>{text}</Text>

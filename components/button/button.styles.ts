@@ -24,6 +24,16 @@ export const ButtonWrapper = styled.a`
     border-color: ${(props: any) => props.theme.secondary};
   }
 
+  &.black {
+    border-color: ${(props: any) => props.theme.black};
+    background-color: ${(props: any) => props.theme.black};
+    color: ${(props: any) => props.theme.white};
+
+    &:hover {
+      text-shadow: 0 0 3px ${(props: any) => props.theme.white}60;
+    }
+  }
+
   &.secondary {
     border-color: ${(props: any) => props.theme.secondary};
     background-color: ${(props: any) => props.theme.secondary};

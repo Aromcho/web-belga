@@ -8,12 +8,14 @@ import { Layout, Container } from "components/layout";
 import { ArrowBackIcon } from "components/icons";
 import { ContactForm } from "components/forms/contactform";
 import { Status } from "components/status";
+import { BusquedaCard } from "components/busquedacard";
 
 import {
   BackWrapper,
   BusquedasContainer,
   FormWrapper,
   Title,
+  BusquedasList,
 } from "components/pages/busquedasGuardadas.styles";
 
 const BusquedasGuardadas = observer(() => {
@@ -48,7 +50,9 @@ const BusquedasGuardadas = observer(() => {
               linkButton={PATHS.VENTA}
             />
           )}
-          {status === "finish" && <div>algo</div>}
+          {status === "finish" && (
+            <BusquedasList>{Array(3).fill(<BusquedaCard />)}</BusquedasList>
+          )}
 
           <FormWrapper>
             <ContactForm className="full" />

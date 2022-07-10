@@ -1,5 +1,10 @@
 import styled from "@emotion/styled";
 
+export const BusquedasList = styled.div`
+  width: 100%;
+  margin: 0 auto;
+`;
+
 export const Title = styled.div`
   width: 100%;
   color: ${(props: any) => props.theme.black};
@@ -15,7 +20,7 @@ export const Title = styled.div`
 
 export const FormWrapper = styled.div`
   width: 100%;
-  margin: 30px auto 100px;
+  margin: 100px auto;
   display: block;
 `;
 

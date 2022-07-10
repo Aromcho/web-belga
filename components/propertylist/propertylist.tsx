@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite';
 
 import { CardProp } from 'components/cardprop';
 import { ArrowBackIcon, CirclePlusIcon } from 'components/icons';
-import { ContactForm } from 'components/contactform';
+import { ContactForm } from 'components/forms/contactform';
 import { Select } from 'components/select';
 import { Container } from 'components/layout';
 

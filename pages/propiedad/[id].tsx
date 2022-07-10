@@ -10,7 +10,7 @@ import Lightbox, { ImagesListType } from 'react-spring-lightbox';
 import { MapProps } from 'components/map/map';
 import { Layout, Container } from 'components/layout';
 import { Button } from 'components/button';
-import { ContactForm } from 'components/contactform';
+import { ContactForm } from 'components/forms/contactform';
 import { Title } from 'components/title';
 import { CardProp } from 'components/cardprop';
 import { ArrowBackIcon, ArrowSubmitIcon, CloseIcon, HeartIcon, MailIcon, WhatsappIcon } from 'components/icons';

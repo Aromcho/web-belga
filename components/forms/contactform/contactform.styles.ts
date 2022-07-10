@@ -4,15 +4,18 @@ export const ContactFormWrapper = styled.div`
   width: 100%;
   max-width: 330px;
   margin: 70px auto 0;
-  .button--send {
-    max-width: 220px;
-    margin: 30px auto 0;
-  }
+  position: relative;
 `;
 
 export const ContactFormContainer = styled.div`
   width: 100%;
   border: none;
+  .button--send {
+    max-width: 220px;
+    margin: 25px auto 0;
+    position: relative;
+    top: 20px;
+  }
   &.full {
     border: 1px solid ${(props: any) => props.theme.secondary};
     padding: 80px 20px 0;

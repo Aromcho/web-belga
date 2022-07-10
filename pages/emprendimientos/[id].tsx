@@ -17,7 +17,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Lightbox, { ImagesListType } from "react-spring-lightbox";
 
 import { Button } from "components/button";
-import { ContactForm } from "components/contactform";
+import { ContactForm } from "components/forms/contactform";
 
 import {
   PropContainer,

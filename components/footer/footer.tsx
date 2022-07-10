@@ -3,7 +3,7 @@ import Link from "next/link";
 import { classes } from "helpers";
 import { useRouter } from "next/router";
 
-import { ContactForm } from "components/contactform";
+import { ContactForm } from "components/forms/contactform";
 
 import {
   FooterContainer,

@@ -5,7 +5,7 @@ import { Layout, Container } from 'components/layout';
 import { PropertyList } from 'components/propertylist';
 import { Property } from 'helpers';
 import axios from 'axios';
-import { ContactForm } from 'components/contactform';
+import { ContactForm } from 'components/forms/contactform';
 
 const Favorites = observer(() => {
 

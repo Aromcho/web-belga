@@ -1,21 +1,23 @@
 import React from "react";
 import Link from "next/link";
+import { PATHS } from "config";
 import { observer } from "mobx-react-lite";
 import { useStore } from "stores";
-import { Layout, Container } from "components/layout";
-import { PropertyList } from "components/propertylist";
 import { Property } from "helpers";
 import axios from "axios";
+
+import { Layout, Container } from "components/layout";
+import { PropertyList } from "components/propertylist";
 import { ContactForm } from "components/forms/contactform";
-import { PATHS } from "config";
 import { ArrowBackIcon } from "components/icons";
+import { Status } from "components/status";
 
 import {
   BusquedasContainer,
   BackWrapper,
   Title,
   FormWrapper,
-} from "components/pages/busquedasGuardadas.styles";
+} from "components/pages/favoritos.styles";
 
 const Favorites = observer(() => {
   const {
@@ -61,8 +63,15 @@ const Favorites = observer(() => {
         </Container>
 
         <Container>
-          {status === "loading" && <p>Cargando</p>}
-          {status === "empty" && <p>No posee favoritos cargados</p>}
+          {status === "loading" && <Status text="cargando..." />}
+          {status === "empty" && (
+            <Status
+              text="No posees favoritos"
+              textButton="Ver propiedades"
+              buttonStyle="secondary"
+              linkButton={PATHS.VENTA}
+            />
+          )}
           {status === "finish" && (
             <PropertyList
               properties={favs}
@@ -75,6 +84,10 @@ const Favorites = observer(() => {
                 previous: "",
               }}
               saveSearch={false}
+              back={false}
+              withForm={false}
+              withCount={false}
+              paddingTop={0}
             />
           )}
           <FormWrapper>

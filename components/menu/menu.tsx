@@ -118,7 +118,7 @@ export const Menu = observer(({ theme = "light" }: MenuProps) => {
 
           <MenuList>
             <MenuItem>
-              <Link href={PATHS.ROOT}>
+              <Link href={PATHS.VENTA}>
                 <a className="menu--link">Quiero comprar</a>
               </Link>
             </MenuItem>
@@ -195,6 +195,7 @@ export const Menu = observer(({ theme = "light" }: MenuProps) => {
           <Button
             text="Quiero comprar"
             className="outline black comprar--button-mobile"
+            link={PATHS.VENTA}
           />
         </BurgerMenu>
       </MenuWrapper>

@@ -51,6 +51,10 @@ export interface propertylistProps {
   };
   investment?: boolean;
   query?: any;
+  paddingTop?: number;
+  back?: boolean;
+  withForm?: boolean;
+  withCount?: boolean;
 }
 
 export const PropertyList = observer(
@@ -61,6 +65,10 @@ export const PropertyList = observer(
     filters = true,
     saveSearch = true,
     investment = false,
+    back = true,
+    withForm = true,
+    withCount = true,
+    paddingTop,
   }: propertylistProps) => {
     const {
       rootStore: { userStore },
@@ -116,7 +124,7 @@ export const PropertyList = observer(
     }));
 
     return (
-      <PropertyListWrapper>
+      <PropertyListWrapper style={{ paddingTop: `${paddingTop}px` }}>
         {filters && (
           <FiltersContainer>
             <Select
@@ -253,16 +261,22 @@ export const PropertyList = observer(
         <Container>
           <TopContainer>
             <ContentWrapper>
-              <RowContent className="bold">
-                <Link href={PATHS.ROOT} passHref>
-                  <a>
-                    <ArrowBackIcon className="left" /> VOLVER AL INICIO
-                  </a>
-                </Link>
-              </RowContent>
-              <RowContent className="count">
-                {meta.total_count} resultados
-              </RowContent>
+              {back && (
+                <RowContent className="bold">
+                  <Link href={PATHS.ROOT} passHref>
+                    <a>
+                      <ArrowBackIcon className="left" /> VOLVER AL INICIO
+                    </a>
+                  </Link>
+                </RowContent>
+              )}
+
+              {withCount && (
+                <RowContent className="count">
+                  {meta?.total_count}{" "}
+                  {meta?.total_count > 1 ? "resultados" : "resultado"}
+                </RowContent>
+              )}
             </ContentWrapper>
             <ContentWrapper>
               {saveSearch && (
@@ -313,7 +327,7 @@ export const PropertyList = observer(
               )}
             </PaginationWrapper>
           )}
-          <ContactForm className="full" />
+          {withForm && <ContactForm className="full" />}
         </Container>
       </PropertyListWrapper>
     );

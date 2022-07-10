@@ -8,6 +8,9 @@ export const Title = styled.div`
   text-align: center;
   text-transform: uppercase;
   margin: 0 auto 60px;
+  @media screen and (max-width: 992px) {
+    margin: 0 auto 20px;
+  }
 `;
 
 export const FormWrapper = styled.div`

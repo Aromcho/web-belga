@@ -1,15 +1,18 @@
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
+import { PATHS } from "config";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
-import { Layout, Container } from "components/layout";
 import { getDevelopments, getProperties } from "services";
 import { observer } from "mobx-react-lite";
 import { useStore } from "stores";
 import { formatToMoney, getDropdownValue, Property } from "helpers";
 import { useMergeState } from "helpers/hooks";
+import { neighborhoods } from "helpers/neighborhoods";
+import { getSearchUrl, propertiesSelectOptions } from "helpers/tokko";
 
+import { Layout, Container } from "components/layout";
 import { SocialSidebar } from "components/socialsidebar";
 import { Title } from "components/title";
 import { CardProp } from "components/cardprop";
@@ -17,7 +20,9 @@ import { Input } from "components/input";
 import { Button } from "components/button";
 import { MultiRange } from "components/multirange";
 import { Dropdown } from "components/dropdown";
-import { PATHS } from "config";
+import { Select } from "components/select";
+import { MailIcon, TelIcon, WhatsappIcon } from "components/icons";
+import { BackToTop } from "components/backtotop";
 
 import {
   HeroWrapper,
@@ -41,12 +46,6 @@ import {
   DropdownRow,
   RowLabel,
 } from "components/pages/home.styles";
-
-import { MailIcon, TelIcon, WhatsappIcon } from "components/icons";
-import { neighborhoods } from "helpers/neighborhoods";
-import { Select } from "components/select";
-import { getSearchUrl, propertiesSelectOptions } from "helpers/tokko";
-import { BackToTop } from "components/backtotop";
 
 const Home = observer(({ properties, emprendimientos }: any) => {
   const {
@@ -237,7 +236,11 @@ const Home = observer(({ properties, emprendimientos }: any) => {
             </SearchRow>
 
             <SearchRow className="fourth--row">
-              <Button className="fourth--row-button" text="Quiero vender" />
+              <Button
+                className="fourth--row-button"
+                text="Quiero vender"
+                link={PATHS.QUIEROVENDER}
+              />
             </SearchRow>
 
             <HeroFooter>

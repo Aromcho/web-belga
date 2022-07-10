@@ -7,5 +7,6 @@ export const PATHS = {
   HIGHLIGHTED: "/destacados",
   EMPRENDIMIENTOS: "/emprendimientos",
   QUIEROVENDER: "/quiero-vender",
-  BUSQUEDAS: "/busquedas-guardadas"
+  BUSQUEDAS: "/busquedas-guardadas",
+  VENTA: "/venta/todos"
 };

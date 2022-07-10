@@ -1,14 +1,14 @@
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
-import { useRouter } from 'next/router'
-import { GetServerSideProps } from 'next'
-import { Layout, Container } from 'components/layout';
-import { getDevelopments, getProperties } from 'services';
-import { observer } from 'mobx-react-lite';
-import { useStore } from 'stores';
-import { formatToMoney, getDropdownValue, Property } from 'helpers';
-import { useMergeState } from 'helpers/hooks';
+import { useRouter } from "next/router";
+import { GetServerSideProps } from "next";
+import { Layout, Container } from "components/layout";
+import { getDevelopments, getProperties } from "services";
+import { observer } from "mobx-react-lite";
+import { useStore } from "stores";
+import { formatToMoney, getDropdownValue, Property } from "helpers";
+import { useMergeState } from "helpers/hooks";
 
 import { SocialSidebar } from "components/socialsidebar";
 import { Title } from "components/title";
@@ -46,6 +46,7 @@ import { TelIcon } from "components/icons";
 import { neighborhoods } from "helpers/neighborhoods";
 import { Select } from "components/select";
 import { getSearchUrl, propertiesSelectOptions } from "helpers/tokko";
+import { BackToTop } from "components/backtotop";
 
 const Home = observer(({ properties, emprendimientos }: any) => {
   const {
@@ -70,8 +71,8 @@ const Home = observer(({ properties, emprendimientos }: any) => {
   };
 
   const localidades = neighborhoods.map((item) => ({
-    value: item.location_id,
-    label: item.location_name,
+    value: item?.location_id,
+    label: item?.location_name,
   }));
 
   return (
@@ -79,6 +80,8 @@ const Home = observer(({ properties, emprendimientos }: any) => {
       <Head>
         <title>Belga Inmobiliaria</title>
       </Head>
+
+      <BackToTop />
 
       <HeroWrapper>
         <BlackLayer />
@@ -119,7 +122,11 @@ const Home = observer(({ properties, emprendimientos }: any) => {
               <Dropdown
                 className="white first--row-input"
                 placeholder="Dormitorios"
-                value={getDropdownValue(formData.min_rooms, formData.max_rooms, 'dormitorios')}
+                value={getDropdownValue(
+                  formData?.min_rooms,
+                  formData?.max_rooms,
+                  "dormitorios"
+                )}
               >
                 <DropdownRow>
                   <RowLabel>Min.</RowLabel>
@@ -128,22 +135,22 @@ const Home = observer(({ properties, emprendimientos }: any) => {
                     type="number"
                     placeHolder="-"
                     min={0}
-                    value={formData.min_rooms}
+                    value={formData?.min_rooms}
                     onChange={(e) => {
-                      setFormData({ min_rooms: e.currentTarget.value });
+                      setFormData({ min_rooms: e?.currentTarget?.value });
                     }}
                   />
                 </DropdownRow>
                 <DropdownRow>
                   <RowLabel>Max.</RowLabel>
                   <Input
-                    className='input--general'
-                    type='number'
-                    placeHolder='-'
-                    min={formData.min_rooms}
-                    value={formData.max_rooms}
+                    className="input--general"
+                    type="number"
+                    placeHolder="-"
+                    min={formData?.min_rooms}
+                    value={formData?.max_rooms}
                     onChange={(e) => {
-                      setFormData({ max_rooms: e.currentTarget.value });
+                      setFormData({ max_rooms: e?.currentTarget?.value });
                     }}
                   />
                 </DropdownRow>

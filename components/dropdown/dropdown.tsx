@@ -10,7 +10,7 @@ export interface dropdownProps {
   className?: string;
   placeholder: string;
   children?: any;
-  value?: string;
+  value?: any;
 }
 
 export const Dropdown = ({value, className, placeholder, children}: dropdownProps) => {

@@ -3,8 +3,6 @@ import Link from "next/link";
 import { classes } from "helpers";
 import { useRouter } from "next/router";
 
-import { ContactForm } from "components/forms/contactform";
-
 import {
   FooterContainer,
   FooterWrapper,
@@ -44,6 +42,7 @@ import {
   YoutubeCircleIcon,
 } from "components/icons";
 import { TitleWithIcon } from "components/titlewithicon";
+import { ContactForm } from "components/forms/contactform";
 
 export interface FooterProps {
   small?: boolean;

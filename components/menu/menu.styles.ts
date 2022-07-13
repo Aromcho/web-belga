@@ -223,6 +223,7 @@ export const MenuList = styled.ul`
   display: flex;
   margin-left: auto;
   justify-content: space-between;
+  padding-left: 10px;
   @media screen and (max-width: 1100px) {
     display: none;
   }
@@ -354,7 +355,7 @@ export const MenuContainer = styled.div`
   height: auto;
   background-color: transparent;
   transition: all 0.4s cubic-bezier(0.74, 0.04, 0.24, 1.04);
-  z-index: 999999;
+  z-index: 99999999;
   position: fixed;
   top: 0;
   left: 0;
@@ -469,7 +470,7 @@ export const MenuContainer = styled.div`
         &.active {
           ${IconWrapper} {
             svg {
-              color: ${(props: any) => props.theme.white};
+              color: ${(props: any) => props.theme.black };
             }
           }
         }

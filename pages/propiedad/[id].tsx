@@ -67,6 +67,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { BackToTop } from 'components/backtotop';
+import { SocialSidebar } from 'components/socialsidebar';
 
 
 const PropertyDetail = ({ properties, property, statusCode }: any) => {
@@ -148,7 +149,8 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
         ></link>
       </Head>
 
-      <BackToTop />
+      <BackToTop color='red' />
+      <SocialSidebar color="red" showWithOffset />
 
       <PropContainer>
         <Container>

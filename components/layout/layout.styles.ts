@@ -115,6 +115,7 @@ export const GlobalStyles = css`
   body {
     line-height: 1;
     max-width: 100%;
+    scroll-behavior: smooth;
   }
   ol,
   ul {
@@ -188,6 +189,7 @@ export const GlobalStyles = css`
   }
   html {
     padding: env(safe-area-inset);
+    scroll-behavior: smooth;
     body {
       white-space: pre-line;
       overflow-x: hidden;

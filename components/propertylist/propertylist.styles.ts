@@ -122,6 +122,22 @@ export const RowContent = styled.div`
       margin-right: 5px;
     }
   }
+
+  &.order {
+    margin-left: auto;
+
+    svg {
+      width: 20px;
+      height: auto;
+      margin-left: 5px;
+      transition: all 0.3s ease-in-out;
+    }
+    &.high {
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+  }
 `;
 
 export const PaginationWrapper = styled.div`

@@ -75,12 +75,10 @@ const Home = observer(({ properties, emprendimientos }: any) => {
   }));
 
   return (
-    <Layout menuTheme="transparent" footerSmall={false}>
+    <Layout menuTheme="transparent" footerSmall={false} backToTopFooter>
       <Head>
         <title>Belga Inmobiliaria</title>
       </Head>
-
-      <BackToTop />
 
       <HeroWrapper>
         <BlackLayer />
@@ -185,7 +183,7 @@ const Home = observer(({ properties, emprendimientos }: any) => {
                     customWidth={360}
                     min={0}
                     max={3000001}
-                    step={10000}
+                    step={20000}
                     onChange={({ minVal, maxVal }: any) => {
                       setFormData({ price_from: minVal, price_to: maxVal });
                     }}
@@ -199,7 +197,7 @@ const Home = observer(({ properties, emprendimientos }: any) => {
                         formData.price_from.toString(),
                         true,
                         "USD",
-                        true
+                        false
                       )}
                     />
                     <InputDivider />
@@ -213,13 +211,13 @@ const Home = observer(({ properties, emprendimientos }: any) => {
                               formData.price_to.toString(),
                               true,
                               "USD +",
-                              true
+                              false
                             )
                           : formatToMoney(
                               formData.price_to.toString(),
                               true,
                               "USD",
-                              true
+                              false
                             )
                       }
                     />
@@ -267,6 +265,7 @@ const Home = observer(({ properties, emprendimientos }: any) => {
       <SeleccionSection>
         <Seleccion>
           <SocialSidebar color="red" />
+          <BackToTop color="red" />
         </Seleccion>
 
         <Container className="seleccion--container">
@@ -303,6 +302,7 @@ const Home = observer(({ properties, emprendimientos }: any) => {
       <InversionSection>
         <Inversion>
           <SocialSidebar color="black" />
+          <BackToTop color="black" />
         </Inversion>
 
         <Container className="inversion--container">

@@ -49,7 +49,7 @@ export const ButtonWrapper = styled.a`
         border-color: ${(props: any) => props.theme.secondary};
         background-color: ${(props: any) => props.theme.secondary};
         color: ${(props: any) => props.theme.white};
-        text-shadow: 0 0 3px ${(props: any) => props.theme.white}60;
+        text-shadow: 0 0 8px ${(props: any) => props.theme.white};
       }
     }
   }

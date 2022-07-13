@@ -9,7 +9,7 @@ export const BackToTopContainer = styled.div`
   transition: all 0.3s ease-in-out;
   opacity: 0;
   pointer-events: none;
-  z-index: 999999;
+  z-index: 999997;
   position: fixed;
   bottom: 5%;
   right: 30px;
@@ -25,7 +25,22 @@ export const BackToTopContainer = styled.div`
     width: 30px;
     height: auto;
     color: ${(props: any) => props.theme.secondary};
-
     transform: rotate(90deg);
+  }
+
+  &.red {
+    .icon--arrow {
+      color: ${(props: any) => props.theme.secondary};
+    }
+  }
+  &.black {
+    .icon--arrow {
+      color: ${(props: any) => props.theme.black};
+    }
+  }
+  &.yellow {
+    .icon--arrow {
+      color: ${(props: any) => props.theme.yellow};
+    }
   }
 `;

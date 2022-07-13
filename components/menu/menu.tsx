@@ -183,8 +183,8 @@ export const Menu = observer(({ theme = "light" }: MenuProps) => {
               </Link>
             </BurgerMenuItem>
 
-            <BurgerMenuItem>
-              <Link href={PATHS.ROOT}>
+            <BurgerMenuItem onClick={() => setShowMenu(false)}>
+              <Link href={`${PATHS.ROOT}${PATHS.CONTACTO}`}>
                 <a className="burger--menu-link">
                   <TelIcon /> <LinkText>Contactanos</LinkText>
                 </a>

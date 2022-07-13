@@ -20,5 +20,7 @@ export {
   EmprendimientosIcon,
   ArrowBackIcon,
   CirclePlusIcon,
-  ArrowSubmitIcon
+  PlusIcon,
+  ArrowSubmitIcon,
+  ChevronUpIcon,
 } from "./icons";

@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { observer } from "mobx-react-lite";
 
 import { CardProp } from "components/cardprop";
-import { ArrowBackIcon, CirclePlusIcon } from "components/icons";
+import { ArrowBackIcon, ChevronUpIcon, CirclePlusIcon } from "components/icons";
 import { ContactForm } from "components/forms/contactform";
 import { Select } from "components/select";
 import { Container } from "components/layout";
@@ -22,6 +22,12 @@ import { useMergeState } from "helpers/hooks";
 import { useStore } from "stores";
 import { PATHS } from "config";
 
+import { DropdownRow, RowLabel } from "components/pages/home.styles";
+import { Dropdown } from "components/dropdown";
+import { Input } from "components/input";
+import { Button } from "components/button";
+import { SaveSearch } from "components/savesearch";
+
 import {
   FiltersContainer,
   PropertyListWrapper,
@@ -32,11 +38,6 @@ import {
   PaginationWrapper,
   PaginationNumber,
 } from "./propertylist.styles";
-
-import { DropdownRow, RowLabel } from "components/pages/home.styles";
-import { Dropdown } from "components/dropdown";
-import { Input } from "components/input";
-import { Button } from "components/button";
 
 export interface propertylistProps {
   properties: Property[];
@@ -122,6 +123,8 @@ export const PropertyList = observer(
       value: item.location_id,
       label: item.location_name,
     }));
+
+    const [highPrice, setHighPrice] = React.useState(false);
 
     return (
       <PropertyListWrapper style={{ paddingTop: `${paddingTop}px` }}>
@@ -253,7 +256,7 @@ export const PropertyList = observer(
             <Button
               className="form--button"
               text="Buscar"
-              type="secondary"
+              type="secondary shine"
               onClick={handleSubmit}
             />
           </FiltersContainer>
@@ -281,9 +284,15 @@ export const PropertyList = observer(
             <ContentWrapper>
               {saveSearch && (
                 <RowContent className="bold">
-                  GUARDAR BÚSQUEDA <CirclePlusIcon className="right" />
+                  <SaveSearch onSaved={() => console.log("Guardar busqueda")} />
                 </RowContent>
               )}
+              <RowContent
+                className={classes("bold order", { high: highPrice })}
+                onClick={() => setHighPrice(!highPrice)}
+              >
+                Ordernar por Precio <ChevronUpIcon className="order--icon" />
+              </RowContent>
             </ContentWrapper>
           </TopContainer>
           <ListContainer className={classes({ "investment-list": investment })}>

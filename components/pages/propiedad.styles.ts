@@ -715,6 +715,8 @@ export const HeadAddressPrice = styled.div`
 export const HeadProp = styled.div`
   width: 100%;
   margin: 60px auto 40px;
+  z-index: 9999997;
+  position: relative;
   @media screen and (max-width: 992px) {
     margin: 30px auto;
   }

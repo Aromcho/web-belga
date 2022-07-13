@@ -22,4 +22,5 @@ export {
   CirclePlusIcon,
   PlusIcon,
   ArrowSubmitIcon,
+  ChevronUpIcon,
 } from "./icons";

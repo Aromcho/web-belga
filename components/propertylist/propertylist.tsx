@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { observer } from "mobx-react-lite";
 
 import { CardProp } from "components/cardprop";
-import { ArrowBackIcon, CirclePlusIcon } from "components/icons";
+import { ArrowBackIcon, ChevronUpIcon, CirclePlusIcon } from "components/icons";
 import { ContactForm } from "components/forms/contactform";
 import { Select } from "components/select";
 import { Container } from "components/layout";
@@ -123,6 +123,8 @@ export const PropertyList = observer(
       value: item.location_id,
       label: item.location_name,
     }));
+
+    const [highPrice, setHighPrice] = React.useState(false);
 
     return (
       <PropertyListWrapper style={{ paddingTop: `${paddingTop}px` }}>
@@ -285,6 +287,12 @@ export const PropertyList = observer(
                   <SaveSearch onSaved={() => console.log("Guardar busqueda")} />
                 </RowContent>
               )}
+              <RowContent
+                className={classes("bold order", { high: highPrice })}
+                onClick={() => setHighPrice(!highPrice)}
+              >
+                Ordernar por Precio <ChevronUpIcon className="order--icon" />
+              </RowContent>
             </ContentWrapper>
           </TopContainer>
           <ListContainer className={classes({ "investment-list": investment })}>

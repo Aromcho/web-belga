@@ -484,3 +484,27 @@ export const ArrowSubmitIcon = (props: any) => (
     />
   </svg>
 );
+
+export const ChevronUpIcon = (props: any) => (
+  <svg
+    {...props}
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+  >
+    <g transform="translate(-653 -1208)">
+      <rect
+        width="24"
+        height="24"
+        transform="translate(653 1208)"
+        fill="none"
+      />
+      <path
+        d="M8.461,1.091.641,8.905a.379.379,0,0,1-.531,0,.367.367,0,0,1,0-.525L8.461.029,16.8,8.38a.362.362,0,0,1,0,.525.374.374,0,0,1-.262.111.379.379,0,0,1-.262-.111l-7.82-7.82Z"
+        transform="translate(656.544 1215.477)"
+        fill={"currentColor" || "#043e22"}
+      />
+    </g>
+  </svg>
+);

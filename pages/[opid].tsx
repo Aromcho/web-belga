@@ -1,10 +1,11 @@
 import React from 'react';
 import { GetServerSideProps } from 'next'
-import { Layout, Container } from 'components/layout';
+import { Layout } from 'components/layout';
 import { getProperties } from 'services';
 import { parseTokkoParameters, operationTypes } from 'helpers/tokko';
 import { PropertyList } from 'components/propertylist';
 import { BackToTop } from 'components/backtotop';
+import { SocialSidebar } from 'components/socialsidebar';
 
 const PropertySearch = ({data, query, statusCode}: any) => {
 

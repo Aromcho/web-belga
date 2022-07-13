@@ -355,7 +355,7 @@ export const MenuContainer = styled.div`
   height: auto;
   background-color: transparent;
   transition: all 0.4s cubic-bezier(0.74, 0.04, 0.24, 1.04);
-  z-index: 999999;
+  z-index: 99999999;
   position: fixed;
   top: 0;
   left: 0;

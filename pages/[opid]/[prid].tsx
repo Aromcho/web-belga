@@ -11,7 +11,7 @@ const PropertySearch = ({ data, query }: any) => {
 
   return (
     <Layout menuTheme='dark'>
-      <BackToTop />
+      <BackToTop color='red' />
       <PropertyList properties={data.objects} meta={data.meta} query={query} />
     </Layout>
   )

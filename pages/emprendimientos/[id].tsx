@@ -73,6 +73,7 @@ import {
   MailIcon,
   WhatsappIcon,
 } from "components/icons";
+import { SocialSidebar } from "components/socialsidebar";
 
 
 const PropertyDetail = ({
@@ -148,7 +149,8 @@ const PropertyDetail = ({
         <meta property="og:image" content={`${property?.photos[0]?.image}`} />
       </Head>
 
-      <BackToTop />
+      <BackToTop color="black"  />
+      <SocialSidebar color="black" showWithOffset />
 
       <PropContainer>
         <Container>

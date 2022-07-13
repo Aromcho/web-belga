@@ -15,6 +15,7 @@ const PropertySearch = ({ data }: any) => {
         meta={data.meta}
         saveSearch={false}
         investment={true}
+        filters={false}
       />
     </Layout>
   );

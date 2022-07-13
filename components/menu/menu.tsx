@@ -186,7 +186,7 @@ export const Menu = observer(({ theme = "light" }: MenuProps) => {
             <BurgerMenuItem>
               <Link href={PATHS.ROOT}>
                 <a className="burger--menu-link">
-                  <TelIcon /> <LinkText>Contáctanos</LinkText>
+                  <TelIcon /> <LinkText>Contactanos</LinkText>
                 </a>
               </Link>
             </BurgerMenuItem>

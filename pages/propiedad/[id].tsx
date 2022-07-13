@@ -430,7 +430,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
                 </MoreItem>
 
                 <MoreItem>
-                  <MoreItemTitle>Información</MoreItemTitle>
+                  <MoreItemTitle>Superficies</MoreItemTitle>
                   <MoreItemText>
                     <b>Sup. Cubierta: </b>
                     {`${Math.round(property?.roofed_surface)} m2`}

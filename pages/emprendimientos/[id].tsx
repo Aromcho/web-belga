@@ -389,7 +389,7 @@ const PropertyDetail = ({
                 </MoreItem>
 
                 <MoreItem>
-                  <MoreItemTitle>Información</MoreItemTitle>
+                  <MoreItemTitle>Superficies</MoreItemTitle>
                   {devPropertiesData?.roofed_surface && (
                     <MoreItemText>
                       <b>Sup. Cubierta:</b>

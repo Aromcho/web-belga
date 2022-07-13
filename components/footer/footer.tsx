@@ -43,12 +43,15 @@ import {
 } from "components/icons";
 import { TitleWithIcon } from "components/titlewithicon";
 import { ContactForm } from "components/forms/contactform";
+import { BackToTop } from "components/backtotop";
 
 export interface FooterProps {
   small?: boolean;
+  id?: string;
+  backToTopFooter?: boolean;
 }
 
-export const Footer = ({ small = true }: FooterProps) => {
+export const Footer = ({ small = true, id, backToTopFooter }: FooterProps) => {
   const router = useRouter();
 
   const legalInfo = {
@@ -82,7 +85,8 @@ export const Footer = ({ small = true }: FooterProps) => {
   ];
 
   return (
-    <FooterContainer className={classes({ small })}>
+    <FooterContainer className={classes({ small })} id={id}>
+      {backToTopFooter && <BackToTop />}
       <FooterWrapper>
         <FooterLeft>
           <FooterInfo>

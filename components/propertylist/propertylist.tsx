@@ -22,6 +22,12 @@ import { useMergeState } from "helpers/hooks";
 import { useStore } from "stores";
 import { PATHS } from "config";
 
+import { DropdownRow, RowLabel } from "components/pages/home.styles";
+import { Dropdown } from "components/dropdown";
+import { Input } from "components/input";
+import { Button } from "components/button";
+import { SaveSearch } from "components/savesearch";
+
 import {
   FiltersContainer,
   PropertyListWrapper,
@@ -32,11 +38,6 @@ import {
   PaginationWrapper,
   PaginationNumber,
 } from "./propertylist.styles";
-
-import { DropdownRow, RowLabel } from "components/pages/home.styles";
-import { Dropdown } from "components/dropdown";
-import { Input } from "components/input";
-import { Button } from "components/button";
 
 export interface propertylistProps {
   properties: Property[];
@@ -253,7 +254,7 @@ export const PropertyList = observer(
             <Button
               className="form--button"
               text="Buscar"
-              type="secondary"
+              type="secondary shine"
               onClick={handleSubmit}
             />
           </FiltersContainer>
@@ -281,7 +282,7 @@ export const PropertyList = observer(
             <ContentWrapper>
               {saveSearch && (
                 <RowContent className="bold">
-                  GUARDAR BÚSQUEDA <CirclePlusIcon className="right" />
+                  <SaveSearch onSaved={() => console.log("Guardar busqueda")} />
                 </RowContent>
               )}
             </ContentWrapper>

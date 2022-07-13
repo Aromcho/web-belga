@@ -64,21 +64,22 @@ position: relative;
     height: 0;
     outline: none;
   }
-
+  
   .thumb--left {
     z-index: 4;
     left: -3px;
   }
-
+  
   .thumb--right {
     z-index: 5;
   }
 
   /* For Chrome browsers */
   .thumb::-webkit-slider-thumb {
-    width: 12px;
-    height: 12px;
+    width: 14px;
+    height: 14px;
     background-color: ${(props: any) => props.theme.primary};
+    border-radius: 100%;
     border: none;
     box-shadow: none;
     cursor: pointer;

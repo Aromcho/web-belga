@@ -40,7 +40,7 @@ export const VenderForm = ({ className }: ContactFormProps) => {
           msg="Alguno de los campos tienen información incorrecta"
         /> */}
       </FormWrapper>
-      <Button text="Enviar" type="secondary" className="button--send" />
+      <Button text="Enviar" type="secondary shine" className="button--send" />
     </FormContainer>
   );
 };

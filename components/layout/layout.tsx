@@ -10,6 +10,7 @@ export interface LayoutProps {
   children?: React.ReactNode;
   menuTheme?: "transparent" | "light" | "dark";
   footerSmall?:boolean,
+  backToTopFooter?:boolean,
 }
 
 export const Layout = ({ children, menuTheme, footerSmall }: LayoutProps) => {
@@ -18,7 +19,7 @@ export const Layout = ({ children, menuTheme, footerSmall }: LayoutProps) => {
       <GlobalStyling styles={GlobalStyles} />
       <Menu theme={menuTheme} />
       {children}
-      <Footer small={footerSmall} />
+      <Footer small={footerSmall} id="contacto" backToTopFooter/>
     </LayoutWrapper>
   );
 };

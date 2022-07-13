@@ -7,9 +7,14 @@ import { BackToTopContainer } from "./backtotop.styles";
 export interface BackToTopProps {
   className?: string;
   offsetShow?: number;
+  color?: string;
 }
 
-export const BackToTop = ({ className, offsetShow = 400 }: BackToTopProps) => {
+export const BackToTop = ({
+  className,
+  offsetShow = 400,
+  color,
+}: BackToTopProps) => {
   const [showBtn, setShowBtn] = useState<boolean>(false);
   const goToTop = () => {
     window.scrollTo({
@@ -26,7 +31,7 @@ export const BackToTop = ({ className, offsetShow = 400 }: BackToTopProps) => {
 
   return (
     <BackToTopContainer
-      className={classes(className, { show: showBtn })}
+      className={classes(className, color ?? "red", { show: showBtn })}
       onClick={() => goToTop()}
     >
       <ArrowBackIcon className="icon--arrow" />

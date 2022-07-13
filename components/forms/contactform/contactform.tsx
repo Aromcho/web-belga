@@ -30,7 +30,7 @@ export const ContactForm = ({ className }: ContactFormProps) => {
           msg="Alguno de los campos tienen información incorrecta"
         /> */}
       </ContactFormWrapper>
-      <Button text="Enviar" type="secondary" className="button--send" />
+      <Button text="Enviar" type="secondary shine" className="button--send" />
     </ContactFormContainer>
   );
 };

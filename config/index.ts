@@ -8,5 +8,6 @@ export const PATHS = {
   EMPRENDIMIENTOS: "/emprendimientos",
   QUIEROVENDER: "/quiero-vender",
   BUSQUEDAS: "/busquedas-guardadas",
-  VENTA: "/venta/todos"
+  VENTA: "/venta/todos",
+  CONTACTO: "#contacto",
 };

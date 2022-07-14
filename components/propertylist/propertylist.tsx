@@ -95,6 +95,9 @@ export const PropertyList = observer(
         });
       if (query?.rooms_from) setFormData({ min_rooms: query?.rooms_from });
       if (query?.rooms_to) setFormData({ max_rooms: query?.rooms_to });
+      if (query?.order) setFormData({ order: query?.order });
+      if (query?.price_from) setFormData({ price_from: query?.price_from });
+      if (query?.price_to) setFormData({ price_to: query?.price_to });
     }, [query]);
 
     const [formData, setFormData] = useMergeState<any>({
@@ -107,6 +110,7 @@ export const PropertyList = observer(
       property_type: 0,
       price_from: 0,
       price_to: 0,
+      order: 'DESC'
     });
 
     const router = useRouter();
@@ -124,7 +128,15 @@ export const PropertyList = observer(
       label: item.location_name,
     }));
 
-    const [highPrice, setHighPrice] = React.useState(false);
+    const handleOrderChange = (v: string) => {
+      setFormData({order: v});
+      setTimeout(() => {
+        router.push(getSearchUrl({
+          ...formData,
+          order: v
+        }));
+      }, 100)
+    }
 
     return (
       <PropertyListWrapper style={{ paddingTop: `${paddingTop}px` }}>
@@ -253,6 +265,43 @@ export const PropertyList = observer(
               </DropdownRow>
             </Dropdown>
 
+            <Dropdown
+              className="input--general"
+              placeholder="Precio"
+              value={`${getDropdownValue(
+                formData?.price_from,
+                formData?.price_to,
+                "USD"
+              )}`}
+            >
+              <DropdownRow>
+                <RowLabel>Min.</RowLabel>
+                <Input
+                  className="dropdown--input"
+                  type="number"
+                  placeHolder="-"
+                  min={0}
+                  value={formData.price_from}
+                  onChange={(e) => {
+                    setFormData({ price_from: e.currentTarget.value });
+                  }}
+                />
+              </DropdownRow>
+              <DropdownRow>
+                <RowLabel>Max.</RowLabel>
+                <Input
+                  className="dropdown--input"
+                  type="number"
+                  placeHolder="-"
+                  min={0}
+                  value={formData.price_to}
+                  onChange={(e) => {
+                    setFormData({ price_to: e.currentTarget.value });
+                  }}
+                />
+              </DropdownRow>
+            </Dropdown>
+
             <Button
               className="form--button"
               text="Buscar"
@@ -287,12 +336,12 @@ export const PropertyList = observer(
                   <SaveSearch onSaved={() => console.log("Guardar busqueda")} />
                 </RowContent>
               )}
-              <RowContent
-                className={classes("bold order", { high: highPrice })}
-                onClick={() => setHighPrice(!highPrice)}
+              {filters && <RowContent
+                className={classes("bold order", { high: formData.order === "DESC" })}
+                onClick={() => handleOrderChange(formData.order === "ASC" ? "DESC" : "ASC")}
               >
                 Ordernar por Precio <ChevronUpIcon className="order--icon" />
-              </RowContent>
+              </RowContent>}
             </ContentWrapper>
           </TopContainer>
           <ListContainer className={classes({ "investment-list": investment })}>

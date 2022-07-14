@@ -41,7 +41,7 @@ export const getProperties = async ({params}: GetPropertiesProps) => {
   let baseParamsExtended = {
     ...baseParams,
     order_by: "price",
-    order: "DESC",
+    order: params.order || "DESC",
     data: dataParams,
     limit: params.limit || 26,
     offset: params.offset || 0,

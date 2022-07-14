@@ -13,7 +13,7 @@ export const FiltersContainer = styled.div`
   justify-content: space-between;
   margin: 0 auto 40px;
   .input--general {
-    width: 20%;
+    width: 16%;
     border: 1px solid #000000;
     margin: 0;
     &.full {
@@ -22,7 +22,7 @@ export const FiltersContainer = styled.div`
     }
   }
   .form--button {
-    width: 20%;
+    width: 18%;
   }
   .dropdown--input {
     width: 100px;

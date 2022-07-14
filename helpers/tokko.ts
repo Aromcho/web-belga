@@ -118,6 +118,8 @@ export const getSearchUrl = (params: any) => {
   if(params.max_rooms && params.max_rooms > 0) query['rooms_to'] = params.max_rooms;
   if(params.min_baths && params.min_baths > 0) query['baths_from'] = params.min_baths;
   if(params.max_baths && params.max_baths > 0) query['baths_to'] = params.max_rooms;
+  
+  if(params.order) query['order'] = params.order;
 
   if(Object.keys(query).length > 0) url = url + '?' + Object.keys(query).map(item => `${item}=${query[item]}`).join('&');
 

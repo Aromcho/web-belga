@@ -147,7 +147,13 @@ export const getDropdownValue = (min: any, max: any, type: string) => {
   if (min === 0 && max === 0) return "";
   if (min > 0 && max == 0) st = `Min: ${min} ${type}`;
   if (max > 0 && min == 0) st = `Max: ${max} ${type}`;
-  if (max > 0 && min > 0) st = `${min} - ${max} ${type}`;
+  if (max > 0 && min > 0){
+    if(type === "USD"){
+      st = `${type} ${min} - ${type} ${max}`;
+    } else {
+      st = `${min} - ${max} ${type}`;
+    }
+  }
   if (max === min) st = `${min} ${type}`;
   return st;
 };

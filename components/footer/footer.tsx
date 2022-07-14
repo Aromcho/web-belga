@@ -1,7 +1,10 @@
 import React from "react";
+import dynamic from 'next/dynamic'
 import Link from "next/link";
-import { classes } from "helpers";
 import { useRouter } from "next/router";
+
+import { MapProps } from 'components/map/map';
+const DynamicMap = dynamic<MapProps>(() => import('components/map').then((mod) => mod.Map), { ssr: false })
 
 import {
   FooterContainer,
@@ -44,6 +47,8 @@ import {
 import { TitleWithIcon } from "components/titlewithicon";
 import { ContactForm } from "components/forms/contactform";
 import { BackToTop } from "components/backtotop";
+
+import { classes } from "helpers";
 
 export interface FooterProps {
   small?: boolean;
@@ -170,10 +175,14 @@ export const Footer = ({ small = true, id, backToTopFooter }: FooterProps) => {
         <FooterCenter>
           <FooterInfo>
             <MapFooter>
-              <iframe
+              <DynamicMap 
+                // marker={{ lon: property.branch.geo_long, lat: property.branch.geo_lat }} center={{ lon: property.branch.geo_long, lat: property.branch.geo_lat }}
+                zoom={15} 
+                />
+              {/* <iframe
                 src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13142.89626707307!2d-58.4538193!3d-34.5605412!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x7a96ad3b6c0351f2!2sBelga%20Inmobiliaria!5e0!3m2!1ses-419!2sar!4v1647200525779!5m2!1ses-419!2sar"
                 loading="lazy"
-              />
+              /> */}
             </MapFooter>
           </FooterInfo>
           <FooterInfoBottom>

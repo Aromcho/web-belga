@@ -122,7 +122,7 @@ const Home = observer(({ properties, emprendimientos }: any) => {
                 value={getDropdownValue(
                   formData?.min_rooms,
                   formData?.max_rooms,
-                  "dormitorios"
+                  "Dormitorios"
                 )}
               >
                 <DropdownRow>

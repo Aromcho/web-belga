@@ -101,24 +101,25 @@ export const getDevelopmentsData = (list: any[]) => {
   const room_amount = list.map((item) => item?.room_amount);
   const price = list.map((item) => item?.operations[0]?.prices[0]?.price);
 
-  obj["roofed_surface"] = `${Math.min(...roofed_surface)} a ${Math.max(
+  if(roofed_surface.length > 0) obj["roofed_surface"] = `${Math.min(...roofed_surface)} a ${Math.max(
     ...roofed_surface
   )}`;
-  obj["total_surface"] = `${Math.min(...total_surface)} a ${Math.max(
+  if(total_surface.length > 0) obj["total_surface"] = `${Math.min(...total_surface)} a ${Math.max(
     ...total_surface
   )}`;
-  obj["unroofed_surface"] = `${Math.min(...unroofed_surface)} a ${Math.max(
+  if(unroofed_surface.length > 0) obj["unroofed_surface"] = `${Math.min(...unroofed_surface)} a ${Math.max(
     ...unroofed_surface
   )}`;
-  obj["semiroofed_surface"] = `${Math.min(...semiroofed_surface)} a ${Math.max(
+  if(semiroofed_surface.length > 0) obj["semiroofed_surface"] = `${Math.min(...semiroofed_surface)} a ${Math.max(
     ...semiroofed_surface
   )}`;
-  obj["room_amount"] = `${Math.min(...room_amount)} a ${Math.max(
+  if(room_amount.length > 0) obj["room_amount"] = `${Math.min(...room_amount)} a ${Math.max(
     ...room_amount
   )}`;
-  obj["price"] = `${formatToMoney(Math.min(...price))} a ${formatToMoney(
+  if(price.length > 0) obj["price"] = `${formatToMoney(Math.min(...price))} a ${formatToMoney(
     Math.max(...price)
   )}`;
+  if(price.length > 0) obj["min_price"] = `${formatToMoney(Math.min(...price))}`;
   obj["currency"] = list[0]?.operations[0]?.prices[0]?.currency;
 
   return obj;
@@ -145,16 +146,16 @@ export const getPropertyValuesForFilter = (v: string) => {
 export const getDropdownValue = (min: any, max: any, type: string) => {
   let st = "";
   if (min === 0 && max === 0) return "";
-  if (min > 0 && max == 0) st = `Min: ${min} ${type}`;
-  if (max > 0 && min == 0) st = `Max: ${max} ${type}`;
+  if (min > 0 && max == 0) st = `Min: ${type} ${min}`;
+  if (max > 0 && min == 0) st = `Max: ${type} ${max}`;
   if (max > 0 && min > 0){
     if(type === "USD"){
-      st = `${type} ${min} - ${type} ${max}`;
+      st = `${type} ${min} - ${max}`;
     } else {
-      st = `${min} - ${max} ${type}`;
+      st = `${type} ${min} - ${max}`;
     }
   }
-  if (max === min) st = `${min} ${type}`;
+  if (max === min) st = `${type} ${min}`;
   return st;
 };
 

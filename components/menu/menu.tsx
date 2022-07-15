@@ -1,9 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import { PATHS } from "config";
-import { observer } from "mobx-react-lite";
-import { useStore } from "stores";
-import { useRouter } from "next/router";
 import { classes, getWindowDimensions } from "helpers";
 
 import { Container } from "components/layout";
@@ -44,12 +41,7 @@ export interface MenuProps {
   theme?: "transparent" | "light" | "dark";
 }
 
-export const Menu = observer(({ theme = "light" }: MenuProps) => {
-  const {
-    rootStore: { userStore },
-  } = useStore();
-
-  const router = useRouter();
+export const Menu = ({ theme = "light" }: MenuProps) => {
 
   /* Handle Menu */
   const [showMenu, setShowMenu] = React.useState<boolean>(false);
@@ -148,7 +140,7 @@ export const Menu = observer(({ theme = "light" }: MenuProps) => {
           </IconWrapper>
         </BurgerButton>
 
-        <BurgerMenu className={classes({ active: showMenu })}>
+        <BurgerMenu className={classes({ active: showMenu })} onMouseLeave={() => setShowMenu(false)}>
           <BurgerMenuList>
             <BurgerMenuItem className="emprendimientos--link">
               <Link href={PATHS.ROOT}>
@@ -201,4 +193,4 @@ export const Menu = observer(({ theme = "light" }: MenuProps) => {
       </MenuWrapper>
     </MenuContainer>
   );
-});
+};

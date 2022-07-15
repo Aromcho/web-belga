@@ -13,7 +13,7 @@ export default function App({ Component, pageProps, initialState }: any) {
         <NextNProgress
           color="#C62025"
           startPosition={0.2}
-          height={6}
+          height={3}
           showOnShallow={true}
         />
         <Component {...pageProps} />

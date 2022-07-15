@@ -197,7 +197,7 @@ export const PropertyList = observer(
               value={getDropdownValue(
                 formData.min_rooms,
                 formData.max_rooms,
-                "dormitorios"
+                "Dormitorios"
               )}
             >
               <DropdownRow>
@@ -234,7 +234,7 @@ export const PropertyList = observer(
               value={getDropdownValue(
                 formData?.min_baths,
                 formData?.max_baths,
-                "baños"
+                "Baños"
               )}
             >
               <DropdownRow>

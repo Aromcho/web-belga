@@ -1,25 +1,50 @@
 import React from 'react';
 import * as ol from 'ol';
-import { OSM, XYZ } from 'ol/source';
+import { XYZ } from 'ol/source';
 import { fromLonLat } from 'ol/proj';
 import { Tile as TileLayer } from 'ol/layer';
 import { Point } from 'ol/geom';
+import VectorLayer from 'ol/layer/Vector';
+import VectorSource from 'ol/source/Vector';
 
 import {
   MapWrapper
 } from './map.styles';
-import { vectorLayer } from './helpers';
+import { normalStyle, hgihStyle } from './helpers';
 
 export interface MapProps {
   center?: { lon: number; lat: number };
   marker?: { lon: number; lat: number };
+  markers?: { lon: number; lat: number, high?: boolean, id: string}[];
   zoom?: number;
 }
 
-export const Map = ({center, zoom, marker}: MapProps) => {
+export const Map = ({center, zoom, marker, markers}: MapProps) => {
 
   const [, setMap] = React.useState<ol.Map>();
   const mapElement = React.useRef<HTMLDivElement>(null);
+
+  const [vectorLayer, ] = React.useState(
+    new VectorLayer({
+      source: new VectorSource({}),
+      style: [
+       normalStyle
+      ],
+      zIndex: 20
+    })
+  );
+
+  React.useEffect(() => {
+    const hihglighted = markers?.find(item => !!item.high)
+    vectorLayer.getSource()?.getFeatures().forEach(ft => {
+      if(ft.getId() === hihglighted?.id){
+        ft.setStyle(hgihStyle);
+      } else {
+        ft.setStyle(normalStyle);
+      }
+    })
+  }, [markers])
+  
 
   React.useEffect(() => {
     const initialMap = new ol.Map({
@@ -41,13 +66,25 @@ export const Map = ({center, zoom, marker}: MapProps) => {
       }),
       target: mapElement?.current || undefined
     });
+
     setMap(initialMap);
 
     if(marker){
       var iconFeature = new ol.Feature({
-        geometry: new Point(fromLonLat([marker.lon,marker.lat]))
+        geometry: new Point(fromLonLat([marker.lon, marker.lat]))
       });
       vectorLayer?.getSource()!.addFeature(iconFeature);
+    }
+
+    if(markers){
+      markers.forEach((item, i) => {
+        var iconFeature = new ol.Feature({
+          geometry: new Point(fromLonLat([item.lon, item.lat])),
+          id: item.id
+        });
+        iconFeature.setId(item.id)
+        vectorLayer?.getSource()!.addFeature(iconFeature);
+      });
     }
 
 
@@ -57,8 +94,6 @@ export const Map = ({center, zoom, marker}: MapProps) => {
   }, [])
 
   return (
-    <MapWrapper ref={mapElement}>
-
-    </MapWrapper>
+    <MapWrapper ref={mapElement} />
   );
 };

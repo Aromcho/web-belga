@@ -70,7 +70,7 @@ export const CardProp = ({
 
       <ImageWrapper>
         {inversion
-          ? <IsolatedImage style={{ backgroundImage: `url(${property.photos.slice(0, 1).map((photo: any) => photo.image )})` }} />
+          ? <IsolatedImage style={{ backgroundImage: `url(${property.photos.slice(0, 1).map((photo: any) => photo.image )})` }} loading="lazy" />
           : (media
             ? <SliderCardGallery img={media} galleryLink={link} />
             : <EmptyMedia>
@@ -100,22 +100,22 @@ export const CardProp = ({
               <FeaturesItem>
 
                 <FeatureText>{Math.round(property.total_surface)}</FeatureText>
-                <FeatureImg src='/images/icons/prop_m2.svg' />
+                <FeatureImg src='/images/icons/prop_m2.svg' loading="lazy" />
               </FeaturesItem>
 
               <FeaturesItem>
                 <FeatureText>{property.suite_amount}</FeatureText>
-                <FeatureImg src='/images/icons/prop_cuarto.svg' />
+                <FeatureImg src='/images/icons/prop_cuarto.svg' loading="lazy" />
               </FeaturesItem>
 
               <FeaturesItem>
                 <FeatureText>{property.bathroom_amount}</FeatureText>
-                <FeatureImg src='/images/icons/prop_ducha.svg' />
+                <FeatureImg src='/images/icons/prop_ducha.svg' loading="lazy" />
               </FeaturesItem>
 
               <FeaturesItem>
                 <FeatureText>{property.parking_lot_amount}</FeatureText>
-                <FeatureImg src='/images/icons/prop_cochera.svg' />
+                <FeatureImg src='/images/icons/prop_cochera.svg' loading="lazy" />
               </FeaturesItem>
 
             </FeaturesList>

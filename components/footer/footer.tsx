@@ -89,6 +89,32 @@ export const Footer = ({ small = true, id, backToTopFooter }: FooterProps) => {
     },
   ];
 
+  const [high, setHigh] = React.useState(0);
+
+  const data = [
+    {
+      id: 1,
+      name: "Casa Central LA IMPRENTA",
+      direction: "Gorostiaga 1601",
+      direction_b: "(Esquina Migueletes)",
+      loc: {lon: -58.4364606, lat: -34.5651921},
+    },
+    {
+      id: 2,
+      name: "Sucursal BELGRANO C",
+      direction: "Juramento 2102",
+      direction_b: "(Esquina Arcos)",
+      loc: {lat: -34.5608544, lon: -58.4557807}
+    },
+    {
+      id: 3,
+      name: "Sucursal BELGRANO R",
+      direction: "Superí 1485",
+      direction_b: "(Esquina Av. de los Incas)",
+      loc: {lat: -34.5735002, lon: -58.4634575}
+    }
+  ]
+
   return (
     <FooterContainer className={classes({ small })} id={id}>
       {backToTopFooter && <BackToTop />}
@@ -124,38 +150,21 @@ export const Footer = ({ small = true, id, backToTopFooter }: FooterProps) => {
               </LeftContact>
 
               <LeftLocation>
-                <LocationItem>
-                  <HeadLocation>
-                    <LocationIcon />
-                    Casa Central LA IMPRENTA
-                  </HeadLocation>
-                  <BodyLocation>
-                    <Loc>Gorostiaga 1601</Loc>
-                    <Loc>(Esquina Migueletes)</Loc>
-                  </BodyLocation>
-                </LocationItem>
-
-                <LocationItem>
-                  <HeadLocation>
-                    <LocationIcon />
-                    Sucursal BELGRANO C
-                  </HeadLocation>
-                  <BodyLocation>
-                    <Loc>Juramento 2102</Loc>
-                    <Loc>(Esquina Arcos)</Loc>
-                  </BodyLocation>
-                </LocationItem>
-
-                <LocationItem>
-                  <HeadLocation>
-                    <LocationIcon />
-                    Sucursal BELGRANO R{" "}
-                  </HeadLocation>
-                  <BodyLocation>
-                    <Loc>Superí 1485</Loc>
-                    <Loc>(Esquina Av. de los Incas)</Loc>
-                  </BodyLocation>
-                </LocationItem>
+                {data.map(item => (
+                  <LocationItem key={item.id}
+                    onMouseEnter={() => setHigh(item.id)}
+                    onMouseLeave={() => setHigh(0)}
+                  >
+                    <HeadLocation>
+                      <LocationIcon />
+                      {item.name}
+                    </HeadLocation>
+                    <BodyLocation>
+                      <Loc>{item.direction}</Loc>
+                      <Loc>{item.direction_b}</Loc>
+                    </BodyLocation>
+                  </LocationItem>
+                ))}
               </LeftLocation>
             </LeftInfo>
           </FooterInfo>
@@ -176,13 +185,10 @@ export const Footer = ({ small = true, id, backToTopFooter }: FooterProps) => {
           <FooterInfo>
             <MapFooter>
               <DynamicMap 
-                // marker={{ lon: property.branch.geo_long, lat: property.branch.geo_lat }} center={{ lon: property.branch.geo_long, lat: property.branch.geo_lat }}
-                zoom={15} 
-                />
-              {/* <iframe
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13142.89626707307!2d-58.4538193!3d-34.5605412!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x7a96ad3b6c0351f2!2sBelga%20Inmobiliaria!5e0!3m2!1ses-419!2sar!4v1647200525779!5m2!1ses-419!2sar"
-                loading="lazy"
-              /> */}
+                center={{lat: -34.5608544, lon: -58.4557807}}
+                markers={data.map(item => ({...item.loc, id: item.id.toString(), high: high === item.id}))}
+                zoom={13} 
+              />
             </MapFooter>
           </FooterInfo>
           <FooterInfoBottom>
@@ -190,6 +196,7 @@ export const Footer = ({ small = true, id, backToTopFooter }: FooterProps) => {
               src="/images/brand_red.svg"
               alt="Belga inmobiliaria"
               title="Belga inmobiliaria"
+              loading="lazy"
             />
             <SocialList className="social--list-mobile">
               {socialInfo.map((i: any, k: number) => {

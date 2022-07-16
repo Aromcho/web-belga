@@ -27,6 +27,7 @@ import { Dropdown } from "components/dropdown";
 import { Input } from "components/input";
 import { Button } from "components/button";
 import { SaveSearch } from "components/savesearch";
+import { SocialSidebar } from "components/socialsidebar";
 
 import {
   FiltersContainer,
@@ -38,6 +39,7 @@ import {
   PaginationWrapper,
   PaginationNumber,
 } from "./propertylist.styles";
+
 
 export interface propertylistProps {
   properties: Property[];
@@ -140,6 +142,7 @@ export const PropertyList = observer(
 
     return (
       <PropertyListWrapper style={{ paddingTop: `${paddingTop}px` }}>
+        <SocialSidebar color="red" />
         {filters && (
           <FiltersContainer>
             <Select

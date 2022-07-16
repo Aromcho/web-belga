@@ -12,6 +12,7 @@ import {
   MenuBrandWrapper,
   MenuBrand,
   MenuItem,
+  UnderlineLink,
   MenuList,
   MenuInfo,
   MenuInfoItem,
@@ -19,8 +20,11 @@ import {
   BurgerButton,
   IconWrapper,
   BurgerMenu,
+  BurgerCrossCustom,
+  Line,
   BurgerMenuList,
   BurgerMenuItem,
+  UnderlineLinkBurger,
   LinkText,
   //MenuMobile
 } from "./menu.styles";
@@ -42,7 +46,6 @@ export interface MenuProps {
 }
 
 export const Menu = ({ theme = "light" }: MenuProps) => {
-
   /* Handle Menu */
   const [showMenu, setShowMenu] = React.useState<boolean>(false);
   const [sticky, setSticky] = React.useState<boolean>(false);
@@ -110,13 +113,17 @@ export const Menu = ({ theme = "light" }: MenuProps) => {
 
           <MenuList>
             <MenuItem>
-              <Link href={PATHS.VENTA}>
-                <a className="menu--link">Quiero comprar</a>
+              <Link href={PATHS.VENTA} passHref>
+                <a className="menu--link">
+                  Quiero comprar <UnderlineLink />
+                </a>
               </Link>
             </MenuItem>
             <MenuItem>
               <Link href={PATHS.EMPRENDIMIENTOS} passHref>
-                <a className="menu--link">Emprendimientos</a>
+                <a className="menu--link">
+                  Emprendimientos <UnderlineLink />
+                </a>
               </Link>
             </MenuItem>
             <MenuItem>
@@ -135,12 +142,22 @@ export const Menu = ({ theme = "light" }: MenuProps) => {
           className={classes({ active: showMenu })}
         >
           <IconWrapper>
-            <MenuBurgerIcon className={classes({ active: !showMenu })} />
-            <CloseIcon className={classes({ active: showMenu })} />
+            <BurgerCrossCustom
+              className={classes({ burger: !showMenu, cross: showMenu })}
+            >
+              <Line />
+              <Line />
+              <Line />
+            </BurgerCrossCustom>
+            {/* <MenuBurgerIcon className={classes({ active: !showMenu })} />
+            <CloseIcon className={classes({ active: showMenu })} /> */}
           </IconWrapper>
         </BurgerButton>
 
-        <BurgerMenu className={classes({ active: showMenu })} onMouseLeave={() => setShowMenu(false)}>
+        <BurgerMenu
+          className={classes({ active: showMenu })}
+          onMouseLeave={() => setShowMenu(false)}
+        >
           <BurgerMenuList>
             <BurgerMenuItem className="emprendimientos--link">
               <Link href={PATHS.ROOT}>
@@ -154,7 +171,9 @@ export const Menu = ({ theme = "light" }: MenuProps) => {
               <Link href={PATHS.FAVORITES}>
                 <a className="burger--menu-link">
                   <HeartIcon className="heart--icon" />
-                  <LinkText>Favoritos</LinkText>
+                  <LinkText>
+                    Favoritos <UnderlineLinkBurger />
+                  </LinkText>
                 </a>
               </Link>
             </BurgerMenuItem>
@@ -162,7 +181,10 @@ export const Menu = ({ theme = "light" }: MenuProps) => {
             <BurgerMenuItem>
               <Link href={PATHS.BUSQUEDAS}>
                 <a className="burger--menu-link">
-                  <SearchIcon /> <LinkText>Búsquedas</LinkText>
+                  <SearchIcon />{" "}
+                  <LinkText>
+                    Búsquedas <UnderlineLinkBurger />
+                  </LinkText>
                 </a>
               </Link>
             </BurgerMenuItem>
@@ -170,7 +192,10 @@ export const Menu = ({ theme = "light" }: MenuProps) => {
             <BurgerMenuItem>
               <Link href={PATHS.ROOT}>
                 <a className="burger--menu-link">
-                  <BelgaIsoIcon /> <LinkText>Conocé Belga</LinkText>
+                  <BelgaIsoIcon />{" "}
+                  <LinkText>
+                    Conocé Belga <UnderlineLinkBurger />
+                  </LinkText>
                 </a>
               </Link>
             </BurgerMenuItem>
@@ -178,7 +203,10 @@ export const Menu = ({ theme = "light" }: MenuProps) => {
             <BurgerMenuItem onClick={() => setShowMenu(false)}>
               <Link href={`${PATHS.ROOT}${PATHS.CONTACTO}`}>
                 <a className="burger--menu-link">
-                  <TelIcon /> <LinkText>Contactanos</LinkText>
+                  <TelIcon />{" "}
+                  <LinkText>
+                    Contactanos <UnderlineLinkBurger />
+                  </LinkText>
                 </a>
               </Link>
             </BurgerMenuItem>

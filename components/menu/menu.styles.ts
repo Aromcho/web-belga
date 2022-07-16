@@ -10,10 +10,21 @@ export const LinkText = styled.span`
   font-weight: 600;
   display: flex;
   transition: all 0.3s ease-in-out;
+  position: relative;
   @media screen and (max-width: 840px) {
     font-size: 18px;
     white-space: nowrap;
   }
+`;
+
+export const UnderlineLinkBurger = styled.div`
+  width: 0;
+  height: 2px;
+  background-color: ${(props: any) => props.theme.black};
+  transition: width 0.3s ease-in-out;
+  position: absolute;
+  left: 0;
+  bottom: 0;
 `;
 
 export const BurgerMenuItem = styled.div`
@@ -30,7 +41,9 @@ export const BurgerMenuItem = styled.div`
   }
   &:hover {
     ${LinkText} {
-      border-bottom-color: ${(props: any) => props.theme.black};
+      ${UnderlineLinkBurger} {
+        width: 100%;
+      }
     }
   }
   .burger--menu-link {
@@ -81,6 +94,83 @@ export const BurgerMenuList = styled.div`
     align-items: flex-start;
     justify-content: flex-start;
     padding: 40px 0 0;
+  }
+`;
+
+export const Line = styled.div`
+  width: 100%;
+  max-width: 30px;
+  height: 2px;
+  background-color: ${(props: any) => props.theme.white};
+  border-radius: 100px;
+  transition: all 0.3s ease-in-out;
+  transform-origin: center;
+  transform: translate(-50%, -50%) rotate(0);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  &:first-of-type {
+    transform-origin: top left;
+    transform: translate(-50%, -60%) rotate(0);
+    top: 22px;
+  }
+  &:nth-of-type(2) {
+    transform-origin: center;
+    transform: translate(-50%, -50%) rotate(0);
+  }
+  &:last-of-type {
+    top: 45px;
+  }
+  @media screen and (max-width: 840px) {
+    max-width: 40px;
+    &:first-of-type {
+      top: 15px;
+    }
+    &:last-of-type {
+      top: 42px;
+    }
+  }
+`;
+
+export const BurgerCrossCustom = styled.div`
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  &.burger {
+    flex-flow: column;
+    &:hover {
+      ${Line} {
+        background-color: ${(props: any) => props.theme.black};
+        @media screen and (max-width: 840px) {
+          background-color: ${(props: any) => props.theme.white};
+        }
+      }
+    }
+  }
+  &.cross {
+    background-color: ${(props: any) => props.theme.white};
+    ${Line} {
+      background-color: ${(props: any) => props.theme.black};
+      transform: translate(-50%, -50%) rotate(45deg);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      &:first-of-type {
+        transform-origin: top;
+      }
+      &:nth-of-type(2) {
+        transform-origin: center;
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+      &:last-of-type {
+        opacity: 0;
+        top: 45px;
+        transform: translate(-50%, -50%) rotate(0);
+      }
+    }
   }
 `;
 
@@ -192,27 +282,38 @@ export const BurgerButton = styled.ul`
   }
 `;
 
+export const UnderlineLink = styled.div`
+  width: 0;
+  height: 2px;
+  background-color: ${(props: any) => props.theme.white};
+  transition: width 0.3s ease-in-out;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+`;
+
 export const MenuItem = styled.li`
   width: 100%;
   max-width: 180px;
   align-items: center;
   display: flex;
   margin-right: 40px;
-
   .menu--link {
     height: 100%;
-    border-bottom: 2px solid transparent;
     color: ${(props: any) => props.theme.white};
-    padding: 10px 0;
+    padding: 12px 0;
     font-size: 14px;
     font-weight: 500;
     text-align: center;
     transition: all 0.3s ease-in-out;
     text-transform: uppercase;
     white-space: nowrap;
+    position: relative;
     &:hover {
       cursor: pointer;
-      border-bottom-color: ${(props: any) => props.theme.white};
+      ${UnderlineLink} {
+        width: 100%;
+      }
     }
   }
 `;
@@ -317,6 +418,7 @@ export const MenuInfoList = styled.ul`
   display: flex;
   justify-content: flex-end;
   margin-left: auto;
+  box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.25);
 `;
 
 export const MenuInfo = styled.div`
@@ -326,6 +428,8 @@ export const MenuInfo = styled.div`
   background-color: ${(props: any) => props.theme.black};
   display: flex;
   justify-content: flex-end;
+  z-index: 4;
+  position: relative;
   @media screen and (max-width: 992px) {
     display: none;
   }
@@ -338,6 +442,8 @@ export const MenuWrapper = styled.div`
   background-color: transparent;
   display: flex;
   transition: all 0.4s cubic-bezier(0.74, 0.04, 0.24, 1.04);
+  z-index: 3;
+  position: initial;
   @media screen and (max-width: 840px) {
     height: 55px;
   }
@@ -361,7 +467,7 @@ export const MenuContainer = styled.div`
   left: 0;
   &.sticky {
     top: -32px;
-    box-shadow: 0px 7px 29px -1px rgba(0, 0, 0, 0.26);
+    box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.25);
     @media screen and (max-width: 992px) {
       top: 0;
     }
@@ -371,6 +477,11 @@ export const MenuContainer = styled.div`
       ${BurgerButton} {
         height: 55px;
         ${IconWrapper} {
+          ${BurgerCrossCustom} {
+            ${Line} {
+              background-color: ${(props: any) => props.theme.black};
+            }
+          }
           svg {
             color: ${(props: any) => props.theme.black};
           }
@@ -400,6 +511,9 @@ export const MenuContainer = styled.div`
           opacity: 0.65;
         }
       }
+    }
+    ${MenuInfoList} {
+      box-shadow: none;
     }
     ${MenuList} {
       ${MenuItem} {
@@ -462,6 +576,11 @@ export const MenuContainer = styled.div`
       box-shadow: 0px 7px 29px -1px rgba(0, 0, 0, 0.1);
       ${BurgerButton} {
         ${IconWrapper} {
+          ${BurgerCrossCustom} {
+            ${Line} {
+              background-color: ${(props: any) => props.theme.white};
+            }
+          }
           svg {
             color: ${(props: any) => props.theme.white};
           }
@@ -470,7 +589,7 @@ export const MenuContainer = styled.div`
         &.active {
           ${IconWrapper} {
             svg {
-              color: ${(props: any) => props.theme.black };
+              color: ${(props: any) => props.theme.black};
             }
           }
         }

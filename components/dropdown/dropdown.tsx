@@ -3,7 +3,8 @@ import React from 'react';
 import {
   DropdownStyled,
   Label,
-  List
+  List,
+  DivClose
 } from './dropdown.styles';
 
 export interface dropdownProps {
@@ -18,9 +19,14 @@ export const Dropdown = ({value, className, placeholder, children}: dropdownProp
   return (
     <DropdownStyled className={className}>
       <Label onClick={() => setOpen(!open)}>{value || placeholder}</Label>
-      {open && <List>
-        {children}
-      </List>}
+      {open &&
+        <>
+          <DivClose onClick={() => setOpen(false)}/>
+          <List>
+            {children}
+          </List>
+        </>
+      }
     </DropdownStyled>
   );
 };

@@ -304,7 +304,7 @@ export const SearchFormWrapper = styled.div`
   width: 100%;
   max-width: 710px;
   margin: 0 auto;
-  position: relative;
+  /* position: relative; */
   z-index: 6;
   @media screen and (max-width: 992px) {
     max-width: 500px;

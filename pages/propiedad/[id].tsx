@@ -75,8 +75,6 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
 
   if (statusCode === 500) return <>500</>;
 
-  console.log(property)
-
   /* Handle like prop*/
   const [isLiked, setIsLiked] = React.useState<boolean>(false);
 
@@ -474,7 +472,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
           </BodyProp>
 
           <MapProp>
-            <DynamicMap marker={{ lon: property.geo_long, lat: property.geo_lat }} center={{ lon: property.branch.geo_long, lat: property.branch.geo_lat }} zoom={15} />
+            <DynamicMap marker={{ lon: property.branch.geo_long, lat: property.branch.geo_lat }} center={{ lon: property.branch.geo_long, lat: property.branch.geo_lat }} zoom={15} />
           
           </MapProp>
 

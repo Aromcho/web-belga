@@ -443,7 +443,7 @@ const PropertyDetail = ({
           </BodyProp>
 
           <MapProp>
-          <DynamicMap marker={{ lon: property.branch.geo_long, lat: property.branch.geo_lat }} center={{ lon: property.branch.geo_long, lat: property.branch.geo_lat }} zoom={15} />
+            <DynamicMap marker={{ lon: property.branch.geo_long, lat: property.branch.geo_lat }} center={{ lon: property.branch.geo_long, lat: property.branch.geo_lat }} zoom={15} />
           </MapProp>
 
           <ContactForm className="full" />

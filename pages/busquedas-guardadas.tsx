@@ -23,7 +23,7 @@ const BusquedasGuardadas = observer(() => {
     rootStore: { userStore },
   } = useStore();
 
-  const [status, setStatus] = React.useState<string>("finish");
+  const [status, setStatus] = React.useState<string>("empty");
 
   return (
     <Layout>
@@ -44,6 +44,7 @@ const BusquedasGuardadas = observer(() => {
           {status === "loading" && <Status text="cargando..." />}
           {status === "empty" && (
             <Status
+              img="/images/empty_img_heart.gif"
               text="No posees busquedas guardadas"
               textButton="Ver propiedades"
               buttonStyle="secondary"

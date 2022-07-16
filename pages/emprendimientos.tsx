@@ -7,8 +7,6 @@ import { PropertyList } from "components/propertylist";
 import { BackToTop } from "components/backtotop";
 
 const PropertySearch = ({ data }: any) => {
-
-  console.log(data.objects)
   
   return (
     <Layout menuTheme="dark">

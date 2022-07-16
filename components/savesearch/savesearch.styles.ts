@@ -3,20 +3,19 @@ import styled from "@emotion/styled";
 export const IconWrapper = styled.div`
   width: 20px;
   height: 20px;
-  align-items: center;
   border-radius: 100%;
   border: 1px solid ${(props: any) => props.theme.black};
   background-color: transparent;
-  display: flex;
-  justify-content: center;
-  margin-left: 5px;
+  margin-left: 8px;
   transition: all 0.3s ease-in-out;
+  position: relative;
   svg {
-    width: 16px;
+    width: 12px;
     height: auto;
-    position: relative;
-    top: -0.5px;
-    left: -0.5px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
     path {
       fill: ${(props: any) => props.theme.black};
     }
@@ -33,12 +32,6 @@ export const SaveText = styled.div`
 export const SaveSearchContainer = styled.div`
   align-items: center;
   display: flex;
-
-  &:hover {
-    ${IconWrapper} {
-      transform: scale(1.1);
-    }
-  }
   &.saved {
     ${IconWrapper} {
       background-color: ${(props: any) => props.theme.black};
@@ -51,13 +44,8 @@ export const SaveSearchContainer = styled.div`
 
     &:hover {
       ${IconWrapper} {
-        transform: scale(0.8);
         background-color: ${(props: any) => props.theme.black};
       }
     }
   }
-  /*  @media screen and (max-width: 1100px) {
-    min-height: 330px;
-    padding: 80px 0;
-  } */
 `;

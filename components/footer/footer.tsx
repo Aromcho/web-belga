@@ -1,13 +1,22 @@
-import React from "react";
-import dynamic from 'next/dynamic'
+import React, { HtmlHTMLAttributes, useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { classes, getWindowDimensions } from "helpers";
 
-import { MapProps } from 'components/map/map';
-const DynamicMap = dynamic<MapProps>(() => import('components/map').then((mod) => mod.Map), { ssr: false })
+import { MapProps } from "components/map/map";
+const DynamicMap = dynamic<MapProps>(
+  () => import("components/map").then((mod) => mod.Map),
+  { ssr: false }
+);
+
+import { TitleWithIcon } from "components/titlewithicon";
+import { ContactForm } from "components/forms/contactform";
+import { BackToTop } from "components/backtotop";
 
 import {
   FooterContainer,
+  BackContainer,
   FooterWrapper,
   FooterLeft,
   FooterCenter,
@@ -44,11 +53,6 @@ import {
   WhatsappIcon,
   YoutubeCircleIcon,
 } from "components/icons";
-import { TitleWithIcon } from "components/titlewithicon";
-import { ContactForm } from "components/forms/contactform";
-import { BackToTop } from "components/backtotop";
-
-import { classes } from "helpers";
 
 export interface FooterProps {
   small?: boolean;
@@ -97,28 +101,50 @@ export const Footer = ({ small = true, id, backToTopFooter }: FooterProps) => {
       name: "Casa Central LA IMPRENTA",
       direction: "Gorostiaga 1601",
       direction_b: "(Esquina Migueletes)",
-      loc: {lon: -58.4364606, lat: -34.5651921},
+      loc: { lon: -58.4364606, lat: -34.5651921 },
     },
     {
       id: 2,
       name: "Sucursal BELGRANO C",
       direction: "Juramento 2102",
       direction_b: "(Esquina Arcos)",
-      loc: {lat: -34.5608544, lon: -58.4557807}
+      loc: { lat: -34.5608544, lon: -58.4557807 },
     },
     {
       id: 3,
       name: "Sucursal BELGRANO R",
       direction: "Superí 1485",
       direction_b: "(Esquina Av. de los Incas)",
-      loc: {lat: -34.5735002, lon: -58.4634575}
-    }
-  ]
+      loc: { lat: -34.5735002, lon: -58.4634575 },
+    },
+  ];
+
+  /* Handle resize screen */
+  const [windowDimensions, setWindowDimensions] = React.useState(
+    getWindowDimensions()
+  );
+  React.useEffect(() => {
+    const handleResize = () => setWindowDimensions(getWindowDimensions());
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  /* Handle height back to top container */
+  const [BackContainerHeight, setBackContainerHeight] = useState();
+  const footerWrapper = useRef<any>();
+
+  React.useEffect(() => {
+    setBackContainerHeight(footerWrapper?.current?.offsetHeight);
+  }, [windowDimensions]);
 
   return (
     <FooterContainer className={classes({ small })} id={id}>
-      {backToTopFooter && <BackToTop />}
-      <FooterWrapper>
+      {backToTopFooter && (
+        <BackContainer style={{ height: BackContainerHeight }}>
+          <BackToTop color="yellow" />
+        </BackContainer>
+      )}
+      <FooterWrapper ref={footerWrapper}>
         <FooterLeft>
           <FooterInfo>
             <LeftInfo>
@@ -150,8 +176,9 @@ export const Footer = ({ small = true, id, backToTopFooter }: FooterProps) => {
               </LeftContact>
 
               <LeftLocation>
-                {data.map(item => (
-                  <LocationItem key={item.id}
+                {data.map((item) => (
+                  <LocationItem
+                    key={item.id}
                     onMouseEnter={() => setHigh(item.id)}
                     onMouseLeave={() => setHigh(0)}
                   >
@@ -184,10 +211,14 @@ export const Footer = ({ small = true, id, backToTopFooter }: FooterProps) => {
         <FooterCenter>
           <FooterInfo>
             <MapFooter>
-              <DynamicMap 
-                center={{lat: -34.5608544, lon: -58.4557807}}
-                markers={data.map(item => ({...item.loc, id: item.id.toString(), high: high === item.id}))}
-                zoom={13} 
+              <DynamicMap
+                center={{ lat: -34.5608544, lon: -58.4557807 }}
+                markers={data.map((item) => ({
+                  ...item.loc,
+                  id: item.id.toString(),
+                  high: high === item.id,
+                }))}
+                zoom={13}
               />
             </MapFooter>
           </FooterInfo>

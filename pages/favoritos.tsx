@@ -66,6 +66,7 @@ const Favorites = observer(() => {
           {status === "loading" && <Status text="cargando..." />}
           {status === "empty" && (
             <Status
+              img="/images/empty_img_heart.gif"
               text="No posees favoritos"
               textButton="Ver propiedades"
               buttonStyle="secondary"

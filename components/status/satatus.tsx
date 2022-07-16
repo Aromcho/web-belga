@@ -2,10 +2,11 @@ import React from "react";
 
 import { Button } from "components/button";
 
-import { StatusWrapper, Text } from "./status.styles";
+import { StatusWrapper, Text, ImgWrapper, Img } from "./status.styles";
 
 export interface StatusProps {
   className?: string;
+  img?: string;
   text?: string;
   textButton?: string;
   buttonStyle?: string;
@@ -14,6 +15,7 @@ export interface StatusProps {
 
 export const Status = ({
   className,
+  img,
   text,
   textButton,
   buttonStyle,
@@ -21,6 +23,11 @@ export const Status = ({
 }: StatusProps) => {
   return (
     <StatusWrapper className={className}>
+      {img && (
+        <ImgWrapper>
+          <Img src={img} />
+        </ImgWrapper>
+      )}
       <Text>{text}</Text>
       {linkButton && (
         <Button

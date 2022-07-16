@@ -481,6 +481,16 @@ export const MenuContainer = styled.div`
             ${Line} {
               background-color: ${(props: any) => props.theme.black};
             }
+            &.burger {
+              ${Line} {
+                &:first-of-type {
+                  top: 18px;
+                }
+                &:last-of-type {
+                  top: 39px;
+                }
+              }
+            }
           }
           svg {
             color: ${(props: any) => props.theme.black};
@@ -543,6 +553,13 @@ export const MenuContainer = styled.div`
       box-shadow: 0px 7px 29px -1px rgba(0, 0, 0, 0.1);
       ${BurgerButton} {
         ${IconWrapper} {
+          ${BurgerCrossCustom} {
+            &.burger {
+              ${Line} {
+                background-color: ${(props: any) => props.theme.black};
+              }
+            }
+          }
           svg {
             color: ${(props: any) => props.theme.black};
           }

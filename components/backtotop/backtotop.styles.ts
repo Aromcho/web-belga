@@ -9,7 +9,7 @@ export const BackToTopContainer = styled.div`
   transition: all 0.3s ease-in-out;
   opacity: 0;
   pointer-events: none;
-  z-index: 999997;
+  z-index: 99999;
   position: fixed;
   bottom: 5%;
   right: 30px;
@@ -40,7 +40,7 @@ export const BackToTopContainer = styled.div`
   }
   &.yellow {
     .icon--arrow {
-      color: ${(props: any) => props.theme.yellow};
+      color: ${(props: any) => props.theme.primary};
     }
   }
 `;

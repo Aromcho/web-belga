@@ -1,6 +1,6 @@
 import React from "react";
 import parse from "html-react-parser";
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 import { GetServerSideProps } from "next";
 import { Layout, Container } from "components/layout";
 import {
@@ -12,8 +12,11 @@ import { PATHS } from "config";
 import Link from "next/link";
 import { useMergeState } from "helpers/hooks";
 import { classes, getDevelopmentsData } from "helpers";
-import { MapProps } from 'components/map/map';
-const DynamicMap = dynamic<MapProps>(() => import('components/map').then((mod) => mod.Map), { ssr: false })
+import { MapProps } from "components/map/map";
+const DynamicMap = dynamic<MapProps>(
+  () => import("components/map").then((mod) => mod.Map),
+  { ssr: false }
+);
 import Head from "next/head";
 import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -78,7 +81,6 @@ import {
 } from "components/icons";
 import { SocialSidebar } from "components/socialsidebar";
 
-
 const PropertyDetail = ({
   properties,
   property,
@@ -88,8 +90,6 @@ const PropertyDetail = ({
   if (statusCode === 404) return <>404</>;
 
   if (statusCode === 500) return <>500</>;
-
-  console.log(property)
 
   /* Handle like prop */
   const [isLiked, setIsLiked] = React.useState<boolean>(false);
@@ -154,7 +154,7 @@ const PropertyDetail = ({
         <meta property="og:image" content={`${property?.photos[0]?.image}`} />
       </Head>
 
-      <BackToTop color="black"  />
+      <BackToTop color="black" />
       <SocialSidebar color="black" showWithOffset />
 
       <PropContainer>
@@ -179,7 +179,9 @@ const PropertyDetail = ({
                   <HeartIcon className="icon--heart" />
                 </LikeWrapper>
               </HeadAddress>
-              {devPropertiesData.min_price && <HeadPrice>{`Venta Desde ${devPropertiesData.currency} ${devPropertiesData.min_price}`}</HeadPrice>}
+              {devPropertiesData.min_price && (
+                <HeadPrice>{`Venta Desde ${devPropertiesData.currency} ${devPropertiesData.min_price}`}</HeadPrice>
+              )}
             </HeadAddressPrice>
 
             <HeadDivisor />
@@ -443,7 +445,17 @@ const PropertyDetail = ({
           </BodyProp>
 
           <MapProp>
-            <DynamicMap marker={{ lon: property.branch.geo_long, lat: property.branch.geo_lat }} center={{ lon: property.branch.geo_long, lat: property.branch.geo_lat }} zoom={15} />
+            <DynamicMap
+              marker={{
+                lon: property.branch.geo_long,
+                lat: property.branch.geo_lat,
+              }}
+              center={{
+                lon: property.branch.geo_long,
+                lat: property.branch.geo_lat,
+              }}
+              zoom={15}
+            />
           </MapProp>
 
           <ContactForm className="full" />

@@ -10,4 +10,5 @@ export const PATHS = {
   BUSQUEDAS: "/busquedas-guardadas",
   VENTA: "/venta/todos",
   CONTACTO: "#contacto",
+  TERMINOS: "/terminos-y-condiciones",
 };

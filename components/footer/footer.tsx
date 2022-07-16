@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { classes, getWindowDimensions } from "helpers";
+import { PATHS } from "config";
 
 import { MapProps } from "components/map/map";
 const DynamicMap = dynamic<MapProps>(
@@ -54,6 +55,7 @@ import {
   YoutubeCircleIcon,
 } from "components/icons";
 
+
 export interface FooterProps {
   small?: boolean;
   id?: string;
@@ -66,7 +68,7 @@ export const Footer = ({ small = true, id, backToTopFooter }: FooterProps) => {
   const legalInfo = {
     text: "*Para los casos de alquiler de vivienda, el monto máximo de comisión que se le puede requerir a los propietarios será el equivalente al cuatro con quince centésimos por ciento (4,15%) del valor total del respectivo contrato. Se encuentra prohibido cobrar comisiones inmobiliarias y gastos de gestoría de informes a los inquilinos que sean personas físicas.",
     linkText: "Términos y Condiciones",
-    link: "#",
+    link: `${PATHS.TERMINOS}`,
     mp: "CUCICBA MN 5111 CMCPSI MAT. 6528",
   };
 
@@ -258,7 +260,7 @@ export const Footer = ({ small = true, id, backToTopFooter }: FooterProps) => {
                 </Link>
               </LegalLink>
               <Mp>{legalInfo.mp}</Mp>
-            </RightInfo>
+            </RightInfo>  
           </FooterInfoBottom>
         </FooterRight>
 

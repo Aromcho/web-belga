@@ -182,7 +182,7 @@ const Home = observer(({ properties, emprendimientos }: any) => {
                   <MultiRange
                     customWidth={360}
                     min={0}
-                    max={3000001}
+                    max={3000000}
                     step={20000}
                     onChange={({ minVal, maxVal }: any) => {
                       setFormData({ price_from: minVal, price_to: maxVal });

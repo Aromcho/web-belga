@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { classes, getWindowDimensions } from "helpers";
-import { PATHS } from "config";
+import { PATHS, SOCIAL } from "config";
 
 import { MapProps } from "components/map/map";
 const DynamicMap = dynamic<MapProps>(
@@ -74,23 +74,23 @@ export const Footer = ({ small = true, id, backToTopFooter }: FooterProps) => {
 
   const socialInfo = [
     {
-      link: "https://www.instagram.com/belgainmobiliaria/",
+      link: `${SOCIAL.INSTA}`,
       icon: <InstaCircleIcon />,
     },
     {
-      link: "https://www.facebook.com/inmobiliariabelga/",
+      link: `${SOCIAL.FACEBOOK}`,
       icon: <FacebookCircleIcon />,
     },
     {
-      link: "https://www.youtube.com/channel/UCZ2ZZIQeRORMAUTS0mLDEfg/featured",
+      link: `${SOCIAL.YOUTUBE}`,
       icon: <YoutubeCircleIcon />,
     },
     {
-      link: "https://ar.linkedin.com/company/belga-inmobiliaria",
+      link: `${SOCIAL.LINKEDIN}`,
       icon: <LinkedinCircleIcon />,
     },
     {
-      link: "https://m.me/inmobiliariabelga",
+      link: `${SOCIAL.MESSENGER}`,
       icon: <MessengerCircleIcon />,
     },
   ];

@@ -5,6 +5,8 @@ import { observer } from "mobx-react-lite";
 import { useStore } from "stores";
 
 import { Layout, Container } from "components/layout";
+import { SocialSidebar } from "components/socialsidebar";
+import { BackToTop } from "components/backtotop";
 
 import { ArrowBackIcon } from "components/icons";
 
@@ -24,6 +26,8 @@ const Terminos = observer(() => {
 
   return (
     <Layout backToTopFooter>
+      <SocialSidebar color="red" />
+      <BackToTop color="red" />
       <TerminosContainer>
         <Container>
           <BackWrapper>

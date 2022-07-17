@@ -529,7 +529,10 @@ export const MenuContainer = styled.div`
       ${MenuItem} {
         .menu--link {
           color: ${(props: any) => props.theme.black};
-          padding: 5px 0;
+          padding: 8px 0;
+          ${UnderlineLink} {
+            background-color: ${(props: any) => props.theme.black};
+          }
           &:hover {
             border-bottom-color: ${(props: any) => props.theme.black};
           }
@@ -570,6 +573,9 @@ export const MenuContainer = styled.div`
       ${MenuItem} {
         .menu--link {
           color: ${(props: any) => props.theme.black};
+          ${UnderlineLink} {
+            background-color: ${(props: any) => props.theme.black};
+          }
           &:hover {
             border-bottom-color: ${(props: any) => props.theme.black};
           }
@@ -616,6 +622,9 @@ export const MenuContainer = styled.div`
       ${MenuItem} {
         .menu--link {
           color: ${(props: any) => props.theme.white};
+          ${UnderlineLink} {
+            background-color: ${(props: any) => props.theme.white};
+          }
           &:hover {
             border-bottom-color: ${(props: any) => props.theme.white};
           }

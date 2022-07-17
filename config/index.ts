@@ -12,3 +12,11 @@ export const PATHS = {
   CONTACTO: "#contacto",
   TERMINOS: "/terminos-y-condiciones",
 };
+
+export const SOCIAL = {
+  INSTA: "https://www.instagram.com/belgainmobiliaria/",
+  FACEBOOK: "https://www.facebook.com/inmobiliariabelga/",
+  YOUTUBE: "https://www.youtube.com/channel/UCZ2ZZIQeRORMAUTS0mLDEfg/featured",
+  LINKEDIN: "https://ar.linkedin.com/company/belga-inmobiliaria",
+  MESSENGER: "https://m.me/inmobiliariabelga",
+};

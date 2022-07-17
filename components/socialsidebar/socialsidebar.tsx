@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { classes } from "helpers";
 import Link from "next/link";
+import { SOCIAL } from "config";
 
 import { SidebarContainer } from "./socialsidebar.styles";
 
@@ -41,22 +42,22 @@ export const SocialSidebar = ({
       className={classes(className, color ?? "yellow", { show: showSidebar })}
       style={{ zIndex: zIndex }}
     >
-      <Link href="https://www.instagram.com/belgainmobiliaria/">
+      <Link href={`${SOCIAL.INSTA}`}>
         <a className="social--link" target="_blank">
           <InstaCircleIcon />
         </a>
       </Link>
-      <Link href="https://www.facebook.com/inmobiliariabelga/">
+      <Link href={`${SOCIAL.FACEBOOK}`}>
         <a className="social--link" target="_blank">
           <FacebookCircleIcon />
         </a>
       </Link>
-      <Link href="https://www.youtube.com/channel/UCZ2ZZIQeRORMAUTS0mLDEfg/featured">
+      <Link href={`${SOCIAL.YOUTUBE}`}>
         <a className="social--link" target="_blank">
           <YoutubeCircleIcon />
         </a>
       </Link>
-      <Link href="https://ar.linkedin.com/company/belga-inmobiliaria">
+      <Link href={`${SOCIAL.LINKEDIN}`}>
         <a className="social--link" target="_blank">
           <LinkedinCircleIcon />
         </a>

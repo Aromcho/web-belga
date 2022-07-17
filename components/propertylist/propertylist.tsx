@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { observer } from "mobx-react-lite";
 
 import { CardProp } from "components/cardprop";
-import { ArrowBackIcon, ChevronUpIcon, CirclePlusIcon } from "components/icons";
+import {
+  ArrowBackIcon,
+  ChevronUpIcon,
+  CirclePlusIcon,
+  CloseIcon,
+} from "components/icons";
 import { ContactForm } from "components/forms/contactform";
 import { Select } from "components/select";
 import { Container } from "components/layout";
@@ -31,6 +36,8 @@ import { SocialSidebar } from "components/socialsidebar";
 
 import {
   FiltersContainer,
+  FiltersWrapperDesk,
+  FiltersWrapperMobile,
   PropertyListWrapper,
   ListContainer,
   TopContainer,
@@ -38,8 +45,9 @@ import {
   RowContent,
   PaginationWrapper,
   PaginationNumber,
+  FiltersHeader,
+  IconCloseWrapper,
 } from "./propertylist.styles";
-
 
 export interface propertylistProps {
   properties: Property[];
@@ -112,7 +120,7 @@ export const PropertyList = observer(
       property_type: 0,
       price_from: 0,
       price_to: 0,
-      order: 'DESC'
+      order: "DESC",
     });
 
     const router = useRouter();
@@ -131,187 +139,225 @@ export const PropertyList = observer(
     }));
 
     const handleOrderChange = (v: string) => {
-      setFormData({order: v});
+      setFormData({ order: v });
       setTimeout(() => {
-        router.push(getSearchUrl({
-          ...formData,
-          order: v
-        }));
-      }, 100)
-    }
+        router.push(
+          getSearchUrl({
+            ...formData,
+            order: v,
+          })
+        );
+      }, 100);
+    };
+
+    /* Show filters on mobile */
+    const [showFilter, setShowFilter] = useState(false);
 
     return (
       <PropertyListWrapper style={{ paddingTop: `${paddingTop}px` }}>
         <SocialSidebar color="red" />
         {filters && (
-          <FiltersContainer>
-            <Select
-              className="input--general full"
-              options={localidades}
-              isMulti={true}
-              value={localidades.filter((item) =>
-                formData.locations.includes(item.value)
-              )}
-              placeholder="Barrios"
-              hideSelectedOptions={true}
-              onChange={(opt) => {
-                setFormData({
-                  locations: opt.map((item: { value: number }) => item.value),
-                });
-              }}
-            />
-            <Select
-              className="input--general"
-              options={[
-                { value: 1, label: "Venta" },
-                { value: 2, label: "Alquiler" },
-              ]}
-              isSearchable={false}
-              isMulti={true}
-              value={operationArray.filter((item) =>
-                formData.operation_type.includes(item.value)
-              )}
-              placeholder="Tipo de operación"
-              onChange={(opt) => {
-                setFormData({
-                  operation_type: opt.map(
-                    (item: { value: number }) => item.value
-                  ),
-                });
-              }}
-            />
+          <>
+            {meta?.total_count !== 0 && (
+              <Button
+                className="filter--button"
+                type="secondary shine"
+                text="FILTRAR"
+                onClick={() => setShowFilter(true)}
+              />
+            )}
 
-            <Select
-              className="input--general"
-              options={propertiesSelectOptions}
-              isSearchable={false}
-              value={propertiesSelectOptions.filter(
-                (item) => formData.property_type === item.value
+            <FiltersContainer className={classes({ visible: showFilter })}>
+              {meta?.total_count !== 0 && (
+                <FiltersHeader>
+                  <IconCloseWrapper onClick={() => setShowFilter(false)}>
+                    <CloseIcon />
+                  </IconCloseWrapper>
+                </FiltersHeader>
               )}
-              placeholder="Tipo de propiedad"
-              onChange={(opt) => {
-                setFormData({ property_type: opt.value });
-              }}
-            />
 
-            <Dropdown
-              className="input--general"
-              placeholder="Dormitorios"
-              value={getDropdownValue(
-                formData.min_rooms,
-                formData.max_rooms,
-                "Dormitorios"
-              )}
-            >
-              <DropdownRow>
-                <RowLabel>Min.</RowLabel>
-                <Input
-                  className="dropdown--input"
-                  type="number"
-                  placeHolder="-"
-                  min={0}
-                  value={formData.min_rooms}
-                  onChange={(e) => {
-                    setFormData({ min_rooms: e.currentTarget.value });
+              <FiltersWrapperDesk>
+                <Select
+                  className="input--general full select"
+                  options={localidades}
+                  isMulti={true}
+                  value={localidades.filter((item) =>
+                    formData.locations.includes(item.value)
+                  )}
+                  placeholder="Barrios"
+                  hideSelectedOptions={true}
+                  onChange={(opt) => {
+                    setFormData({
+                      locations: opt.map(
+                        (item: { value: number }) => item.value
+                      ),
+                    });
                   }}
                 />
-              </DropdownRow>
-              <DropdownRow>
-                <RowLabel>Max.</RowLabel>
-                <Input
-                  className="dropdown--input"
-                  type="number"
-                  placeHolder="-"
-                  min={formData?.min_rooms}
-                  value={formData?.max_rooms}
-                  onChange={(e) => {
-                    setFormData({ max_rooms: e.currentTarget.value });
+                <Select
+                  className="input--general select"
+                  options={[
+                    { value: 1, label: "Venta" },
+                    { value: 2, label: "Alquiler" },
+                  ]}
+                  isSearchable={false}
+                  isMulti={true}
+                  value={operationArray.filter((item) =>
+                    formData.operation_type.includes(item.value)
+                  )}
+                  placeholder="Tipo de operación"
+                  onChange={(opt) => {
+                    setFormData({
+                      operation_type: opt.map(
+                        (item: { value: number }) => item.value
+                      ),
+                    });
                   }}
                 />
-              </DropdownRow>
-            </Dropdown>
 
-            <Dropdown
-              className="input--general"
-              placeholder="Baños"
-              value={getDropdownValue(
-                formData?.min_baths,
-                formData?.max_baths,
-                "Baños"
-              )}
-            >
-              <DropdownRow>
-                <RowLabel>Min.</RowLabel>
-                <Input
-                  className="dropdown--input"
-                  type="number"
-                  placeHolder="-"
-                  min={0}
-                  value={formData.min_baths}
-                  onChange={(e) => {
-                    setFormData({ min_baths: e.currentTarget.value });
+                <Select
+                  className="input--general select"
+                  options={propertiesSelectOptions}
+                  isSearchable={false}
+                  value={propertiesSelectOptions.filter(
+                    (item) => formData.property_type === item.value
+                  )}
+                  placeholder="Tipo de propiedad"
+                  onChange={(opt) => {
+                    setFormData({ property_type: opt.value });
                   }}
                 />
-              </DropdownRow>
-              <DropdownRow>
-                <RowLabel>Max.</RowLabel>
-                <Input
-                  className="dropdown--input"
-                  type="number"
-                  placeHolder="-"
-                  min={0}
-                  value={formData.max_baths}
-                  onChange={(e) => {
-                    setFormData({ max_baths: e.currentTarget.value });
-                  }}
-                />
-              </DropdownRow>
-            </Dropdown>
 
-            <Dropdown
-              className="input--general"
-              placeholder="Precio"
-              value={`${getDropdownValue(
-                formData?.price_from,
-                formData?.price_to,
-                "USD"
-              )}`}
-            >
-              <DropdownRow>
-                <RowLabel>Min.</RowLabel>
-                <Input
-                  className="dropdown--input"
-                  type="number"
-                  placeHolder="-"
-                  min={0}
-                  value={formData.price_from}
-                  onChange={(e) => {
-                    setFormData({ price_from: e.currentTarget.value });
-                  }}
-                />
-              </DropdownRow>
-              <DropdownRow>
-                <RowLabel>Max.</RowLabel>
-                <Input
-                  className="dropdown--input"
-                  type="number"
-                  placeHolder="-"
-                  min={0}
-                  value={formData.price_to}
-                  onChange={(e) => {
-                    setFormData({ price_to: e.currentTarget.value });
-                  }}
-                />
-              </DropdownRow>
-            </Dropdown>
+                <Dropdown
+                  className="input--general dropdown"
+                  placeholder="Dormitorios"
+                  value={getDropdownValue(
+                    formData.min_rooms,
+                    formData.max_rooms,
+                    "Dormitorios"
+                  )}
+                >
+                  <DropdownRow>
+                    <RowLabel>Min.</RowLabel>
+                    <Input
+                      className="dropdown--input"
+                      type="number"
+                      placeHolder="-"
+                      min={0}
+                      value={formData.min_rooms}
+                      onChange={(e) => {
+                        setFormData({ min_rooms: e.currentTarget.value });
+                      }}
+                    />
+                  </DropdownRow>
+                  <DropdownRow>
+                    <RowLabel>Max.</RowLabel>
+                    <Input
+                      className="dropdown--input"
+                      type="number"
+                      placeHolder="-"
+                      min={formData?.min_rooms}
+                      value={formData?.max_rooms}
+                      onChange={(e) => {
+                        setFormData({ max_rooms: e.currentTarget.value });
+                      }}
+                    />
+                  </DropdownRow>
+                </Dropdown>
 
-            <Button
-              className="form--button"
-              text="Buscar"
-              type="secondary shine"
-              onClick={handleSubmit}
-            />
-          </FiltersContainer>
+                <Dropdown
+                  className="input--general dropdown"
+                  placeholder="Baños"
+                  value={getDropdownValue(
+                    formData?.min_baths,
+                    formData?.max_baths,
+                    "Baños"
+                  )}
+                >
+                  <DropdownRow>
+                    <RowLabel>Min.</RowLabel>
+                    <Input
+                      className="dropdown--input"
+                      type="number"
+                      placeHolder="-"
+                      min={0}
+                      value={formData.min_baths}
+                      onChange={(e) => {
+                        setFormData({ min_baths: e.currentTarget.value });
+                      }}
+                    />
+                  </DropdownRow>
+                  <DropdownRow>
+                    <RowLabel>Max.</RowLabel>
+                    <Input
+                      className="dropdown--input"
+                      type="number"
+                      placeHolder="-"
+                      min={0}
+                      value={formData.max_baths}
+                      onChange={(e) => {
+                        setFormData({ max_baths: e.currentTarget.value });
+                      }}
+                    />
+                  </DropdownRow>
+                </Dropdown>
+
+                <Dropdown
+                  className="input--general dropdown"
+                  placeholder="Precio"
+                  value={`${getDropdownValue(
+                    formData?.price_from,
+                    formData?.price_to,
+                    "USD"
+                  )}`}
+                >
+                  <DropdownRow>
+                    <RowLabel>Min.</RowLabel>
+                    <Input
+                      className="dropdown--input"
+                      type="number"
+                      placeHolder="-"
+                      min={0}
+                      value={formData.price_from}
+                      onChange={(e) => {
+                        setFormData({ price_from: e.currentTarget.value });
+                      }}
+                    />
+                  </DropdownRow>
+                  <DropdownRow>
+                    <RowLabel>Max.</RowLabel>
+                    <Input
+                      className="dropdown--input"
+                      type="number"
+                      placeHolder="-"
+                      min={0}
+                      value={formData.price_to}
+                      onChange={(e) => {
+                        setFormData({ price_to: e.currentTarget.value });
+                      }}
+                    />
+                  </DropdownRow>
+                </Dropdown>
+
+                <Button
+                  className="form--button"
+                  text="Buscar"
+                  type="secondary shine"
+                  onClick={handleSubmit}
+                />
+              </FiltersWrapperDesk>
+
+              <FiltersWrapperMobile>
+                {saveSearch && (
+                  <RowContent className="bold save--search-mobile">
+                    <SaveSearch
+                      onSaved={() => console.log("Guardar busqueda")}
+                    />
+                  </RowContent>
+                )}
+              </FiltersWrapperMobile>
+            </FiltersContainer>
+          </>
         )}
         <Container>
           <TopContainer>
@@ -328,23 +374,30 @@ export const PropertyList = observer(
 
               {withCount && (
                 <RowContent className="count">
-                  {meta?.total_count}{" "}
-                  {meta?.total_count > 1 ? "resultados" : "resultado"}
+                  {`${meta?.total_count} ${
+                    meta?.total_count > 1 ? "resultados" : "resultado"
+                  }`}
                 </RowContent>
               )}
             </ContentWrapper>
-            <ContentWrapper>
+            <ContentWrapper className="content--order">
               {saveSearch && (
-                <RowContent className="bold">
+                <RowContent className="bold save--search-desk">
                   <SaveSearch onSaved={() => console.log("Guardar busqueda")} />
                 </RowContent>
               )}
-              {filters && <RowContent
-                className={classes("bold order", { high: formData.order === "DESC" })}
-                onClick={() => handleOrderChange(formData.order === "ASC" ? "DESC" : "ASC")}
-              >
-                Ordernar por Precio <ChevronUpIcon className="order--icon" />
-              </RowContent>}
+              {filters && meta?.total_count !== 0 && (
+                <RowContent
+                  className={classes("bold order order--desk", {
+                    high: formData.order === "DESC",
+                  })}
+                  onClick={() =>
+                    handleOrderChange(formData.order === "ASC" ? "DESC" : "ASC")
+                  }
+                >
+                  Ordernar por Precio <ChevronUpIcon className="order--icon" />
+                </RowContent>
+              )}
             </ContentWrapper>
           </TopContainer>
           <ListContainer className={classes({ "investment-list": investment })}>

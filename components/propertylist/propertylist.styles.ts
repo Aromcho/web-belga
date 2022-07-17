@@ -2,16 +2,121 @@ import styled from "@emotion/styled";
 
 export const PropertyListWrapper = styled.div`
   padding: 150px 0 50px;
+
+  @media screen and (max-width: 992px) {
+    padding: 90px 0 50px;
+  }
+  .filter--button {
+    max-width: 320px;
+    display: none;
+    margin: 0 auto 30px;
+    @media screen and (max-width: 1200px) {
+      display: flex;
+    }
+  }
+`;
+export const IconCloseWrapper = styled.ul`
+  width: 80px;
+  height: 60px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  svg {
+    width: 40px;
+    height: auto;
+    color: ${(props: any) => props.theme.black};
+  }
 `;
 
-export const FiltersContainer = styled.div`
-  width: 90%;
-  max-width: 1920px;
+export const FiltersHeader = styled.ul`
+  width: 100%;
+  height: 60px;
+  background-color: ${(props: any) => props.theme.white};
+  display: none;
+  justify-content: flex-end;
+  position: fixed;
+  z-index: 99;
+  box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.25);
+  top: 0;
+  left: 0;
+  @media screen and (max-width: 1200px) {
+    display: flex;
+  }
+`;
+
+export const FiltersWrapperMobile = styled.div`
+  width: 100%;
+  align-items: center;
+  display: none;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  @media screen and (max-width: 1200px) {
+    width: 90%;
+    max-width: 500px;
+    align-items: center;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    margin: 0 auto 20px;
+  }
+  @media screen and (max-width: 860px) {
+    margin: 250px auto 20px;
+  }
+  @media screen and (max-width: 740px) {
+    margin: 0 auto 20px;
+  }
+  .input--general {
+    @media screen and (max-width: 1200px) {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  }
+  .save--search-mobile {
+    display: none;
+    @media screen and (max-width: 1200px) {
+      display: flex;
+      margin: 10px auto 0;
+    }
+  }
+`;
+
+export const FiltersWrapperDesk = styled.div`
+  width: 100%;
   align-items: center;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  @media screen and (max-width: 1200px) {
+    display: none;
+  }
+`;
+
+export const FiltersContainer = styled.div`
+  width: 98%;
+  max-width: 1200px;
   margin: 0 auto 40px;
+  transition: all 0.2s ease-in-out;
+  @media screen and (max-width: 1200px) {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    background-color: ${(props: any) => props.theme.white};
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 99999999;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    &.visible {
+      pointer-events: all;
+      opacity: 1;
+    }
+  }
   .input--general {
     width: 16%;
     border: 1px solid #000000;
@@ -68,11 +173,28 @@ export const TopContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 30px;
+
+  .save--search-desk {
+    display: initial;
+    @media screen and (max-width: 1200px) {
+      display: none;
+    }
+  }
+  .order--desk {
+    @media screen and (max-width: 1200px) {
+      margin-top: auto;
+    }
+  }
 `;
 
 export const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  &.content--order {
+    @media screen and (max-width: 1200px) {
+      margin-top: auto;
+    }
+  }
 `;
 
 export const RowContent = styled.div`
@@ -86,6 +208,7 @@ export const RowContent = styled.div`
   }
   &.bold {
     font-weight: 600;
+    white-space: nowrap;
     cursor: pointer;
     a {
       font-weight: 600;

@@ -611,6 +611,11 @@ export const MenuContainer = styled.div`
         &:hover,
         &.active {
           ${IconWrapper} {
+            ${BurgerCrossCustom} {
+              ${Line} {
+                background-color: ${(props: any) => props.theme.black};
+              }
+            }
             svg {
               color: ${(props: any) => props.theme.black};
             }

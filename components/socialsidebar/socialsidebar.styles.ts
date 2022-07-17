@@ -4,6 +4,7 @@ export const SidebarContainer = styled.div`
   transform: translateY(-50%);
   transition: all 0.3s ease-in-out;
   opacity: 0;
+  pointer-events: none;
   z-index: 99999;
   position: fixed;
   top: 50%;
@@ -13,6 +14,7 @@ export const SidebarContainer = styled.div`
   }
   &.show {
     opacity: 1;
+    pointer-events: all;
   }
   .social--link {
     display: block;

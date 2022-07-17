@@ -14,7 +14,7 @@ import { ContactForm } from "components/forms/contactform";
 import { Select } from "components/select";
 import { Container } from "components/layout";
 
-import { classes, getDropdownValue, Property } from "helpers";
+import { classes, formatToMoney, getDropdownValue, Property } from "helpers";
 import { neighborhoods } from "helpers/neighborhoods";
 import {
   getSearchUrl,
@@ -38,6 +38,8 @@ import {
   FiltersContainer,
   FiltersWrapperDesk,
   FiltersWrapperMobile,
+  RowFilterSubtitle,
+  RowInputsMobile,
   PropertyListWrapper,
   ListContainer,
   TopContainer,
@@ -170,7 +172,12 @@ export const PropertyList = observer(
             <FiltersContainer className={classes({ visible: showFilter })}>
               {meta?.total_count !== 0 && (
                 <FiltersHeader>
-                  <IconCloseWrapper onClick={() => setShowFilter(false)}>
+                  <IconCloseWrapper
+                    onClick={() => {
+                      handleSubmit;
+                      setShowFilter(false);
+                    }}
+                  >
                     <CloseIcon />
                   </IconCloseWrapper>
                 </FiltersHeader>
@@ -348,6 +355,124 @@ export const PropertyList = observer(
               </FiltersWrapperDesk>
 
               <FiltersWrapperMobile>
+                <Select
+                  className="input--general full select"
+                  options={localidades}
+                  isMulti={true}
+                  value={localidades.filter((item) =>
+                    formData.locations.includes(item.value)
+                  )}
+                  placeholder="Barrios"
+                  hideSelectedOptions={true}
+                  onChange={(opt) => {
+                    setFormData({
+                      locations: opt.map(
+                        (item: { value: number }) => item.value
+                      ),
+                    });
+                  }}
+                />
+
+                <Select
+                  className="input--general select"
+                  options={[
+                    { value: 1, label: "Venta" },
+                    { value: 2, label: "Alquiler" },
+                  ]}
+                  isSearchable={false}
+                  isMulti={true}
+                  value={operationArray.filter((item) =>
+                    formData.operation_type.includes(item.value)
+                  )}
+                  placeholder="Tipo de operación"
+                  onChange={(opt) => {
+                    setFormData({
+                      operation_type: opt.map(
+                        (item: { value: number }) => item.value
+                      ),
+                    });
+                  }}
+                />
+
+                <Select
+                  className="input--general select"
+                  options={propertiesSelectOptions}
+                  isSearchable={false}
+                  value={propertiesSelectOptions.filter(
+                    (item) => formData.property_type === item.value
+                  )}
+                  placeholder="Tipo de propiedad"
+                  onChange={(opt) => {
+                    setFormData({ property_type: opt.value });
+                  }}
+                />
+
+                <RowFilterSubtitle>Precio</RowFilterSubtitle>
+                <RowInputsMobile>
+                  <Input
+                    className="dropdown--input half"
+                    type="number"
+                    placeHolder="Desde"
+                    min={0}
+                    onChange={(e) => {
+                      setFormData({ price_from: e.currentTarget.value });
+                    }}
+                  />
+                  <Input
+                    className="dropdown--input half"
+                    type="number"
+                    placeHolder="Hasta"
+                    min={0}
+                    onChange={(e) => {
+                      setFormData({ price_to: e.currentTarget.value });
+                    }}
+                  />
+                </RowInputsMobile>
+
+                <RowFilterSubtitle>Dormitorios</RowFilterSubtitle>
+                <RowInputsMobile>
+                  <Input
+                    className="dropdown--input half"
+                    type="number"
+                    placeHolder="Min."
+                    min={0}
+                    onChange={(e) => {
+                      setFormData({ min_rooms: e.currentTarget.value });
+                    }}
+                  />
+                  <Input
+                    className="dropdown--input half"
+                    type="number"
+                    placeHolder="Max."
+                    min={formData?.min_rooms}
+                    onChange={(e) => {
+                      setFormData({ max_rooms: e.currentTarget.value });
+                    }}
+                  />
+                </RowInputsMobile>
+
+                <RowFilterSubtitle>Baños</RowFilterSubtitle>
+                <RowInputsMobile>
+                  <Input
+                    className="dropdown--input half"
+                    type="number"
+                    placeHolder="Min."
+                    min={0}
+                    onChange={(e) => {
+                      setFormData({ min_baths: e.currentTarget.value });
+                    }}
+                  />
+                  <Input
+                    className="dropdown--input half"
+                    type="number"
+                    placeHolder="Max."
+                    min={0}
+                    onChange={(e) => {
+                      setFormData({ max_baths: e.currentTarget.value });
+                    }}
+                  />
+                </RowInputsMobile>
+
                 {saveSearch && (
                   <RowContent className="bold save--search-mobile">
                     <SaveSearch

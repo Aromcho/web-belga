@@ -44,6 +44,27 @@ export const FiltersHeader = styled.ul`
   }
 `;
 
+export const RowInputsMobile = styled.div`
+  width: 100%;
+  align-items: center;
+  display: flex;
+  gap: 5%;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  .half {
+    width: 50%;
+  }
+`;
+
+export const RowFilterSubtitle = styled.h5`
+  width: 100%;
+  color: ${(props: any) => props.theme.black};
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  padding-left: 20px;
+`;
+
 export const FiltersWrapperMobile = styled.div`
   width: 100%;
   align-items: center;
@@ -69,6 +90,12 @@ export const FiltersWrapperMobile = styled.div`
     @media screen and (max-width: 1200px) {
       width: 100%;
       margin-bottom: 20px;
+      &.select {
+        margin-bottom: 20px;
+      }
+      &.dropdown {
+        margin-bottom: 20px;
+      }
     }
   }
   .save--search-mobile {

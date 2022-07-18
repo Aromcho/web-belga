@@ -22,7 +22,7 @@ export const Dropdown = ({value, className, placeholder, children}: dropdownProp
       {open &&
         <>
           <DivClose onClick={() => setOpen(false)}/>
-          <List>
+          <List onMouseLeave={() => setOpen(false)}>
             {children}
           </List>
         </>

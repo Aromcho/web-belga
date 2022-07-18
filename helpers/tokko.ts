@@ -88,6 +88,16 @@ export const parseTokkoParameters = (query: any) => {
     query["filters"] = [...query["filters"], ["suite_amount", "<", (parseInt(query.rooms_to) + 1)]]
     delete query.rooms_to;
   }
+
+  if(query.parking_lot_to){
+    query["filters"] = [...query["filters"], ["parking_lot_amount", "<", (parseInt(query.parking_lot_to) + 1)]]
+    delete query.parking_lot_to;
+  }
+
+  if(query.parking_lot_from){
+    query["filters"] = [...query["filters"], ["parking_lot_amount", ">", (parseInt(query.parking_lot_from) - 1)]]
+    delete query.parking_lot_from;
+  }
   
 
   // Pagination
@@ -117,7 +127,9 @@ export const getSearchUrl = (params: any) => {
   if(params.min_rooms && params.min_rooms > 0) query['rooms_from'] = params.min_rooms;
   if(params.max_rooms && params.max_rooms > 0) query['rooms_to'] = params.max_rooms;
   if(params.min_baths && params.min_baths > 0) query['baths_from'] = params.min_baths;
-  if(params.max_baths && params.max_baths > 0) query['baths_to'] = params.max_rooms;
+  if(params.max_baths && params.max_baths > 0) query['baths_to'] = params.max_baths;
+  if(params.parking_lot_to && params.parking_lot_to > 0) query['baths_from'] = params.parking_lot_to;
+  if(params.parking_lot_from && params.parking_lot_from > 0) query['baths_to'] = params.parking_lot_from;
   
   if(params.order) query['order'] = params.order;
 

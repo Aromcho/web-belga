@@ -61,7 +61,7 @@ const Home = observer(({ properties, emprendimientos }: any) => {
     operation_type: [1],
     property_type: 0,
     price_from: 0,
-    price_to: 3000000,
+    price_to: 0,
   });
 
   const handleSubmit = (e: any) => {

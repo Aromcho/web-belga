@@ -120,7 +120,7 @@ export const FiltersWrapperDesk = styled.div`
 
 export const FiltersContainer = styled.div`
   width: 98%;
-  max-width: 1200px;
+  max-width: 1920px;
   margin: 0 auto 40px;
   transition: all 0.2s ease-in-out;
   @media screen and (max-width: 1200px) {
@@ -149,12 +149,13 @@ export const FiltersContainer = styled.div`
     border: 1px solid #000000;
     margin: 0;
     &.full {
-      width: 100%;
-      margin-bottom: 10px;
+      width: 86%;
+      margin-top: 10px;
     }
   }
   .form--button {
     width: 18%;
+    margin-top: 10px;
   }
   .dropdown--input {
     width: 100px;

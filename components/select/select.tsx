@@ -60,7 +60,7 @@ export const Select = ({value, onChange, isSearchable = true, hideSelectedOption
           valueContainer: (provided: any, state: any) => ({
             ...provided,
             padding: 0,
-            height: 40
+            height: 38
           }),
           control: (provided: any, state: any) => ({
             ...provided,
@@ -69,6 +69,7 @@ export const Select = ({value, onChange, isSearchable = true, hideSelectedOption
             borderColor: '#fff',
             backgroundColor: '#fff',
             minHeight: "38px",
+            height: "38px",
             "&:hover": {
               borderColor: '#fff',
               boxShadow: '0 0 0 1px'

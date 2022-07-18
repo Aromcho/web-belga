@@ -88,15 +88,11 @@ export const PropertyList = observer(
     } = useStore();
 
     React.useEffect(() => {
-      if (query?.opid)
-        setFormData({
-          operation_type: operationTypes[query.opid]
-            .toString()
-            ?.split(",")
-            .map((item: string) => parseInt(item)),
-        });
-      if (query?.prid)
+      if (query?.opid)setFormData({operation_type: operationTypes[query.opid].toString()?.split(",").map((item: string) => parseInt(item))});
+      if (query?.prid && query?.prid !== "todos") {
+        console.log("here", query?.prid)
         setFormData({ property_type: propertyTypes[query?.prid] });
+      }
       if (query?.locid)
         setFormData({
           locations: localidades
@@ -122,6 +118,8 @@ export const PropertyList = observer(
       property_type: 0,
       price_from: 0,
       price_to: 0,
+      parking_lot_to: 0,
+      parking_lot_from: 0,
       order: "DESC",
     });
 
@@ -156,7 +154,7 @@ export const PropertyList = observer(
     const [showFilter, setShowFilter] = useState(false);
 
     return (
-      <PropertyListWrapper style={{ paddingTop: `${paddingTop}px` }}>
+      <PropertyListWrapper style={paddingTop ? { paddingTop: `${paddingTop}px` } : {}}>
         <SocialSidebar color="red" />
         {filters && (
           <>
@@ -184,23 +182,6 @@ export const PropertyList = observer(
               )}
 
               <FiltersWrapperDesk>
-                <Select
-                  className="input--general full select"
-                  options={localidades}
-                  isMulti={true}
-                  value={localidades.filter((item) =>
-                    formData.locations.includes(item.value)
-                  )}
-                  placeholder="Barrios"
-                  hideSelectedOptions={true}
-                  onChange={(opt) => {
-                    setFormData({
-                      locations: opt.map(
-                        (item: { value: number }) => item.value
-                      ),
-                    });
-                  }}
-                />
                 <Select
                   className="input--general select"
                   options={[
@@ -346,6 +327,61 @@ export const PropertyList = observer(
                   </DropdownRow>
                 </Dropdown>
 
+                <Dropdown
+                  className="input--general dropdown"
+                  placeholder="Cocheras"
+                  value={getDropdownValue(
+                    formData?.parking_lot_to,
+                    formData?.parking_lot_from,
+                    "Cocheras"
+                  )}
+                >
+                  <DropdownRow>
+                    <RowLabel>Min.</RowLabel>
+                    <Input
+                      className="dropdown--input"
+                      type="number"
+                      placeHolder="-"
+                      min={0}
+                      value={formData.parking_lot_to}
+                      onChange={(e) => {
+                        setFormData({ parking_lot_to: e.currentTarget.value });
+                      }}
+                    />
+                  </DropdownRow>
+                  <DropdownRow>
+                    <RowLabel>Max.</RowLabel>
+                    <Input
+                      className="dropdown--input"
+                      type="number"
+                      placeHolder="-"
+                      min={0}
+                      value={formData.parking_lot_from}
+                      onChange={(e) => {
+                        setFormData({ parking_lot_from: e.currentTarget.value });
+                      }}
+                    />
+                  </DropdownRow>
+                </Dropdown>
+
+                <Select
+                  className="input--general full select"
+                  options={localidades}
+                  isMulti={true}
+                  value={localidades.filter((item) =>
+                    formData.locations.includes(item.value)
+                  )}
+                  placeholder="Barrios"
+                  hideSelectedOptions={true}
+                  onChange={(opt) => {
+                    setFormData({
+                      locations: opt.map(
+                        (item: { value: number }) => item.value
+                      ),
+                    });
+                  }}
+                />
+
                 <Button
                   className="form--button"
                   text="Buscar"
@@ -469,6 +505,28 @@ export const PropertyList = observer(
                     min={0}
                     onChange={(e) => {
                       setFormData({ max_baths: e.currentTarget.value });
+                    }}
+                  />
+                </RowInputsMobile>
+
+                <RowFilterSubtitle>Cocheras</RowFilterSubtitle>
+                <RowInputsMobile>
+                  <Input
+                    className="dropdown--input half"
+                    type="number"
+                    placeHolder="Min."
+                    min={0}
+                    onChange={(e) => {
+                      setFormData({ parking_lot_to: e.currentTarget.value });
+                    }}
+                  />
+                  <Input
+                    className="dropdown--input half"
+                    type="number"
+                    placeHolder="Max."
+                    min={0}
+                    onChange={(e) => {
+                      setFormData({ parking_lot_from: e.currentTarget.value });
                     }}
                   />
                 </RowInputsMobile>

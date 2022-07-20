@@ -9,7 +9,7 @@ export const BackToTopContainer = styled.div`
   transition: all 0.3s ease-in-out;
   opacity: 0;
   pointer-events: none;
-  z-index: 99999;
+  z-index: 99999999999999;
   position: fixed;
   bottom: 5%;
   right: 30px;

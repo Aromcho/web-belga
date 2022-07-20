@@ -209,12 +209,6 @@ export const SwiperContainerGallery = styled.div`
         opacity: 0;
       }
       &:before {
-        width: 60px;
-        height: 60px;
-        content: "";
-        position: absolute;
-      }
-      &:after {
         width: 30px;
         height: 60px;
         background-repeat: no-repeat;
@@ -222,44 +216,58 @@ export const SwiperContainerGallery = styled.div`
         background-size: 15px;
         content: "";
         transition: all 0.3s ease-in-out;
-        opacity: 0.7;
+        opacity: 1;
+        z-index: 4;
+        position: relative;
+      }
+      &:after {
+        width: 60px;
+        height: 60px;
+        content: "";
+        position: absolute;
+        z-index: 2;
       }
       &:hover {
-        &:after {
-          opacity: 1;
-        }
       }
     }
     .swiper-button-prev {
       left: 0;
-      background: rgb(0, 0, 0);
-      background: linear-gradient(
-        90deg,
-        rgba(0, 0, 0, 0.4) 0%,
-        rgba(0, 0, 0, 0) 88%
-      );
+      background: rgb(0, 0, 0, 0);
+
       &:before {
-        left: 0;
-      }
-      &:after {
         background-image: url("../images/arrow_prev_slider.svg");
         background-position: center center;
+        filter: drop-shadow(1px 0 1px rgba(0,0,0,0.25));
+      }
+      &:after {
+        width: 120px;
+        height: 100%;
+        background: radial-gradient(
+          100.74% 45.76% at 100.16% 46.58%,
+          rgba(0, 0, 0, 0.4) 0%,
+          rgba(192, 192, 192, 0) 100%
+        );
+        transform: matrix(-1, 0, 0, 1, 0, 0);
+        left: 0;
       }
     }
     .swiper-button-next {
       right: 0;
-      background: rgb(0, 0, 0);
-      background: linear-gradient(
-        90deg,
-        rgba(0, 0, 0, 0) 9%,
-        rgba(0, 0, 0, 0.4) 100%
-      );
+      background: rgb(0, 0, 0, 0);
       &:before {
-        right: 0;
-      }
-      &:after {
         background-image: url("../images/arrow_next_slider.svg");
         background-position: center center;
+        filter: drop-shadow(-1px 0 1px rgba(0,0,0,0.25));
+      }
+      &:after {
+        width: 120px;
+        height: 100%;
+        background: radial-gradient(
+          100.16% 45.5% at 100.16% 50.1%,
+          rgba(0, 0, 0, 0.4) 0%,
+          rgba(192, 192, 192, 0) 100%
+        );
+        transform: matrix(1, 0, 0, -1, 0, 0);
       }
     }
   }
@@ -284,7 +292,11 @@ export const GalleryProp = styled.div`
 
   &.inversion {
     margin: 0 auto;
+    height: 550px;
     position: relative;
+    @media screen and (max-width: 740px) {
+      height: 500px;
+    }
     &:after {
       width: 100%;
       max-width: 1200px;

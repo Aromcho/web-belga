@@ -44,7 +44,7 @@ const BusquedasGuardadas = observer(() => {
           {status === "loading" && <Status text="cargando..." />}
           {status === "empty" && (
             <Status
-              img="/images/empty_img_heart.gif"
+              img="/images/empty_img_plus.gif"
               text="No posees busquedas guardadas"
               textButton="Ver propiedades"
               buttonStyle="secondary"

@@ -182,7 +182,9 @@ export const BurgerMenu = styled.div`
   background-color: ${(props: any) => props.theme.white};
   justify-content: center;
   opacity: 0;
+  overflow: hidden;
   pointer-events: none;
+  z-index: 2;
   position: absolute;
   transition: all 0.3s ease-in-out;
   top: 97px;
@@ -190,6 +192,17 @@ export const BurgerMenu = styled.div`
   &.active {
     opacity: 1;
     pointer-events: all;
+    box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.05);
+    &:after {
+      width: 120%;
+      height: 1px;
+      content: " ";
+      transform: translateX(-50%);
+      box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.25);
+      position: absolute;
+      top: -1px;
+      left: 50%;
+    }
   }
   @media screen and (max-width: 992px) {
     top: 64px;
@@ -418,7 +431,6 @@ export const MenuInfoList = styled.ul`
   display: flex;
   justify-content: flex-end;
   margin-left: auto;
-  box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.25);
 `;
 
 export const MenuInfo = styled.div`
@@ -450,6 +462,8 @@ export const MenuWrapper = styled.div`
   .menu--container {
     max-width: 96%;
     justify-content: space-between;
+    position: relative;
+    z-index: 5;
     @media screen and (max-width: 1100px) {
       max-width: 1000px;
     }
@@ -498,7 +512,7 @@ export const MenuContainer = styled.div`
         }
       }
       ${BurgerMenu} {
-        top: 86px;
+        top: 87px;
         @media screen and (max-width: 992px) {
           z-index: 9999991;
           top: 55px;
@@ -618,6 +632,40 @@ export const MenuContainer = styled.div`
             }
             svg {
               color: ${(props: any) => props.theme.black};
+            }
+          }
+        }
+
+        &.active {
+          ${IconWrapper} {
+            ${BurgerCrossCustom} {
+              ${Line} {
+                @media screen and (max-width: 992px) {
+                  background-color: ${(props: any) => props.theme.black};
+                }
+              }
+            }
+          }
+          &:hover {
+            ${IconWrapper} {
+              ${BurgerCrossCustom} {
+                ${Line} {
+                  @media screen and (max-width: 992px) {
+                    background-color: ${(props: any) => props.theme.black};
+                  }
+                }
+              }
+            }
+          }
+        }
+        &:hover {
+          ${IconWrapper} {
+            ${BurgerCrossCustom} {
+              ${Line} {
+                @media screen and (max-width: 992px) {
+                  background-color: ${(props: any) => props.theme.white};
+                }
+              }
             }
           }
         }

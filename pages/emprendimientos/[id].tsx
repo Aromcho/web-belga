@@ -271,7 +271,7 @@ const PropertyDetail = ({
               <Swiper
                 className="swiper--prop-gallery"
                 modules={[Navigation]}
-                loop={false}
+                loop={true}
                 centeredSlides={
                   images.length + videos.length === 1 ? true : false
                 }
@@ -283,12 +283,12 @@ const PropertyDetail = ({
                   // when window width is >= 1366px
                   1: {
                     spaceBetween: 20,
-                    slidesPerView: 1,
+                    slidesPerView: 1.5,
                     allowTouchMove: true,
                   },
                   700: {
                     spaceBetween: 20,
-                    slidesPerView: 2.3,
+                    slidesPerView: 5.5,
                     allowTouchMove: true,
                   },
                 }}

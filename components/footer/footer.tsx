@@ -110,7 +110,7 @@ export const Footer = ({ small = true, id, backToTopFooter }: FooterProps) => {
       name: "Sucursal BELGRANO C",
       direction: "Juramento 2102",
       direction_b: "(Esquina Arcos)",
-      loc: { lat: -34.5608544, lon: -58.4557807 },
+      loc: { lat: -34.56051641836724, lon: -58.45384234503877 },
     },
     {
       id: 3,

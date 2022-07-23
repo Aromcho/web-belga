@@ -7,11 +7,17 @@ export const Separator = styled.div`
     height: 135px;
     margin: 30px auto 40px;
     background-color: ${(props: any) => props.theme.black};
+    @media screen and (max-width: 1100px) {
+      height: 100px;
+    }
   }
   &.red {
     height: 190px;
     margin: 40px auto 0;
     background-color: ${(props: any) => props.theme.secondary};
+    @media screen and (max-width: 1100px) {
+      height: 100px;
+    }
   }
 `;
 
@@ -53,6 +59,9 @@ export const RightContentWrapper = styled.div`
   align-items: center;
   justify-content: center;
   flex-flow: column;
+  @media screen and (max-width: 1100px) {
+    margin: 0 auto;
+  }
 `;
 
 export const RightContent = styled.div`
@@ -70,6 +79,9 @@ export const Img = styled.img`
 
 export const LeftContent = styled.div`
   background-color: ${(props: any) => props.theme.white};
+  @media screen and (max-width: 1100px) {
+    display: none;
+  }
 `;
 
 export const WrapperContent = styled.div`
@@ -79,6 +91,10 @@ export const WrapperContent = styled.div`
   justify-content: space-between;
   gap: 30px;
   margin-top: 80px;
+  @media screen and (max-width: 1100px) {
+    margin-top: 50px;
+    justify-content: center;
+  }
 `;
 
 export const RowContent = styled.div`

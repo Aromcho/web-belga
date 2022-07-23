@@ -85,8 +85,8 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
   if (statusCode === 404 || statusCode === 500)
     return (
       <Layout menuTheme="light">
-        {statusCode === 4034 && <Error404 />}
-        {statusCode === 404 && <Error500 />}
+        {statusCode === 404 && <Error404 />}
+        {statusCode === 500 && <Error500 />}
       </Layout>
     );
 

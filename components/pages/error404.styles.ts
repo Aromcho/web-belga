@@ -8,7 +8,6 @@ export const Image = styled.img`
 export const WrappperImage = styled.div`
   width: 440px;
   height: 440px;
-  align-items: center;
   border-top: 20px solid ${(props: any) => props.theme.white};
   justify-content: center;
   display: flex;
@@ -17,6 +16,13 @@ export const WrappperImage = styled.div`
   position: absolute;
   bottom: -20px;
   left: 0;
+  @media screen and (max-width: 1200px) {
+    width: 400px;
+    height: 400px;
+  }
+  @media screen and (max-width: 992px) {
+    display: none;
+  }
 `;
 
 export const TopText = styled.div`
@@ -34,6 +40,13 @@ export const TopText = styled.div`
   white-space: nowrap;
   z-index: 5;
   top: -20px;
+  @media screen and (max-width: 992px) {
+    position: relative;
+    white-space: normal;
+  }
+  @media screen and (max-width: 840px) {
+    font-size: 19px;
+  }
 `;
 
 export const Text = styled.div`
@@ -47,6 +60,16 @@ export const Text = styled.div`
   text-align: center;
   position: relative;
   top: -30px;
+
+  @media screen and (max-width: 1200px) {
+    max-width: 450px;
+    font-size: 38px;
+    line-height: 45px;
+  }
+  @media screen and (max-width: 840px) {
+    font-size: 32px;
+    line-height: 40px;
+  }
 `;
 
 export const TextWrapper = styled.div`
@@ -59,6 +82,13 @@ export const TextWrapper = styled.div`
   margin-left: auto;
   position: relative;
   z-index: 6;
+  @media screen and (max-width: 1200px) {
+    width: 65%;
+  }
+  @media screen and (max-width: 992px) {
+    width: 90%;
+    margin: 0 auto;
+  }
 `;
 
 export const ButtonWrapper = styled.div`
@@ -70,6 +100,15 @@ export const ButtonWrapper = styled.div`
   .button--square {
     margin-left: auto;
   }
+  @media screen and (max-width: 1200px) {
+    width: 80%;
+  }
+  @media screen and (max-width: 992px) {
+    width: auto;
+    padding: 0 20px;
+    transform: translateX(-50%);
+    left: 50%;
+  }
 `;
 
 export const SquaresWrapper = styled.div`
@@ -78,6 +117,9 @@ export const SquaresWrapper = styled.div`
   height: 100%;
   margin-left: auto;
   position: relative;
+  @media screen and (max-width: 840px) {
+    margin: 0 auto;
+  }
 `;
 
 export const Square = styled.div`
@@ -172,4 +214,7 @@ export const ErrorContainer = styled.div`
   height: auto;
   min-height: 80vh;
   padding: 150px 0;
+  @media screen and (max-width: 840px) {
+    padding: 100px 0;
+  }
 `;

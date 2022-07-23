@@ -25,6 +25,8 @@ import Lightbox, { ImagesListType } from "react-spring-lightbox";
 import { Button } from "components/button";
 import { ContactForm } from "components/forms/contactform";
 import { BackToTop } from "components/backtotop";
+import { SocialSidebar } from "components/socialsidebar";
+import Error404 from "pages/error404";
 
 import {
   PropContainer,
@@ -79,7 +81,7 @@ import {
   MailIcon,
   WhatsappIcon,
 } from "components/icons";
-import { SocialSidebar } from "components/socialsidebar";
+
 
 const PropertyDetail = ({
   properties,
@@ -87,9 +89,13 @@ const PropertyDetail = ({
   statusCode,
   property_subs,
 }: any) => {
-  if (statusCode === 404) return <>404</>;
-
-  if (statusCode === 500) return <>500</>;
+  if (statusCode === 404 || statusCode === 500)
+    return (
+      <Layout menuTheme="light">
+        {statusCode === 404 && <Error404 />}
+        {statusCode === 500 && <>500</>}
+      </Layout>
+    );
 
   /* Handle like prop */
   const [isLiked, setIsLiked] = React.useState<boolean>(false);

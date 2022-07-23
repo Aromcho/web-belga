@@ -13,10 +13,8 @@ import { ArrowBackIcon } from "components/icons";
 import { Status } from "components/status";
 
 import {
-  BusquedasContainer,
+  FavoritesContainer,
   BackWrapper,
-  Title,
-  FormWrapper,
 } from "components/pages/favoritos.styles";
 
 const Favorites = observer(() => {
@@ -46,7 +44,7 @@ const Favorites = observer(() => {
 
   return (
     <Layout>
-      <BusquedasContainer>
+      <FavoritesContainer>
         <Container>
           <BackWrapper>
             <Link href={PATHS.ROOT}>
@@ -59,17 +57,13 @@ const Favorites = observer(() => {
         </Container>
 
         <Container>
-          <Title>TU SELECCIÓN DE FAVORITOS</Title>
-        </Container>
-
-        <Container>
           {status === "loading" && <Status text="cargando..." />}
           {status === "empty" && (
             <Status
               img="/images/empty_img_heart.gif"
-              text="No posees favoritos"
-              textButton="Ver propiedades"
-              buttonStyle="secondary"
+              text="Tené a mano tus propiedades favoritas."
+              textButton="AGREGÁ TUS FAVORITOS"
+              buttonStyle="secondary shine"
               linkButton={PATHS.VENTA}
             />
           )}
@@ -91,11 +85,8 @@ const Favorites = observer(() => {
               paddingTop={0}
             />
           )}
-          <FormWrapper>
-            <ContactForm className="full" />
-          </FormWrapper>
         </Container>
-      </BusquedasContainer>
+      </FavoritesContainer>
     </Layout>
   );
 });

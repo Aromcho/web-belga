@@ -39,25 +39,19 @@ const BusquedasGuardadas = observer(() => {
           </BackWrapper>
         </Container>
         <Container>
-          <Title>TUS BÚSQUEDAS GUARDADAS</Title>
-
           {status === "loading" && <Status text="cargando..." />}
           {status === "empty" && (
             <Status
               img="/images/empty_img_plus.gif"
-              text="No posees busquedas guardadas"
-              textButton="Ver propiedades"
-              buttonStyle="secondary"
+              text="Tené a mano tus búsquedas."
+              textButton="AGREGÁ TUS BÚSQUEDAS"
+              buttonStyle="secondary shine"
               linkButton={PATHS.VENTA}
             />
           )}
           {status === "finish" && (
             <BusquedasList>{Array(3).fill(<BusquedaCard />)}</BusquedasList>
           )}
-
-          <FormWrapper>
-            <ContactForm className="full" />
-          </FormWrapper>
         </Container>
       </BusquedasContainer>
     </Layout>

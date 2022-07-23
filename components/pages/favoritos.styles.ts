@@ -44,7 +44,12 @@ export const BackWrapper = styled.div`
   }
 `;
 
-export const BusquedasContainer = styled.div`
+export const FavoritesContainer = styled.div`
   width: 100%;
+  min-height: 80vh;
+  height: auto;
   padding-top: 150px;
+  @media screen and (max-width: 840px) {
+    padding-top: 100px;
+  }
 `;

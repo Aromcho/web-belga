@@ -184,6 +184,7 @@ export const BlackLayer = styled.div`
 
 export const PriceRange = styled.div`
   width: 100%;
+  height: 40px;
   max-width: 360px;
 `;
 
@@ -199,9 +200,13 @@ export const PriceInputWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 5px;
   .input--price {
     pointer-events: none;
+    margin-bottom: 0;
+    input {
+      height: 25px !important;
+      font-size: 13px;
+    }
   }
 `;
 
@@ -213,11 +218,26 @@ export const PriceText = styled.div`
 `;
 export const RangeWrapper = styled.div`
   width: 100%;
+  height: 40px;
   align-items: center;
   display: flex;
   justify-content: flex-start;
+  position: relative;
+  top: -1px;
   @media screen and (max-width: 992px) {
     display: none;
+  }
+
+  .range--home {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    & > div {
+      &:first-of-type {
+        position: relative;
+        top: 5px;
+      }
+    }
   }
 `;
 

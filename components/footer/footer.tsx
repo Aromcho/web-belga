@@ -55,7 +55,6 @@ import {
   YoutubeCircleIcon,
 } from "components/icons";
 
-
 export interface FooterProps {
   small?: boolean;
   id?: string;
@@ -169,7 +168,7 @@ export const Footer = ({ small = true, id, backToTopFooter }: FooterProps) => {
                 </ContactItem>
                 <ContactItem>
                   <Link href="mailto:info@belga.com.ar">
-                    <a target="_blank" className="info--link">
+                    <a target="_blank" className="info--link mail">
                       <MailIcon />
                       info@belga.com.ar
                     </a>
@@ -260,7 +259,7 @@ export const Footer = ({ small = true, id, backToTopFooter }: FooterProps) => {
                 </Link>
               </LegalLink>
               <Mp>{legalInfo.mp}</Mp>
-            </RightInfo>  
+            </RightInfo>
           </FooterInfoBottom>
         </FooterRight>
 

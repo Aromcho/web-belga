@@ -7,6 +7,10 @@ export const ContactFormWrapper = styled.div`
   position: relative;
 `;
 
+export const WrapperInputs = styled.div`
+  width: 100%;
+`;
+
 export const ContactFormContainer = styled.div`
   width: 100%;
   border: none;
@@ -26,16 +30,26 @@ export const ContactFormContainer = styled.div`
     }
     ${ContactFormWrapper} {
       max-width: 900px;
-      display: flex;
-      flex-flow: row wrap;
-      gap: 3%;
       @media screen and (max-width: 992px) {
         max-width: 500px;
       }
-      .input--form {
-        width: 31%;
+      ${WrapperInputs} {
+        width: 100%;
+        align-items: center;
+        display: flex;
+        gap: 15px;
+        justify-content: space-between;
+        margin-bottom: 15px;
         @media screen and (max-width: 992px) {
+          flex-flow: column;
+        }
+        .input--form {
           width: 100%;
+          margin: 0;
+          @media screen and (max-width: 992px) {
+            width: 100%;
+            margin-bottom: 15px;
+          }
         }
       }
       .textarea--form {

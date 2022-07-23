@@ -25,7 +25,7 @@ import Lightbox, { ImagesListType } from "react-spring-lightbox";
 import { Button } from "components/button";
 import { ContactForm } from "components/forms/contactform";
 import { BackToTop } from "components/backtotop";
-import { SocialSidebar } from "components/socialsidebar";\
+import { SocialSidebar } from "components/socialsidebar";
 import Error404 from "pages/error404";
 import Error500 from "pages/error500";
 
@@ -82,6 +82,7 @@ import {
   MailIcon,
   WhatsappIcon,
 } from "components/icons";
+
 
 
 const PropertyDetail = ({

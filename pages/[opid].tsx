@@ -9,6 +9,7 @@ import Error404 from "./error404";
 import Error500 from "./error500";
 
 
+
 const PropertySearch = ({ data, query, statusCode }: any) => {
   if (statusCode === 404 || statusCode === 500)
     return (

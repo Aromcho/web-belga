@@ -50,7 +50,17 @@ const BusquedasGuardadas = observer(() => {
             />
           )}
           {status === "finish" && (
-            <BusquedasList>{Array(3).fill(<BusquedaCard />)}</BusquedasList>
+            <>
+              <Container>
+                <Title>TUS BÚSQUEDAS GUARDADAS</Title>
+              </Container>
+
+              <BusquedasList>{Array(3).fill(<BusquedaCard />)}</BusquedasList>
+
+              <FormWrapper>
+                <ContactForm className="full" />
+              </FormWrapper>
+            </>
           )}
         </Container>
       </BusquedasContainer>

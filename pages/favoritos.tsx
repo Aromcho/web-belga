@@ -15,6 +15,8 @@ import { Status } from "components/status";
 import {
   FavoritesContainer,
   BackWrapper,
+  Title,
+  FormWrapper,
 } from "components/pages/favoritos.styles";
 
 const Favorites = observer(() => {
@@ -68,22 +70,32 @@ const Favorites = observer(() => {
             />
           )}
           {status === "finish" && (
-            <PropertyList
-              properties={favs}
-              filters={false}
-              meta={{
-                total_count: favs.length,
-                limit: 26,
-                offset: 0,
-                next: "",
-                previous: "",
-              }}
-              saveSearch={false}
-              back={false}
-              withForm={false}
-              withCount={false}
-              paddingTop={0}
-            />
+            <>
+              <Container>
+                <Title>TU SELECCIÓN DE FAVORITOS</Title>
+              </Container>
+
+              <PropertyList
+                properties={favs}
+                filters={false}
+                meta={{
+                  total_count: favs.length,
+                  limit: 26,
+                  offset: 0,
+                  next: "",
+                  previous: "",
+                }}
+                saveSearch={false}
+                back={false}
+                withForm={false}
+                withCount={false}
+                paddingTop={0}
+              />
+
+              <FormWrapper>
+                <ContactForm className="full" />
+              </FormWrapper>
+            </>
           )}
         </Container>
       </FavoritesContainer>

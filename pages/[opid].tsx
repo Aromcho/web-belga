@@ -6,13 +6,15 @@ import { parseTokkoParameters, operationTypes } from "helpers/tokko";
 import { PropertyList } from "components/propertylist";
 import { BackToTop } from "components/backtotop";
 import Error404 from "./error404";
+import Error500 from "./error500";
+
 
 const PropertySearch = ({ data, query, statusCode }: any) => {
   if (statusCode === 404 || statusCode === 500)
     return (
       <Layout menuTheme="light">
         {statusCode === 404 && <Error404 />}
-        {statusCode === 500 && <>500</>}
+        {statusCode === 500 && <Error500 />}
       </Layout>
     );
 

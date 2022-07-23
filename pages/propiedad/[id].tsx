@@ -21,6 +21,7 @@ import { CardProp } from "components/cardprop";
 import { BackToTop } from "components/backtotop";
 import { SocialSidebar } from "components/socialsidebar";
 import Error404 from "pages/error404";
+import Error500 from "pages/error500";
 import {
   ArrowBackIcon,
   ArrowSubmitIcon,
@@ -84,8 +85,8 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
   if (statusCode === 404 || statusCode === 500)
     return (
       <Layout menuTheme="light">
-        {statusCode === 404 && <Error404 />}
-        {statusCode === 500 && <>500</>}
+        {statusCode === 4034 && <Error404 />}
+        {statusCode === 404 && <Error500 />}
       </Layout>
     );
 

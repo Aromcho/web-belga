@@ -103,7 +103,7 @@ export const Footer = ({ small = true, id, backToTopFooter }: FooterProps) => {
       name: "Casa Central LA IMPRENTA",
       direction: "Gorostiaga 1601",
       direction_b: "(Esquina Migueletes)",
-      loc: { lon: -58.4364606, lat: -34.5651921 },
+      loc: { lon: -58.4364415, lat: -34.5652519 },
     },
     {
       id: 2,
@@ -117,7 +117,7 @@ export const Footer = ({ small = true, id, backToTopFooter }: FooterProps) => {
       name: "Sucursal BELGRANO R",
       direction: "Superí 1485",
       direction_b: "(Esquina Av. de los Incas)",
-      loc: { lat: -34.5735002, lon: -58.4634575 },
+      loc: { lat: -34.5735786974359, lon: -58.46109912564103 },
     },
   ];
 

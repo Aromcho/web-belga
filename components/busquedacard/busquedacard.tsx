@@ -41,7 +41,7 @@ export const BusquedaCard = ({
             {search.locid?.length > 0 &&
             <Query>
               <QueryProp>Barrio</QueryProp>
-              <QueryProp className="capitalize">{search.locid?.map((item: string) => item)}</QueryProp>
+              <QueryProp className="capitalize">{search.locid?.join(', ')}</QueryProp>
             </Query>
             }
             {search.opid && 
@@ -68,27 +68,28 @@ export const BusquedaCard = ({
             }
           </QueryColumn>
           <QueryColumn>
-            {(search.min_rooms || search.max_rooms) && 
+            {(search.rooms_from || search.rooms_to) && 
             <Query>
               <QueryProp>Dormitorios</QueryProp>
               <QueryProp>{getDropdownValue(
-                  search?.min_rooms,
-                  search?.max_rooms,
+                  search?.rooms_from,
+                  search?.rooms_to,
                   "Dormitorios"
                 )}</QueryProp>
             </Query>
             }
-            {(search.min_baths || search.max_baths) && 
+            {(search.baths_to || search.baths_from) && 
             <Query>
               <QueryProp>Baños</QueryProp>
               <QueryProp>{getDropdownValue(
-                  search?.min_baths,
-                  search?.max_baths,
+                  search?.baths_to,
+                  search?.baths_from,
                   "Baños"
                 )}</QueryProp>
             </Query>
             }
-             {(search.price_from || search.price_to) && 
+            {console.log(search)}
+            {(search.price_from || search.price_to) && 
             <Query>
               <QueryProp>Precio</QueryProp>
               <QueryProp>{getDropdownValue(

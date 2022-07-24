@@ -23,8 +23,6 @@ const BusquedasGuardadas = observer(() => {
     rootStore: { userStore },
   } = useStore();
 
-  const [status, setStatus] = React.useState<string>("finish");
-
   return (
     <Layout>
       <BusquedasContainer>

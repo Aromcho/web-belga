@@ -34,7 +34,7 @@ export class UserStore extends Model({
   saveSearch(query: any){
     const newQ = {
       ...query,
-      url: window.location.pathname
+      url: window.location.pathname + window.location.search
     }
     if(this.searchs.find(item => item.url === newQ.url)){
       this.searchs = this.searchs.filter(item => item.url !== newQ.url)
@@ -47,6 +47,7 @@ export class UserStore extends Model({
   @modelAction
   removeSearch(query: any){
     this.searchs = this.searchs.filter(item => item.url !== query.url)
+    window.localStorage.setItem('belga_searchs', JSON.stringify(this.searchs))
   }
 
   

@@ -89,7 +89,6 @@ export const PropertyList = observer(
     React.useEffect(() => {
       if (query?.opid)setFormData({operation_type: operationTypes[query.opid].toString()?.split(",").map((item: string) => parseInt(item))});
       if (query?.prid && query?.prid !== "todos") {
-        console.log("here", query?.prid)
         setFormData({ property_type: propertyTypes[query?.prid] });
       }
       if (query?.locid)
@@ -565,10 +564,9 @@ export const PropertyList = observer(
             <ContentWrapper className="content--order">
               {saveSearch && (
                 <RowContent className="bold save--search-desk">
-                  {console.log(!!userStore.searchs.find(item => item.url === window.location.pathname))}
                   <SaveSearch 
                     onSaved={() => userStore.saveSearch(query)} 
-                    saved={!!userStore.searchs.find(item => item.url === window.location.pathname)}
+                    saved={!!userStore.searchs.find(item => item.url === window.location.pathname + window.location.search)}
                   />
                 </RowContent>
               )}

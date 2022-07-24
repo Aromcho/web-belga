@@ -23,7 +23,7 @@ const BusquedasGuardadas = observer(() => {
     rootStore: { userStore },
   } = useStore();
 
-  const [status, setStatus] = React.useState<string>("empty");
+  const [status, setStatus] = React.useState<string>("finish");
 
   return (
     <Layout>
@@ -39,8 +39,7 @@ const BusquedasGuardadas = observer(() => {
           </BackWrapper>
         </Container>
         <Container>
-          {status === "loading" && <Status text="cargando..." />}
-          {status === "empty" && (
+          {userStore.searchs.length === 0 && (
             <Status
               img="/images/empty_img_plus.gif"
               text="Tené a mano tus búsquedas."
@@ -49,13 +48,18 @@ const BusquedasGuardadas = observer(() => {
               linkButton={PATHS.VENTA}
             />
           )}
-          {status === "finish" && (
+
+          {userStore.searchs.length > 0 && (
             <>
               <Container>
                 <Title>TUS BÚSQUEDAS GUARDADAS</Title>
               </Container>
 
-              <BusquedasList>{Array(3).fill(<BusquedaCard />)}</BusquedasList>
+              <BusquedasList>
+                {userStore.searchs?.map(item => (
+                  <BusquedaCard search={item} onRemove={() => userStore.removeSearch(item)} />
+                ))}
+              </BusquedasList>
 
               <FormWrapper>
                 <ContactForm className="full" />

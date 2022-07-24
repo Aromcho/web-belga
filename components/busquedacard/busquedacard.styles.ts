@@ -28,6 +28,9 @@ export const QueryProp = styled.div`
   font-size: 14px;
   justify-content: flex-start;
   white-space: nowrap;
+  &.capitalize{
+    text-transform: capitalize;
+  }
   &:first-of-type {
     font-weight: 600;
   }

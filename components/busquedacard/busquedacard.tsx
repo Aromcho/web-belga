@@ -1,4 +1,5 @@
 import React from "react";
+import { useRouter } from "next/router";
 
 import { CloseIcon } from "components/icons";
 import { Button } from "components/button";
@@ -12,54 +13,98 @@ import {
   Query,
   QueryProp,
 } from "./busquedacard.styles";
+import { getDropdownValue } from "helpers";
+import { getSearchUrl } from "helpers/tokko";
 
 export interface BusquedaCardProps {
   className?: string;
-  onClickRemove?: () => void;
+  onRemove?: () => void;
+  search: any;
 }
 
 export const BusquedaCard = ({
   className,
-  onClickRemove,
+  onRemove,
+  search
 }: BusquedaCardProps) => {
+
+  const router = useRouter();
+
   return (
     <BusquedaContainer className={className}>
-      <CloseWrapper onClick={onClickRemove}>
+      <CloseWrapper onClick={onRemove}>
         <CloseIcon />
       </CloseWrapper>
       <BusquedaWrapper>
         <QueryList>
           <QueryColumn>
+            {search.locid?.length > 0 &&
             <Query>
               <QueryProp>Barrio</QueryProp>
-              <QueryProp>Belgrano, Nuñez, Coghlan, Palermo</QueryProp>
+              <QueryProp className="capitalize">{search.locid?.map((item: string) => item)}</QueryProp>
             </Query>
+            }
+            {search.opid && 
             <Query>
               <QueryProp>Tipo de Operación</QueryProp>
-              <QueryProp>Venta</QueryProp>
+              <QueryProp className="capitalize">{search.opid}</QueryProp>
             </Query>
+            }
+            {search.prid && 
             <Query>
               <QueryProp>Tipo de Propiedad</QueryProp>
-              <QueryProp>Casa, Departamento</QueryProp>
+              <QueryProp className="capitalize">{search.prid}</QueryProp>
             </Query>
+            }
+            {(search.parking_lot_to || search.parking_lot_from) && 
+            <Query>
+              <QueryProp>Cocheras</QueryProp>
+              <QueryProp>{getDropdownValue(
+                  search?.parking_lot_to,
+                  search?.parking_lot_from,
+                  "Cocheras"
+                )}</QueryProp>
+            </Query>
+            }
           </QueryColumn>
           <QueryColumn>
+            {(search.min_rooms || search.max_rooms) && 
             <Query>
               <QueryProp>Dormitorios</QueryProp>
-              <QueryProp>Min. 2</QueryProp>
+              <QueryProp>{getDropdownValue(
+                  search?.min_rooms,
+                  search?.max_rooms,
+                  "Dormitorios"
+                )}</QueryProp>
             </Query>
+            }
+            {(search.min_baths || search.max_baths) && 
             <Query>
               <QueryProp>Baños</QueryProp>
-              <QueryProp>Min. 1</QueryProp>
+              <QueryProp>{getDropdownValue(
+                  search?.min_baths,
+                  search?.max_baths,
+                  "Baños"
+                )}</QueryProp>
             </Query>
+            }
+             {(search.price_from || search.price_to) && 
             <Query>
               <QueryProp>Precio</QueryProp>
-              <QueryProp>250.000</QueryProp>
+              <QueryProp>{getDropdownValue(
+                  search?.price_from,
+                  search?.price_to,
+                  "USD"
+                )}</QueryProp>
             </Query>
+            }
           </QueryColumn>
         </QueryList>
       </BusquedaWrapper>
-      <Button text="¿Buscar?" type="black" className="button--busqueda" />
+      <Button text="¿Buscar?" type="black" className="button--busqueda" onClick={(e: any) => {
+        e.preventDefault();
+        router.push(search.url);
+      }}/>
     </BusquedaContainer>
   );
 };

@@ -11,21 +11,27 @@ import {
 
 export interface SaveSearchProps {
   className?: string;
-  onSaved?: (e: any) => void;
+  saved?: boolean;
+  onSaved?: () => void;
 }
 
-export const SaveSearch = ({ className, onSaved }: SaveSearchProps) => {
-  /* Handle Save Search*/
-  const [isSaved, setIsSaved] = React.useState(false);
+export const SaveSearch = ({ className, onSaved, saved }: SaveSearchProps) => {
+  
+  const [isLiked, setIsLiked] = React.useState(false);
 
   React.useEffect(() => {
-    if (onSaved) onSaved(isSaved);
-  }, [isSaved]);
+    if(saved) setIsLiked(saved);
+  }, [saved]);
+
+
+  const handleSaveSearch = () => {
+    if (onSaved) onSaved();
+  }
 
   return (
     <SaveSearchContainer
-      className={classes(className, { saved: isSaved })}
-      onClick={() => setIsSaved(!isSaved)}
+      className={classes(className, { saved: isLiked })}
+      onClick={handleSaveSearch}
     >
       <SaveText>GUARDAR BÚSQUEDA</SaveText>
       <IconWrapper>

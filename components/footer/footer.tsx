@@ -94,7 +94,15 @@ export const Footer = ({ small = true, id, backToTopFooter }: FooterProps) => {
     },
   ];
 
-  const [high, setHigh] = React.useState(0);
+  const [high, setHighB] = React.useState(0);
+  const [center, setCenter] = React.useState({ lat: -34.5608544, lon: -58.4557807, zoom: 13});
+
+  const setHigh = (n: number) => {
+    setHighB(n);
+    const item = data.find(item => item.id === n)
+    // if(item) setCenter(item?.loc as any || { lat: -34.5608544, lon: -58.4557807, zoom: 13})
+    if(item) setCenter(item?.loc as any)
+  }
 
   const data = [
     {
@@ -102,21 +110,21 @@ export const Footer = ({ small = true, id, backToTopFooter }: FooterProps) => {
       name: "Casa Central LA IMPRENTA",
       direction: "Gorostiaga 1601",
       direction_b: "(Esquina Migueletes)",
-      loc: { lon: -58.4364415, lat: -34.5652519 },
+      loc: { lon: -58.4364415, lat: -34.5652519, zoom: 15.5 },
     },
     {
       id: 2,
       name: "Sucursal BELGRANO C",
       direction: "Juramento 2102",
       direction_b: "(Esquina Arcos)",
-      loc: { lat: -34.56051641836724, lon: -58.45384234503877 },
+      loc: { lat: -34.56051641836724, lon: -58.45384234503877, zoom: 15.5 },
     },
     {
       id: 3,
       name: "Sucursal BELGRANO R",
       direction: "Superí 1485",
       direction_b: "(Esquina Av. de los Incas)",
-      loc: { lat: -34.5735786974359, lon: -58.46109912564103 },
+      loc: { lat: -34.5735786974359, lon: -58.46109912564103, zoom: 15.5 },
     },
   ];
 
@@ -213,13 +221,13 @@ export const Footer = ({ small = true, id, backToTopFooter }: FooterProps) => {
           <FooterInfo>
             <MapFooter>
               <DynamicMap
-                center={{ lat: -34.5608544, lon: -58.4557807 }}
+                center={center}
                 markers={data.map((item) => ({
                   ...item.loc,
                   id: item.id.toString(),
                   high: high === item.id,
                 }))}
-                zoom={13}
+                zoom={center.zoom}
               />
             </MapFooter>
           </FooterInfo>

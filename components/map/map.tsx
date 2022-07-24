@@ -21,7 +21,7 @@ export interface MapProps {
 
 export const Map = ({center, zoom, marker, markers}: MapProps) => {
 
-  const [, setMap] = React.useState<ol.Map>();
+  const [stMap, setMap] = React.useState<ol.Map>();
   const mapElement = React.useRef<HTMLDivElement>(null);
 
   const [vectorLayer, ] = React.useState(
@@ -44,6 +44,11 @@ export const Map = ({center, zoom, marker, markers}: MapProps) => {
       }
     })
   }, [markers])
+
+  React.useEffect(() => {
+    if(center) stMap?.getView().setCenter(fromLonLat([center.lon, center.lat]))
+    if(zoom) stMap?.getView().setZoom(zoom);
+  }, [center])
   
 
   React.useEffect(() => {

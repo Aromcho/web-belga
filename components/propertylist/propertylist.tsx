@@ -7,14 +7,13 @@ import { CardProp } from "components/cardprop";
 import {
   ArrowBackIcon,
   ChevronUpIcon,
-  CirclePlusIcon,
   CloseIcon,
 } from "components/icons";
 import { ContactForm } from "components/forms/contactform";
 import { Select } from "components/select";
 import { Container } from "components/layout";
 
-import { classes, formatToMoney, getDropdownValue, Property } from "helpers";
+import { classes, getDropdownValue, Property } from "helpers";
 import { neighborhoods } from "helpers/neighborhoods";
 import {
   getSearchUrl,
@@ -534,7 +533,7 @@ export const PropertyList = observer(
                 {saveSearch && (
                   <RowContent className="bold save--search-mobile">
                     <SaveSearch
-                      onSaved={() => console.log("Guardar busqueda")}
+                      onSaved={() => userStore.saveSearch(query)}
                     />
                   </RowContent>
                 )}
@@ -566,7 +565,11 @@ export const PropertyList = observer(
             <ContentWrapper className="content--order">
               {saveSearch && (
                 <RowContent className="bold save--search-desk">
-                  <SaveSearch onSaved={() => console.log("Guardar busqueda")} />
+                  {console.log(!!userStore.searchs.find(item => item.url === window.location.pathname))}
+                  <SaveSearch 
+                    onSaved={() => userStore.saveSearch(query)} 
+                    saved={!!userStore.searchs.find(item => item.url === window.location.pathname)}
+                  />
                 </RowContent>
               )}
               {filters && meta?.total_count !== 0 && (

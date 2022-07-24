@@ -178,7 +178,7 @@ const Home = observer(({ properties, emprendimientos }: any) => {
               <RangeWrapper>
                 <PriceText>Precio</PriceText>
 
-                <PriceRange>
+                <PriceRange className="range--home">
                   <MultiRange
                     customWidth={360}
                     min={0}

@@ -1,26 +1,40 @@
-import React from 'react';
-import dynamic from 'next/dynamic'
+import React from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
-import Head from 'next/head'
-import parse from 'html-react-parser';
-import { GetServerSideProps } from 'next'
-import { Navigation } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import Lightbox, { ImagesListType } from 'react-spring-lightbox';
-import { MapProps } from 'components/map/map';
-import { Layout, Container } from 'components/layout';
-import { Button } from 'components/button';
-import { ContactForm } from 'components/forms/contactform';
-import { Title } from 'components/title';
-import { CardProp } from 'components/cardprop';
-import { ArrowBackIcon, ArrowSubmitIcon, CloseIcon, HeartIcon, MailIcon, WhatsappIcon } from 'components/icons';
+import Head from "next/head";
+import parse from "html-react-parser";
+import { useMergeState } from "helpers/hooks";
+import { classes, formatToMoney } from "helpers";
+import { getProperties, getPropertyById } from "services";
+import { PATHS } from "config";
+import { GetServerSideProps } from "next";
+import { Navigation } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import Lightbox, { ImagesListType } from "react-spring-lightbox";
 
-const DynamicMap = dynamic<MapProps>(() => import('components/map').then((mod) => mod.Map), { ssr: false })
+import { MapProps } from "components/map/map";
+import { Layout, Container } from "components/layout";
+import { Button } from "components/button";
+import { ContactForm } from "components/forms/contactform";
+import { Title } from "components/title";
+import { CardProp } from "components/cardprop";
+import { BackToTop } from "components/backtotop";
+import { SocialSidebar } from "components/socialsidebar";
+import Error404 from "pages/error404";
+import Error500 from "pages/error500";
+import {
+  ArrowBackIcon,
+  ArrowSubmitIcon,
+  CloseIcon,
+  HeartIcon,
+  MailIcon,
+  WhatsappIcon,
+} from "components/icons";
 
-import { useMergeState } from 'helpers/hooks';
-import { classes, formatToMoney } from 'helpers';
-import { getProperties, getPropertyById } from 'services';
-import { PATHS } from 'config';
+const DynamicMap = dynamic<MapProps>(
+  () => import("components/map").then((mod) => mod.Map),
+  { ssr: false }
+);
 
 import {
   PropContainer,
@@ -63,17 +77,18 @@ import {
   IndexCounter,
 } from "components/pages/propiedad.styles";
 
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import { BackToTop } from 'components/backtotop';
-import { SocialSidebar } from 'components/socialsidebar';
-
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const PropertyDetail = ({ properties, property, statusCode }: any) => {
-  if (statusCode === 404) return <>404</>;
-
-  if (statusCode === 500) return <>500</>;
+  if (statusCode === 404 || statusCode === 500)
+    return (
+      <Layout menuTheme="light">
+        {statusCode === 404 && <Error404 />}
+        {statusCode === 500 && <Error500 />}
+      </Layout>
+    );
 
   /* Handle like prop*/
   const [isLiked, setIsLiked] = React.useState<boolean>(false);
@@ -147,7 +162,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
         ></link>
       </Head>
 
-      <BackToTop color='red' />
+      <BackToTop color="red" />
       <SocialSidebar color="red" showWithOffset />
 
       <PropContainer>
@@ -209,7 +224,9 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
                     property?.operations[0]?.operation_type
                   } ${
                     property?.operations[0]?.prices[0]?.currency
-                  } ${formatToMoney(property?.operations[0]?.prices[0]?.price)}`}
+                  } ${formatToMoney(
+                    property?.operations[0]?.prices[0]?.price
+                  )}`}
                 >
                   <a target="_blank">
                     <MailIcon />
@@ -472,8 +489,17 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
           </BodyProp>
 
           <MapProp>
-            <DynamicMap marker={{ lon: property.branch.geo_long, lat: property.branch.geo_lat }} center={{ lon: property.branch.geo_long, lat: property.branch.geo_lat }} zoom={15} />
-          
+            <DynamicMap
+              marker={{
+                lon: property.branch.geo_long,
+                lat: property.branch.geo_lat,
+              }}
+              center={{
+                lon: property.branch.geo_long,
+                lat: property.branch.geo_lat,
+              }}
+              zoom={15}
+            />
           </MapProp>
 
           <SimilarProps>

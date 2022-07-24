@@ -219,7 +219,7 @@ export const ContactItem = styled.li`
     height: auto;
     color: ${(props: any) => props.theme.white};
     transition: all 0.3s ease-in-out;
-    margin-right: 8px;
+    margin-right: 10px;
     position: relative;
     top: 7px;
   }
@@ -233,6 +233,11 @@ export const ContactItem = styled.li`
       color: ${(props: any) => props.theme.primary};
       svg {
         color: ${(props: any) => props.theme.primary};
+      }
+    }
+    &.mail {
+      svg {
+        margin-right: 17px;
       }
     }
   }

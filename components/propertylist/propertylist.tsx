@@ -130,8 +130,8 @@ export const PropertyList = observer(
       router.push(getSearchUrl(formData));
     };
 
-    const currentPage = meta.offset / meta.limit + 1;
-    const maxPage = Math.ceil(meta.total_count / meta.limit);
+    const currentPage = meta?.offset / meta?.limit + 1;
+    const maxPage = Math.ceil(meta?.total_count / meta?.limit);
 
     const localidades = neighborhoods.map((item) => ({
       value: item.location_id,
@@ -584,7 +584,7 @@ export const PropertyList = observer(
             </ContentWrapper>
           </TopContainer>
           <ListContainer className={classes({ "investment-list": investment })}>
-            {properties.map((item, k) => (
+            {properties?.map((item, k) => (
               <CardProp
                 key={k}
                 property={item}
@@ -595,7 +595,7 @@ export const PropertyList = observer(
               />
             ))}
           </ListContainer>
-          {meta.total_count > meta.limit && (
+          {meta?.total_count > meta?.limit && (
             <PaginationWrapper>
               {currentPage > 1 && (
                 <Link

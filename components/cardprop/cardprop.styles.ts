@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 
 export const LikeWrapper = styled.div`
-  width: 32px;
-  height: 32px;
+  width: 22px;
+  height: 22px;
   align-items: center;
   border-radius: 100%;
   display: flex;
@@ -81,14 +81,15 @@ export const DescWrapper = styled.div`
 export const Info = styled.div`
   width: 100%;
   display: flex;
+  align-items: flex-start;
   justify-content: space-between;
   padding: 20px 30px 0;
 `;
 
 export const FeatureImg = styled.img`
-  width: 100%;
-  max-width: 44px;
+  width: 44px;
   height: auto;
+  flex: 0 0 auto;
   margin: 0 auto;
 `;
 
@@ -102,11 +103,14 @@ export const FeatureText = styled.div`
 `;
 
 export const FeaturesItem = styled.li`
-  width: 100%;
+  width: auto;
   align-items: center;
   display: flex;
   justify-content: center;
   flex-flow: column;
+  &:first-of-type {
+    margin-left: -5px;
+  }
 `;
 
 export const FeaturesList = styled.ul`
@@ -118,7 +122,7 @@ export const FeaturesList = styled.ul`
 
 export const FeaturesWrapper = styled.div`
   width: 100%;
-  padding: 20px 0;
+  padding: 20px 30px;
 `;
 
 export const FooterProp = styled.div`

@@ -143,7 +143,7 @@ export const BurgerCrossCustom = styled.div`
     flex-flow: column;
     &:hover {
       ${Line} {
-        background-color: ${(props: any) => props.theme.black};
+        background-color: ${(props: any) => props.theme.white};
         @media screen and (max-width: 840px) {
           background-color: ${(props: any) => props.theme.white};
         }
@@ -151,9 +151,8 @@ export const BurgerCrossCustom = styled.div`
     }
   }
   &.cross {
-    background-color: ${(props: any) => props.theme.white};
     ${Line} {
-      background-color: ${(props: any) => props.theme.black};
+      background-color: ${(props: any) => props.theme.white};
       transform: translate(-50%, -50%) rotate(45deg);
       position: absolute;
       top: 50%;
@@ -176,12 +175,12 @@ export const BurgerCrossCustom = styled.div`
 
 export const BurgerMenu = styled.div`
   width: 360px;
-  height: 230px;
+  height: 0;
   align-items: center;
   display: flex;
   background-color: ${(props: any) => props.theme.white};
   justify-content: center;
-  opacity: 0;
+  transform-origin: top;
   overflow: hidden;
   pointer-events: none;
   z-index: 2;
@@ -189,20 +188,20 @@ export const BurgerMenu = styled.div`
   transition: all 0.3s ease-in-out;
   top: 97px;
   right: 0;
+  &:after {
+    width: 120%;
+    height: 1px;
+    content: " ";
+    transform: translateX(-50%);
+    box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.25);
+    position: absolute;
+    top: -1px;
+    left: 50%;
+  }
   &.active {
-    opacity: 1;
+    height: 230px;
     pointer-events: all;
     box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.05);
-    &:after {
-      width: 120%;
-      height: 1px;
-      content: " ";
-      transform: translateX(-50%);
-      box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.25);
-      position: absolute;
-      top: -1px;
-      left: 50%;
-    }
   }
   @media screen and (max-width: 992px) {
     top: 64px;
@@ -225,6 +224,7 @@ export const BurgerMenu = styled.div`
     right: 0;
     bottom: 0;
     &.active {
+      height: calc(100vh - 55px);
       pointer-events: all;
       transform: translateX(0);
     }
@@ -272,7 +272,6 @@ export const BurgerButton = styled.ul`
   background-color: transparent;
   display: flex;
   justify-content: center;
-  margin-left: 40px;
   transition: all 0.3s ease-in-out;
   @media screen and (max-width: 840px) {
     width: 95px;
@@ -282,7 +281,7 @@ export const BurgerButton = styled.ul`
   &:hover,
   &.active {
     cursor: pointer;
-    background-color: ${(props: any) => props.theme.white};
+    background-color: transparent;
     @media screen and (max-width: 992px) {
       background-color: transparent;
     }
@@ -332,12 +331,13 @@ export const MenuItem = styled.li`
 `;
 
 export const MenuList = styled.ul`
-  width: 70%;
+  width: 100%;
+  max-width: 750px;
   align-items: center;
   display: flex;
   margin-left: auto;
   justify-content: space-between;
-  padding-left: 10px;
+  margin: 0 auto;
   @media screen and (max-width: 1100px) {
     display: none;
   }
@@ -403,6 +403,7 @@ export const MenuInfoItem = styled.ul`
   font-weight: 500;
   justify-content: center;
   text-transform: uppercase;
+  white-space: nowrap;
   svg {
     width: 20px;
     height: auto;
@@ -425,12 +426,14 @@ export const MenuInfoItem = styled.ul`
 `;
 
 export const MenuInfoList = styled.ul`
-  width: 100%;
+  width: auto;
   height: 100%;
   align-items: center;
   display: flex;
   justify-content: flex-end;
   margin-left: auto;
+  gap: 24px;
+  padding: 0 24px;
 `;
 
 export const MenuInfo = styled.div`
@@ -482,6 +485,7 @@ export const MenuContainer = styled.div`
   left: 0;
   &.sticky {
     top: -32px;
+    box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.25);
     @media screen and (max-width: 992px) {
       top: 0;
     }
@@ -567,7 +571,7 @@ export const MenuContainer = styled.div`
   &.light {
     ${MenuWrapper} {
       background-color: ${(props: any) => props.theme.white};
-      box-shadow: 0px 7px 29px -1px rgba(0, 0, 0, 0.1);
+      box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.25);
       ${BurgerButton} {
         ${IconWrapper} {
           ${BurgerCrossCustom} {
@@ -610,7 +614,7 @@ export const MenuContainer = styled.div`
   &.dark {
     ${MenuWrapper} {
       background-color: ${(props: any) => props.theme.black};
-      box-shadow: 0px 7px 29px -1px rgba(0, 0, 0, 0.1);
+      box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.25);
       ${BurgerButton} {
         ${IconWrapper} {
           ${BurgerCrossCustom} {
@@ -624,10 +628,11 @@ export const MenuContainer = styled.div`
         }
         &:hover,
         &.active {
+          background-color: ${(props: any) => props.theme.black};
           ${IconWrapper} {
             ${BurgerCrossCustom} {
               ${Line} {
-                background-color: ${(props: any) => props.theme.black};
+                background-color: ${(props: any) => props.theme.white};
               }
             }
             svg {
@@ -641,7 +646,7 @@ export const MenuContainer = styled.div`
             ${BurgerCrossCustom} {
               ${Line} {
                 @media screen and (max-width: 992px) {
-                  background-color: ${(props: any) => props.theme.black};
+                  background-color: ${(props: any) => props.theme.white};
                 }
               }
             }
@@ -651,7 +656,7 @@ export const MenuContainer = styled.div`
               ${BurgerCrossCustom} {
                 ${Line} {
                   @media screen and (max-width: 992px) {
-                    background-color: ${(props: any) => props.theme.black};
+                    background-color: ${(props: any) => props.theme.white};
                   }
                 }
               }

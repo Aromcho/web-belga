@@ -7,9 +7,9 @@ export const Title = styled.div`
   font-weight: 600;
   text-align: center;
   text-transform: uppercase;
-  margin: 0 auto 60px;
+  margin: 0 auto -100px;
   @media screen and (max-width: 992px) {
-    margin: 0 auto 20px;
+    margin: 0 auto -50px;
   }
 `;
 
@@ -44,7 +44,12 @@ export const BackWrapper = styled.div`
   }
 `;
 
-export const BusquedasContainer = styled.div`
+export const FavoritesContainer = styled.div`
   width: 100%;
+  min-height: 80vh;
+  height: auto;
   padding-top: 150px;
+  @media screen and (max-width: 840px) {
+    padding-top: 100px;
+  }
 `;

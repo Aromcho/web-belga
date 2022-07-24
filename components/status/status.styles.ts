@@ -17,10 +17,24 @@ export const ImgWrapper = styled.div`
 `;
 
 export const Text = styled.div`
+  width: 100%;
   color: ${(props: any) => props.theme.black};
-  font-size: 18px;
+  font-size: 45px;
+  font-weight: 100;
+  line-height: 50px;
+  margin: auto;
   text-align: center;
-  text-transform: uppercase;
+  margin: 20px auto 80px;
+
+  @media screen and (max-width: 1200px) {
+    max-width: 450px;
+    font-size: 38px;
+    line-height: 45px;
+  }
+  @media screen and (max-width: 840px) {
+    font-size: 32px;
+    line-height: 40px;
+  }
 `;
 
 export const StatusWrapper = styled.div`
@@ -28,5 +42,9 @@ export const StatusWrapper = styled.div`
   margin: 80px auto;
   .button--status {
     margin: 25px auto 0;
+  }
+  @media screen and (max-width: 840px) {
+    font-size: 32px;
+    line-height: 40px;
   }
 `;

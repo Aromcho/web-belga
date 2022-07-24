@@ -3,6 +3,9 @@ import styled from "@emotion/styled";
 export const IconWrapper = styled.div`
   width: 20px;
   height: 20px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
   border-radius: 100%;
   border: 1px solid ${(props: any) => props.theme.black};
   background-color: transparent;
@@ -12,13 +15,15 @@ export const IconWrapper = styled.div`
   svg {
     width: 12px;
     height: auto;
-    transform: translate(-50%, -50%);
+    transition: all 0.2s ease-in-out;
     position: absolute;
-    top: 50%;
-    left: 50%;
     path {
       fill: ${(props: any) => props.theme.black};
     }
+  }
+
+  &:hover {
+    transform: scale(1.2);
   }
 `;
 
@@ -44,6 +49,7 @@ export const SaveSearchContainer = styled.div`
 
     &:hover {
       ${IconWrapper} {
+        transform: scale(0.8);
         background-color: ${(props: any) => props.theme.black};
       }
     }

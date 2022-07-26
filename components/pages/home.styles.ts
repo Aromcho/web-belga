@@ -214,7 +214,7 @@ export const PriceText = styled.div`
   color: ${(props: any) => props.theme.white};
   font-size: 14px;
   font-weight: 500;
-  margin: 0 30px 0 20px;
+  margin: 0 30px;
 `;
 export const RangeWrapper = styled.div`
   width: 100%;

@@ -477,7 +477,6 @@ export const MenuContainer = styled.div`
   width: 100%;
   height: auto;
   background-color: transparent;
-  box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.25);
   transition: all 0.4s cubic-bezier(0.74, 0.04, 0.24, 1.04);
   z-index: 99999999;
   position: fixed;

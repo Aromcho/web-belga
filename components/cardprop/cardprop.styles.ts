@@ -122,7 +122,7 @@ export const FeaturesList = styled.ul`
 
 export const FeaturesWrapper = styled.div`
   width: 100%;
-  padding: 20px 30px;
+  padding: 20px 30px 20px 36px;
 `;
 
 export const FooterProp = styled.div`

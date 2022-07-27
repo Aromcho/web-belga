@@ -1,5 +1,27 @@
 import styled from "@emotion/styled";
 
+export const Text = styled.div`
+  width: 220px;
+  height: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  color: ${(props: any) => props.theme.white};
+  font-size: 14px;
+`;
+
+export const WrapperText = styled.div`
+  width: 660px;
+  height: 100%;
+  align-items: center;
+  display: flex;
+  transition: transform 0.9s cubic-bezier(0.96, -0.25, 0, 1.27);
+  justify-content: center;
+  position: absolute;
+  left: 0;
+  pointer-events: none;
+`;
+
 export const ButtonWrapper = styled.a`
   width: 100%;
   min-width: 200px;
@@ -81,6 +103,31 @@ export const ButtonWrapper = styled.a`
         background-color: ${(props: any) => props.theme.secondary};
         color: ${(props: any) => props.theme.white};
       }
+    }
+  }
+
+  &.send,
+  &.sending,
+  &.sent {
+    width: 220px;
+    overflow: hidden;
+  }
+
+  &.send {
+    ${WrapperText} {
+      transform: translateX(-440px);
+    }
+  }
+
+  &.sending {
+    ${WrapperText} {
+      transform: translateX(-220px);
+    }
+  }
+
+  &.sent {
+    ${WrapperText} {
+      transform: translateX(0);
     }
   }
 `;

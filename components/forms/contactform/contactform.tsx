@@ -11,12 +11,14 @@ import {
   ContactFormWrapper,
   WrapperInputs,
 } from "./contactform.styles";
+import { classes } from "helpers";
 
 export interface ContactFormProps {
   className?: string;
 }
 
 export const ContactForm = ({ className }: ContactFormProps) => {
+  const [send, setSend] = React.useState("send");
   return (
     <ContactFormContainer className={className}>
       <TitleWithIcon text="¿Cómo te podemos ayudar?" className="black" />
@@ -36,7 +38,15 @@ export const ContactForm = ({ className }: ContactFormProps) => {
           msg="Alguno de los campos tienen información incorrecta"
         /> */}
       </ContactFormWrapper>
-      <Button text="Enviar" type="secondary shine" className="button--send" />
+
+      {/* <button onClick={() => setSend("send")}>Enviar</button>
+      <button onClick={() => setSend("sending")}>Enviando</button>
+      <button onClick={() => setSend("sent")}>Enviado</button> */}
+      <Button
+        type="secondary shine"
+        className="button--send"
+        sendStatus={send}
+      />
     </ContactFormContainer>
   );
 };

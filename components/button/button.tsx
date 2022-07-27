@@ -1,9 +1,10 @@
-import React from 'react';
-import Link from 'next/link';
-import { classes } from 'helpers/index';
+import React from "react";
+import Link from "next/link";
+import { classes } from "helpers/index";
 
-import { ButtonWrapper } from './button.styles';
+import { MailIcon } from "components/icons";
 
+import { ButtonWrapper, WrapperText, Text } from "./button.styles";
 
 export interface ButtonProps {
   text?: string;
@@ -16,13 +17,39 @@ export interface ButtonProps {
   style?: string;
   icon?: boolean;
   type?: string;
+  sendStatus?: string;
 }
 
-export const Button = ({ link = '#', target = '_self', text, className, onClick, children, type }: ButtonProps) => {
-  if (onClick) {
+export const Button = ({
+  link = "#",
+  target = "_self",
+  text,
+  sendStatus,
+  className,
+  onClick,
+  children,
+  type,
+}: ButtonProps) => {
+  if (onClick && !sendStatus) {
     return (
       <ButtonWrapper className={classes(className, type)} onClick={onClick}>
         {text}
+      </ButtonWrapper>
+    );
+  }
+  if (sendStatus) {
+    return (
+      <ButtonWrapper
+        className={classes(className, type, sendStatus)}
+        onClick={onClick}
+      >
+        <WrapperText>
+          <Text>Enviado</Text>
+          <Text>
+            <MailIcon />
+          </Text>
+          <Text>Enviar</Text>
+        </WrapperText>
       </ButtonWrapper>
     );
   }
@@ -34,4 +61,3 @@ export const Button = ({ link = '#', target = '_self', text, className, onClick,
     </Link>
   );
 };
-

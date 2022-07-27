@@ -242,17 +242,17 @@ const Home = observer(({ properties, emprendimientos }: any) => {
             </SearchRow>
 
             <HeroFooter>
-              <Link href="#">
+              <Link href="tel:+541152633393">
                 <a className="head--footer-link phone" target="_blank">
                   <TelIcon />
                 </a>
               </Link>
-              <Link href="#">
+              <Link href="mailto:info@belga.com.ar">
                 <a className="head--footer-link mail" target="_blank">
                   <MailIcon />
                 </a>
               </Link>
-              <Link href="#">
+              <Link href="https://api.whatsapp.com/send?phone=5491169462894&text=Hola%20Belga!%20%F0%9F%91%8B%20Quisiera%20hacerles%20una%20consulta.">
                 <a className="head--footer-link wsp" target="_blank">
                   <WhatsappIcon />
                 </a>

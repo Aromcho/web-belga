@@ -14,6 +14,18 @@ const DynamicMap = dynamic<MapProps>(
 import { TitleWithIcon } from "components/titlewithicon";
 import { ContactForm } from "components/forms/contactform";
 import { BackToTop } from "components/backtotop";
+import {
+  BelgaIsoIcon,
+  FacebookCircleIcon,
+  InstaCircleIcon,
+  LinkedinCircleIcon,
+  LocationIcon,
+  MailIcon,
+  MessengerCircleIcon,
+  TelIcon,
+  WhatsappIcon,
+  YoutubeCircleIcon,
+} from "components/icons";
 
 import {
   FooterContainer,
@@ -41,19 +53,6 @@ import {
   BodyLocation,
   Loc,
 } from "./footer.styles";
-
-import {
-  BelgaIsoIcon,
-  FacebookCircleIcon,
-  InstaCircleIcon,
-  LinkedinCircleIcon,
-  LocationIcon,
-  MailIcon,
-  MessengerCircleIcon,
-  TelIcon,
-  WhatsappIcon,
-  YoutubeCircleIcon,
-} from "components/icons";
 
 export interface FooterProps {
   small?: boolean;
@@ -95,14 +94,18 @@ export const Footer = ({ small = true, id, backToTopFooter }: FooterProps) => {
   ];
 
   const [high, setHighB] = React.useState(0);
-  const [center, setCenter] = React.useState({ lat: -34.5608544, lon: -58.4557807, zoom: 13});
+  const [center, setCenter] = React.useState({
+    lat: -34.5608544,
+    lon: -58.4557807,
+    zoom: 13,
+  });
 
   const setHigh = (n: number) => {
     setHighB(n);
-    const item = data.find(item => item.id === n)
+    const item = data.find((item) => item.id === n);
     // if(item) setCenter(item?.loc as any || { lat: -34.5608544, lon: -58.4557807, zoom: 13})
-    if(item) setCenter(item?.loc as any)
-  }
+    if (item) setCenter(item?.loc as any);
+  };
 
   const data = [
     {

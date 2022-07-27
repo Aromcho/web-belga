@@ -33,5 +33,5 @@ export const BackWrapper = styled.div`
 
 export const QuieroVenderContainer = styled.div`
   width: 100%;
-  padding-top: 150px;
+  padding: 150px 0 80px;
 `;

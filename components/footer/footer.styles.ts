@@ -70,7 +70,7 @@ export const LegalText = styled.div`
   color: ${(props: any) => props.theme.white};
   line-height: 16px;
   margin-bottom: 20px;
-  text-align: left;
+  text-align: justify;
   @media screen and (max-width: 1100px) {
     font-size: ${(props: any) => props.theme.LinkText};
     margin: 0 auto 20px;

@@ -193,7 +193,7 @@ export const BurgerMenu = styled.div`
     height: 1px;
     content: " ";
     transform: translateX(-50%);
-    box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.25);
     position: absolute;
     top: -1px;
     left: 50%;
@@ -574,7 +574,7 @@ export const MenuContainer = styled.div`
       ${BurgerButton} {
         ${IconWrapper} {
           ${BurgerCrossCustom} {
-            &.burger {
+            &.burger, &.cross {
               ${Line} {
                 background-color: ${(props: any) => props.theme.black};
               }

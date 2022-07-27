@@ -1,12 +1,13 @@
-import React from 'react';
+import { classes } from "helpers";
+import React from "react";
 
 import {
   InputWrapper,
   Label,
   InputStyled,
   BottomText,
-  ErrorText
-} from './input.styles';
+  ErrorText,
+} from "./input.styles";
 
 export interface InputProps {
   label?: string;
@@ -14,6 +15,7 @@ export interface InputProps {
   value?: string | number;
   type?: string;
   bottomText?: string;
+  error?: boolean;
   errorText?: string;
   className?: string;
   maxLength?: number;
@@ -32,32 +34,33 @@ export const Input = ({
   value,
   type,
   bottomText,
+  error,
   className,
   errorText,
   onChange,
   maxLength,
   required,
-  readonly= false,
+  readonly = false,
   min,
-  max
+  max,
 }: InputProps) => {
   return (
-    <InputWrapper className={className}>
+    <InputWrapper className={classes(className, { error })}>
       {label && <Label>{label}</Label>}
       <InputStyled
         type={type}
         value={value}
         placeholder={placeHolder}
         onChange={onChange}
-        autoComplete='off'
+        autoComplete="off"
         maxLength={maxLength}
         required={required || false}
         readOnly={readonly}
         min={min}
         max={max}
       />
-      {className === 'error' && <ErrorText>{errorText}</ErrorText>}
+      {error && <ErrorText>{errorText}</ErrorText>}
       {bottomText && <BottomText>{bottomText}</BottomText>}
     </InputWrapper>
-  )
-}
+  );
+};

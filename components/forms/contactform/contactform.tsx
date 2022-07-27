@@ -6,7 +6,11 @@ import { Textarea } from "components/textarea";
 import { FeedbackMsg } from "components/forms/feedbackmsg";
 import { TitleWithIcon } from "components/titlewithicon";
 
-import { ContactFormContainer, ContactFormWrapper, WrapperInputs } from "./contactform.styles";
+import {
+  ContactFormContainer,
+  ContactFormWrapper,
+  WrapperInputs,
+} from "./contactform.styles";
 
 export interface ContactFormProps {
   className?: string;

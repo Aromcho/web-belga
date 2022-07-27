@@ -2,13 +2,11 @@ import styled from "@emotion/styled";
 
 export const ErrorText = styled.div`
   color: ${(props: any) => props.theme.error};
-  font-size: ${(props: any) => props.theme.tableHeader};
-  display: block;
-  font-weight: 700;
   white-space: nowrap;
+  font-size: 12px;
+  font-weight: 500;
   position: absolute;
-  top: -14px;
-  right: 7px;
+  top: calc(100% + 1px);
 `;
 
 export const BottomText = styled.div`
@@ -59,7 +57,7 @@ export const InputStyled = styled.input`
       opacity: 1;
     }
   }
-  &[type="number"]{
+  &[type="number"] {
     -webkit-appearance: none;
     -moz-appearance: textfield;
   }

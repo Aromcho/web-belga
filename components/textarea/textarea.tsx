@@ -1,37 +1,49 @@
-import React from 'react';
+import { classes } from "helpers";
+import React from "react";
 
 import {
   InputWrapper,
   Label,
   TextareaStyled,
   BottomText,
-  ErrorText
-} from './textarea.styles';
+  ErrorText,
+} from "./textarea.styles";
 
-export interface TextareaProps { 
+export interface TextareaProps {
   label?: string;
   placeHolder?: string;
   value?: string;
   bottomText?: string;
+  error?: boolean;
   errorText?: string;
   className?: string;
   onChange?: (e: any) => void;
   required?: boolean;
 }
 
-export const Textarea = ({label, placeHolder, value, bottomText, className, errorText, onChange, required }: TextareaProps) => {
+export const Textarea = ({
+  label,
+  placeHolder,
+  value,
+  bottomText,
+  className,
+  error,
+  errorText,
+  onChange,
+  required,
+}: TextareaProps) => {
   return (
-    <InputWrapper className={className}>
+    <InputWrapper className={classes(className, { error })}>
       {label && <Label>{label}</Label>}
-      <TextareaStyled 
+      <TextareaStyled
         value={value}
-        placeholder={placeHolder} 
+        placeholder={placeHolder}
         onChange={onChange}
-        autoComplete='off'
+        autoComplete="off"
         required={required || false}
       />
-      {className === 'error' && <ErrorText>{errorText}</ErrorText>}
+      {error && <ErrorText>{errorText}</ErrorText>}
       {bottomText && <BottomText>{bottomText}</BottomText>}
     </InputWrapper>
-  )
-}
+  );
+};

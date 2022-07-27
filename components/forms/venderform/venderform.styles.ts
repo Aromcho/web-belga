@@ -10,6 +10,10 @@ export const TitleForm = styled.div`
   text-transform: uppercase;
 `;
 
+export const WrapperInputs = styled.div`
+  width: 100%;
+`;
+
 export const FormWrapper = styled.div`
   width: 100%;
   max-width: 330px;
@@ -36,9 +40,6 @@ export const FormContainer = styled.div`
     }
     ${FormWrapper} {
       max-width: 900px;
-      display: flex;
-      flex-flow: row wrap;
-      gap: 3%;
       @media screen and (max-width: 992px) {
         max-width: 500px;
       }
@@ -64,6 +65,7 @@ export const FormContainer = styled.div`
           & > div:first-child {
             border: 1px solid ${(props: any) => props.theme.black};
             border-radius: 6px 6px 0 6px;
+            min-height: 42px;
             &:hover,
             &:focus,
             &:focus-within {
@@ -92,6 +94,25 @@ export const FormContainer = styled.div`
           &:hover {
             background-color: transparent;
             border-color: transparent;
+          }
+        }
+      }
+      ${WrapperInputs} {
+        width: 100%;
+        align-items: center;
+        display: flex;
+        gap: 15px;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        @media screen and (max-width: 992px) {
+          flex-flow: column;
+        }
+        .input--form {
+          width: 100%;
+          margin: 0;
+          @media screen and (max-width: 992px) {
+            width: 100%;
+            margin-bottom: 15px;
           }
         }
       }

@@ -4,8 +4,6 @@ import { Button } from "components/button";
 import { Input } from "components/input";
 import { Textarea } from "components/textarea";
 import { FeedbackMsg } from "components/forms/feedbackmsg";
-import { propertiesSelectOptions } from "helpers/tokko";
-import { Select } from "components/select";
 
 import {
   FormContainer,
@@ -13,22 +11,79 @@ import {
   TitleForm,
   WrapperInputs,
 } from "./venderform.styles";
+import { useMergeState } from "helpers/hooks";
+import { sendContact } from "services";
 
 export interface ContactFormProps {
   className?: string;
 }
 
 export const VenderForm = ({ className }: ContactFormProps) => {
+
+  const [data, setData] = useMergeState({
+    name: '',
+    email: '',
+    phone: '',
+    direction: '',
+    property: '',
+    message: '',
+    url: '',
+    subject: "Quiero vender"
+  })
+
+  const [error, setErrror] = useMergeState({
+    name: false,
+    email: false,
+    phone: false,
+  })
+
+  const [status, setStatus] = useMergeState({
+    status: '',
+    text: ''
+  })
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    if(error.name || error.email || error.phone){ 
+      setStatus({
+        status: "error",
+        text: "Alguno de los campos tienen información incorrecta"
+      })
+      return false;
+    }
+    sendContact(data)
+    .then(() => {
+      setStatus({
+        status: "success",
+        text: "Tu contacto ha sido enviado"
+      })
+      setData({
+        name: '',
+        email: '',
+        phone: '',
+        direction: '',
+        property: '',
+        message: '',
+      })
+    })
+    .catch(() => {
+      setStatus({
+        status: "error",
+        text: "Ha ocurrido un error, reintente en unos minutos"
+      })
+    })
+  }
+
   return (
     <FormContainer className={className}>
       <TitleForm>A UN PASO DE TU TASACIÓN.</TitleForm>
       <FormWrapper>
         <WrapperInputs>
-          <Input className="input--form" placeHolder="Nombre*" type="text" />
+          <Input className="input--form" placeHolder="Nombre *" type="text" name="name" value={data.name} onChange={(e) => setData({name: e.currentTarget.value})} error={error.name} onBlur={(e) => setErrror({name: e.currentTarget.value === ""})}/>
 
-          <Input className="input--form" placeHolder="Email*" type="email" />
+          <Input className="input--form" placeHolder="Email *" type="email" value={data.email} onChange={(e) => setData({email: e.currentTarget.value})} error={error.email}  onBlur={(e) => setErrror({email: e.currentTarget.value === ""})} />
 
-          <Input className="input--form" placeHolder="Teléfono*" type="tel" />
+          <Input className="input--form" placeHolder="Teléfono *" type="tel" value={data.phone} onChange={(e) => setData({phone: e.currentTarget.value})} error={error.phone}  onBlur={(e) => setErrror({phone: e.currentTarget.value === ""})} />
         </WrapperInputs>
 
         <WrapperInputs>
@@ -36,24 +91,27 @@ export const VenderForm = ({ className }: ContactFormProps) => {
             className="input--form half"
             placeHolder="Dirección"
             type="text"
+            value={data.direction} onChange={(e) => setData({direction: e.currentTarget.value})}
           />
 
-          <Select
-            className="input--form input--select half "
-            options={propertiesSelectOptions}
-            isSearchable={false}
-            placeholder="Tipo de propiedad"
+          <Input
+            className="input--form half"
+            placeHolder="Tipo de propiedad"
+            type="text"
+            name="property"
+            value={data.property} onChange={(e) => setData({property: e.currentTarget.value})}
           />
+
         </WrapperInputs>
 
-        <Textarea className="textarea--form" placeHolder="Mensaje" />
+        <Textarea className="textarea--form" placeHolder="Mensaje" value={data.message} onChange={e => setData({ message: e.currentTarget.value })}   />
 
-        {/* <FeedbackMsg
-          className="success"
-          msg="Alguno de los campos tienen información incorrecta"
-        /> */}
+        {status.status && <FeedbackMsg
+          className={status.status}
+          msg={status.text}
+        />}
       </FormWrapper>
-      <Button text="Enviar" type="secondary shine" className="button--send" />
+      <Button text="Enviar" type="secondary shine" className="button--send" onClick={handleSubmit}/>
     </FormContainer>
   );
 };

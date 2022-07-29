@@ -113,7 +113,7 @@ export const PropertyList = observer(
       min_baths: 0,
       max_baths: 0,
       operation_type: [1],
-      property_type: 0,
+      property_type: -1,
       price_from: 0,
       price_to: 0,
       parking_lot_to: 0,
@@ -298,9 +298,8 @@ export const PropertyList = observer(
                   )}`}
                 >
                   <DropdownRow>
-                    <RowLabel>Min.</RowLabel>
                     <Input
-                      className="dropdown--input"
+                      className="dropdown--input input--price"
                       type="number"
                       placeHolder="-"
                       min={0}
@@ -311,9 +310,8 @@ export const PropertyList = observer(
                     />
                   </DropdownRow>
                   <DropdownRow>
-                    <RowLabel>Max.</RowLabel>
                     <Input
-                      className="dropdown--input"
+                      className="dropdown--input input--price"
                       type="number"
                       placeHolder="-"
                       min={0}

@@ -14,6 +14,7 @@ export interface InputProps {
   placeHolder?: string;
   value?: string | number;
   type?: string;
+  name?: string;
   bottomText?: string;
   error?: boolean;
   errorText?: string;
@@ -36,8 +37,10 @@ export const Input = ({
   bottomText,
   error,
   className,
+  name,
   errorText,
   onChange,
+  onBlur,
   maxLength,
   required,
   readonly = false,
@@ -50,8 +53,10 @@ export const Input = ({
       <InputStyled
         type={type}
         value={value}
+        name={name}
         placeholder={placeHolder}
         onChange={onChange}
+        onBlur={onBlur}
         autoComplete="off"
         maxLength={maxLength}
         required={required || false}

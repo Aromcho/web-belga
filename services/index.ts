@@ -10,7 +10,7 @@ interface ContactProps {
   email: string;
   phone: string;
   text?: string;
-  properties?: string;
+  property: string;
 }
 
 const baseParams = {
@@ -93,7 +93,7 @@ export const getPropertyTypes = () => {
 }
 
 export const sendContact = async (params: ContactProps) => {
-  const { data } = await axios.post(`${API_URI}/webcontact`, { ...params })
+  const { data } = await axios.post(`/api/contact`, { ...params })
   return data;
 }
 

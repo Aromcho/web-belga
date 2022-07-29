@@ -78,7 +78,7 @@ export const ButtonWrapper = styled.a`
 
   &.outline {
     border: 2px solid ${(props: any) => props.theme.secondary};
-    background-color: ${(props: any) => props.theme.white};
+    background-color: ${(props: any) => props.theme.transparent};
     color: ${(props: any) => props.theme.black};
     &:hover {
       border-color: ${(props: any) => props.theme.primary};

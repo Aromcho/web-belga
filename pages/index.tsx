@@ -54,15 +54,19 @@ const Home = observer(({ properties, emprendimientos }: any) => {
 
   const router = useRouter();
 
-  const [formData, setFormData] = useMergeState({
+  const [formData, setFormData] = useMergeState<any>({
     locations: [],
-    min_rooms: 0,
-    max_rooms: 0,
+    min_rooms: '',
+    max_rooms: '',
     operation_type: [1],
     property_type: 0,
     price_from: 0,
     price_to: 0,
   });
+
+  const [close, setClose] = useMergeState<any>({
+    rooms: undefined
+  })
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -119,6 +123,7 @@ const Home = observer(({ properties, emprendimientos }: any) => {
               <Dropdown
                 className="white first--row-input"
                 placeholder="Dormitorios"
+                close={close.rooms}
                 value={getDropdownValue(
                   formData?.min_rooms,
                   formData?.max_rooms,
@@ -136,6 +141,12 @@ const Home = observer(({ properties, emprendimientos }: any) => {
                     onChange={(e) => {
                       setFormData({ min_rooms: e?.currentTarget?.value });
                     }}
+                    onKeyPress={(e) => {
+                      if(e.key === "Enter"){
+                        setFormData({ min_rooms: e?.currentTarget?.value });
+                        setClose({rooms: !close.rooms})
+                      }
+                    }}
                   />
                 </DropdownRow>
                 <DropdownRow>
@@ -148,6 +159,12 @@ const Home = observer(({ properties, emprendimientos }: any) => {
                     value={formData?.max_rooms}
                     onChange={(e) => {
                       setFormData({ max_rooms: e?.currentTarget?.value });
+                    }}
+                    onKeyPress={(e) => {
+                      if(e.key === "Enter"){
+                        setFormData({ max_rooms: e?.currentTarget?.value });
+                        setClose({rooms: !close.rooms})
+                      }
                     }}
                   />
                 </DropdownRow>

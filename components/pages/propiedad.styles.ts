@@ -380,7 +380,7 @@ export const MoreInfo = styled.div`
   width: 100%;
   display: flex;
   flex-flow: row wrap;
-  margin-top: 60px;
+  margin-top: 30px;
   @media screen and (max-width: 992px) {
     flex-flow: column;
   }
@@ -389,10 +389,9 @@ export const MoreInfo = styled.div`
 export const FeaturesFooter = styled.div`
   width: 100%;
   border-bottom: 1px solid ${(props: any) => props.theme.black};
-  padding-bottom: 25px;
   margin: 60px auto 0;
   .button--planos {
-    margin: 0 auto;
+    margin: 0 auto 30px;
   }
 `;
 

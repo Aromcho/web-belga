@@ -1,3 +1,4 @@
+
 export const theme = {
   primary: '#F1B332',
   secondary: '#C62025',
@@ -6,5 +7,6 @@ export const theme = {
   gray10: '#F8F8F8', 
   wspGreen: '#25D366', 
   error: '#c40000',
-  success: '#00ba7f'  
+  success: '#00ba7f',
+  transparent: "transparent"
 };

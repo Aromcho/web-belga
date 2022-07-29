@@ -22,6 +22,8 @@ export interface InputProps {
   maxLength?: number;
   onChange?: (e: any) => void;
   onBlur?: (e: any) => void;
+  onFocus?: (e: any) => void;
+  onKeyPress?: (e: any) => void;
   onClick?: () => void;
   required?: boolean;
   readonly?: boolean;
@@ -41,6 +43,8 @@ export const Input = ({
   errorText,
   onChange,
   onBlur,
+  onFocus,
+  onKeyPress,
   maxLength,
   required,
   readonly = false,
@@ -57,6 +61,8 @@ export const Input = ({
         placeholder={placeHolder}
         onChange={onChange}
         onBlur={onBlur}
+        onFocus={onFocus}
+        onKeyPress={onKeyPress}
         autoComplete="off"
         maxLength={maxLength}
         required={required || false}

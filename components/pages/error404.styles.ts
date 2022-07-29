@@ -150,7 +150,7 @@ export const Square = styled.div`
   &.black {
     width: 50.25%;
     z-index: 2;
-    left: 0;
+    left: 40px;
     &::after {
       border-color: ${(props: any) => props.theme.black};
       border-right: none;

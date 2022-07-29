@@ -31,7 +31,7 @@ export const VenderForm = ({ className }: ContactFormProps) => {
     subject: "Quiero vender"
   })
 
-  const [error, setErrror] = useMergeState({
+  const [error, setError] = useMergeState({
     name: false,
     email: false,
     phone: false,
@@ -44,10 +44,15 @@ export const VenderForm = ({ className }: ContactFormProps) => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    if(error.name || error.email || error.phone){ 
+    setError({
+      name: data.name === "",
+      email: data.name === "",
+      phone: data.name === "",
+    })
+    if(error.name || error.email || error.phone, data.name === "", data.name === "", data.name === ""){
       setStatus({
         status: "error",
-        text: "Alguno de los campos tienen información incorrecta"
+        text: "Revise los campos requeridos"
       })
       return false;
     }
@@ -79,11 +84,11 @@ export const VenderForm = ({ className }: ContactFormProps) => {
       <TitleForm>A UN PASO DE TU TASACIÓN.</TitleForm>
       <FormWrapper>
         <WrapperInputs>
-          <Input className="input--form" placeHolder="Nombre *" type="text" name="name" value={data.name} onChange={(e) => setData({name: e.currentTarget.value})} error={error.name} onBlur={(e) => setErrror({name: e.currentTarget.value === ""})}/>
+          <Input className="input--form" placeHolder="Nombre *" type="text" name="name" value={data.name} onChange={(e) => setData({name: e.currentTarget.value})} error={error.name} onBlur={(e) => setError({name: e.currentTarget.value === ""})}/>
 
-          <Input className="input--form" placeHolder="Email *" type="email" value={data.email} onChange={(e) => setData({email: e.currentTarget.value})} error={error.email}  onBlur={(e) => setErrror({email: e.currentTarget.value === ""})} />
+          <Input className="input--form" placeHolder="Email *" type="email" value={data.email} onChange={(e) => setData({email: e.currentTarget.value})} error={error.email}  onBlur={(e) => setError({email: e.currentTarget.value === ""})} />
 
-          <Input className="input--form" placeHolder="Teléfono *" type="tel" value={data.phone} onChange={(e) => setData({phone: e.currentTarget.value})} error={error.phone}  onBlur={(e) => setErrror({phone: e.currentTarget.value === ""})} />
+          <Input className="input--form" placeHolder="Teléfono *" type="tel" value={data.phone} onChange={(e) => setData({phone: e.currentTarget.value})} error={error.phone}  onBlur={(e) => setError({phone: e.currentTarget.value === ""})} />
         </WrapperInputs>
 
         <WrapperInputs>

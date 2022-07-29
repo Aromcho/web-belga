@@ -88,7 +88,6 @@ export const BusquedaCard = ({
                 )}</QueryProp>
             </Query>
             }
-            {console.log(search)}
             {(search.price_from || search.price_to) && 
             <Query>
               <QueryProp>Precio</QueryProp>

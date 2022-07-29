@@ -108,18 +108,24 @@ export const PropertyList = observer(
 
     const [formData, setFormData] = useMergeState<any>({
       locations: [],
-      min_rooms: 0,
-      max_rooms: 0,
-      min_baths: 0,
-      max_baths: 0,
+      min_rooms: '',
+      max_rooms: '',
+      min_baths: '',
+      max_baths: '',
       operation_type: [1],
       property_type: -1,
       price_from: 0,
       price_to: 0,
-      parking_lot_to: 0,
-      parking_lot_from: 0,
+      parking_lot_to: '',
+      parking_lot_from: '',
       order: "DESC",
     });
+
+    const [close, setClose] = useMergeState<any>({
+      rooms: undefined,
+      baths: undefined,
+      parking: undefined,
+    })
 
     const router = useRouter();
 
@@ -217,6 +223,7 @@ export const PropertyList = observer(
                 <Dropdown
                   className="input--general dropdown"
                   placeholder="Dormitorios"
+                  close={close.rooms}
                   value={getDropdownValue(
                     formData.min_rooms,
                     formData.max_rooms,
@@ -234,6 +241,12 @@ export const PropertyList = observer(
                       onChange={(e) => {
                         setFormData({ min_rooms: e.currentTarget.value });
                       }}
+                      onKeyPress={(e) => {
+                        if(e.key === "Enter"){
+                          setFormData({ min_rooms: e?.currentTarget?.value });
+                          setClose({rooms: !close.rooms})
+                        }
+                      }}
                     />
                   </DropdownRow>
                   <DropdownRow>
@@ -247,6 +260,12 @@ export const PropertyList = observer(
                       onChange={(e) => {
                         setFormData({ max_rooms: e.currentTarget.value });
                       }}
+                      onKeyPress={(e) => {
+                        if(e.key === "Enter"){
+                          setFormData({ max_rooms: e?.currentTarget?.value });
+                          setClose({rooms: !close.rooms})
+                        }
+                      }}
                     />
                   </DropdownRow>
                 </Dropdown>
@@ -254,6 +273,7 @@ export const PropertyList = observer(
                 <Dropdown
                   className="input--general dropdown"
                   placeholder="Baños"
+                  close={close.baths}
                   value={getDropdownValue(
                     formData?.min_baths,
                     formData?.max_baths,
@@ -271,6 +291,12 @@ export const PropertyList = observer(
                       onChange={(e) => {
                         setFormData({ min_baths: e.currentTarget.value });
                       }}
+                      onKeyPress={(e) => {
+                        if(e.key === "Enter"){
+                          setFormData({ min_baths: e?.currentTarget?.value });
+                          setClose({baths: !close.baths})
+                        }
+                      }}
                     />
                   </DropdownRow>
                   <DropdownRow>
@@ -283,6 +309,12 @@ export const PropertyList = observer(
                       value={formData.max_baths}
                       onChange={(e) => {
                         setFormData({ max_baths: e.currentTarget.value });
+                      }}
+                      onKeyPress={(e) => {
+                        if(e.key === "Enter"){
+                          setFormData({ max_baths: e?.currentTarget?.value });
+                          setClose({baths: !close.baths})
+                        }
                       }}
                     />
                   </DropdownRow>
@@ -326,9 +358,10 @@ export const PropertyList = observer(
                 <Dropdown
                   className="input--general dropdown"
                   placeholder="Cocheras"
+                  close={close.parking}
                   value={getDropdownValue(
-                    formData?.parking_lot_to,
                     formData?.parking_lot_from,
+                    formData?.parking_lot_to,
                     "Cocheras"
                   )}
                 >
@@ -339,9 +372,15 @@ export const PropertyList = observer(
                       type="number"
                       placeHolder="-"
                       min={0}
-                      value={formData.parking_lot_to}
+                      value={formData.parking_lot_from}
                       onChange={(e) => {
-                        setFormData({ parking_lot_to: e.currentTarget.value });
+                        setFormData({ parking_lot_from: e.currentTarget.value });
+                      }}
+                      onKeyPress={(e) => {
+                        if(e.key === "Enter"){
+                          setFormData({ parking_lot_from: e?.currentTarget?.value });
+                          setClose({parking: !close.parking})
+                        }
                       }}
                     />
                   </DropdownRow>
@@ -352,9 +391,15 @@ export const PropertyList = observer(
                       type="number"
                       placeHolder="-"
                       min={0}
-                      value={formData.parking_lot_from}
+                      value={formData.parking_lot_to}
                       onChange={(e) => {
-                        setFormData({ parking_lot_from: e.currentTarget.value });
+                        setFormData({ parking_lot_to: e.currentTarget.value });
+                      }}
+                      onKeyPress={(e) => {
+                        if(e.key === "Enter"){
+                          setFormData({ parking_lot_to: e?.currentTarget?.value });
+                          setClose({parking: !close.parking})
+                        }
                       }}
                     />
                   </DropdownRow>

@@ -82,6 +82,9 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 const PropertyDetail = ({ properties, property, statusCode }: any) => {
+
+  console.log(property)
+
   if (statusCode === 404 || statusCode === 500)
     return (
       <Layout menuTheme="light">
@@ -347,16 +350,16 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
                   <FtImg src="/images/icons/prop_antiguedad.svg" />
                   <FtBottom>Antigüedad</FtBottom>
                 </Feature>
-                <Feature>
+                {Math.round(property?.roofed_surface) > 0 && <Feature>
                   <FtHead>{Math.round(property?.roofed_surface)}</FtHead>
                   <FtImg src="/images/icons/prop_m2.svg" />
                   <FtBottom>Sup. Cub.</FtBottom>
-                </Feature>
-                <Feature>
+                </Feature>}
+                {Math.round(property?.total_surface) > 0 && <Feature>
                   <FtHead>{Math.round(property?.total_surface)}</FtHead>
                   <FtImg src="/images/icons/prop_m2.svg" />
                   <FtBottom>Sup. Total</FtBottom>
-                </Feature>
+                </Feature>}
                 {property?.suite_amount > 0 && (
                   <Feature>
                     <FtHead>{property?.suite_amount}</FtHead>
@@ -397,11 +400,11 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
                     </FtBottom>
                   </Feature>
                 )}
-                <Feature>
+                {/* <Feature>
                   <FtHead>{property?.web_price ? "Si" : "No"}</FtHead>
                   <FtImg src="/images/icons/prop_credito.svg" />
                   <FtBottom>Apto Crédito</FtBottom>
-                </Feature>
+                </Feature> */}
                 {property?.expenses > 0 && (
                   <Feature>
                     <FtHead>
@@ -414,11 +417,11 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
               </FeaturesGrid>
 
               <FeaturesFooter>
-                <Button
+                {/* <Button
                   className="button--planos"
                   text="Ver planos"
                   type="outline red"
-                />
+                /> */}
               </FeaturesFooter>
 
               <MoreInfo>
@@ -464,10 +467,10 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
                       {`${Math.round(property?.unroofed_surface)} m2`}
                     </MoreItemText>
                   )}
-                  <MoreItemText>
+                  {Math.round(property?.total_surface) > 0 && <MoreItemText>
                     <b>Sup. Total: </b>
                     {`${Math.round(property?.total_surface)} m2`}
-                  </MoreItemText>
+                  </MoreItemText>}
                 </MoreItem>
 
                 <MoreItem className="large">
@@ -503,7 +506,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
           </MapProp>
 
           <SimilarProps>
-            <Title title="Propiedades similares" />
+            <Title title="Propiedades similares" buttonStyle="outline red" />
 
             <PropList>
               {properties.map((item: any, k: number) => (

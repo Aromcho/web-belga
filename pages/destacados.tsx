@@ -1,8 +1,7 @@
 import React from "react";
 import { GetServerSideProps } from "next";
-import { Layout, Container } from "components/layout";
+import { Layout } from "components/layout";
 import { getProperties } from "services";
-import { parseTokkoParameters } from "helpers/tokko";
 import { PropertyList } from "components/propertylist";
 import { BackToTop } from "components/backtotop";
 
@@ -14,6 +13,8 @@ const PropertySearch = ({ data }: any) => {
         properties={data.objects}
         meta={data.meta}
         saveSearch={false}
+        filters={false}
+        withCount={false}
       />
     </Layout>
   );

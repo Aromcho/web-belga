@@ -59,7 +59,7 @@ const Favorites = observer(() => {
         </Container>
 
         <Container>
-          {status === "loading" && <Status text="cargando..." />}
+          {status === "loading" && <Status text="Cargando..." />}
           {status === "empty" && (
             <Status
               img="/images/empty_img_heart.gif"

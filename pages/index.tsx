@@ -324,7 +324,7 @@ const Home = observer(({ properties, emprendimientos }: any) => {
 
         <Container className="inversion--container">
           <InversionList>
-            <InversionItem>
+            <InversionItem className="item--text">
               <Title
                 title="Tu próxima inversión"
                 buttonStyle="outline black"

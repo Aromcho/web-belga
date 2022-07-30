@@ -63,6 +63,11 @@ export const PropList = styled.div`
 export const InversionItem = styled.li`
   width: 30%;
   height: 100%;
+  text-transform: uppercase;
+  &.item--text {
+    width: auto;
+    padding-top: 25px;
+  }
   @media screen and (max-width: 992px) {
     width: 48%;
     align-items: center;

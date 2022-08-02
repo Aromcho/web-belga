@@ -20,7 +20,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             Name: "Belga Inmobiliaria"
           },
           To: [
-            // {email: 'info@belga.com.ar'},
+            {email: 'info@belga.com.ar'},
             // {email: 'AR5054@resultadistas.com'},
             {email: 'alfieri.juan@gmail.com'},
           ],

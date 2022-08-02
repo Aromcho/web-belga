@@ -23,7 +23,7 @@ const PropertySearch = ({ data }: any) => {
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const data = await getProperties({
     params: {
-      filters: [["is_starred_on_web", "=", 1]],
+      filters: [["is_starred_on_web", "Yes", 0]],
       operation_types: [1],
     },
   });

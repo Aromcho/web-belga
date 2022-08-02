@@ -360,7 +360,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   // Only get starred & ventas
   const { objects } = await getProperties({
     params: {
-      filters: [["is_starred_on_web", "=", true]],
+      filters: [["is_starred_on_web", "Yes", 0]],
       operation_types: [1],
       limit: 2,
     },

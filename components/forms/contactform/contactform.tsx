@@ -83,7 +83,9 @@ export const ContactForm = ({ className }: ContactFormProps) => {
       })
     })
     .finally(() => {
-      setState("send");
+      setTimeout(() => {
+        setState("send");
+      }, 1500)
     })
   }
   

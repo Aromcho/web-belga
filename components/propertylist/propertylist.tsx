@@ -331,7 +331,7 @@ export const PropertyList = observer(
                 >
                   <DropdownRow>
                     <Input
-                      className="dropdown--input input--price"
+                      className="dropdown--input input--price no-things"
                       type="number"
                       placeHolder="-"
                       min={0}
@@ -343,7 +343,7 @@ export const PropertyList = observer(
                   </DropdownRow>
                   <DropdownRow>
                     <Input
-                      className="dropdown--input input--price"
+                      className="dropdown--input input--price no-things"
                       type="number"
                       placeHolder="-"
                       min={0}

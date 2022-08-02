@@ -128,9 +128,9 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
     }
   );
 
-  const planoGallery: ImagesListType = property?.photos?.map(
+  const planoGallery: ImagesListType = property?.files?.map(
     (item: any, k: number) => {
-      return { src: `${item.image}`, loading: "lazy" };
+      return { src: `${item.file}`, loading: "lazy" };
     }
   );
 
@@ -279,7 +279,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
               renderHeader={() => (
                 <HeaderGallery>
                   <IndexCounter>
-                    {currentImageIndex + 1} de
+                    {currentImageIndex + 1} de 
                     {modalContent.content === "fotos"
                       ? photoGallery.length
                       : planoGallery.length}
@@ -295,7 +295,6 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
               <Swiper
                 className="swiper--prop-gallery"
                 modules={[Navigation]}
-                loop={true}
                 centeredSlides={
                   images.length + videos.length === 1 ? true : false
                 }
@@ -319,8 +318,8 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
               >
                 {videos.length > 0 &&
                   videos?.map((item: any, k: number) => {
-                    return <SwiperSlide key={k}>{item}</SwiperSlide>;
-                  })}
+                    return <SwiperSlide key={k + 1000}>{item}</SwiperSlide>;
+                })}
 
                 {images.length > 0 &&
                   images?.map((item: any, k: number) => {
@@ -335,7 +334,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
                         {item}
                       </SwiperSlide>
                     );
-                  })}
+                })}
               </Swiper>
             </SwiperContainerGallery>
           </GalleryProp>
@@ -417,11 +416,12 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
               </FeaturesGrid>
 
               <FeaturesFooter>
-                {/* <Button
+                {property?.files && <Button
                   className="button--planos"
                   text="Ver planos"
                   type="outline red"
-                /> */}
+                  onClick={() => setModalContent({ open: true, content: "planos" })}
+                />}
               </FeaturesFooter>
 
               <MoreInfo>

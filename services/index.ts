@@ -47,8 +47,8 @@ export const getProperties = async ({params}: GetPropertiesProps) => {
     offset: params.offset || 0,
   }
 
-  const { data } = await axios.get(url, { params: baseParamsExtended })
-  return data;
+  const data = await axios.get(url, { params: baseParamsExtended })
+  return data.data;
 }
 
 export const getPropertyById = async (id: number) => {

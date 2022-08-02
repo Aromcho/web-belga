@@ -162,14 +162,18 @@ export const FiltersContainer = styled.div`
     margin: 0;
     &.input--price{
       width: 100%;
-    }
-    input {
-      -moz-appearance: textfield;
-      border-radius: 0;
-      &::-webkit-outer-spin-button,
-      &::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
+      &.no-things{
+        input {
+          -moz-appearance: textfield;
+          &::-webkit-outer-spin-button,
+          &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
+        }
+      }
+      input {
+        border-radius: 0;
       }
     }
   }

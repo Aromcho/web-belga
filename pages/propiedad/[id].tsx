@@ -122,15 +122,15 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
         ? photoGallery.length
         : planoGallery.length) && setCurrentIndex(currentImageIndex + 1);
 
-  const photoGallery: ImagesListType = property?.photos?.map(
+  const photoGallery: ImagesListType = property?.photos?.filter((item: any) => !item.is_blueprint).map(
     (item: any, k: number) => {
       return { src: `${item.image}`, loading: "lazy" };
     }
   );
 
-  const planoGallery: ImagesListType = property?.files?.map(
+  const planoGallery: ImagesListType = property?.photos?.filter((item: any) => item.is_blueprint).map(
     (item: any, k: number) => {
-      return { src: `${item.file}`, loading: "lazy" };
+      return { src: `${item.image}`, loading: "lazy" };
     }
   );
 
@@ -279,7 +279,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
               renderHeader={() => (
                 <HeaderGallery>
                   <IndexCounter>
-                    {currentImageIndex + 1} de 
+                    {currentImageIndex + 1} de {` `}
                     {modalContent.content === "fotos"
                       ? photoGallery.length
                       : planoGallery.length}

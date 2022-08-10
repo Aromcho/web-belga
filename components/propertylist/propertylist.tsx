@@ -320,41 +320,7 @@ export const PropertyList = observer(
                   </DropdownRow>
                 </Dropdown>
 
-                <Dropdown
-                  className="input--general dropdown"
-                  placeholder="Precio"
-                  value={`${getDropdownValue(
-                    formData?.price_from,
-                    formData?.price_to,
-                    "USD"
-                  )}`}
-                >
-                  <DropdownRow>
-                    <Input
-                      className="dropdown--input input--price no-things"
-                      type="number"
-                      placeHolder="-"
-                      min={0}
-                      value={formData.price_from}
-                      onChange={(e) => {
-                        setFormData({ price_from: e.currentTarget.value });
-                      }}
-                    />
-                  </DropdownRow>
-                  <DropdownRow>
-                    <Input
-                      className="dropdown--input input--price no-things"
-                      type="number"
-                      placeHolder="-"
-                      min={0}
-                      value={formData.price_to}
-                      onChange={(e) => {
-                        setFormData({ price_to: e.currentTarget.value });
-                      }}
-                    />
-                  </DropdownRow>
-                </Dropdown>
-
+                
                 <Dropdown
                   className="input--general dropdown"
                   placeholder="Cocheras"
@@ -400,6 +366,41 @@ export const PropertyList = observer(
                           setFormData({ parking_lot_to: e?.currentTarget?.value });
                           setClose({parking: !close.parking})
                         }
+                      }}
+                    />
+                  </DropdownRow>
+                </Dropdown>
+
+                <Dropdown
+                  className="input--general dropdown"
+                  placeholder="Precio"
+                  value={`${getDropdownValue(
+                    formData?.price_from,
+                    formData?.price_to,
+                    "USD"
+                  )}`}
+                >
+                  <DropdownRow>
+                    <Input
+                      className="dropdown--input input--price no-things"
+                      type="number"
+                      placeHolder="-"
+                      min={0}
+                      value={formData.price_from}
+                      onChange={(e) => {
+                        setFormData({ price_from: e.currentTarget.value });
+                      }}
+                    />
+                  </DropdownRow>
+                  <DropdownRow>
+                    <Input
+                      className="dropdown--input input--price no-things"
+                      type="number"
+                      placeHolder="-"
+                      min={0}
+                      value={formData.price_to}
+                      onChange={(e) => {
+                        setFormData({ price_to: e.currentTarget.value });
                       }}
                     />
                   </DropdownRow>

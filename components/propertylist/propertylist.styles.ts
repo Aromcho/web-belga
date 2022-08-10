@@ -148,18 +148,28 @@ export const FiltersContainer = styled.div`
     width: 16%;
     border: 1px solid #000000;
     margin: 0;
+    @media screen and (max-width: 1200px) {
+      width: 100%;
+    }
     &.full {
-      width: 86%;
+      width: 83.2%;
       margin-top: 10px;
+      @media screen and (max-width: 1200px) {
+        width: 100%;
+      }
     }
   }
   .form--button {
-    width: 18%;
+    width: 16%;
     margin-top: 10px;
+    max-width: none;
   }
   .dropdown--input {
     width: 100px;
     margin: 0;
+    @media screen and (max-width: 1200px) {
+      width: 50%;
+    }
     &.input--price{
       width: 100%;
       &.no-things{
@@ -172,9 +182,9 @@ export const FiltersContainer = styled.div`
           }
         }
       }
-      input {
-        border-radius: 0;
-      }
+    }
+    input {
+      border-radius: 0;
     }
   }
 `;

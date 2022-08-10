@@ -15,7 +15,7 @@ export const WrapperText = styled.div`
   height: 100%;
   align-items: center;
   display: flex;
-  transition: transform 0.9s cubic-bezier(0.96, -0.25, 0, 1.27);
+  transition: transform 0.9s cubic-bezier(0.96, -0.25, 0, 1.27), opacity 0.3s linear;
   justify-content: center;
   position: absolute;
   left: 0;
@@ -115,6 +115,7 @@ export const ButtonWrapper = styled.a`
 
   &.send {
     ${WrapperText} {
+      opacity: 1;
       transform: translateX(-440px);
     }
   }
@@ -122,6 +123,12 @@ export const ButtonWrapper = styled.a`
   &.sending {
     ${WrapperText} {
       transform: translateX(-220px);
+    }
+  }
+  &.gone {
+    ${WrapperText} {
+      opacity: 0;
+      transform: translateX(-440px);
     }
   }
 

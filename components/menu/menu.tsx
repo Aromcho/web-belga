@@ -182,7 +182,7 @@ export const Menu = ({ theme = "light" }: MenuProps) => {
             <BurgerMenuItem>
               <Link href={PATHS.BUSQUEDAS}>
                 <a className="burger--menu-link">
-                  <SearchIcon />{" "}
+                  <SearchIcon />
                   <LinkText>
                     Búsquedas <UnderlineLinkBurger />
                   </LinkText>
@@ -191,9 +191,9 @@ export const Menu = ({ theme = "light" }: MenuProps) => {
             </BurgerMenuItem>
 
             <BurgerMenuItem>
-              <Link href={PATHS.ROOT}>
+              <Link href={PATHS.CONOCEBELGA}>
                 <a className="burger--menu-link">
-                  <BelgaIsoIcon />{" "}
+                  <BelgaIsoIcon />
                   <LinkText>
                     Conocé Belga <UnderlineLinkBurger />
                   </LinkText>
@@ -204,7 +204,7 @@ export const Menu = ({ theme = "light" }: MenuProps) => {
             <BurgerMenuItem onClick={() => setShowMenu(false)}>
               <Link href={`${PATHS.ROOT}${PATHS.CONTACTO}`}>
                 <a className="burger--menu-link">
-                  <TelIcon />{" "}
+                  <TelIcon />
                   <LinkText>
                     Contactanos <UnderlineLinkBurger />
                   </LinkText>

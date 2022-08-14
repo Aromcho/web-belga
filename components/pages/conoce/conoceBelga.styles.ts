@@ -1,5 +1,75 @@
 import styled from "@emotion/styled";
 
+export const OfficeText = styled.div`
+  width: 100%;
+  text-align: justify;
+  font-size: 14px;
+  line-height: 20px;
+`;
+
+export const OfficeTextLoc = styled.div`
+  font-size: 16px;
+  margin-bottom: 30px;
+`;
+
+export const OfficeTextName = styled.div`
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+`;
+
+export const OfficeTextWrapper = styled.div`
+  width: 100%;
+  max-width: 340px;
+  color: ${(props: any) => props.theme.black};
+  display: flex;
+  flex-flow: column;
+`;
+
+export const OfficeListItem = styled.div`
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const OfficeList = styled.div`
+  width: 100%;
+  height: 340px;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+`;
+
+export const OfficeMainTex = styled.div`
+  width: 50%;
+  height: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+`;
+
+export const MainOfficeImg = styled.div`
+  width: 50%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+`;
+
+export const MainOffice = styled.div`
+  width: 100%;
+  height: 340px;
+  background-color: ${(props: any) => props.theme.gray10};
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 40px auto 0;
+`;
+
 export const OficinasSection = styled.section`
   width: 100%;
   background-color: ${(props: any) => props.theme.white};
@@ -12,6 +82,18 @@ export const ServiciosSection = styled.section`
   background-color: ${(props: any) => props.theme.white};
   margin: 0 auto;
   padding: 80px 0;
+`;
+
+export const StaffList = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+
+  .member--card {
+    &:nth-of-type(even) {
+      flex-flow: column-reverse;
+    }
+  }
 `;
 
 export const SomosBelgaSection = styled.section`

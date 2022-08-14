@@ -7,6 +7,7 @@ import { Layout, Container } from "components/layout";
 import { ContactForm } from "components/forms/contactform";
 import { SocialSidebar } from "components/socialsidebar";
 import { BackToTop } from "components/backtotop";
+import { MemberCard } from "components/pages/conoce/memberCard";
 
 import {
   ConoceBelgaContainer,
@@ -34,9 +35,19 @@ import {
   ValoresListText,
   QuotesSection,
   SomosBelgaSection,
+  StaffList,
   ServiciosSection,
   OficinasSection,
-} from "components/pages/conoceBelga.styles";
+  MainOffice,
+  OfficeList,
+  OfficeListItem,
+  MainOfficeImg,
+  OfficeMainTex,
+  OfficeTextWrapper,
+  OfficeTextName,
+  OfficeTextLoc,
+  OfficeText,
+} from "components/pages/conoce/conoceBelga.styles";
 
 const ConoceBelga = observer(() => {
   /* Handle UI menu */
@@ -192,6 +203,111 @@ const ConoceBelga = observer(() => {
               <UnderlineTitle>
                 <u>Somos Belga</u>
               </UnderlineTitle>
+
+              <StaffList>
+                <MemberCard
+                  className="member--card"
+                  img="/images/somos_belga/somos_martin_gallegos.jpg"
+                  name="Martín Gallegos"
+                  position="CEO"
+                />
+
+                <MemberCard
+                  className="member--card"
+                  img="/images/somos_belga/somos_lucas_jooris.jpg"
+                  name="Lucas Jooris"
+                  position="CEO"
+                />
+
+                <MemberCard
+                  className="member--card"
+                  name="Alejandrina Juarez"
+                  position="Agente de Venta"
+                />
+
+                <MemberCard
+                  className="member--card"
+                  img="/images/somos_belga/somos_gonzalo_figueroa.jpg"
+                  name="Gonzalo Figueroa"
+                  position="Agente de Venta"
+                />
+
+                <MemberCard
+                  className="member--card"
+                  name="Facundo Aphalo"
+                  position="Agente de Venta"
+                />
+              </StaffList>
+
+              <StaffList>
+                <MemberCard
+                  className="member--card"
+                  img="/images/somos_belga/somos_rima_amar.jpg"
+                  name="Rima Amar"
+                  position="Agente de Venta"
+                />
+
+                <MemberCard
+                  className="member--card"
+                  name="Daniela Nemniski"
+                  position="Agente de Venta"
+                />
+
+                <MemberCard
+                  className="member--card"
+                  name="Federico Buonfiglio"
+                  position="Agente de Alquiler"
+                />
+
+                <MemberCard
+                  className="member--card"
+                  name="Lucía Martin"
+                  position="Legales"
+                />
+
+                <MemberCard
+                  className="member--card"
+                  img="/images/somos_belga/somos_julieta_kesner.jpg"
+                  name="Julieta Kesner"
+                  position="Legales"
+                />
+              </StaffList>
+
+              <StaffList>
+                <MemberCard
+                  className="member--card"
+                  img="/images/somos_belga/somos_maria_jose_amigo.jpg"
+                  name="María José Amigo"
+                  position="Atención al Cliente"
+                />
+
+                <MemberCard
+                  className="member--card"
+                  img="/images/somos_belga/somos_micaela_carela.jpg"
+                  name="Micaela Varela"
+                  position="Administración"
+                />
+
+                <MemberCard
+                  className="member--card"
+                  name="Gabriela Peralta Antunez"
+                  position="Creativa"
+                />
+
+                <MemberCard
+                  className="member--card"
+                  img="/images/somos_belga/somos_alejandra_pautasso.jpg"
+                  name="Alejandra Pautasso"
+                  position="Creativa"
+                />
+
+                <MemberCard
+                  className="member--card"
+                  img="/images/somos_belga/somos_gabriela_santiago.jpg"
+                  name="Gabriela Santiago Vélez"
+                  position="Creativa"
+                />
+              </StaffList>
             </Container>
           </SomosBelgaSection>
 
@@ -206,9 +322,53 @@ const ConoceBelga = observer(() => {
           <OficinasSection>
             <Container>
               <UnderlineTitle>
-                Nuestras<u>Oficinas</u>, nuestras casas
+                Nuestras <u>Oficinas</u>, nuestras casas
               </UnderlineTitle>
             </Container>
+
+            <MainOffice>
+              <MainOfficeImg
+                style={{
+                  backgroundImage: `url(/images/oficina_la_imprenta.jpg)`,
+                }}
+              />
+              <OfficeMainTex>
+                <OfficeTextWrapper>
+                  <OfficeTextName>La Imprenta</OfficeTextName>
+                  <OfficeTextLoc>Gorostiaga 1601</OfficeTextLoc>
+                  <OfficeText>
+                    Nuestra oficina sede, nuestra casa central. La más jóven de
+                    las 3 oficinas se encuentra ubicada en el corazón de La
+                    Imprenta, en Palermo. Un gran equipo te espera, ¡Vení a
+                    conocerla!
+                  </OfficeText>
+                </OfficeTextWrapper>
+              </OfficeMainTex>
+            </MainOffice>
+
+            <OfficeList>
+              <OfficeListItem>
+                <OfficeTextWrapper>
+                  <OfficeTextName>BELGRANO C</OfficeTextName>
+                  <OfficeTextLoc>Juramento 2102</OfficeTextLoc>
+                  <OfficeText>
+                    Te esperamos en el centro de Belgrano, a 2 cuadras del
+                    mítico cruce de Av. Cabildo con Juramento.
+                  </OfficeText>
+                </OfficeTextWrapper>
+              </OfficeListItem>
+
+              <OfficeListItem>
+                <OfficeTextWrapper>
+                  <OfficeTextName>BELGRANO R</OfficeTextName>
+                  <OfficeTextLoc>Superí 1485</OfficeTextLoc>
+                  <OfficeText>
+                    Nos encontramos a metros de una de las calles más hermosas
+                    de Belgrano, Av. de los Incas. ¡Vení a visitarnos!
+                  </OfficeText>
+                </OfficeTextWrapper>
+              </OfficeListItem>
+            </OfficeList>
           </OficinasSection>
 
           <FormWrapper>

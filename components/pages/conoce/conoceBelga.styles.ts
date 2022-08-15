@@ -77,6 +77,58 @@ export const OficinasSection = styled.section`
   padding: 80px 0;
 `;
 
+export const PortalName = styled.div`
+  color: ${(props: any) => props.theme.black};
+  font-size: 16px;
+  text-align: center;
+`;
+
+export const PortalImg = styled.img`
+  width: 100%;
+  max-width: 100px;
+  height: auto;
+  margin-bottom: 15px;
+`;
+
+export const PortalItem = styled.div`
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+  justify-content: center;
+`;
+
+export const PortalesList = styled.div`
+  width: 100%;
+  max-width: 880px;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 0 auto;
+`;
+
+export const PortalesFooter = styled.div`
+  width: 100%;
+  height: 60px;
+  align-items: flex-start;
+  display: flex;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 auto;
+  text-align: center;
+  text-transform: uppercase;
+`;
+
+export const PortalesContainer = styled.div`
+  width: 100%;
+  height: 340px;
+  display: flex;
+  flex-flow: column;
+  border: 1px solid ${(props: any) => props.theme.black};
+  margin: 0 auto;
+`;
+
 export const ServiciosSection = styled.section`
   width: 100%;
   background-color: ${(props: any) => props.theme.white};
@@ -100,7 +152,14 @@ export const SomosBelgaSection = styled.section`
   width: 100%;
   background-color: ${(props: any) => props.theme.white};
   margin: 0 auto;
-  padding: 80px 0;
+  padding: 30px 0 80px;
+`;
+
+export const QuoteList = styled.section`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
 `;
 
 export const QuotesSection = styled.section`

@@ -1,13 +1,14 @@
 import React from "react";
 import Head from "next/head";
 import { observer } from "mobx-react-lite";
-import { classes } from "helpers";
+import { classes, truncateWithEllipsis } from "helpers";
 
 import { Layout, Container } from "components/layout";
 import { ContactForm } from "components/forms/contactform";
 import { SocialSidebar } from "components/socialsidebar";
 import { BackToTop } from "components/backtotop";
 import { MemberCard } from "components/pages/conoce/memberCard";
+import { QuoteCard } from "components/pages/conoce/quoteCard";
 
 import {
   ConoceBelgaContainer,
@@ -34,9 +35,16 @@ import {
   ValoresListTitle,
   ValoresListText,
   QuotesSection,
+  QuoteList,
   SomosBelgaSection,
   StaffList,
   ServiciosSection,
+  PortalesContainer,
+  PortalesList,
+  PortalItem,
+  PortalImg,
+  PortalName,
+  PortalesFooter,
   OficinasSection,
   MainOffice,
   OfficeList,
@@ -196,7 +204,33 @@ const ConoceBelga = observer(() => {
             </Container>
           </ValoresSection>
 
-          <QuotesSection></QuotesSection>
+          <QuotesSection>
+            <Container>
+              <QuoteList>
+                <QuoteCard
+                  className="quote"
+                  rating={4}
+                  quote={truncateWithEllipsis(
+                    "Hoy 22/6 se concretó la operación de compra-venta. Un Placer trabajar con Inmobiliaria Belga. Todo salió perfecto, a tiempo y lo mejor de todo es la gente que trabaja,  que hace de la inmobiliaria un lugar de confianza y prestigio. Estoy muy agradecida a todos desde las chicas que te reciben en el local,  hasta los agentes inmobiliarios especialmente Martín que fue el que acompañó el proceso. Gracias a todos!!!",
+                    400
+                  )}
+                  author="Andrea Gallis"
+                  logo="/images/google_logo.png"
+                />
+
+                <QuoteCard
+                  className="quote"
+                  rating={5}
+                  quote={truncateWithEllipsis(
+                    "Profesionalismo y calidez humana. Desde el primer día que Lucas vino a tasar nuestro departamento hasta el ultimo cuando firmamos la escritura con Martin, la experiencia con todo el equipo de Belga fue excelente. Mica, Gonzalo, Alejandrina, Gabriela, siempre dispuestos a ayudar y poniendo la mejor onda, incluso en tiempos donde concretar una operación inmobiliaria no es nada sencillo. Sin dudas serán nuestra primera opción...",
+                    400
+                  )}
+                  author="Favio Novello"
+                  logo="/images/google_logo.png"
+                />
+              </QuoteList>
+            </Container>
+          </QuotesSection>
 
           <SomosBelgaSection>
             <Container>
@@ -316,6 +350,33 @@ const ConoceBelga = observer(() => {
               <UnderlineTitle>
                 Los <u>Servicios</u> que ofrecemos
               </UnderlineTitle>
+            </Container>
+
+            <Container>
+              <PortalesContainer>
+                <PortalesList>
+                  <PortalItem>
+                    <PortalImg src={"/images/portales_zonaprop.png"} />
+                    <PortalName>Zona Prop</PortalName>
+                  </PortalItem>
+
+                  <PortalItem>
+                    <PortalImg src={"/images/portales_meli.png"} />
+                    <PortalName>Mercado Libre</PortalName>
+                  </PortalItem>
+
+                  <PortalItem>
+                    <PortalImg src={"/images/portales_argenprop.png"} />
+                    <PortalName>Argenprop</PortalName>
+                  </PortalItem>
+
+                  <PortalItem>
+                    <PortalImg src={"/images/portales_properati.png"} />
+                    <PortalName>Properati</PortalName>
+                  </PortalItem>
+                </PortalesList>
+                <PortalesFooter>PUBLICACIÓN EN PORTALES</PortalesFooter>
+              </PortalesContainer>
             </Container>
           </ServiciosSection>
 

@@ -129,6 +129,54 @@ export const PortalesContainer = styled.div`
   margin: 0 auto;
 `;
 
+export const ServiceMediaImg = styled.div``;
+
+export const ServiceMedia = styled.div`
+  width: 100%;
+  height: 0;
+  padding-bottom: 56%;
+  position: relative;
+  overflow: hidden;
+
+  * {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+`;
+
+export const ServiceTitle = styled.div`
+  width: 100%;
+  height: 70px;
+  align-items: center;
+  display: flex;
+  font-size: 16px;
+  font-weight: 500;
+  border: 1px solid ${(props: any) => props.theme.black};
+  justify-content: center;
+  color: ${(props: any) => props.theme.black};
+  margin: 0 auto 10px;
+  text-transform: uppercase;
+`;
+
+export const ServicesList = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin: 0 auto 80px;
+`;
+
+export const ServiceWrapper = styled.div`
+  width: 100%;
+  max-width: 600px;
+`;
+
 export const ServiciosSection = styled.section`
   width: 100%;
   background-color: ${(props: any) => props.theme.white};

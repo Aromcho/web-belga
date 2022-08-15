@@ -39,6 +39,11 @@ import {
   SomosBelgaSection,
   StaffList,
   ServiciosSection,
+  ServicesList,
+  ServiceWrapper,
+  ServiceTitle,
+  ServiceMedia,
+  ServiceMediaImg,
   PortalesContainer,
   PortalesList,
   PortalItem,
@@ -350,6 +355,46 @@ const ConoceBelga = observer(() => {
               <UnderlineTitle>
                 Los <u>Servicios</u> que ofrecemos
               </UnderlineTitle>
+            </Container>
+
+            <Container>
+              <ServicesList>
+                <ServiceWrapper>
+                  <ServiceTitle>Video Drone</ServiceTitle>
+                  <ServiceMedia>
+                    <iframe src="https://www.youtube.com/embed/Yc8pUaq8Zsg" />
+                  </ServiceMedia>
+                </ServiceWrapper>
+
+                <ServiceWrapper>
+                  <ServiceTitle>Fotos</ServiceTitle>
+                  <ServiceMedia>
+                    <ServiceMediaImg
+                      style={{
+                        backgroundImage: `url(/images/servicios_fotos.jpg)`,
+                      }}
+                    />
+                  </ServiceMedia>
+                </ServiceWrapper>
+
+                <ServiceWrapper>
+                  <ServiceTitle>Tour Virtual</ServiceTitle>
+                  <ServiceMedia>
+                    <iframe src="https://matterport.com/discover/space/BB1DiUzwnhk" />
+                  </ServiceMedia>
+                </ServiceWrapper>
+
+                <ServiceWrapper>
+                  <ServiceTitle>Planos</ServiceTitle>
+                  <ServiceMedia>
+                    <ServiceMediaImg
+                      style={{
+                        backgroundImage: `url(/images/servicios_planos.jpg)`,
+                      }}
+                    />
+                  </ServiceMedia>
+                </ServiceWrapper>
+              </ServicesList>
             </Container>
 
             <Container>

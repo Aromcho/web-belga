@@ -406,7 +406,7 @@ export const MenuHero = styled.div`
 
 export const HeroWrapper = styled.div`
   width: 100%;
-  height: calc(100vh - 150px);
+  height: calc(100vh - 151px);
   display: flex;
   align-items: flex-end;
   background-position: center;
@@ -426,7 +426,7 @@ export const HeroWrapper = styled.div`
 export const ConoceBelgaContainer = styled.div`
   width: 100%;
   height: auto;
-  padding-top: 150px;
+  padding-top: 151px;
   @media screen and (max-width: 840px) {
     padding-top: 100px;
   }

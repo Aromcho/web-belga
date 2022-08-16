@@ -27,9 +27,14 @@ export const QuoteRating = styled.div`
   margin-bottom: 30px;
 `;
 
-export const QuoteContainer = styled.div`
+export const QuoteContainer = styled.a`
   width: 100%;
   padding: 30px;
   border: 1px solid ${(props: any) => props.theme.black};
   color: ${(props: any) => props.theme.black};
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-8px);
+  }
 `;

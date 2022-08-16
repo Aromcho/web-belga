@@ -128,7 +128,7 @@ const ConoceBelga = observer(() => {
             <Container>
               <HistoriaWrapper>
                 <HistoriaLeft>
-                  <HistoriaGif src="/images/65_historia.gif" />
+                  <HistoriaGif src="/images/65_historia.gif" loading="lazy" />
                 </HistoriaLeft>
                 <HistoriaRight>
                   <HistoriaTextWrapper>
@@ -176,10 +176,10 @@ const ConoceBelga = observer(() => {
                 <ValoresWrapper>
                   <ValoresListTitle>Una tradición familiar.</ValoresListTitle>
                   <ValoresListText>
-                    Somos una empresa reconocida por su trato familiar, una de
+                    Somos una empresa reconocida por su trato familiar. Una de
                     nuestras prioridades es mantener un trato personalizado que
-                    nos permita entender y empatizar con cada situación.
-                    Buscando como resultado que nuestros clientes se sientan
+                    nos permita entender y empatizar con cada situación,
+                    buscando como resultado que nuestros clientes se sientan
                     acompañados en todas las etapas de cada operación.
                   </ValoresListText>
                 </ValoresWrapper>
@@ -200,7 +200,7 @@ const ConoceBelga = observer(() => {
                   <ValoresListText>
                     El crecimiento siempre viene acompañado del aprendizaje. En
                     un mundo donde los cambios son constantes, es imprescindible
-                    capacitarnos constantemente para estar conectados y
+                    capacitarnos regularmente para estar conectados y
                     actualizarnos con las últimas tendencias en tecnología. Es
                     por eso que ofrecemos servicios de excelencia.
                   </ValoresListText>
@@ -221,6 +221,7 @@ const ConoceBelga = observer(() => {
                   )}
                   author="Andrea Gallis"
                   logo="/images/google_logo.png"
+                  link="https://www.google.com/search?q=belga+juramento&oq=belga+juramento&aqs=chrome..69i57j0i22i30j69i60.5296j0j7&sourceid=chrome&ie=UTF-8#lrd=0x95bcb5d2fa0f781d:0x7a96ad3b6c0351f2,1"
                 />
 
                 <QuoteCard
@@ -232,6 +233,7 @@ const ConoceBelga = observer(() => {
                   )}
                   author="Favio Novello"
                   logo="/images/google_logo.png"
+                  link="https://www.google.com/search?q=belga+juramento&oq=belga+juramento&aqs=chrome..69i57j0i22i30j69i60.5296j0j7&sourceid=chrome&ie=UTF-8#lrd=0x95bcb5d2fa0f781d:0x7a96ad3b6c0351f2,1"
                 />
               </QuoteList>
             </Container>
@@ -459,7 +461,7 @@ const ConoceBelga = observer(() => {
                   <OfficeTextLoc>Juramento 2102</OfficeTextLoc>
                   <OfficeText>
                     Te esperamos en el centro de Belgrano, a 2 cuadras del
-                    mítico cruce de Av. Cabildo con Juramento.
+                    reconocido cruce de Av. Cabildo con Juramento.
                   </OfficeText>
                 </OfficeTextWrapper>
               </OfficeListItem>

@@ -56,8 +56,8 @@ const Home = observer(({ properties, emprendimientos }: any) => {
 
   const [formData, setFormData] = useMergeState<any>({
     locations: [],
-    min_rooms: '',
-    max_rooms: '',
+    min_rooms: "",
+    max_rooms: "",
     operation_type: [1],
     property_type: 0,
     price_from: 0,
@@ -65,8 +65,8 @@ const Home = observer(({ properties, emprendimientos }: any) => {
   });
 
   const [close, setClose] = useMergeState<any>({
-    rooms: undefined
-  })
+    rooms: undefined,
+  });
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -142,9 +142,9 @@ const Home = observer(({ properties, emprendimientos }: any) => {
                       setFormData({ min_rooms: e?.currentTarget?.value });
                     }}
                     onKeyPress={(e) => {
-                      if(e.key === "Enter"){
+                      if (e.key === "Enter") {
                         setFormData({ min_rooms: e?.currentTarget?.value });
-                        setClose({rooms: !close.rooms})
+                        setClose({ rooms: !close.rooms });
                       }
                     }}
                   />
@@ -161,9 +161,9 @@ const Home = observer(({ properties, emprendimientos }: any) => {
                       setFormData({ max_rooms: e?.currentTarget?.value });
                     }}
                     onKeyPress={(e) => {
-                      if(e.key === "Enter"){
+                      if (e.key === "Enter") {
                         setFormData({ max_rooms: e?.currentTarget?.value });
-                        setClose({rooms: !close.rooms})
+                        setClose({ rooms: !close.rooms });
                       }
                     }}
                   />
@@ -287,7 +287,7 @@ const Home = observer(({ properties, emprendimientos }: any) => {
 
         <Container className="seleccion--container">
           <Title
-            title="Nuestra Selección"
+            title="NUESTRA  SELECCIÓN"
             linkButton={PATHS.HIGHLIGHTED}
             buttonStyle="outline red"
           />
@@ -326,7 +326,7 @@ const Home = observer(({ properties, emprendimientos }: any) => {
           <InversionList>
             <InversionItem className="item--text">
               <Title
-                title="Tu próxima inversión"
+                title="TU PRÓXIMA INVERSIÓN"
                 buttonStyle="outline black"
                 vertical
                 linkButton={PATHS.EMPRENDIMIENTOS}

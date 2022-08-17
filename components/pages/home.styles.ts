@@ -320,6 +320,12 @@ export const SearchRow = styled.div`
             color: ${(props: any) => props.theme.white};
           }
         }
+        &[type="number"]{
+          @media screen and (max-width: 992px) {
+            border: 1px solid ${(props: any) => props.theme.black};
+            color: ${(props: any) => props.theme.black};
+          }
+        }
       }
     }
   }

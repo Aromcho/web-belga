@@ -11,6 +11,7 @@ export const PATHS = {
   VENTA: "/venta/todos",
   CONTACTO: "#contacto",
   TERMINOS: "/terminos-y-condiciones",
+  CONOCEBELGA: "/conoce-belga",
 };
 
 export const SOCIAL = {

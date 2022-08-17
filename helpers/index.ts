@@ -101,25 +101,32 @@ export const getDevelopmentsData = (list: any[]) => {
   const room_amount = list.map((item) => item?.room_amount);
   const price = list.map((item) => item?.operations[0]?.prices[0]?.price);
 
-  if(roofed_surface.length > 0) obj["roofed_surface"] = `${Math.min(...roofed_surface)} a ${Math.max(
-    ...roofed_surface
-  )}`;
-  if(total_surface.length > 0) obj["total_surface"] = `${Math.min(...total_surface)} a ${Math.max(
-    ...total_surface
-  )}`;
-  if(unroofed_surface.length > 0) obj["unroofed_surface"] = `${Math.min(...unroofed_surface)} a ${Math.max(
-    ...unroofed_surface
-  )}`;
-  if(semiroofed_surface.length > 0) obj["semiroofed_surface"] = `${Math.min(...semiroofed_surface)} a ${Math.max(
-    ...semiroofed_surface
-  )}`;
-  if(room_amount.length > 0) obj["room_amount"] = `${Math.min(...room_amount)} a ${Math.max(
-    ...room_amount
-  )}`;
-  if(price.length > 0) obj["price"] = `${formatToMoney(Math.min(...price))} a ${formatToMoney(
-    Math.max(...price)
-  )}`;
-  if(price.length > 0) obj["min_price"] = `${formatToMoney(Math.min(...price))}`;
+  if (roofed_surface.length > 0)
+    obj["roofed_surface"] = `${Math.min(...roofed_surface)} a ${Math.max(
+      ...roofed_surface
+    )}`;
+  if (total_surface.length > 0)
+    obj["total_surface"] = `${Math.min(...total_surface)} a ${Math.max(
+      ...total_surface
+    )}`;
+  if (unroofed_surface.length > 0)
+    obj["unroofed_surface"] = `${Math.min(...unroofed_surface)} a ${Math.max(
+      ...unroofed_surface
+    )}`;
+  if (semiroofed_surface.length > 0)
+    obj["semiroofed_surface"] = `${Math.min(
+      ...semiroofed_surface
+    )} a ${Math.max(...semiroofed_surface)}`;
+  if (room_amount.length > 0)
+    obj["room_amount"] = `${Math.min(...room_amount)} a ${Math.max(
+      ...room_amount
+    )}`;
+  if (price.length > 0)
+    obj["price"] = `${formatToMoney(Math.min(...price))} a ${formatToMoney(
+      Math.max(...price)
+    )}`;
+  if (price.length > 0)
+    obj["min_price"] = `${formatToMoney(Math.min(...price))}`;
   obj["currency"] = list[0]?.operations[0]?.prices[0]?.currency;
 
   return obj;
@@ -146,20 +153,20 @@ export const getPropertyValuesForFilter = (v: string) => {
 export const getDropdownValue = (min: any, max: any, type: string) => {
   let st = "";
 
-  if(typeof min === "string") {
-    if(min === "") min = 0
+  if (typeof min === "string") {
+    if (min === "") min = 0;
     else min = parseInt(min);
   }
-  if(typeof max === "string"){
-    if(max === "") max = 0
+  if (typeof max === "string") {
+    if (max === "") max = 0;
     else max = parseInt(max);
   }
 
   if (min === 0 && max === 0) return "";
   if (min > 0 && max == 0) st = `Min: ${type} ${min}`;
   if (max > 0 && min == 0) st = `Max: ${type} ${max}`;
-  if (max > 0 && min > 0){
-    if(type === "USD"){
+  if (max > 0 && min > 0) {
+    if (type === "USD") {
       st = `${type} ${min} - ${max}`;
     } else {
       st = `${type} ${min} - ${max}`;
@@ -171,4 +178,11 @@ export const getDropdownValue = (min: any, max: any, type: string) => {
 
 export const getWindowDimensions = () => {
   if (typeof window !== "undefined") return window.innerWidth;
+};
+
+export const truncateWithEllipsis = (text: string, maxLength: number) => {
+  if (text?.length > maxLength) {
+    return text.substring(0, maxLength) + "...";
+  }
+  return text;
 };

@@ -505,7 +505,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
             />
           </MapProp>
 
-          <SimilarProps>
+          {properties && <SimilarProps>
             <Title title="Propiedades similares" buttonStyle="outline red" />
 
             <PropList>
@@ -513,7 +513,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
                 <CardProp key={k} className="card--prop" property={item} />
               ))}
             </PropList>
-          </SimilarProps>
+          </SimilarProps>}
 
           <ContactForm className="full" />
         </Container>

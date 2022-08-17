@@ -83,7 +83,7 @@ import "swiper/css/pagination";
 
 const PropertyDetail = ({ properties, property, statusCode }: any) => {
 
-  console.log(property)
+  console.log(property, properties)
 
   if (statusCode === 404 || statusCode === 500)
     return (

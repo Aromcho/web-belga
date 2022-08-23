@@ -25,7 +25,7 @@ export const WrapperText = styled.div`
 export const ButtonWrapper = styled.a`
   width: 100%;
   min-width: 200px;
-  max-width: 220px;
+  max-width: 219px;
   height: 40px;
   align-items: center;
   background-color: transparent;

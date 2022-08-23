@@ -20,7 +20,7 @@ export const SaveSearch = ({ className, onSaved, saved }: SaveSearchProps) => {
   const [isLiked, setIsLiked] = React.useState(false);
 
   React.useEffect(() => {
-    if(saved) setIsLiked(saved);
+    if(typeof saved === "boolean") setIsLiked(saved);
   }, [saved]);
 
 

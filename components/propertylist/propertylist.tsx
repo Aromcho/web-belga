@@ -577,6 +577,7 @@ export const PropertyList = observer(
                   <RowContent className="bold save--search-mobile">
                     <SaveSearch
                       onSaved={() => userStore.saveSearch(query)}
+                      saved={!!userStore.searchs.find(item => item.url === window.location.pathname + window.location.search)}
                     />
                   </RowContent>
                 )}

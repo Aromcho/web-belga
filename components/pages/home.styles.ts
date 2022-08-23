@@ -190,7 +190,7 @@ export const BlackLayer = styled.div`
 export const PriceRange = styled.div`
   width: 100%;
   height: 40px;
-  max-width: 360px;
+  max-width: 336px;
 `;
 
 export const InputDivider = styled.div`
@@ -257,7 +257,8 @@ export const SearchRow = styled.div`
 
   &.first--row {
     .first--row-input {
-      width: 32%;
+      width: 100%;
+      max-width: 219px;
       margin: 0 0 15px 0;
     }
   }
@@ -268,7 +269,7 @@ export const SearchRow = styled.div`
       @media screen and (max-width: 992px) {
         width: 100%;
         max-width: 100%;
-        height: 45px;
+        height: 38px;
       }
     }
   }
@@ -281,7 +282,7 @@ export const SearchRow = styled.div`
     .fourth--row-button {
       width: 100%;
       max-width: 100%;
-      height: 45px;
+      height: 38px;
     }
   }
   &.fifth--row {
@@ -303,6 +304,7 @@ export const SearchRow = styled.div`
     .second--row-input {
       @media screen and (max-width: 992px) {
         width: 100%;
+        max-width: 100%;
         margin: 0 0 25px 0;
       }
       input {
@@ -333,7 +335,7 @@ export const SearchRow = styled.div`
 
 export const SearchFormWrapper = styled.div`
   width: 100%;
-  max-width: 710px;
+  max-width: 688px;
   margin: 0 auto;
   /* position: relative; */
   z-index: 6;

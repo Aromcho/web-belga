@@ -273,6 +273,7 @@ export const BurgerButton = styled.ul`
   display: flex;
   justify-content: center;
   transition: all 0.3s ease-in-out;
+  margin-right: 5px;
   @media screen and (max-width: 840px) {
     width: 95px;
     height: 55px;
@@ -371,6 +372,7 @@ export const MenuBrandWrapper = styled.div`
   @media screen and (max-width: 840px) {
     max-width: 180px;
     height: 55px;
+    margin-left: 24px;
   }
   &:hover {
     cursor: pointer;

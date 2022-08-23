@@ -21,9 +21,10 @@ export interface selectProps {
     value: string | number;
     label: string
   }[];
+  fixes?: boolean;
 }
 
-export const Select = ({value, onChange, isSearchable = true, hideSelectedOptions = false, className, options, isMulti = false, styles, placeholder}: selectProps) => {
+export const Select = ({value, onChange, isSearchable = true, hideSelectedOptions = false, className, options, isMulti = false, styles, placeholder, fixes = false}: selectProps) => {
   return (
     <SelectWrapper className={className}>
       <CustomSelect 
@@ -60,7 +61,12 @@ export const Select = ({value, onChange, isSearchable = true, hideSelectedOption
           valueContainer: (provided: any, state: any) => ({
             ...provided,
             padding: 0,
-            height: 38
+            height: 40,
+            "@media only screen and (max-width: 992px)": {
+              height: 38,
+              bottom: fixes ? 5 : "auto",
+              right: fixes ? 3 : "auto"
+            },
           }),
           control: (provided: any, state: any) => ({
             ...provided,
@@ -68,8 +74,8 @@ export const Select = ({value, onChange, isSearchable = true, hideSelectedOption
             padding: '0 25px',
             borderColor: '#fff',
             backgroundColor: '#fff',
-            minHeight: "38px",
-            height: "38px",
+            minHeight: "40px",
+            height: "40px",
             "&:hover": {
               borderColor: '#fff',
               boxShadow: '0 0 0 1px'
@@ -77,7 +83,11 @@ export const Select = ({value, onChange, isSearchable = true, hideSelectedOption
             "&:focus": {
               borderColor: '#fff',
               boxShadow: '0 0 0 1px'
-            }
+            },
+            "@media only screen and (max-width: 992px)": {
+              minHeight: "38px",
+              height: "38px",
+            },
           }),
           option: (provided: any, state: any) => ({
             ...provided,

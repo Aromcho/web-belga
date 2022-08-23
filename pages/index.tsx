@@ -108,6 +108,7 @@ const Home = observer(({ properties, emprendimientos }: any) => {
                     ),
                   });
                 }}
+                fixes={true}
               />
 
               <Select
@@ -118,6 +119,7 @@ const Home = observer(({ properties, emprendimientos }: any) => {
                 onChange={(opt) => {
                   setFormData({ property_type: opt.value });
                 }}
+                fixes={true}
               />
 
               <Dropdown
@@ -197,7 +199,7 @@ const Home = observer(({ properties, emprendimientos }: any) => {
 
                 <PriceRange className="range--home">
                   <MultiRange
-                    customWidth={360}
+                    customWidth={336}
                     min={0}
                     max={3000000}
                     step={20000}

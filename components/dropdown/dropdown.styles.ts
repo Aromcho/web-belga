@@ -7,7 +7,10 @@ export const DropdownStyled = styled.div`
   border-color: #ffffff;
   border-radius: 0;
   margin: 0 auto;
-  `;
+  @media screen and (max-width: 992px) {
+    height: 38px;
+  }
+`;
 
 export const Label = styled.span`
   height: 100%;

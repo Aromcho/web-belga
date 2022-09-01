@@ -10,7 +10,7 @@ export const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   @media screen and (max-width: 1300px) {
-    max-width: 90%;
+    max-width: 87%;
   }
   &.align--center {
     height: 100%;

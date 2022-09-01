@@ -66,7 +66,6 @@ export const InversionItem = styled.li`
   text-transform: uppercase;
   &.item--text {
     width: auto;
-    padding-top: 25px;
   }
   @media screen and (max-width: 992px) {
     width: 48%;
@@ -125,9 +124,12 @@ export const InversionSection = styled.div`
         width: 100%;
         max-width: 400px;
         display: flex;
-        margin: 40px auto 0;
+        margin: 60px auto 0;
       }
     }
+  }
+  @media screen and (max-width: 992px) {
+    padding: 60px 0;
   }
 `;
 
@@ -156,12 +158,12 @@ export const SeleccionSection = styled.div`
         width: 100%;
         max-width: 400px;
         display: flex;
-        margin: 40px auto 0;
+        margin: 60px auto 0;
       }
     }
   }
   @media screen and (max-width: 992px) {
-    padding: 40px 0;
+    padding: 60px 0;
   }
 `;
 
@@ -322,7 +324,7 @@ export const SearchRow = styled.div`
             color: ${(props: any) => props.theme.white};
           }
         }
-        &[type="number"]{
+        &[type="number"] {
           @media screen and (max-width: 992px) {
             border: 1px solid ${(props: any) => props.theme.black};
             color: ${(props: any) => props.theme.black};

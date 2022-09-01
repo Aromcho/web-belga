@@ -98,9 +98,11 @@ export const PropList = styled.div`
   justify-content: space-between;
   .card--prop {
     width: 48%;
+    @media screen and (max-width: 992px) {
+      margin-bottom: 60px;
+    }
     @media screen and (max-width: 740px) {
       width: 100%;
-      margin-bottom: 30px;
     }
   }
 `;
@@ -108,6 +110,9 @@ export const PropList = styled.div`
 export const SimilarProps = styled.div`
   width: 100%;
   margin-bottom: 80px;
+  @media screen and (max-width: 992px) {
+    margin-bottom: 60px;
+  }
 `;
 
 export const MapProp = styled.div`
@@ -119,6 +124,9 @@ export const MapProp = styled.div`
   overflow: hidden;
   position: relative;
   left: 50%;
+  @media screen and (max-width: 992px) {
+    margin-bottom: 60px;
+  }
   @media screen and (max-width: 460px) {
     padding-bottom: 120%;
   }
@@ -237,7 +245,7 @@ export const SwiperContainerGallery = styled.div`
       &:before {
         background-image: url("../images/arrow_prev_slider.svg");
         background-position: center center;
-        filter: drop-shadow(1px 0 1px rgba(0,0,0,0.25));
+        filter: drop-shadow(1px 0 1px rgba(0, 0, 0, 0.25));
       }
       &:after {
         width: 120px;
@@ -257,7 +265,7 @@ export const SwiperContainerGallery = styled.div`
       &:before {
         background-image: url("../images/arrow_next_slider.svg");
         background-position: center center;
-        filter: drop-shadow(-1px 0 1px rgba(0,0,0,0.25));
+        filter: drop-shadow(-1px 0 1px rgba(0, 0, 0, 0.25));
       }
       &:after {
         width: 120px;
@@ -342,6 +350,9 @@ export const MoreItemText = styled.div`
   margin-bottom: 20px;
   @media screen and (max-width: 992px) {
     font-size: 16px;
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
   b {
     font-weight: 600;
@@ -359,6 +370,9 @@ export const MoreItem = styled.div`
   width: 50%;
   color: ${(props: any) => props.theme.black};
   margin-bottom: 40px;
+  @media screen and (max-width: 992px) {
+    margin-bottom: 60px;
+  }
   &.large {
     width: 100%;
     align-items: baseline;
@@ -383,6 +397,7 @@ export const MoreInfo = styled.div`
   margin-top: 30px;
   @media screen and (max-width: 992px) {
     flex-flow: column;
+    margin-top: 60px;
   }
 `;
 
@@ -392,6 +407,9 @@ export const FeaturesFooter = styled.div`
   margin: 60px auto 0;
   .button--planos {
     margin: 0 auto 30px;
+    @media screen and (max-width: 992px) {
+      margin: 0 auto 60px;
+    }
   }
 `;
 
@@ -466,6 +484,7 @@ export const BodyProp = styled.div`
     flex-flow: column;
     justify-content: center;
     align-items: center;
+    margin: 0 auto 60px;
   }
 
   &.inversion {
@@ -729,7 +748,7 @@ export const HeadProp = styled.div`
   z-index: 9999997;
   position: relative;
   @media screen and (max-width: 992px) {
-    margin: 30px auto;
+    margin: 60px auto;
   }
 
   &.inversion {
@@ -803,6 +822,6 @@ export const PropContainer = styled.div`
   width: 100%;
   padding: 150px 0 50px;
   @media screen and (max-width: 992px) {
-    padding: 100px 0 50px;
+    padding: 116px 0 70px;
   }
 `;

@@ -32,7 +32,7 @@ export const TitleContainer = styled.div`
   display: flex;
   margin: 0 auto 70px;
   @media screen and (max-width: 992px) {
-    margin: 0 auto 40px;
+    margin: 0 auto 60px;
   }
 
   .button--title {

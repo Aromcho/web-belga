@@ -567,6 +567,10 @@ export const MenuContainer = styled.div`
         }
       }
     }
+    &.light,
+    &.dark {
+      box-shadow: none;
+    }
   }
 
   &.light {
@@ -576,7 +580,8 @@ export const MenuContainer = styled.div`
       ${BurgerButton} {
         ${IconWrapper} {
           ${BurgerCrossCustom} {
-            &.burger, &.cross {
+            &.burger,
+            &.cross {
               ${Line} {
                 background-color: ${(props: any) => props.theme.black};
               }

@@ -3,8 +3,11 @@ import styled from "@emotion/styled";
 export const ContactFormWrapper = styled.div`
   width: 100%;
   max-width: 330px;
-  margin: 70px auto 0;
+  margin: 60px auto 0;
   position: relative;
+  @media screen and (max-width: 992px) {
+    margin: 60px auto 0;
+  }
 `;
 
 export const WrapperInputs = styled.div`
@@ -19,14 +22,20 @@ export const ContactFormContainer = styled.div`
     margin: 25px auto 0;
     position: relative;
     top: 20px;
+    @media screen and (max-width: 992px) {
+      width: 100%;
+      max-width: 330px;
+      margin: 60px auto 0;
+      top: 0;
+    }
   }
   &.full {
     border: 1px solid ${(props: any) => props.theme.secondary};
-    padding: 80px 20px 0;
+    padding: 0px 20px 0;
     margin-bottom: 60px;
     @media screen and (max-width: 992px) {
       padding-top: 60px;
-      margin-bottom: 100px;
+      margin-bottom: 20px;
     }
     ${ContactFormWrapper} {
       max-width: 900px;
@@ -55,17 +64,21 @@ export const ContactFormContainer = styled.div`
       .textarea--form {
         width: 100%;
       }
-      .button--send {
-        max-width: 220px;
-        margin: 40px auto 0;
-        position: relative;
-        top: 20px;
-      }
 
       @media screen and (max-width: 992px) {
         display: flex;
         flex-flow: column;
         gap: 0;
+      }
+    }
+    .button--send {
+      max-width: 220px;
+      margin: 35px auto 0;
+      position: relative;
+      top: 20px;
+      @media screen and (max-width: 992px) {
+        margin: 25px auto 0;
+        top: 20px;
       }
     }
   }

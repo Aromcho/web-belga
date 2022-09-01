@@ -9,6 +9,12 @@ export const LikeWrapper = styled.div`
   justify-content: center;
   transition: all 0.3s ease-in-out;
   z-index: 1;
+  @media screen and (max-width: 992px) {
+    width: 35px;
+    height: 35px;
+    position: relative;
+    top: -6px;
+  }
   svg {
     width: 100%;
     height: auto;
@@ -84,6 +90,9 @@ export const Info = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   padding: 20px 30px 0;
+  @media screen and (max-width: 992px) {
+    padding: 20px 15px 0;
+  }
 `;
 
 export const FeatureImg = styled.img`
@@ -123,6 +132,9 @@ export const FeaturesList = styled.ul`
 export const FeaturesWrapper = styled.div`
   width: 100%;
   padding: 20px 30px 20px 36px;
+  @media screen and (max-width: 992px) {
+    padding: 30px 15px 20px 19px;
+  }
 `;
 
 export const FooterProp = styled.div`

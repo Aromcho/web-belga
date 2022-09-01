@@ -8,6 +8,9 @@ export const Text = styled.div`
   justify-content: center;
   color: ${(props: any) => props.theme.white};
   font-size: 14px;
+  @media screen and (max-width: 992px) {
+    width: 330px;
+  }
 `;
 
 export const WrapperText = styled.div`
@@ -15,11 +18,15 @@ export const WrapperText = styled.div`
   height: 100%;
   align-items: center;
   display: flex;
-  transition: transform 0.9s cubic-bezier(0.96, -0.25, 0, 1.27), opacity 0.3s linear;
+  transition: transform 0.9s cubic-bezier(0.96, -0.25, 0, 1.27),
+    opacity 0.3s linear;
   justify-content: center;
   position: absolute;
   left: 0;
   pointer-events: none;
+  @media screen and (max-width: 992px) {
+    width: 990px;
+  }
 `;
 
 export const ButtonWrapper = styled.a`
@@ -29,7 +36,7 @@ export const ButtonWrapper = styled.a`
   height: 40px;
   align-items: center;
   background-color: transparent;
-  border: 2px solid ${(props: any) => props.theme.white};
+  border: 1px solid ${(props: any) => props.theme.white};
   color: ${(props: any) => props.theme.white};
   display: flex;
   font-size: 14px;
@@ -77,7 +84,7 @@ export const ButtonWrapper = styled.a`
   }
 
   &.outline {
-    border: 2px solid ${(props: any) => props.theme.secondary};
+    border: 1px solid ${(props: any) => props.theme.secondary};
     background-color: ${(props: any) => props.theme.transparent};
     color: ${(props: any) => props.theme.black};
     &:hover {
@@ -87,7 +94,7 @@ export const ButtonWrapper = styled.a`
     }
 
     &.black {
-      border: 2px solid ${(props: any) => props.theme.black};
+      border: 1px solid ${(props: any) => props.theme.black};
       color: ${(props: any) => props.theme.black};
       &:hover {
         background-color: ${(props: any) => props.theme.black};
@@ -96,7 +103,7 @@ export const ButtonWrapper = styled.a`
     }
 
     &.red {
-      border: 2px solid ${(props: any) => props.theme.secondary};
+      border: 1px solid ${(props: any) => props.theme.secondary};
       color: ${(props: any) => props.theme.black};
       &:hover {
         border-color: ${(props: any) => props.theme.secondary};
@@ -111,24 +118,36 @@ export const ButtonWrapper = styled.a`
   &.sent {
     width: 220px;
     overflow: hidden;
+    @media screen and (max-width: 992px) {
+      width: 330px;
+    }
   }
 
   &.send {
     ${WrapperText} {
       opacity: 1;
       transform: translateX(-440px);
+      @media screen and (max-width: 992px) {
+        transform: translateX(-660px);
+      }
     }
   }
 
   &.sending {
     ${WrapperText} {
       transform: translateX(-220px);
+      @media screen and (max-width: 992px) {
+        transform: translateX(-330px);
+      }
     }
   }
   &.gone {
     ${WrapperText} {
       opacity: 0;
       transform: translateX(-440px);
+      @media screen and (max-width: 992px) {
+        transform: translateX(-660px);
+      }
     }
   }
 

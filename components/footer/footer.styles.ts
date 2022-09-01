@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 
 export const BackContainer = styled.div`
   width: 100%;
-  background-color: red;
   position: absolute;
   clip: rect(0, auto, auto, 0);
   top: 0;
@@ -20,7 +19,7 @@ export const FooterInfo = styled.div`
   }
   @media screen and (max-width: 1100px) {
     min-height: 330px;
-    padding: 80px 0;
+    padding: 60px 0;
   }
 `;
 
@@ -83,7 +82,7 @@ export const RightInfoMobile = styled.div`
   display: none;
   justify-content: center;
   margin: 0 auto;
-  padding: 70px 8%;
+  padding: 60px 8%;
   @media screen and (max-width: 1100px) {
     display: block;
   }
@@ -124,6 +123,9 @@ export const MapFooter = styled.div`
   width: 100%;
   overflow: hidden;
   position: relative;
+  @media screen and (max-width: 992px) {
+    margin-bottom: 60px;
+  }
 `;
 
 export const BrandFooter = styled.img`
@@ -144,6 +146,7 @@ export const FooterCenter = styled.div`
     width: 100%;
     flex: initial;
   }
+
   ${FooterInfo} {
     height: 100%;
     display: flex;
@@ -151,6 +154,9 @@ export const FooterCenter = styled.div`
     padding-top: 0;
     @media screen and (max-width: 1100px) {
       padding: 0;
+    }
+    @media screen and (max-width: 992px) {
+      background-color: ${(props: any) => props.theme.black};
     }
   }
   ${FooterInfoBottom} {
@@ -165,7 +171,7 @@ export const FooterCenter = styled.div`
         transform: translate(-50%, -50%);
         position: absolute;
         top: 50%;
-        left: 43%;
+        left: calc(50% - 30px);
       }
     }
   }
@@ -188,6 +194,9 @@ export const SocialList = styled.div`
       flex-flow: column;
       margin-left: auto;
       padding: 25px 0;
+    }
+    @media screen and (max-width: 992px) {
+      width: 83px;
     }
   }
   .social--link {
@@ -246,6 +255,9 @@ export const ContactItem = styled.li`
 export const LeftContact = styled.ul`
   width: 100%;
   margin: 70px 0 60px;
+  @media screen and (max-width: 992px) {
+    margin: 70px 0;
+  }
 `;
 
 export const Loc = styled.div`
@@ -281,6 +293,11 @@ export const HeadLocation = styled.div`
 export const LocationItem = styled.li`
   width: 100%;
   margin-bottom: 25px;
+  @media screen and (max-width: 992px) {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 `;
 
 export const LeftLocation = styled.ul`

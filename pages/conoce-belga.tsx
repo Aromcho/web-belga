@@ -64,7 +64,7 @@ import {
 
 const ConoceBelga = observer(() => {
   /* Handle UI menu */
-  const [activeSection, setActiveSection] = React.useState<string>("historia");
+  const [activeSection, setActiveSection] = React.useState<string>("");
   return (
     <Layout menuTheme="light" footerSmall backToTopFooter>
       <Head>
@@ -82,35 +82,35 @@ const ConoceBelga = observer(() => {
             <MenuHero>
               <MenuHeroItem
                 className={classes({ active: activeSection === "historia" })}
-                onClick={() => setActiveSection("historia")}
+                href="#historia"
               >
                 <MenuHeroText>Historia</MenuHeroText>
               </MenuHeroItem>
 
               <MenuHeroItem
                 className={classes({ active: activeSection === "valores" })}
-                onClick={() => setActiveSection("valores")}
+                href="#valores"
               >
                 <MenuHeroText>Valores</MenuHeroText>
               </MenuHeroItem>
 
               <MenuHeroItem
                 className={classes({ active: activeSection === "belga" })}
-                onClick={() => setActiveSection("belga")}
+                href="#belga"
               >
                 <MenuHeroText>Somos Belga</MenuHeroText>
               </MenuHeroItem>
 
               <MenuHeroItem
                 className={classes({ active: activeSection === "servicios" })}
-                onClick={() => setActiveSection("servicios")}
+                href="#servicios"
               >
                 <MenuHeroText>Servicios</MenuHeroText>
               </MenuHeroItem>
 
               <MenuHeroItem
                 className={classes({ active: activeSection === "oficinas" })}
-                onClick={() => setActiveSection("oficinas")}
+                href="#oficinas"
               >
                 <MenuHeroText>Oficinas</MenuHeroText>
               </MenuHeroItem>
@@ -124,7 +124,11 @@ const ConoceBelga = observer(() => {
             <BackToTop color="red" />
           </SidebarRed>
 
-          <HistoriaSection>
+          <HistoriaSection
+            id="historia"
+            onMouseOver={() => setActiveSection("historia")}
+            onMouseLeave={() => setActiveSection("")}
+          >
             <Container>
               <HistoriaWrapper>
                 <HistoriaLeft>
@@ -166,7 +170,7 @@ const ConoceBelga = observer(() => {
             </Container>
           </HistoriaSection>
 
-          <ValoresSection>
+          <ValoresSection id="valores">
             <Container>
               <UnderlineTitle>
                 Los <u>Valores</u> que Jorge nos dejó
@@ -239,7 +243,7 @@ const ConoceBelga = observer(() => {
             </Container>
           </QuotesSection>
 
-          <SomosBelgaSection>
+          <SomosBelgaSection id="belga">
             <Container>
               <UnderlineTitle>
                 <u>Somos Belga</u>
@@ -258,24 +262,26 @@ const ConoceBelga = observer(() => {
                   img="/images/somos_belga/somos_lucas_jooris.jpg"
                   name="Lucas Jooris"
                   position="CEO"
-                />
+                  />
 
                 <MemberCard
                   className="member--card"
                   name="Alejandrina Juarez"
+                  img="/images/somos_belga/somos_alejandrina_juarez.jpg"
                   position="Agente de Venta"
-                />
+                  />
 
                 <MemberCard
                   className="member--card"
                   img="/images/somos_belga/somos_gonzalo_figueroa.jpg"
                   name="Gonzalo Figueroa"
                   position="Agente de Venta"
-                />
+                  />
 
                 <MemberCard
                   className="member--card"
                   name="Facundo Aphalo"
+                  img="/images/somos_belga/somos_facundo_aphalo.jpg"
                   position="Agente de Venta"
                 />
               </StaffList>
@@ -286,23 +292,26 @@ const ConoceBelga = observer(() => {
                   img="/images/somos_belga/somos_rima_amar.jpg"
                   name="Rima Amar"
                   position="Agente de Venta"
-                />
+                  />
 
                 <MemberCard
                   className="member--card"
                   name="Daniela Nemniski"
+                  img="/images/somos_belga/somos_daniela_nemniski.jpg"
                   position="Agente de Venta"
-                />
+                  />
 
                 <MemberCard
                   className="member--card"
                   name="Federico Buonfiglio"
+                  img="/images/somos_belga/somos_federico_buonfiglio.jpg"
                   position="Agente de Alquiler"
-                />
+                  />
 
                 <MemberCard
                   className="member--card"
                   name="Lucía Martin"
+                  img="/images/somos_belga/somos_lucia_martin.jpg"
                   position="Legales"
                 />
 
@@ -324,7 +333,7 @@ const ConoceBelga = observer(() => {
 
                 <MemberCard
                   className="member--card"
-                  img="/images/somos_belga/somos_micaela_carela.jpg"
+                  img="/images/somos_belga/somos_micaela_varela.jpg"
                   name="Micaela Varela"
                   position="Administración"
                 />
@@ -352,7 +361,7 @@ const ConoceBelga = observer(() => {
             </Container>
           </SomosBelgaSection>
 
-          <ServiciosSection>
+          <ServiciosSection id="servicios">
             <Container>
               <UnderlineTitle>
                 Los <u>Servicios</u> que ofrecemos
@@ -427,7 +436,7 @@ const ConoceBelga = observer(() => {
             </Container>
           </ServiciosSection>
 
-          <OficinasSection>
+          <OficinasSection id="oficinas">
             <Container>
               <UnderlineTitle>
                 Nuestras <u>Oficinas</u>, nuestras casas

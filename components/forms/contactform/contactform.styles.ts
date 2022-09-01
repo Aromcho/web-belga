@@ -31,7 +31,7 @@ export const ContactFormContainer = styled.div`
   }
   &.full {
     border: 1px solid ${(props: any) => props.theme.secondary};
-    padding: 0px 20px 0;
+    padding: 60px 20px 0;
     margin-bottom: 60px;
     @media screen and (max-width: 992px) {
       padding-top: 60px;

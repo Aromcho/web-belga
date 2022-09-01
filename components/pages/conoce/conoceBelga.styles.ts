@@ -263,7 +263,7 @@ export const UnderlineTitle = styled.div`
   max-width: 600px;
   font-size: 24px;
   font-weight: 500;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
   u {
     font-weight: 500;
     text-decoration: underline;
@@ -366,12 +366,23 @@ export const MenuHeroText = styled.div`
   color: ${(props: any) => props.theme.white};
   text-transform: uppercase;
   text-align: center;
-  border-bottom: 2px solid transparent;
   padding-bottom: 9px;
+  position: relative;
   transition: all 0.3s ease-in-out;
+
+  &:after {
+    width: 0;
+    height: 2px;
+    background-color: ${(props: any) => props.theme.white};
+    content: " ";
+    transition: all 0.3s ease-in-out;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
 `;
 
-export const MenuHeroItem = styled.div`
+export const MenuHeroItem = styled.a`
   width: 20%;
   height: 100%;
   align-self: start;
@@ -382,12 +393,19 @@ export const MenuHeroItem = styled.div`
   &:hover {
     cursor: pointer;
     ${MenuHeroText} {
-      border-color: ${(props: any) => props.theme.white};
+      &:after {
+        width: 100%;
+      }
     }
   }
   &.active {
+    &:after {
+      width: 100%;
+    }
     ${MenuHeroText} {
-      border-color: ${(props: any) => props.theme.white};
+      &:after {
+        width: 100%;
+      }
     }
   }
 `;

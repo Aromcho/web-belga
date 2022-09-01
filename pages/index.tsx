@@ -100,7 +100,7 @@ const Home = observer(({ properties, emprendimientos }: any) => {
                 ]}
                 isSearchable={false}
                 isMulti={true}
-                placeholder="Tipo de operación"
+                placeholder="Tipo de Operación"
                 onChange={(opt) => {
                   setFormData({
                     operation_type: opt.map(
@@ -115,7 +115,7 @@ const Home = observer(({ properties, emprendimientos }: any) => {
                 className="white first--row-input input--general"
                 options={propertiesSelectOptions}
                 isSearchable={false}
-                placeholder="Tipo de propiedad"
+                placeholder="Tipo de Propiedad"
                 onChange={(opt) => {
                   setFormData({ property_type: opt.value });
                 }}

@@ -32,7 +32,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             E-mail: ${body.email}
             ${body.direction ?? `Direccion: ${body.direction}`}
             ${body.message ?? `Mensaje: ${body.message}`}
-            ${body.property ?? `Tipo de propiedad: ${body.property}`}
+            ${body.property ?? `Tipo de Propiedad: ${body.property}`}
             ${body.url ?? `URL: ${body.url}`}
           `,
         }

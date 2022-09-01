@@ -101,7 +101,7 @@ export const VenderForm = ({ className }: ContactFormProps) => {
 
           <Input
             className="input--form half"
-            placeHolder="Tipo de propiedad"
+            placeHolder="Tipo de Propiedad"
             type="text"
             name="property"
             value={data.property} onChange={(e) => setData({property: e.currentTarget.value})}

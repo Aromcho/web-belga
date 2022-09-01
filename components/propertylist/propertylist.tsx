@@ -201,7 +201,7 @@ export const PropertyList = observer(
                   value={operationArray.filter((item) =>
                     formData.operation_type.includes(item.value)
                   )}
-                  placeholder="Tipo de operación"
+                  placeholder="Tipo de Operación"
                   onChange={(opt) => {
                     setFormData({
                       operation_type: opt.map(
@@ -218,7 +218,7 @@ export const PropertyList = observer(
                   value={propertiesSelectOptions.filter(
                     (item) => formData.property_type === item.value
                   )}
-                  placeholder="Tipo de propiedad"
+                  placeholder="Tipo de Propiedad"
                   onChange={(opt) => {
                     setFormData({ property_type: opt.value });
                   }}
@@ -471,7 +471,7 @@ export const PropertyList = observer(
                   value={operationArray.filter((item) =>
                     formData.operation_type.includes(item.value)
                   )}
-                  placeholder="Tipo de operación"
+                  placeholder="Tipo de Operación"
                   onChange={(opt) => {
                     setFormData({
                       operation_type: opt.map(
@@ -488,7 +488,7 @@ export const PropertyList = observer(
                   value={propertiesSelectOptions.filter(
                     (item) => formData.property_type === item.value
                   )}
-                  placeholder="Tipo de propiedad"
+                  placeholder="Tipo de Propiedad"
                   onChange={(opt) => {
                     setFormData({ property_type: opt.value });
                   }}

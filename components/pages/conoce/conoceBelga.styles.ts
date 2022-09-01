@@ -189,9 +189,21 @@ export const StaffList = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
 
+  @media screen and (max-width: 992px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .member--card {
-    &:nth-of-type(even) {
+    &.img-bottom {
       flex-flow: column-reverse;
+      @media screen and (max-width: 992px) {
+        flex-flow: column;
+      }
+    }
+    @media screen and (max-width: 992px) {
+      &:nth-of-type(even) {
+        flex-flow: column-reverse;
+      }
     }
   }
 `;
@@ -201,6 +213,9 @@ export const SomosBelgaSection = styled.section`
   background-color: ${(props: any) => props.theme.white};
   margin: 0 auto;
   padding: 30px 0 80px;
+  @media screen and (max-width: 992px) {
+    padding: 60px 0;
+  }
 `;
 
 export const QuoteList = styled.section`
@@ -208,6 +223,20 @@ export const QuoteList = styled.section`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
+  @media screen and (max-width: 992px) {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 30px;
+  }
+  .quote {
+    @media screen and (max-width: 992px) {
+      max-width: 450px;
+      margin: 0 auto;
+    }
+    @media screen and (max-width: 840px) {
+      max-width: 100%;
+      margin: 0;
+    }
+  }
 `;
 
 export const QuotesSection = styled.section`
@@ -215,6 +244,9 @@ export const QuotesSection = styled.section`
   background-color: ${(props: any) => props.theme.white};
   margin: 0 auto;
   padding: 80px 0;
+  @media screen and (max-width: 992px) {
+    padding: 60px 0;
+  }
 `;
 
 export const ValoresListText = styled.div`
@@ -228,12 +260,33 @@ export const ValoresListTitle = styled.div`
   font-weight: 100;
   font-size: 48px;
   margin-bottom: 20px;
+  @media screen and (max-width: 740px) {
+    font-size: 29px;
+    margin-bottom: 30px;
+  }
 `;
 
 export const ValoresWrapper = styled.div`
   width: 100%;
   max-width: 330px;
   color: ${(props: any) => props.theme.black};
+  @media screen and (max-width: 1300px) {
+    width: 48%;
+    max-width: 330px;
+    margin-bottom: 30px;
+  }
+  @media screen and (max-width: 992px) {
+    width: 100%;
+    max-width: 330px;
+  }
+  @media screen and (max-width: 840px) {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 30px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 `;
 
 export const ValoresList = styled.div`
@@ -241,6 +294,11 @@ export const ValoresList = styled.div`
   display: flex;
   align-items: baseline;
   justify-content: space-between;
+  @media screen and (max-width: 1300px) {
+    gap: 5%;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+  }
 `;
 
 export const ValoresSection = styled.section`
@@ -248,6 +306,9 @@ export const ValoresSection = styled.section`
   background-color: ${(props: any) => props.theme.gray10};
   margin: 0 auto;
   padding: 80px 0;
+  @media screen and (max-width: 992px) {
+    padding: 60px 0;
+  }
 `;
 
 export const HistoriaText = styled.p`
@@ -256,6 +317,11 @@ export const HistoriaText = styled.p`
   font-size: 14px;
   line-height: 20px;
   margin-bottom: 20px;
+  @media screen and (max-width: 992px) {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 `;
 
 export const UnderlineTitle = styled.div`
@@ -268,12 +334,18 @@ export const UnderlineTitle = styled.div`
     font-weight: 500;
     text-decoration: underline;
   }
+  @media screen and (max-width: 992px) {
+    font-size: 20px;
+  }
 `;
 
 export const HistoriaTextWrapper = styled.div`
   width: 100%;
   max-width: 600px;
   color: ${(props: any) => props.theme.black};
+  @media screen and (max-width: 992px) {
+    max-width: 100%;
+  }
 `;
 
 export const HistoriaRight = styled.div`
@@ -281,6 +353,14 @@ export const HistoriaRight = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  @media screen and (max-width: 992px) {
+    width: 100%;
+    max-width: 100%;
+  }
+  @media screen and (max-width: 840px) {
+    width: 100%;
+    max-width: 100%;
+  }
 `;
 
 export const HistoriaGif = styled.img`
@@ -288,6 +368,9 @@ export const HistoriaGif = styled.img`
   max-width: 550px;
   height: auto;
   margin: 0 auto;
+  @media screen and (max-width: 992px) {
+    margin: 0 0 60px 0;
+  }
 `;
 
 export const HistoriaLeft = styled.div`
@@ -295,6 +378,13 @@ export const HistoriaLeft = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  @media screen and (max-width: 992px) {
+    margin-right: auto;
+  }
+  @media screen and (max-width: 840px) {
+    width: 100%;
+    max-width: 100%;
+  }
 `;
 
 export const HistoriaWrapper = styled.div`
@@ -302,7 +392,10 @@ export const HistoriaWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 3%;
+  gap: 0;
+  @media screen and (max-width: 992px) {
+    flex-flow: column;
+  }
 `;
 
 export const HistoriaSection = styled.section`
@@ -310,6 +403,9 @@ export const HistoriaSection = styled.section`
   background-color: ${(props: any) => props.theme.white};
   margin: 0 auto;
   padding: 100px 0;
+  @media screen and (max-width: 992px) {
+    padding: 60px 0;
+  }
 `;
 
 export const FormWrapper = styled.div`
@@ -436,8 +532,38 @@ export const HeroWrapper = styled.div`
     height: auto;
     padding: 100px 0 80px;
   }
+  @media screen and (max-width: 992px) {
+    display: none;
+  }
   @media screen and (max-width: 460px) {
     height: 100vh;
+  }
+`;
+
+export const BackWrapper = styled.div`
+  display: none;
+  @media screen and (max-width: 992px) {
+    display: table;
+  }
+  .back--link {
+    align-items: center;
+    display: flex;
+    color: ${(props: any) => props.theme.black};
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    svg {
+      width: 24px;
+      height: auto;
+      display: block;
+      transition: all 0.3s ease-in-out;
+      margin-right: 5px;
+    }
+    &:hover {
+      svg {
+        transform: translateX(-5px);
+      }
+    }
   }
 `;
 
@@ -445,7 +571,7 @@ export const ConoceBelgaContainer = styled.div`
   width: 100%;
   height: auto;
   padding-top: 151px;
-  @media screen and (max-width: 840px) {
-    padding-top: 100px;
+  @media screen and (max-width: 992px) {
+    padding-top: 115px;
   }
 `;

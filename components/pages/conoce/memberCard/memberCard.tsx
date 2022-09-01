@@ -1,3 +1,4 @@
+import { classes } from "helpers";
 import React from "react";
 
 import {
@@ -14,6 +15,7 @@ export interface MemberCardProps {
   img?: string;
   name: string;
   position: string;
+  rightInfo?: boolean;
 }
 
 export const MemberCard = ({
@@ -21,9 +23,10 @@ export const MemberCard = ({
   img,
   name,
   position,
+  rightInfo,
 }: MemberCardProps) => {
   return (
-    <StaffMember className={className}>
+    <StaffMember className={classes(className, { "right--info": rightInfo })}>
       <BorderCard />
       <MemberImg
         style={{

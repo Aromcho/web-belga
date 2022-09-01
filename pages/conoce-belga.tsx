@@ -1,6 +1,8 @@
 import React from "react";
 import Head from "next/head";
+import Link from "next/link";
 import { observer } from "mobx-react-lite";
+import { PATHS } from "config";
 import { classes, truncateWithEllipsis } from "helpers";
 
 import { Layout, Container } from "components/layout";
@@ -9,9 +11,11 @@ import { SocialSidebar } from "components/socialsidebar";
 import { BackToTop } from "components/backtotop";
 import { MemberCard } from "components/pages/conoce/memberCard";
 import { QuoteCard } from "components/pages/conoce/quoteCard";
+import { ArrowBackIcon } from "components/icons";
 
 import {
   ConoceBelgaContainer,
+  BackWrapper,
   HeroWrapper,
   Hero,
   BlackLayer,
@@ -117,6 +121,17 @@ const ConoceBelga = observer(() => {
             </MenuHero>
           </Container>
         </HeroWrapper>
+
+        <Container>
+          <BackWrapper>
+            <Link href={PATHS.ROOT}>
+              <a className="back--link">
+                <ArrowBackIcon />
+                Volver al inicio
+              </a>
+            </Link>
+          </BackWrapper>
+        </Container>
 
         <SidebarContainer>
           <SidebarRed>
@@ -258,25 +273,27 @@ const ConoceBelga = observer(() => {
                 />
 
                 <MemberCard
-                  className="member--card"
+                  className="member--card img-bottom"
                   img="/images/somos_belga/somos_lucas_jooris.jpg"
                   name="Lucas Jooris"
                   position="CEO"
-                  />
+                  rightInfo
+                />
 
                 <MemberCard
                   className="member--card"
                   name="Alejandrina Juarez"
                   img="/images/somos_belga/somos_alejandrina_juarez.jpg"
                   position="Agente de Venta"
-                  />
+                />
 
                 <MemberCard
-                  className="member--card"
+                  className="member--card img-bottom"
                   img="/images/somos_belga/somos_gonzalo_figueroa.jpg"
                   name="Gonzalo Figueroa"
                   position="Agente de Venta"
-                  />
+                  rightInfo
+                />
 
                 <MemberCard
                   className="member--card"
@@ -284,32 +301,32 @@ const ConoceBelga = observer(() => {
                   img="/images/somos_belga/somos_facundo_aphalo.jpg"
                   position="Agente de Venta"
                 />
-              </StaffList>
 
-              <StaffList>
                 <MemberCard
                   className="member--card"
                   img="/images/somos_belga/somos_rima_amar.jpg"
                   name="Rima Amar"
                   position="Agente de Venta"
-                  />
+                  rightInfo
+                />
 
                 <MemberCard
-                  className="member--card"
+                  className="member--card img-bottom"
                   name="Daniela Nemniski"
                   img="/images/somos_belga/somos_daniela_nemniski.jpg"
                   position="Agente de Venta"
-                  />
+                />
 
                 <MemberCard
                   className="member--card"
                   name="Federico Buonfiglio"
                   img="/images/somos_belga/somos_federico_buonfiglio.jpg"
                   position="Agente de Alquiler"
-                  />
+                  rightInfo
+                />
 
                 <MemberCard
-                  className="member--card"
+                  className="member--card img-bottom"
                   name="Lucía Martin"
                   img="/images/somos_belga/somos_lucia_martin.jpg"
                   position="Legales"
@@ -320,10 +337,9 @@ const ConoceBelga = observer(() => {
                   img="/images/somos_belga/somos_julieta_kesner.jpg"
                   name="Julieta Kesner"
                   position="Legales"
+                  rightInfo
                 />
-              </StaffList>
 
-              <StaffList>
                 <MemberCard
                   className="member--card"
                   img="/images/somos_belga/somos_maria_jose_amigo.jpg"
@@ -332,10 +348,11 @@ const ConoceBelga = observer(() => {
                 />
 
                 <MemberCard
-                  className="member--card"
+                  className="member--card img-bottom"
                   img="/images/somos_belga/somos_micaela_varela.jpg"
                   name="Micaela Varela"
                   position="Administración"
+                  rightInfo
                 />
 
                 <MemberCard
@@ -345,10 +362,11 @@ const ConoceBelga = observer(() => {
                 />
 
                 <MemberCard
-                  className="member--card"
+                  className="member--card img-bottom"
                   img="/images/somos_belga/somos_alejandra_pautasso.jpg"
                   name="Alejandra Pautasso"
                   position="Creativa"
+                  rightInfo
                 />
 
                 <MemberCard

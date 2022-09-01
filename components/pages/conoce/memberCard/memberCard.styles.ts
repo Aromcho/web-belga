@@ -8,6 +8,13 @@ export const InfoPos = styled.div`
   text-overflow: ellipsis;
   text-align: center;
   margin: 0 auto;
+  @media screen and (max-width: 640px) {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    text-align: left;
+  }
 `;
 
 export const InfoName = styled.div`
@@ -18,6 +25,14 @@ export const InfoName = styled.div`
   white-space: nowrap;
   text-overflow: ellipsis;
   text-align: center;
+  @media screen and (max-width: 640px) {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    text-align: left;
+    margin: 0 auto 10px;
+  }
 `;
 
 export const MemberInfo = styled.div`
@@ -29,6 +44,13 @@ export const MemberInfo = styled.div`
   display: flex;
   flex-flow: column;
   justify-content: center;
+  @media screen and (max-width: 640px) {
+    height: 80px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 15px 0;
+  }
 `;
 
 export const MemberImg = styled.div`
@@ -45,6 +67,10 @@ export const MemberImg = styled.div`
   justify-content: center;
   filter: grayscale(1);
   transition: all 0.3s ease-in-out;
+  @media screen and (max-width: 640px) {
+    height: 163px;
+    filter: grayscale(0);
+  }
 `;
 
 export const BorderCard = styled.div`
@@ -57,6 +83,9 @@ export const BorderCard = styled.div`
   position: absolute;
   top: 0;
   left: 0;
+  @media screen and (max-width: 640px) {
+    box-shadow: none;
+  }
 `;
 
 export const StaffMember = styled.div`
@@ -67,6 +96,9 @@ export const StaffMember = styled.div`
   justify-content: center;
   overflow: hidden;
   position: relative;
+  @media screen and (max-width: 640px) {
+    pointer-events: none;
+  }
   &:hover {
     ${BorderCard} {
       box-shadow: inset 0px 0px 0px 1px ${(props: any) => props.theme.black};
@@ -77,6 +109,21 @@ export const StaffMember = styled.div`
     ${MemberInfo} {
       ${InfoName} {
         font-weight: 600;
+      }
+    }
+  }
+
+  &.right--info {
+    ${MemberInfo} {
+      @media screen and (max-width: 640px) {
+        align-items: flex-end;
+        justify-content: flex-end;
+        text-align: right;
+      }
+      ${InfoPos}, ${InfoName} {
+        @media screen and (max-width: 640px) {
+          text-align: right;
+        }
       }
     }
   }

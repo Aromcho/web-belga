@@ -228,6 +228,9 @@ export const HeadProp = styled.div`
   justify-content: space-between;
   display: flex;
   padding: 0 30px;
+  @media screen and (max-width: 992px) {
+    padding: 0 15px;
+  }
 `;
 
 export const CardPropContainer = styled.div`

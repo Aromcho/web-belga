@@ -72,7 +72,7 @@ const Favorites = observer(() => {
           {status === "finish" && (
             <>
               <Container>
-                <Title>TU SELECCIÓN DE FAVORITOS</Title>
+                <Title>TU SELECCIÓN DE FAVORITAS</Title>
               </Container>
 
               <PropertyList

@@ -17,7 +17,7 @@ import {
   TextWrapper,
   Text,
   WrappperImage,
-  Image
+  Image,
 } from "components/pages/error404.styles";
 
 const Error404 = () => {
@@ -44,7 +44,7 @@ const Error404 = () => {
 
             <TextWrapper>
               <TopText>Ups, no encontramos esta propiedad pero...</TopText>
-              <Text>Lo que buscas esta a la vuelta de la esquina.</Text>
+              <Text>Lo que buscás está a la vuelta de la esquina.</Text>
             </TextWrapper>
 
             <ButtonWrapper>

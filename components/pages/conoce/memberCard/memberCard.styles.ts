@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const InfoPos = styled.div`
   width: 100%;
   max-width: 230px;
-  font-size: 16px;
+  font-size: 13px;
   white-space: nowrap;
   text-overflow: ellipsis;
   text-align: center;

@@ -146,6 +146,9 @@ export const PortalImg = styled.img`
   max-width: 100px;
   height: auto;
   margin-bottom: 15px;
+  @media screen and (max-width: 740px) {
+    max-width: 70px;
+  }
 `;
 
 export const PortalItem = styled.div`
@@ -163,6 +166,11 @@ export const PortalesList = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   margin: 0 auto;
+  @media screen and (max-width: 740px) {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 60px;
+    margin-bottom: 60px;
+  }
 `;
 
 export const PortalesFooter = styled.div`
@@ -176,6 +184,10 @@ export const PortalesFooter = styled.div`
   margin: 0 auto;
   text-align: center;
   text-transform: uppercase;
+  @media screen and (max-width: 740px) {
+    height: auto;
+    margin-bottom: 15px;
+  }
 `;
 
 export const PortalesContainer = styled.div`
@@ -185,6 +197,10 @@ export const PortalesContainer = styled.div`
   flex-flow: column;
   border: 1px solid ${(props: any) => props.theme.black};
   margin: 0 auto;
+  @media screen and (max-width: 740px) {
+    height: auto;
+    padding: 60px 0 0 0;
+  }
 `;
 
 export const ServiceMediaImg = styled.div``;
@@ -275,7 +291,7 @@ export const SomosBelgaSection = styled.section`
   margin: 0 auto;
   padding: 30px 0 80px;
   @media screen and (max-width: 992px) {
-    padding: 60px 0;
+    padding: 60px 0 0;
   }
 `;
 
@@ -306,7 +322,7 @@ export const QuotesSection = styled.section`
   margin: 0 auto;
   padding: 80px 0;
   @media screen and (max-width: 992px) {
-    padding: 60px 0;
+    padding: 60px 0 0;
   }
 `;
 

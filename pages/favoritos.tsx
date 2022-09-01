@@ -93,7 +93,7 @@ const Favorites = observer(() => {
               />
 
               <FormWrapper>
-                <ContactForm className="full" />
+                <ContactForm full />
               </FormWrapper>
             </>
           )}

@@ -121,6 +121,11 @@ export const ButtonWrapper = styled.a`
     @media screen and (max-width: 992px) {
       width: 330px;
     }
+    &.full {
+      @media screen and (max-width: 992px) {
+        width: 220px;
+      }
+    }
   }
 
   &.send {
@@ -129,6 +134,16 @@ export const ButtonWrapper = styled.a`
       transform: translateX(-440px);
       @media screen and (max-width: 992px) {
         transform: translateX(-660px);
+      }
+    }
+
+    &.full {
+      ${WrapperText} {
+        width: 660px;
+        transform: translateX(-440px);
+        @media screen and (max-width: 992px) {
+          transform: translateX(-440px);
+        }
       }
     }
   }
@@ -140,8 +155,19 @@ export const ButtonWrapper = styled.a`
         transform: translateX(-330px);
       }
     }
+
+    &.full {
+      ${WrapperText} {
+        width: 660px;
+        transform: translateX(-220px);
+        @media screen and (max-width: 992px) {
+          transform: translateX(-220px);
+        }
+      }
+    }
   }
   &.gone {
+    max-width: 220px;
     ${WrapperText} {
       opacity: 0;
       transform: translateX(-440px);
@@ -149,11 +175,26 @@ export const ButtonWrapper = styled.a`
         transform: translateX(-660px);
       }
     }
+
+    &.full {
+      ${WrapperText} {
+        transform: translateX(-440px);
+        @media screen and (max-width: 992px) {
+          transform: translateX(-440px);
+        }
+      }
+    }
   }
 
   &.sent {
     ${WrapperText} {
       transform: translateX(0);
+    }
+
+    &.full {
+      ${WrapperText} {
+        width: 660px;
+      }
     }
   }
 `;

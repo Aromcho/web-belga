@@ -5,7 +5,7 @@ export const FooterTitleText = styled.div`
   max-width: 280px;
   height: 42px;
   align-items: center;
-  border: 2px solid ${(props: any) => props.theme.white};
+  border: 1px solid ${(props: any) => props.theme.white};
   border-radius: 0 5px 5px 5px;
   color: ${(props: any) => props.theme.white};
   display: flex;

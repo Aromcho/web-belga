@@ -4,11 +4,7 @@ import { useRouter } from "next/router";
 import { observer } from "mobx-react-lite";
 
 import { CardProp } from "components/cardprop";
-import {
-  ArrowBackIcon,
-  ChevronUpIcon,
-  CloseIcon,
-} from "components/icons";
+import { ArrowBackIcon, ChevronUpIcon, CloseIcon } from "components/icons";
 import { ContactForm } from "components/forms/contactform";
 import { Select } from "components/select";
 import { Container } from "components/layout";
@@ -87,7 +83,13 @@ export const PropertyList = observer(
     } = useStore();
 
     React.useEffect(() => {
-      if (query?.opid)setFormData({operation_type: operationTypes[query.opid].toString()?.split(",").map((item: string) => parseInt(item))});
+      if (query?.opid)
+        setFormData({
+          operation_type: operationTypes[query.opid]
+            .toString()
+            ?.split(",")
+            .map((item: string) => parseInt(item)),
+        });
       if (query?.prid && query?.prid !== "todos") {
         setFormData({ property_type: propertyTypes[query?.prid] });
       }
@@ -108,16 +110,16 @@ export const PropertyList = observer(
 
     const [formData, setFormData] = useMergeState<any>({
       locations: [],
-      min_rooms: '',
-      max_rooms: '',
-      min_baths: '',
-      max_baths: '',
+      min_rooms: "",
+      max_rooms: "",
+      min_baths: "",
+      max_baths: "",
       operation_type: [1],
       property_type: -1,
       price_from: 0,
       price_to: 0,
-      parking_lot_to: '',
-      parking_lot_from: '',
+      parking_lot_to: "",
+      parking_lot_from: "",
       order: "DESC",
     });
 
@@ -125,7 +127,7 @@ export const PropertyList = observer(
       rooms: undefined,
       baths: undefined,
       parking: undefined,
-    })
+    });
 
     const router = useRouter();
 
@@ -158,7 +160,9 @@ export const PropertyList = observer(
     const [showFilter, setShowFilter] = useState(false);
 
     return (
-      <PropertyListWrapper style={paddingTop ? { paddingTop: `${paddingTop}px` } : {}}>
+      <PropertyListWrapper
+        style={paddingTop ? { paddingTop: `${paddingTop}px` } : {}}
+      >
         <SocialSidebar color="red" />
         {filters && (
           <>
@@ -242,9 +246,9 @@ export const PropertyList = observer(
                         setFormData({ min_rooms: e.currentTarget.value });
                       }}
                       onKeyPress={(e) => {
-                        if(e.key === "Enter"){
+                        if (e.key === "Enter") {
                           setFormData({ min_rooms: e?.currentTarget?.value });
-                          setClose({rooms: !close.rooms})
+                          setClose({ rooms: !close.rooms });
                         }
                       }}
                     />
@@ -261,9 +265,9 @@ export const PropertyList = observer(
                         setFormData({ max_rooms: e.currentTarget.value });
                       }}
                       onKeyPress={(e) => {
-                        if(e.key === "Enter"){
+                        if (e.key === "Enter") {
                           setFormData({ max_rooms: e?.currentTarget?.value });
-                          setClose({rooms: !close.rooms})
+                          setClose({ rooms: !close.rooms });
                         }
                       }}
                     />
@@ -292,9 +296,9 @@ export const PropertyList = observer(
                         setFormData({ min_baths: e.currentTarget.value });
                       }}
                       onKeyPress={(e) => {
-                        if(e.key === "Enter"){
+                        if (e.key === "Enter") {
                           setFormData({ min_baths: e?.currentTarget?.value });
-                          setClose({baths: !close.baths})
+                          setClose({ baths: !close.baths });
                         }
                       }}
                     />
@@ -311,16 +315,15 @@ export const PropertyList = observer(
                         setFormData({ max_baths: e.currentTarget.value });
                       }}
                       onKeyPress={(e) => {
-                        if(e.key === "Enter"){
+                        if (e.key === "Enter") {
                           setFormData({ max_baths: e?.currentTarget?.value });
-                          setClose({baths: !close.baths})
+                          setClose({ baths: !close.baths });
                         }
                       }}
                     />
                   </DropdownRow>
                 </Dropdown>
 
-                
                 <Dropdown
                   className="input--general dropdown"
                   placeholder="Cocheras"
@@ -340,12 +343,16 @@ export const PropertyList = observer(
                       min={0}
                       value={formData.parking_lot_from}
                       onChange={(e) => {
-                        setFormData({ parking_lot_from: e.currentTarget.value });
+                        setFormData({
+                          parking_lot_from: e.currentTarget.value,
+                        });
                       }}
                       onKeyPress={(e) => {
-                        if(e.key === "Enter"){
-                          setFormData({ parking_lot_from: e?.currentTarget?.value });
-                          setClose({parking: !close.parking})
+                        if (e.key === "Enter") {
+                          setFormData({
+                            parking_lot_from: e?.currentTarget?.value,
+                          });
+                          setClose({ parking: !close.parking });
                         }
                       }}
                     />
@@ -362,9 +369,11 @@ export const PropertyList = observer(
                         setFormData({ parking_lot_to: e.currentTarget.value });
                       }}
                       onKeyPress={(e) => {
-                        if(e.key === "Enter"){
-                          setFormData({ parking_lot_to: e?.currentTarget?.value });
-                          setClose({parking: !close.parking})
+                        if (e.key === "Enter") {
+                          setFormData({
+                            parking_lot_to: e?.currentTarget?.value,
+                          });
+                          setClose({ parking: !close.parking });
                         }
                       }}
                     />
@@ -577,7 +586,13 @@ export const PropertyList = observer(
                   <RowContent className="bold save--search-mobile">
                     <SaveSearch
                       onSaved={() => userStore.saveSearch(query)}
-                      saved={!!userStore.searchs.find(item => item.url === window.location.pathname + window.location.search)}
+                      saved={
+                        !!userStore.searchs.find(
+                          (item) =>
+                            item.url ===
+                            window.location.pathname + window.location.search
+                        )
+                      }
                     />
                   </RowContent>
                 )}
@@ -609,9 +624,15 @@ export const PropertyList = observer(
             <ContentWrapper className="content--order">
               {saveSearch && (
                 <RowContent className="bold save--search-desk">
-                  <SaveSearch 
-                    onSaved={() => userStore.saveSearch(query)} 
-                    saved={!!userStore.searchs.find(item => item.url === window.location.pathname + window.location.search)}
+                  <SaveSearch
+                    onSaved={() => userStore.saveSearch(query)}
+                    saved={
+                      !!userStore.searchs.find(
+                        (item) =>
+                          item.url ===
+                          window.location.pathname + window.location.search
+                      )
+                    }
                   />
                 </RowContent>
               )}
@@ -670,7 +691,7 @@ export const PropertyList = observer(
               )}
             </PaginationWrapper>
           )}
-          {withForm && <ContactForm className="full" />}
+          {withForm && <ContactForm full />}
         </Container>
       </PropertyListWrapper>
     );

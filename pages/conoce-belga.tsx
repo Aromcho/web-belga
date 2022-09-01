@@ -508,7 +508,7 @@ const ConoceBelga = observer(() => {
 
           <FormWrapper>
             <Container>
-              <ContactForm className="full" />
+              <ContactForm full />
             </Container>
           </FormWrapper>
         </SidebarContainer>

@@ -83,8 +83,6 @@ import {
   WhatsappIcon,
 } from "components/icons";
 
-
-
 const PropertyDetail = ({
   properties,
   property,
@@ -466,7 +464,7 @@ const PropertyDetail = ({
             />
           </MapProp>
 
-          <ContactForm className="full" />
+          <ContactForm full />
         </Container>
       </PropContainer>
     </Layout>

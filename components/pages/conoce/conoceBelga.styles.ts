@@ -10,6 +10,9 @@ export const OfficeText = styled.div`
 export const OfficeTextLoc = styled.div`
   font-size: 16px;
   margin-bottom: 30px;
+  @media screen and (max-width: 992px) {
+    margin-bottom: 20px;
+  }
 `;
 
 export const OfficeTextName = styled.div`
@@ -25,6 +28,14 @@ export const OfficeTextWrapper = styled.div`
   color: ${(props: any) => props.theme.black};
   display: flex;
   flex-flow: column;
+  @media screen and (max-width: 992px) {
+    margin: 0 auto 0 30px;
+  }
+  @media screen and (max-width: 740px) {
+    width: 87%;
+    max-width: 600px;
+    margin: 0;
+  }
 `;
 
 export const OfficeListItem = styled.div`
@@ -33,6 +44,14 @@ export const OfficeListItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  @media screen and (max-width: 992px) {
+    width: 100%;
+    height: auto;
+    margin-bottom: 30px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 `;
 
 export const OfficeList = styled.div`
@@ -42,6 +61,25 @@ export const OfficeList = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
+  @media screen and (max-width: 992px) {
+    max-width: 87%;
+    height: auto;
+    flex-flow: column;
+    margin-top: 30px;
+  }
+  ${OfficeListItem} {
+    ${OfficeTextWrapper} {
+      @media screen and (max-width: 992px) {
+        width: 100%;
+      }
+
+      ${OfficeTextLoc} {
+        @media screen and (max-width: 992px) {
+          margin-bottom: 15px;
+        }
+      }
+    }
+  }
 `;
 
 export const OfficeMainTex = styled.div`
@@ -50,6 +88,11 @@ export const OfficeMainTex = styled.div`
   align-items: center;
   display: flex;
   justify-content: center;
+  @media screen and (max-width: 992px) {
+    width: 100%;
+    height: auto;
+    padding: 30px 0;
+  }
 `;
 
 export const MainOfficeImg = styled.div`
@@ -58,6 +101,13 @@ export const MainOfficeImg = styled.div`
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  @media screen and (max-width: 992px) {
+    width: 100%;
+    height: 375px;
+  }
+  @media screen and (max-width: 640px) {
+    height: 175px;
+  }
 `;
 
 export const MainOffice = styled.div`
@@ -68,6 +118,11 @@ export const MainOffice = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 40px auto 0;
+  @media screen and (max-width: 992px) {
+    height: auto;
+    background-color: ${(props: any) => props.theme.gray30};
+    flex-flow: column;
+  }
 `;
 
 export const OficinasSection = styled.section`
@@ -75,6 +130,9 @@ export const OficinasSection = styled.section`
   background-color: ${(props: any) => props.theme.white};
   margin: 0 auto;
   padding: 80px 0;
+  @media screen and (max-width: 992px) {
+    padding: 60px 0 30px;
+  }
 `;
 
 export const PortalName = styled.div`
@@ -182,6 +240,9 @@ export const ServiciosSection = styled.section`
   background-color: ${(props: any) => props.theme.white};
   margin: 0 auto;
   padding: 80px 0;
+  @media screen and (max-width: 992px) {
+    padding: 60px 0 0;
+  }
 `;
 
 export const StaffList = styled.div`
@@ -336,6 +397,7 @@ export const UnderlineTitle = styled.div`
   }
   @media screen and (max-width: 992px) {
     font-size: 20px;
+    margin-bottom: 30px;
   }
 `;
 

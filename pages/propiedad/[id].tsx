@@ -82,8 +82,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 const PropertyDetail = ({ properties, property, statusCode }: any) => {
-
-  console.log(property, properties)
+  console.log(property, properties);
 
   if (statusCode === 404 || statusCode === 500)
     return (
@@ -122,17 +121,17 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
         ? photoGallery.length
         : planoGallery.length) && setCurrentIndex(currentImageIndex + 1);
 
-  const photoGallery: ImagesListType = property?.photos?.filter((item: any) => !item.is_blueprint).map(
-    (item: any, k: number) => {
+  const photoGallery: ImagesListType = property?.photos
+    ?.filter((item: any) => !item.is_blueprint)
+    .map((item: any, k: number) => {
       return { src: `${item.image}`, loading: "lazy" };
-    }
-  );
+    });
 
-  const planoGallery: ImagesListType = property?.photos?.filter((item: any) => item.is_blueprint).map(
-    (item: any, k: number) => {
+  const planoGallery: ImagesListType = property?.photos
+    ?.filter((item: any) => item.is_blueprint)
+    .map((item: any, k: number) => {
       return { src: `${item.image}`, loading: "lazy" };
-    }
-  );
+    });
 
   return (
     <Layout menuTheme="light">
@@ -319,7 +318,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
                 {videos.length > 0 &&
                   videos?.map((item: any, k: number) => {
                     return <SwiperSlide key={k + 1000}>{item}</SwiperSlide>;
-                })}
+                  })}
 
                 {images.length > 0 &&
                   images?.map((item: any, k: number) => {
@@ -334,7 +333,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
                         {item}
                       </SwiperSlide>
                     );
-                })}
+                  })}
               </Swiper>
             </SwiperContainerGallery>
           </GalleryProp>
@@ -349,16 +348,20 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
                   <FtImg src="/images/icons/prop_antiguedad.svg" />
                   <FtBottom>Antigüedad</FtBottom>
                 </Feature>
-                {Math.round(property?.roofed_surface) > 0 && <Feature>
-                  <FtHead>{Math.round(property?.roofed_surface)}</FtHead>
-                  <FtImg src="/images/icons/prop_m2.svg" />
-                  <FtBottom>Sup. Cub.</FtBottom>
-                </Feature>}
-                {Math.round(property?.total_surface) > 0 && <Feature>
-                  <FtHead>{Math.round(property?.total_surface)}</FtHead>
-                  <FtImg src="/images/icons/prop_m2.svg" />
-                  <FtBottom>Sup. Total</FtBottom>
-                </Feature>}
+                {Math.round(property?.roofed_surface) > 0 && (
+                  <Feature>
+                    <FtHead>{Math.round(property?.roofed_surface)}</FtHead>
+                    <FtImg src="/images/icons/prop_m2.svg" />
+                    <FtBottom>Sup. Cub.</FtBottom>
+                  </Feature>
+                )}
+                {Math.round(property?.total_surface) > 0 && (
+                  <Feature>
+                    <FtHead>{Math.round(property?.total_surface)}</FtHead>
+                    <FtImg src="/images/icons/prop_m2.svg" />
+                    <FtBottom>Sup. Total</FtBottom>
+                  </Feature>
+                )}
                 {property?.suite_amount > 0 && (
                   <Feature>
                     <FtHead>{property?.suite_amount}</FtHead>
@@ -416,12 +419,16 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
               </FeaturesGrid>
 
               <FeaturesFooter>
-                {property?.files && <Button
-                  className="button--planos"
-                  text="Ver planos"
-                  type="outline red"
-                  onClick={() => setModalContent({ open: true, content: "planos" })}
-                />}
+                {property?.files && (
+                  <Button
+                    className="button--planos"
+                    text="Ver planos"
+                    type="outline red"
+                    onClick={() =>
+                      setModalContent({ open: true, content: "planos" })
+                    }
+                  />
+                )}
               </FeaturesFooter>
 
               <MoreInfo>
@@ -467,10 +474,12 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
                       {`${Math.round(property?.unroofed_surface)} m2`}
                     </MoreItemText>
                   )}
-                  {Math.round(property?.total_surface) > 0 && <MoreItemText>
-                    <b>Sup. Total: </b>
-                    {`${Math.round(property?.total_surface)} m2`}
-                  </MoreItemText>}
+                  {Math.round(property?.total_surface) > 0 && (
+                    <MoreItemText>
+                      <b>Sup. Total: </b>
+                      {`${Math.round(property?.total_surface)} m2`}
+                    </MoreItemText>
+                  )}
                 </MoreItem>
 
                 <MoreItem className="large">
@@ -505,17 +514,19 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
             />
           </MapProp>
 
-          {properties && <SimilarProps>
-            <Title title="Propiedades similares" buttonStyle="outline red" />
+          {properties && (
+            <SimilarProps>
+              <Title title="Propiedades similares" buttonStyle="outline red" />
 
-            <PropList>
-              {properties.map((item: any, k: number) => (
-                <CardProp key={k} className="card--prop" property={item} />
-              ))}
-            </PropList>
-          </SimilarProps>}
+              <PropList>
+                {properties.map((item: any, k: number) => (
+                  <CardProp key={k} className="card--prop" property={item} />
+                ))}
+              </PropList>
+            </SimilarProps>
+          )}
 
-          <ContactForm className="full" />
+          <ContactForm full />
         </Container>
       </PropContainer>
     </Layout>

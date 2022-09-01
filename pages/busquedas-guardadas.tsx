@@ -54,13 +54,16 @@ const BusquedasGuardadas = observer(() => {
               </Container>
 
               <BusquedasList>
-                {userStore.searchs?.map(item => (
-                  <BusquedaCard search={item} onRemove={() => userStore.removeSearch(item)} />
+                {userStore.searchs?.map((item) => (
+                  <BusquedaCard
+                    search={item}
+                    onRemove={() => userStore.removeSearch(item)}
+                  />
                 ))}
               </BusquedasList>
 
               <FormWrapper>
-                <ContactForm className="full" />
+                <ContactForm full />
               </FormWrapper>
             </>
           )}

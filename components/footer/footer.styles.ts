@@ -72,9 +72,9 @@ export const SocialList = styled.div`
 `;
 export const BrandMobileWrapper = styled.div`
   width: 100%;
-  height: 130px;
   background-color: ${(props: any) => props.theme.primary};
   position: relative;
+  padding: 30px 0;
 `;
 
 export const SocialListMobileWrapper = styled.div`
@@ -106,15 +106,12 @@ export const FooterInfoBottom = styled.div`
     position: relative;
     ${BrandFooter} {
       max-width: 160px;
-      transform: translate(-50%, -50%);
-      position: absolute;
-      top: 50%;
-      left: 50%;
+      margin: 0 auto;
     }
     ${SocialList} {
       width: 100%;
       max-width: 87%;
-      padding: 0 0 60px;
+      padding: 0 0 30px;
       background-color: ${(props: any) => props.theme.black};
       .social--link {
         color: ${(props: any) => props.theme.white};

@@ -294,6 +294,8 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
               <Swiper
                 className="swiper--prop-gallery"
                 modules={[Navigation]}
+                loop={true}
+                loopAdditionalSlides={images.length + videos.length}
                 centeredSlides={
                   images.length + videos.length === 1 ? true : false
                 }

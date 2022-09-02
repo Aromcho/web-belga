@@ -471,10 +471,11 @@ const ConoceBelga = observer(() => {
                 <Swiper
                   className="swiper--services-gallery"
                   modules={[]}
-                  loop={false}
+                  loop={true}
                   centeredSlides={false}
                   allowTouchMove={true}
                   navigation={{}}
+                  loopAdditionalSlides={4}
                   grabCursor={true}
                   draggable={true}
                   spaceBetween={20}

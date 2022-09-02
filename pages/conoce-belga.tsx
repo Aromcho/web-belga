@@ -4,6 +4,7 @@ import Link from "next/link";
 import { observer } from "mobx-react-lite";
 import { PATHS } from "config";
 import { classes, truncateWithEllipsis } from "helpers";
+import Lightbox, { ImagesListType } from "react-spring-lightbox";
 
 import { Layout, Container } from "components/layout";
 import { ContactForm } from "components/forms/contactform";
@@ -12,6 +13,12 @@ import { BackToTop } from "components/backtotop";
 import { MemberCard } from "components/pages/conoce/memberCard";
 import { QuoteCard } from "components/pages/conoce/quoteCard";
 import { ArrowBackIcon } from "components/icons";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 import {
   ConoceBelgaContainer,
@@ -43,7 +50,7 @@ import {
   SomosBelgaSection,
   StaffList,
   ServiciosSection,
-  ServicesList,
+  SwiperContainerGallery,
   ServiceWrapper,
   ServiceTitle,
   ServiceMedia,
@@ -65,10 +72,41 @@ import {
   OfficeTextLoc,
   OfficeText,
 } from "components/pages/conoce/conoceBelga.styles";
+import { useMergeState } from "helpers/hooks";
 
 const ConoceBelga = observer(() => {
   /* Handle UI menu */
   const [activeSection, setActiveSection] = React.useState<string>("");
+
+  /* Handle modal gallery */
+  const [modalContent, setModalContent] = useMergeState({
+    open: false,
+    content: "fotos",
+  });
+  const [currentImageIndex, setCurrentIndex] = React.useState(0);
+
+  /* 
+  const onClose = () => setModalContent({ open: false });
+
+  const gotoPrevious = () =>
+    currentImageIndex > 0 && setCurrentIndex(currentImageIndex - 1);
+  const gotoNext = () =>
+    currentImageIndex + 1 <
+      (modalContent.content === "fotos"
+        ? photoGallery.length
+        : planoGallery.length) && setCurrentIndex(currentImageIndex + 1);
+
+  const photoGallery: ImagesListType = property?.photos?.map(
+    (item: any, k: number) => {
+      return { src: `${item.image}`, loading: "lazy" };
+    }
+  );
+
+  const planoGallery: ImagesListType = property?.photos?.map(
+    (item: any, k: number) => {
+      return { src: `${item.image}`, loading: "lazy" };
+    }
+  ); */
   return (
     <Layout menuTheme="light" footerSmall backToTopFooter>
       <Head>
@@ -387,43 +425,95 @@ const ConoceBelga = observer(() => {
             </Container>
 
             <Container>
-              <ServicesList>
-                <ServiceWrapper>
-                  <ServiceTitle>Video Drone</ServiceTitle>
-                  <ServiceMedia>
-                    <iframe src="https://www.youtube.com/embed/Yc8pUaq8Zsg" />
-                  </ServiceMedia>
-                </ServiceWrapper>
+              <SwiperContainerGallery>
+                <Swiper
+                  className="swiper--services-gallery"
+                  modules={[]}
+                  loop={false}
+                  centeredSlides={false}
+                  allowTouchMove={true}
+                  navigation={{}}
+                  grabCursor={true}
+                  draggable={true}
+                  spaceBetween={20}
+                  breakpoints={{
+                    // when window width is >= 1366px
+                    1: {
+                      slidesPerView: 1,
+                    },
+                    740: {
+                      slidesPerView: 2,
+                    },
+                    992: {
+                      slidesPerView: 2.5,
+                    },
+                  }}
+                >
+                  <SwiperSlide
+                    onClick={() => {
+                      setModalContent({ open: true, content: "fotos" });
+                      setCurrentIndex(1);
+                    }}
+                  >
+                    <ServiceWrapper>
+                      <ServiceTitle>Video Drone</ServiceTitle>
+                      <ServiceMedia>
+                        <iframe src="https://www.youtube.com/embed/Yc8pUaq8Zsg" />
+                      </ServiceMedia>
+                    </ServiceWrapper>
+                  </SwiperSlide>
 
-                <ServiceWrapper>
-                  <ServiceTitle>Fotos</ServiceTitle>
-                  <ServiceMedia>
-                    <ServiceMediaImg
-                      style={{
-                        backgroundImage: `url(/images/servicios_fotos.jpg)`,
-                      }}
-                    />
-                  </ServiceMedia>
-                </ServiceWrapper>
+                  <SwiperSlide
+                    onClick={() => {
+                      setModalContent({ open: true, content: "fotos" });
+                      setCurrentIndex(2);
+                    }}
+                  >
+                    <ServiceWrapper>
+                      <ServiceTitle>Fotos</ServiceTitle>
+                      <ServiceMedia>
+                        <ServiceMediaImg
+                          style={{
+                            backgroundImage: `url(/images/servicios_fotos.jpg)`,
+                          }}
+                        />
+                      </ServiceMedia>
+                    </ServiceWrapper>
+                  </SwiperSlide>
 
-                <ServiceWrapper>
-                  <ServiceTitle>Tour Virtual</ServiceTitle>
-                  <ServiceMedia>
-                    <iframe src="https://matterport.com/discover/space/BB1DiUzwnhk" />
-                  </ServiceMedia>
-                </ServiceWrapper>
+                  <SwiperSlide
+                    onClick={() => {
+                      setModalContent({ open: true, content: "fotos" });
+                      setCurrentIndex(3);
+                    }}
+                  >
+                    <ServiceWrapper>
+                      <ServiceTitle>Tour Virtual</ServiceTitle>
+                      <ServiceMedia>
+                        <iframe src="https://matterport.com/discover/space/BB1DiUzwnhk" />
+                      </ServiceMedia>
+                    </ServiceWrapper>
+                  </SwiperSlide>
 
-                <ServiceWrapper>
-                  <ServiceTitle>Planos</ServiceTitle>
-                  <ServiceMedia>
-                    <ServiceMediaImg
-                      style={{
-                        backgroundImage: `url(/images/servicios_planos.jpg)`,
-                      }}
-                    />
-                  </ServiceMedia>
-                </ServiceWrapper>
-              </ServicesList>
+                  <SwiperSlide
+                    onClick={() => {
+                      setModalContent({ open: true, content: "fotos" });
+                      setCurrentIndex(4);
+                    }}
+                  >
+                    <ServiceWrapper>
+                      <ServiceTitle>Planos</ServiceTitle>
+                      <ServiceMedia>
+                        <ServiceMediaImg
+                          style={{
+                            backgroundImage: `url(/images/servicios_planos.jpg)`,
+                          }}
+                        />
+                      </ServiceMedia>
+                    </ServiceWrapper>
+                  </SwiperSlide>
+                </Swiper>
+              </SwiperContainerGallery>
             </Container>
 
             <Container>

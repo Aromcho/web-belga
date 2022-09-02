@@ -129,7 +129,7 @@ export const OficinasSection = styled.section`
   width: 100%;
   background-color: ${(props: any) => props.theme.white};
   margin: 0 auto;
-  padding: 80px 0;
+  padding: 60px 0 0;
   @media screen and (max-width: 992px) {
     padding: 60px 0 30px;
   }
@@ -238,26 +238,127 @@ export const ServiceTitle = styled.div`
   text-transform: uppercase;
 `;
 
-export const ServicesList = styled.div`
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  margin: 0 auto 80px;
-`;
-
 export const ServiceWrapper = styled.div`
   width: 100%;
-  max-width: 600px;
 `;
 
 export const ServiciosSection = styled.section`
   width: 100%;
   background-color: ${(props: any) => props.theme.white};
   margin: 0 auto;
-  padding: 80px 0;
+  padding: 60px 0;
   @media screen and (max-width: 992px) {
     padding: 60px 0 0;
+  }
+`;
+
+export const SwiperContainerGallery = styled.div`
+  width: 100%;
+  display: flex;
+  margin: 0 auto 15px;
+  .swiper--services-gallery {
+    width: 100%;
+    overflow: visible;
+    @media screen and (max-width: 460px) {
+      overflow: hidden;
+      }
+    .swiper-slide {
+      align-items: flex-start;
+      display: flex;
+      justify-content: center;
+      @media screen and (max-width: 992px) {
+        padding: 0;
+      }
+    }
+    &.swiper-initialized.swiper-horizontal.swiper-pointer-events {
+      height: 100%;
+    }
+    .swiper-button-prev,
+    .swiper-button-next {
+      width: 90px;
+      height: 100%;
+      align-items: center;
+      background-color: ${(props: any) => props.theme.white}95;
+      display: none;
+      justify-content: center;
+      transition: all 0.2s ease-in-out;
+      transform: none;
+      z-index: 99999999999999999;
+      position: absolute;
+      top: 22px;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      -webkit-tap-highlight-color: transparent;
+      @media screen and (max-width: 992px) {
+        width: 60px;
+      }
+      @media screen and (max-width: 460px) {
+        width: 40px;
+      }
+      &.swiper-button-disabled {
+        opacity: 0;
+      }
+      &:before {
+        width: 30px;
+        height: 60px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 15px;
+        content: "";
+        transition: all 0.3s ease-in-out;
+        opacity: 1;
+        z-index: 4;
+        position: relative;
+      }
+      &:after {
+        width: 60px;
+        height: 60px;
+        content: "";
+        position: absolute;
+        z-index: 2;
+      }
+      &:hover {
+      }
+    }
+    .swiper-button-prev {
+      left: 0;
+      background: rgb(0, 0, 0, 0);
+
+      &:before {
+        background-image: url("../images/arrow_prev_slider.svg");
+        background-position: center center;
+        filter: drop-shadow(1px 0 1px rgba(0, 0, 0, 0.25));
+      }
+      &:after {
+        width: 120px;
+        height: 100%;
+        background: radial-gradient(
+          100.74% 45.76% at 100.16% 46.58%,
+          rgba(0, 0, 0, 0.4) 0%,
+          rgba(192, 192, 192, 0) 100%
+        );
+        transform: matrix(-1, 0, 0, 1, 0, 0);
+        left: 0;
+      }
+    }
+    .swiper-button-next {
+      right: 0;
+      background: rgb(0, 0, 0, 0);
+      &:before {
+        background-image: url("../images/arrow_next_slider.svg");
+        background-position: center center;
+        filter: drop-shadow(-1px 0 1px rgba(0, 0, 0, 0.25));
+      }
+      &:after {
+        width: 120px;
+        height: 100%;
+        background: radial-gradient(
+          100.16% 45.5% at 100.16% 50.1%,
+          rgba(0, 0, 0, 0.4) 0%,
+          rgba(192, 192, 192, 0) 100%
+        );
+        transform: matrix(1, 0, 0, -1, 0, 0);
+      }
+    }
   }
 `;
 
@@ -289,7 +390,7 @@ export const SomosBelgaSection = styled.section`
   width: 100%;
   background-color: ${(props: any) => props.theme.white};
   margin: 0 auto;
-  padding: 30px 0 80px;
+  padding: 30px 0 60px;
   @media screen and (max-width: 992px) {
     padding: 60px 0 0;
   }
@@ -320,7 +421,7 @@ export const QuotesSection = styled.section`
   width: 100%;
   background-color: ${(props: any) => props.theme.white};
   margin: 0 auto;
-  padding: 80px 0;
+  padding: 60px 0;
   @media screen and (max-width: 992px) {
     padding: 60px 0 0;
   }
@@ -382,7 +483,7 @@ export const ValoresSection = styled.section`
   width: 100%;
   background-color: ${(props: any) => props.theme.gray10};
   margin: 0 auto;
-  padding: 80px 0;
+  padding: 60px 0;
   @media screen and (max-width: 992px) {
     padding: 60px 0;
   }

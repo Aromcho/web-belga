@@ -251,6 +251,96 @@ export const ServiciosSection = styled.section`
     padding: 60px 0 0;
   }
 `;
+export const IndexCounter = styled.div`
+  color: ${(props: any) => props.theme.white};
+  font-size: ${(props: any) => props.theme.text15};
+  white-space: nowrap;
+`;
+
+export const HeaderGallery = styled.div`
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 3% 0;
+  .gallery--close-icon {
+    width: 30px;
+    height: auto;
+    color: ${(props: any) => props.theme.white};
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      cursor: pointer;
+      opacity: 0.5;
+    }
+  }
+`;
+
+export const ArrowGallery = styled.div`
+  width: 7.5%;
+  height: 80px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+  z-index: 5;
+  position: absolute;
+  left: 0;
+  @media screen and (max-width: 992px) {
+    width: 60px;
+    height: 120px;
+    &:before {
+      width: 35px;
+      height: 35px;
+      background-color: ${(props: any) => props.theme.black}50;
+      border-radius: 100%;
+      content: "";
+      transform: translate(-50%, -50%);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+    }
+  }
+  &:hover {
+    cursor: pointer;
+    opacity: 0.5;
+    @media screen and (max-width: 992px) {
+      opacity: 1;
+    }
+  }
+  &.arrow--prev {
+    transform: rotate(180deg);
+    .gallery--arrow {
+      filter: drop-shadow(0px -1px 2px rgba(0, 0, 0, 0.4));
+      @media screen and (max-width: 992px) {
+        filter: none;
+      }
+    }
+  }
+  &.arrow--next {
+    left: inherit;
+    right: 0;
+    .gallery--arrow {
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.4));
+      @media screen and (max-width: 992px) {
+        filter: none;
+      }
+    }
+  }
+  &.disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+  .gallery--arrow {
+    width: 30px;
+    height: auto;
+    color: ${(props: any) => props.theme.white};
+    z-index: 2;
+    position: relative;
+    @media screen and (max-width: 992px) {
+      width: 20px;
+    }
+  }
+`;
 
 export const SwiperContainerGallery = styled.div`
   width: 100%;
@@ -261,7 +351,7 @@ export const SwiperContainerGallery = styled.div`
     overflow: visible;
     @media screen and (max-width: 460px) {
       overflow: hidden;
-      }
+    }
     .swiper-slide {
       align-items: flex-start;
       display: flex;

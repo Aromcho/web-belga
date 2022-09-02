@@ -4,6 +4,7 @@ import Link from "next/link";
 import { observer } from "mobx-react-lite";
 import { PATHS } from "config";
 import { classes, truncateWithEllipsis } from "helpers";
+import { useMergeState } from "helpers/hooks";
 import Lightbox, { ImagesListType } from "react-spring-lightbox";
 
 import { Layout, Container } from "components/layout";
@@ -12,7 +13,7 @@ import { SocialSidebar } from "components/socialsidebar";
 import { BackToTop } from "components/backtotop";
 import { MemberCard } from "components/pages/conoce/memberCard";
 import { QuoteCard } from "components/pages/conoce/quoteCard";
-import { ArrowBackIcon } from "components/icons";
+import { ArrowBackIcon, ArrowSubmitIcon, CloseIcon } from "components/icons";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
@@ -51,6 +52,9 @@ import {
   StaffList,
   ServiciosSection,
   SwiperContainerGallery,
+  IndexCounter,
+  HeaderGallery,
+  ArrowGallery,
   ServiceWrapper,
   ServiceTitle,
   ServiceMedia,
@@ -72,7 +76,6 @@ import {
   OfficeTextLoc,
   OfficeText,
 } from "components/pages/conoce/conoceBelga.styles";
-import { useMergeState } from "helpers/hooks";
 
 const ConoceBelga = observer(() => {
   /* Handle UI menu */
@@ -85,28 +88,23 @@ const ConoceBelga = observer(() => {
   });
   const [currentImageIndex, setCurrentIndex] = React.useState(0);
 
-  /* 
   const onClose = () => setModalContent({ open: false });
 
   const gotoPrevious = () =>
     currentImageIndex > 0 && setCurrentIndex(currentImageIndex - 1);
   const gotoNext = () =>
     currentImageIndex + 1 <
-      (modalContent.content === "fotos"
-        ? photoGallery.length
-        : planoGallery.length) && setCurrentIndex(currentImageIndex + 1);
+      (modalContent.content === "fotos" && photoGallery.length) &&
+    setCurrentIndex(currentImageIndex + 1);
 
-  const photoGallery: ImagesListType = property?.photos?.map(
-    (item: any, k: number) => {
-      return { src: `${item.image}`, loading: "lazy" };
-    }
-  );
+  const photos = [
+    "/images/servicios_fotos.jpg",
+    "/images/servicios_planos.jpg",
+  ];
+  const photoGallery: ImagesListType = photos?.map((image: string) => {
+    return { src: `${image}`, loading: "lazy", alt: `${image}` };
+  });
 
-  const planoGallery: ImagesListType = property?.photos?.map(
-    (item: any, k: number) => {
-      return { src: `${item.image}`, loading: "lazy" };
-    }
-  ); */
   return (
     <Layout menuTheme="light" footerSmall backToTopFooter>
       <Head>
@@ -425,6 +423,50 @@ const ConoceBelga = observer(() => {
             </Container>
 
             <Container>
+              <Lightbox
+                className="servicios--gallery"
+                isOpen={modalContent.open}
+                onPrev={gotoPrevious}
+                onNext={gotoNext}
+                images={photoGallery}
+                currentIndex={currentImageIndex}
+                onClose={onClose}
+                style={{ background: "rgba(0,0,0,0.95)", zIndex: 99999999 }}
+                singleClickToZoom
+                renderPrevButton={() => (
+                  <ArrowGallery
+                    className={classes("arrow--prev", {
+                      disabled: currentImageIndex === 0,
+                    })}
+                    onClick={gotoPrevious}
+                  >
+                    <ArrowSubmitIcon className="gallery--arrow " />
+                  </ArrowGallery>
+                )}
+                renderNextButton={() => (
+                  <ArrowGallery
+                    className={classes("arrow--next", {
+                      disabled: currentImageIndex + 1 === photoGallery.length,
+                    })}
+                    onClick={gotoNext}
+                  >
+                    <ArrowSubmitIcon className="gallery--arrow" />
+                  </ArrowGallery>
+                )}
+                renderHeader={() => (
+                  <HeaderGallery>
+                    <IndexCounter>
+                      {currentImageIndex + 1} de
+                      {photoGallery.length}
+                    </IndexCounter>
+                    <CloseIcon
+                      onClick={onClose}
+                      className="gallery--close-icon"
+                    />
+                  </HeaderGallery>
+                )}
+              />
+
               <SwiperContainerGallery>
                 <Swiper
                   className="swiper--services-gallery"
@@ -449,12 +491,7 @@ const ConoceBelga = observer(() => {
                     },
                   }}
                 >
-                  <SwiperSlide
-                    onClick={() => {
-                      setModalContent({ open: true, content: "fotos" });
-                      setCurrentIndex(1);
-                    }}
-                  >
+                  <SwiperSlide>
                     <ServiceWrapper>
                       <ServiceTitle>Video Drone</ServiceTitle>
                       <ServiceMedia>
@@ -465,8 +502,8 @@ const ConoceBelga = observer(() => {
 
                   <SwiperSlide
                     onClick={() => {
-                      setModalContent({ open: true, content: "fotos" });
-                      setCurrentIndex(2);
+                      setModalContent({ open: true });
+                      setCurrentIndex(0);
                     }}
                   >
                     <ServiceWrapper>
@@ -481,12 +518,7 @@ const ConoceBelga = observer(() => {
                     </ServiceWrapper>
                   </SwiperSlide>
 
-                  <SwiperSlide
-                    onClick={() => {
-                      setModalContent({ open: true, content: "fotos" });
-                      setCurrentIndex(3);
-                    }}
-                  >
+                  <SwiperSlide>
                     <ServiceWrapper>
                       <ServiceTitle>Tour Virtual</ServiceTitle>
                       <ServiceMedia>
@@ -497,8 +529,8 @@ const ConoceBelga = observer(() => {
 
                   <SwiperSlide
                     onClick={() => {
-                      setModalContent({ open: true, content: "fotos" });
-                      setCurrentIndex(4);
+                      setModalContent({ open: true });
+                      setCurrentIndex(1);
                     }}
                   >
                     <ServiceWrapper>

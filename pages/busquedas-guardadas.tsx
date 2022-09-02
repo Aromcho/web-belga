@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { PATHS } from "config";
 import { observer } from "mobx-react-lite";
@@ -23,6 +23,10 @@ const BusquedasGuardadas = observer(() => {
     rootStore: { userStore },
   } = useStore();
 
+  const [saveSearch, setSaveSearch] = useState<number>(0);
+  useEffect(() => {
+    setSaveSearch(userStore?.searchs?.length);
+  }, [userStore, saveSearch]);
   return (
     <Layout>
       <BusquedasContainer>
@@ -37,7 +41,7 @@ const BusquedasGuardadas = observer(() => {
           </BackWrapper>
         </Container>
         <Container>
-          {userStore?.searchs?.length === 0 && (
+          {saveSearch === 0 && (
             <Status
               img="/images/empty_img_plus.gif"
               text="Tené a mano tus búsquedas."
@@ -47,17 +51,21 @@ const BusquedasGuardadas = observer(() => {
             />
           )}
 
-          {userStore?.searchs?.length > 0 && (
+          {saveSearch > 0 && (
             <>
               <Container>
                 <Title>TUS BÚSQUEDAS GUARDADAS</Title>
               </Container>
 
               <BusquedasList>
-                {userStore.searchs?.map((item) => (
+                {userStore.searchs?.map((item, key) => (
                   <BusquedaCard
+                    key={key}
                     search={item}
-                    onRemove={() => userStore.removeSearch(item)}
+                    onRemove={() => {
+                      userStore.removeSearch(item),
+                        setSaveSearch(saveSearch > 0 ? saveSearch - 1 : 0);
+                    }}
                   />
                 ))}
               </BusquedasList>

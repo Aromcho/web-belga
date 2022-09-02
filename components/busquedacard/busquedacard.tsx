@@ -13,7 +13,7 @@ import {
   Query,
   QueryProp,
 } from "./busquedacard.styles";
-import { getDropdownValue } from "helpers";
+import { formatToMoney, getDropdownValue } from "helpers";
 import { getSearchUrl } from "helpers/tokko";
 
 export interface BusquedaCardProps {
@@ -57,56 +57,55 @@ export const BusquedaCard = ({
                 <QueryProp className="capitalize">{search.prid}</QueryProp>
               </Query>
             )}
-            {(search.parking_lot_to || search.parking_lot_from) && (
+            {
               <Query>
                 <QueryProp>Cocheras</QueryProp>
                 <QueryProp>
                   {getDropdownValue(
-                    search?.parking_lot_to,
-                    search?.parking_lot_from,
-                    "Cocheras"
+                    search?.parking_lot_to ?? 1,
+                    search?.parking_lot_from ?? 5
                   )}
                 </QueryProp>
               </Query>
-            )}
+            }
           </QueryColumn>
           <QueryColumn>
-            {(search.rooms_from || search.rooms_to) && (
+            {
               <Query>
                 <QueryProp>Dormitorios</QueryProp>
                 <QueryProp>
                   {getDropdownValue(
-                    search?.rooms_from,
-                    search?.rooms_to,
-                    "Dormitorios"
+                    search?.rooms_from ?? 1,
+                    search?.rooms_to ?? 5
                   )}
                 </QueryProp>
               </Query>
-            )}
-            {(search.baths_to || search.baths_from) && (
+            }
+            {
               <Query>
                 <QueryProp>Baños</QueryProp>
                 <QueryProp>
                   {getDropdownValue(
-                    search?.baths_to,
-                    search?.baths_from,
-                    "Baños"
+                    search?.baths_to ?? 2,
+                    search?.baths_from ?? 5
                   )}
                 </QueryProp>
               </Query>
-            )}
-            {(search.price_from || search.price_to) && (
+            }
+            {
               <Query>
                 <QueryProp>Precio</QueryProp>
                 <QueryProp>
                   {getDropdownValue(
-                    search?.price_from,
-                    search?.price_to,
+                    search?.price_from ?? 1,
+                    search?.price_to ?? "",
                     "USD"
                   )}
+                  {!search?.price_to &&
+                    ` - Max. USD ${formatToMoney(3000000, false, "", false)}`}
                 </QueryProp>
               </Query>
-            )}
+            }
           </QueryColumn>
         </QueryList>
       </BusquedaWrapper>

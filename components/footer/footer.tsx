@@ -36,9 +36,11 @@ import {
   FooterRight,
   FooterInfo,
   FooterInfoBottom,
+  BrandMobileWrapper,
   SocialList,
   RightInfo,
   RightInfoMobile,
+  SocialListMobileWrapper,
   LegalText,
   LegalLink,
   Mp,
@@ -209,8 +211,8 @@ export const Footer = ({ small = true, id, backToTopFooter }: FooterProps) => {
           </FooterInfo>
           <FooterInfoBottom>
             <SocialList>
-              {socialInfo.map((i: any, k: number) => (
-                <Link href={`${i?.link.toString()}`} key={k}>
+              {socialInfo.map((i: any) => (
+                <Link href={`${i?.link.toString()}`} key={i.index}>
                   <a className="social--link" target="_blank">
                     {i.icon}
                   </a>
@@ -242,9 +244,9 @@ export const Footer = ({ small = true, id, backToTopFooter }: FooterProps) => {
               loading="lazy"
             />
             <SocialList className="social--list-mobile">
-              {socialInfo.map((i: any, k: number) => {
+              {socialInfo.map((i: any) => {
                 return (
-                  <Link href={`${i?.link.toString()}`} key={k}>
+                  <Link href={`${i?.link.toString()}`} key={i.index}>
                     <a className="social--link" target="_blank">
                       {i.icon}
                     </a>
@@ -283,6 +285,30 @@ export const Footer = ({ small = true, id, backToTopFooter }: FooterProps) => {
           </LegalLink>
           <Mp>{legalInfo.mp}</Mp>
         </RightInfoMobile>
+
+        <FooterInfoBottom className="brand--mobile">
+          <SocialListMobileWrapper>
+            <SocialList>
+              {socialInfo.map((i: any) => {
+                return (
+                  <Link href={`${i?.link.toString()}`} key={i.index}>
+                    <a className="social--link" target="_blank">
+                      {i.icon}
+                    </a>
+                  </Link>
+                );
+              })}
+            </SocialList>
+          </SocialListMobileWrapper>
+          <BrandMobileWrapper>
+            <BrandFooter
+              src="/images/brand_red.svg"
+              alt="Belga inmobiliaria"
+              title="Belga inmobiliaria"
+              loading="lazy"
+            />
+          </BrandMobileWrapper>
+        </FooterInfoBottom>
       </FooterWrapper>
     </FooterContainer>
   );

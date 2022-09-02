@@ -23,158 +23,11 @@ export const FooterInfo = styled.div`
   }
 `;
 
-export const FooterInfoBottom = styled.div`
-  width: 100%;
-  max-width: 450px;
-  height: auto;
-  min-height: 200px;
-  @media screen and (max-width: 1600px) {
-    max-width: 100%;
-  }
-`;
-
-export const LegalLink = styled.div`
-  max-width: 430px;
-  margin-bottom: 20px;
-  a {
-    color: ${(props: any) => props.theme.white};
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 16px;
-    transition: all 0.3s ease-in-out;
-    &:hover {
-      color: ${(props: any) => props.theme.primary};
-    }
-  }
-  @media screen and (max-width: 1100px) {
-    font-size: ${(props: any) => props.theme.LinkText};
-    margin: 0 auto 20px;
-  }
-`;
-
-export const Mp = styled.div`
-  font-size: 12px;
-  max-width: 430px;
-  color: ${(props: any) => props.theme.white};
-  text-transform: uppercase;
-  @media screen and (max-width: 1100px) {
-    font-size: ${(props: any) => props.theme.LinkText};
-    margin: 0 auto;
-  }
-`;
-
-export const LegalText = styled.div`
-  max-width: 430px;
-  font-size: 10px;
-  color: ${(props: any) => props.theme.white};
-  line-height: 16px;
-  margin-bottom: 20px;
-  text-align: justify;
-  @media screen and (max-width: 1100px) {
-    font-size: ${(props: any) => props.theme.LinkText};
-    margin: 0 auto 20px;
-  }
-`;
-
-export const RightInfoMobile = styled.div`
-  width: 100%;
-  background-color: ${(props: any) => props.theme.black};
-  display: none;
-  justify-content: center;
-  margin: 0 auto;
-  padding: 60px 8%;
-  @media screen and (max-width: 1100px) {
-    display: block;
-  }
-`;
-
-export const RightInfo = styled.div`
-  width: 100%;
-  max-width: 430px;
-  margin: 0 auto;
-`;
-
-export const FooterRight = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: flex-start;
-  background-color: ${(props: any) => props.theme.white};
-  flex-flow: column;
-  justify-content: flex-start;
-  @media screen and (max-width: 1100px) {
-    order: -1;
-  }
-  ${FooterInfo} {
-  }
-  ${FooterInfoBottom} {
-    max-width: 100%;
-    align-items: center;
-    display: flex;
-    justify-content: flex-start;
-    background-color: ${(props: any) => props.theme.black};
-    padding: 0 30px;
-    @media screen and (max-width: 1100px) {
-      display: none;
-    }
-  }
-`;
-
-export const MapFooter = styled.div`
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  @media screen and (max-width: 992px) {
-    margin-bottom: 60px;
-  }
-`;
-
 export const BrandFooter = styled.img`
   width: 100%;
   max-width: 230px;
   height: auto;
   display: block;
-`;
-
-export const FooterCenter = styled.div`
-  width: 450px;
-  flex: 0 0 auto;
-  align-items: center;
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  @media screen and (max-width: 1600px) {
-    width: 100%;
-    flex: initial;
-  }
-
-  ${FooterInfo} {
-    height: 100%;
-    display: flex;
-    background-color: ${(props: any) => props.theme.primary};
-    padding-top: 0;
-    @media screen and (max-width: 1100px) {
-      padding: 0;
-    }
-    @media screen and (max-width: 992px) {
-      background-color: ${(props: any) => props.theme.black};
-    }
-  }
-  ${FooterInfoBottom} {
-    align-items: center;
-    background-color: ${(props: any) => props.theme.primary};
-    display: flex;
-    justify-content: center;
-    position: relative;
-    ${BrandFooter} {
-      @media screen and (max-width: 1100px) {
-        max-width: 200px;
-        transform: translate(-50%, -50%);
-        position: absolute;
-        top: 50%;
-        left: calc(50% - 30px);
-      }
-    }
-  }
 `;
 
 export const SocialList = styled.div`
@@ -214,6 +67,188 @@ export const SocialList = styled.div`
     }
     &:hover {
       color: ${(props: any) => props.theme.primary};
+    }
+  }
+`;
+export const BrandMobileWrapper = styled.div`
+  width: 100%;
+  height: 130px;
+  background-color: ${(props: any) => props.theme.primary};
+  position: relative;
+`;
+
+export const SocialListMobileWrapper = styled.div`
+  width: 100%;
+  align-items: center;
+  background-color: ${(props: any) => props.theme.black};
+  display: flex;
+  justify-content: center;
+`;
+
+export const FooterInfoBottom = styled.div`
+  width: 100%;
+  max-width: 450px;
+  height: auto;
+  min-height: 200px;
+  @media screen and (max-width: 1600px) {
+    max-width: 100%;
+  }
+  @media screen and (max-width: 1600px) {
+    display: none;
+  }
+
+  &.brand--mobile {
+    display: none;
+    min-height: initial;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    position: relative;
+    ${BrandFooter} {
+      max-width: 160px;
+      transform: translate(-50%, -50%);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+    }
+    ${SocialList} {
+      width: 100%;
+      max-width: 87%;
+      padding: 0 0 60px;
+      background-color: ${(props: any) => props.theme.black};
+      .social--link {
+        color: ${(props: any) => props.theme.white};
+      }
+    }
+
+    @media screen and (max-width: 1100px) {
+      display: flex;
+    }
+  }
+`;
+
+export const LegalLink = styled.div`
+  max-width: 430px;
+  margin-bottom: 20px;
+  a {
+    color: ${(props: any) => props.theme.white};
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16px;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      color: ${(props: any) => props.theme.primary};
+    }
+  }
+  @media screen and (max-width: 1100px) {
+    font-size: ${(props: any) => props.theme.LinkText};
+    margin: 0 0 20px;
+  }
+`;
+
+export const Mp = styled.div`
+  font-size: 12px;
+  max-width: 430px;
+  color: ${(props: any) => props.theme.white};
+  text-transform: uppercase;
+  @media screen and (max-width: 1100px) {
+    font-size: ${(props: any) => props.theme.LinkText};
+    margin: 0;
+  }
+`;
+
+export const LegalText = styled.div`
+  max-width: 430px;
+  font-size: 10px;
+  color: ${(props: any) => props.theme.white};
+  line-height: 16px;
+  margin-bottom: 20px;
+  text-align: justify;
+  @media screen and (max-width: 1100px) {
+    font-size: ${(props: any) => props.theme.LinkText};
+    margin: 0 0 20px;
+  }
+`;
+
+export const RightInfoMobile = styled.div`
+  width: 100%;
+  background-color: ${(props: any) => props.theme.black};
+  display: none;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 60px 8%;
+  @media screen and (max-width: 1100px) {
+    display: block;
+  }
+`;
+
+export const RightInfo = styled.div`
+  width: 100%;
+  max-width: 430px;
+  margin: 0 auto;
+`;
+
+export const FooterRight = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  background-color: ${(props: any) => props.theme.white};
+  flex-flow: column;
+  justify-content: flex-start;
+  @media screen and (max-width: 1100px) {
+    order: -1;
+  }
+  ${FooterInfoBottom} {
+    max-width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    background-color: ${(props: any) => props.theme.black};
+    padding: 0 30px;
+    @media screen and (max-width: 1100px) {
+      display: none;
+    }
+  }
+`;
+
+export const MapFooter = styled.div`
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+`;
+
+export const FooterCenter = styled.div`
+  width: 450px;
+  flex: 0 0 auto;
+  align-items: center;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  @media screen and (max-width: 1600px) {
+    width: 100%;
+    flex: initial;
+  }
+
+  ${FooterInfo} {
+    height: 100%;
+    display: flex;
+    background-color: ${(props: any) => props.theme.primary};
+    padding-top: 0;
+    @media screen and (max-width: 1100px) {
+      padding: 0;
+    }
+    @media screen and (max-width: 992px) {
+      background-color: ${(props: any) => props.theme.black};
+    }
+  }
+  ${FooterInfoBottom} {
+    align-items: center;
+    background-color: ${(props: any) => props.theme.primary};
+    display: flex;
+    justify-content: center;
+    position: relative;
+    @media screen and (max-width: 1100px) {
+      display: none;
     }
   }
 `;

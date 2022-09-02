@@ -12,12 +12,23 @@ import {
   BackWrapper,
   FormWrapper,
 } from "components/pages/quieroVender.styles";
-
+import { classes, getWindowDimensions } from "helpers";
 
 const QuieroVender = observer(() => {
   const {
     rootStore: { userStore },
   } = useStore();
+
+  /* Handle resize screen */
+  const [windowDimensions, setWindowDimensions] = React.useState(
+    getWindowDimensions()
+  );
+  React.useEffect(() => {
+    const handleResize = () => setWindowDimensions(getWindowDimensions());
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  const isMobile = windowDimensions && windowDimensions <= 1100;
 
   return (
     <Layout>
@@ -34,7 +45,7 @@ const QuieroVender = observer(() => {
         </Container>
         <Container>
           <FormWrapper>
-            <VenderForm className="full" />
+            <VenderForm className={isMobile ? "" : "full"} />
           </FormWrapper>
         </Container>
       </QuieroVenderContainer>

@@ -4,6 +4,9 @@ export const FormWrapper = styled.div`
   width: 100%;
   margin: 30px auto 100px;
   display: block;
+  @media screen and (max-width: 1100px) {
+    margin: 60px auto 100px;
+  }
 `;
 
 export const BackWrapper = styled.div`
@@ -34,4 +37,7 @@ export const BackWrapper = styled.div`
 export const QuieroVenderContainer = styled.div`
   width: 100%;
   padding: 150px 0 80px;
+  @media screen and (max-width: 1100px) {
+    padding: 120px 0 0;
+  }
 `;

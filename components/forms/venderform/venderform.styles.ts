@@ -8,6 +8,9 @@ export const TitleForm = styled.div`
   margin: 0 auto;
   text-align: center;
   text-transform: uppercase;
+  @media screen and (max-width: 1100px) {
+    max-width: 330px;
+  }
 `;
 
 export const WrapperInputs = styled.div`
@@ -17,7 +20,7 @@ export const WrapperInputs = styled.div`
 export const FormWrapper = styled.div`
   width: 100%;
   max-width: 330px;
-  margin: 70px auto 0;
+  margin: 60px auto 0;
   position: relative;
 `;
 

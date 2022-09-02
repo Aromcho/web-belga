@@ -37,7 +37,7 @@ const BusquedasGuardadas = observer(() => {
           </BackWrapper>
         </Container>
         <Container>
-          {userStore.searchs.length === 0 && (
+          {userStore?.searchs?.length === 0 && (
             <Status
               img="/images/empty_img_plus.gif"
               text="Tené a mano tus búsquedas."
@@ -47,7 +47,7 @@ const BusquedasGuardadas = observer(() => {
             />
           )}
 
-          {userStore.searchs.length > 0 && (
+          {userStore?.searchs?.length > 0 && (
             <>
               <Container>
                 <Title>TUS BÚSQUEDAS GUARDADAS</Title>

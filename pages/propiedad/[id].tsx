@@ -20,8 +20,8 @@ import { Title } from "components/title";
 import { CardProp } from "components/cardprop";
 import { BackToTop } from "components/backtotop";
 import { SocialSidebar } from "components/socialsidebar";
-import Error404 from "pages/error404";
-import Error500 from "pages/error500";
+import Error404 from "pages/404";
+import Error500 from "pages/500";
 import {
   ArrowBackIcon,
   ArrowSubmitIcon,
@@ -84,13 +84,8 @@ import "swiper/css/pagination";
 const PropertyDetail = ({ properties, property, statusCode }: any) => {
   console.log(property, properties);
 
-  if (statusCode === 404 || statusCode === 500)
-    return (
-      <Layout menuTheme="light">
-        {statusCode === 404 && <Error404 />}
-        {statusCode === 500 && <Error500 />}
-      </Layout>
-    );
+  if (statusCode === 404) return <Error404 />
+  if (statusCode > 500) return <Error500 />
 
   /* Handle like prop*/
   const [isLiked, setIsLiked] = React.useState<boolean>(false);

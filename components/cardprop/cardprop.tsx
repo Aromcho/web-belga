@@ -28,7 +28,7 @@ import {
 } from './cardprop.styles';
 
 import { HeartIcon, ImageIcon } from 'components/icons';
-import { classes, formatToMoney, Property } from 'helpers';
+import { classes, formatToMoney, objectValidation, Property } from 'helpers';
 
 export interface CardPropProps {
   className?: string;
@@ -96,27 +96,26 @@ export const CardProp = ({
         </Info>
         {!inversion &&
           <FeaturesWrapper>
-            <FeaturesList>
-              <FeaturesItem>
-
+            <FeaturesList className={classes({center: objectValidation(property, ['total_surface', 'suite_amount', 'bathroom_amount', 'parking_lot_amount'])})}>
+              {Math.round(property.total_surface) > 0 && <FeaturesItem>
                 <FeatureText>{Math.round(property.total_surface)}</FeatureText>
                 <FeatureImg src='/images/icons/prop_m2.svg' loading="lazy" />
-              </FeaturesItem>
+              </FeaturesItem>}
 
-              <FeaturesItem>
+              {property.suite_amount > 0 && <FeaturesItem>
                 <FeatureText>{property.suite_amount}</FeatureText>
                 <FeatureImg src='/images/icons/prop_cuarto.svg' loading="lazy" />
-              </FeaturesItem>
+              </FeaturesItem>}
 
-              <FeaturesItem>
+              {property.bathroom_amount > 0 && <FeaturesItem>
                 <FeatureText>{property.bathroom_amount}</FeatureText>
                 <FeatureImg src='/images/icons/prop_ducha.svg' loading="lazy" />
-              </FeaturesItem>
+              </FeaturesItem>}
 
-              <FeaturesItem>
+              {property.parking_lot_amount > 0 && <FeaturesItem>
                 <FeatureText>{property.parking_lot_amount}</FeatureText>
                 <FeatureImg src='/images/icons/prop_cochera.svg' loading="lazy" />
-              </FeaturesItem>
+              </FeaturesItem>}
 
             </FeaturesList>
           </FeaturesWrapper>

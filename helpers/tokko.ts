@@ -3,15 +3,15 @@ import { neighborhoods } from "./neighborhoods";
 
 export const propertiesSelectOptions = [
   { value: 0, label: "Todos" },
-  { value: 1, label: "Terrenos" },
-  { value: 2, label: "Departamentos" },
   { value: 3, label: "Casas" },
-  { value: 4, label: "Emprendimientos" },
-  { value: 5, label: "Oficinas" },
+  { value: 2, label: "Departamentos" },
   { value: 13, label: "PH" },
+  { value: 4, label: "Emprendimientos" },
+  { value: 1, label: "Terrenos" },
+  { value: 5, label: "Oficinas" },
+  { value: 10, label: "Cocheras" },
   { value: 7, label: "Locales" },
   { value: 9, label: "Campos" },
-  { value: 10, label: "Cocheras" },
 ];
 
 export const operationTypes: any = {

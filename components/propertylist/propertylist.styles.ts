@@ -126,10 +126,10 @@ export const FiltersContainer = styled.div`
   @media screen and (max-width: 1200px) {
     width: 100%;
     height: 100%;
-    align-items: center;
+    /* align-items: center; */
     background-color: ${(props: any) => props.theme.white};
-    display: flex;
-    justify-content: center;
+    /* display: flex; */
+    /* justify-content: center; */
     pointer-events: none;
     opacity: 0;
     overflow-x: hidden;

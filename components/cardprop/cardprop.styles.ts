@@ -127,6 +127,10 @@ export const FeaturesList = styled.ul`
   align-items: center;
   display: flex;
   justify-content: space-between;
+  &.center{
+    gap: 15%;
+    justify-content: center;
+  }
 `;
 
 export const FeaturesWrapper = styled.div`

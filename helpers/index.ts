@@ -186,3 +186,12 @@ export const truncateWithEllipsis = (text: string, maxLength: number) => {
   }
   return text;
 };
+
+
+export const objectValidation = (object: any, l: string[]): boolean => {
+  let flag = false;
+  l.forEach(item => {
+    if(!object[item]) flag = true;
+  })
+  return flag;
+}

@@ -4,9 +4,12 @@ import { Layout } from "components/layout";
 import { getProperties } from "services";
 import { parseTokkoParameters } from "helpers/tokko";
 import { PropertyList } from "components/propertylist";
+import Error404 from 'pages/404';
+import Error500 from 'pages/500';
 
 const PropertySearch = ({ data, statusCode, query }: any) => {
-  if (statusCode) return <>{statusCode}</>;
+  if (statusCode === 404) return <Error404 />
+  if (statusCode >= 500) return <Error500 />
 
   return (
     <Layout>      

@@ -265,13 +265,18 @@ export const SearchRow = styled.div`
     }
   }
   &.second--row {
+    margin-bottom: 10px;
   }
   &.third--row {
+    margin-top: -10px;
+    @media screen and (max-width: 992px) {
+      margin-top: 0;
+    }
     .third--row-button {
       @media screen and (max-width: 992px) {
         width: 100%;
-        max-width: 100%;
         height: 38px;
+        max-width: 100%;
       }
     }
   }

@@ -42,7 +42,7 @@ export const InputStyled = styled.input`
     color: ${(props: any) => props.theme.black};
     display: flex;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 400;
     transition: all 0.3s ease-in-out;
     margin: 0 auto;
     padding: 0 25px;

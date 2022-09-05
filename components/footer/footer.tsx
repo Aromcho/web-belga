@@ -15,7 +15,6 @@ import { TitleWithIcon } from "components/titlewithicon";
 import { ContactForm } from "components/forms/contactform";
 import { BackToTop } from "components/backtotop";
 import {
-  BelgaIsoIcon,
   FacebookCircleIcon,
   InstaCircleIcon,
   LinkedinCircleIcon,
@@ -190,7 +189,7 @@ export const Footer = ({ small = true, id, backToTopFooter }: FooterProps) => {
               </LeftContact>
 
               <LeftLocation>
-                {data.map((item) => (
+                {data.map(item => (
                   <LocationItem
                     key={item.id}
                     onMouseEnter={() => setHigh(item.id)}
@@ -211,8 +210,8 @@ export const Footer = ({ small = true, id, backToTopFooter }: FooterProps) => {
           </FooterInfo>
           <FooterInfoBottom>
             <SocialList>
-              {socialInfo.map((i: any) => (
-                <Link href={`${i?.link.toString()}`} key={i.index}>
+              {socialInfo.map((i: any, k: number) => (
+                <Link href={`${i?.link.toString()}`} key={k}>
                   <a className="social--link" target="_blank">
                     {i.icon}
                   </a>
@@ -244,9 +243,9 @@ export const Footer = ({ small = true, id, backToTopFooter }: FooterProps) => {
               loading="lazy"
             />
             <SocialList className="social--list-mobile">
-              {socialInfo.map((i: any) => {
+              {socialInfo.map((i: any, k: number) => {
                 return (
-                  <Link href={`${i?.link.toString()}`} key={i.index}>
+                  <Link href={`${i?.link.toString()}`} key={k}>
                     <a className="social--link" target="_blank">
                       {i.icon}
                     </a>
@@ -289,9 +288,9 @@ export const Footer = ({ small = true, id, backToTopFooter }: FooterProps) => {
         <FooterInfoBottom className="brand--mobile">
           <SocialListMobileWrapper>
             <SocialList>
-              {socialInfo.map((i: any) => {
+              {socialInfo.map((i: any, k: number) => {
                 return (
-                  <Link href={`${i?.link.toString()}`} key={i.index}>
+                  <Link href={`${i?.link.toString()}`} key={k}>
                     <a className="social--link" target="_blank">
                       {i.icon}
                     </a>

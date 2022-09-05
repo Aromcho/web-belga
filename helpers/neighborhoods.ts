@@ -245,3 +245,24 @@ export const neighborhoods = [
     "parent_name": null
   }
 ]
+
+export const neighborhoodsSlugs = [
+  'almagro',          'barrio river',
+  'belgrano',         'belgrano barrancas',
+  'belgrano chico',   'belgrano r',
+  'boedo',            'botanico',
+  'caballito',        'chacarita',
+  'coghlan',          'colegiales',
+  'las cañitas',      'monserrat',
+  'nuñez',            'palermo',
+  'palermo chico',    'palermo hollywood',
+  'palermo soho',     'palermo viejo',
+  'parque patricios', 'puerto madero',
+  'recoleta',         'saavedra',
+  'san cristobal',    'san nicolas',
+  'san telmo',        'tigre',
+  'tribunales',       'vicente lópez',
+  'villa crespo',     'villa devoto',
+  'villa ortuzar',    'villa pueyrredon',
+  'villa urquiza'
+]

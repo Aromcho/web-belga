@@ -43,13 +43,7 @@ export const parseTokkoParameters = (query: any) => {
 
   // Locations
   if (query.locid) {
-    const locations = query.locid.map((item: string) =>
-      neighborhoods.find(
-        (loc) =>
-          item.toLowerCase().replace("-", "") ===
-          loc.location_name.toLowerCase().replace(" ", "")
-      )
-    );
+    const locations = query.locid.map((item: string) => neighborhoods.find(loc => item.toLowerCase().replace("-", "") === loc.location_name.toLowerCase()));
     if (locations)
       query["current_localization_id"] = locations.map(
         (item: any) => item.location_id
@@ -148,8 +142,11 @@ export const getSearchUrl = (params: any) => {
       ? `/todos`
       : `/${getKeyByValue(operationTypes, params.operation_type[0])}`;
 
-  if (params.property_type || params.property_type === 0)
+  if (params.property_type && params.property_type > 0) {
     url = url + `/${getKeyByValue(propertyTypes, params.property_type)}`;
+  } else {
+    url = url + `/todos`;
+  }
 
   if (params.locations) {
     params.locations.map((item: number) => {
@@ -166,7 +163,7 @@ export const getSearchUrl = (params: any) => {
 
   if (params.price_from && params.price_from > 0)
     query["price_from"] = params.price_from;
-  if (params.price_to && params.price_to > 0 && params.price_to < 3000001)
+  if (params.price_to && params.price_to > 0 && params.price_to < 3000000)
     query["price_to"] = params.price_to;
   if (params.min_rooms && params.min_rooms > 0)
     query["rooms_from"] = params.min_rooms;

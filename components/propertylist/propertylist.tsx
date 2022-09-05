@@ -97,7 +97,7 @@ export const PropertyList = observer(
         setFormData({
           locations: localidades
             .filter((item) =>
-              query?.locid.includes(item.label.toLowerCase().replace(" ", "-"))
+              query?.locid.includes(item.label.toLowerCase())
             )
             .map((item) => item.value),
         });
@@ -144,13 +144,13 @@ export const PropertyList = observer(
       label: item.location_name,
     }));
 
-    const handleOrderChange = (v: string) => {
-      setFormData({ order: v });
+    const handleOrderChange = (order: string) => {
+      setFormData({ order });
       setTimeout(() => {
         router.push(
           getSearchUrl({
             ...formData,
-            order: v,
+            order
           })
         );
       }, 100);

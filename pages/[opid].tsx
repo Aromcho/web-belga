@@ -12,7 +12,7 @@ import Error500 from "./500";
 
 const PropertySearch = ({ data, query, statusCode }: any) => {
   if (statusCode === 404) return <Error404 />
-  if (statusCode > 500) return <Error500 />
+  if (statusCode >= 500) return <Error500 />
 
   return (
     <Layout menuTheme="light">

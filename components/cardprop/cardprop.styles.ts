@@ -126,16 +126,16 @@ export const FeaturesList = styled.ul`
   width: 100%;
   align-items: center;
   display: flex;
-  justify-content: space-between;
-  &.center{
-    gap: 15%;
-    justify-content: center;
+  gap: 115px;
+  justify-content: center;
+  @media screen and (max-width: 992px) {
+    gap: 14%;
   }
 `;
 
 export const FeaturesWrapper = styled.div`
   width: 100%;
-  padding: 20px 30px 20px 36px;
+  padding: 20px 30px 0;
   @media screen and (max-width: 992px) {
     padding: 30px 15px 20px 19px;
   }

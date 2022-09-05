@@ -719,4 +719,9 @@ export const MenuContainer = styled.div`
       }
     }
   }
+
+  .button--menu {
+    width: 219px;
+    min-width: 219px;
+  }
 `;

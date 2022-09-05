@@ -96,7 +96,7 @@ export const CardProp = ({
         </Info>
         {!inversion &&
           <FeaturesWrapper>
-            <FeaturesList className={classes({center: objectValidation(property, ['total_surface', 'suite_amount', 'bathroom_amount', 'parking_lot_amount'])})}>
+            <FeaturesList>
               {Math.round(property.total_surface) > 0 && <FeaturesItem>
                 <FeatureText>{Math.round(property.total_surface)}</FeatureText>
                 <FeatureImg src='/images/icons/prop_m2.svg' loading="lazy" />

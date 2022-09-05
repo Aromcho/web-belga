@@ -5,9 +5,12 @@ import { getProperties } from 'services';
 import { parseTokkoParameters } from 'helpers/tokko';
 import { PropertyList } from 'components/propertylist';
 import { BackToTop } from 'components/backtotop';
+import Error404 from 'pages/404';
+import Error500 from 'pages/500';
 
-const PropertySearch = ({ data, query }: any) => {
-
+const PropertySearch = ({ data, query, statusCode }: any) => {
+  if (statusCode === 404) return <Error404 />
+  if (statusCode >= 500) return <Error500 />
 
   return (
     <Layout>
@@ -18,17 +21,21 @@ const PropertySearch = ({ data, query }: any) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const props: any = {
+    query,
+  };
 
-  const data = await getProperties({
-    params: parseTokkoParameters({ ...query })
-  })
+  try {
+    props["data"] = await getProperties({
+      params: parseTokkoParameters({ ...query }),
+    });
+  } catch (error: any) {
+    props["statusCode"] = error?.response?.status || 500;
+  }
 
   return {
-    props: {
-      data,
-      query
-    }
-  }
+    props,
+  };
 }
 
 export default PropertySearch;

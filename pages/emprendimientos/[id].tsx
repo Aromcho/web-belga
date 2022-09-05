@@ -90,7 +90,7 @@ const PropertyDetail = ({
   property_subs,
 }: any) => {
   if (statusCode === 404) return <Error404 />
-  if (statusCode > 500) return <Error500 />
+  if (statusCode >= 500) return <Error500 />
 
   /* Handle like prop */
   const [isLiked, setIsLiked] = React.useState<boolean>(false);

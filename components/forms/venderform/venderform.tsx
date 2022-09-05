@@ -13,6 +13,8 @@ import {
 } from "./venderform.styles";
 import { useMergeState } from "helpers/hooks";
 import { sendContact } from "services";
+import { propertiesSelectOptions } from "helpers/tokko";
+import { Select } from "components/select";
 
 export interface ContactFormProps {
   className?: string;
@@ -129,13 +131,22 @@ export const VenderForm = ({ className }: ContactFormProps) => {
             onChange={(e) => setData({ direction: e.currentTarget.value })}
           />
 
-          <Input
+          {/* <Input
             className="input--form half"
             placeHolder="Tipo de Propiedad"
             type="text"
             name="property"
             value={data.property}
             onChange={(e) => setData({ property: e.currentTarget.value })}
+          /> */}
+          <Select
+            className="contact-form"
+            options={propertiesSelectOptions}
+            isSearchable={false}
+            placeholder="Tipo de Propiedad"
+            onChange={(opt) => {
+              setData({ property: opt.label });
+            }}
           />
         </WrapperInputs>
 

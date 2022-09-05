@@ -48,7 +48,7 @@ export const Select = ({value, onChange, isSearchable = true, hideSelectedOption
             ...provided,
             color: '#000',
             fontSize: 14,
-            fontWeight: 300,
+            fontWeight: className?.includes('contact-form') ? 400 : 300,
             lineHeight: 20
           }),
           placeholder: (provided: any, state: any) => ({
@@ -56,7 +56,7 @@ export const Select = ({value, onChange, isSearchable = true, hideSelectedOption
             margin: '0 2px',
             color: '#000',
             fontSize: 14,
-            fontWeight: 300,
+            fontWeight: className?.includes('contact-form') ? 400 : 300,
           }),
           valueContainer: (provided: any, state: any) => ({
             ...provided,
@@ -70,19 +70,19 @@ export const Select = ({value, onChange, isSearchable = true, hideSelectedOption
           }),
           control: (provided: any, state: any) => ({
             ...provided,
-            borderRadius: 0,
+            borderRadius: className?.includes('contact-form') ? '6px 6px 0 6px' : 0,
             padding: '0 25px',
-            borderColor: '#fff',
+            borderColor: className?.includes('contact-form') ? '#000' : '#fff',
             backgroundColor: '#fff',
             minHeight: "40px",
             height: "40px",
             "&:hover": {
-              borderColor: '#fff',
-              boxShadow: '0 0 0 1px'
+              borderColor: className?.includes('contact-form') ? '#000' : '#fff',
+              boxShadow: className?.includes('contact-form') ? '' : '0 0 0 1px'
             },
             "&:focus": {
-              borderColor: '#fff',
-              boxShadow: '0 0 0 1px'
+              borderColor: className?.includes('contact-form') ? '#000' : '#fff',
+              boxShadow: className?.includes('contact-form') ? '' : '0 0 0 1px'
             },
             "@media only screen and (max-width: 992px)": {
               minHeight: "38px",

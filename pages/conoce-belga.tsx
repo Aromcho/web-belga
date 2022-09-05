@@ -224,7 +224,7 @@ const ConoceBelga = observer(() => {
           <ValoresSection id="valores">
             <Container>
               <UnderlineTitle>
-                Los <u>Valores</u> que Jorge nos dejó
+                Los <u>Valores</u> que heredamos
               </UnderlineTitle>
 
               <ValoresList>

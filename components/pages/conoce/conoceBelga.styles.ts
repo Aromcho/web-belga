@@ -585,6 +585,7 @@ export const HistoriaText = styled.p`
   font-size: 14px;
   line-height: 20px;
   margin-bottom: 20px;
+  text-align: justify;
   @media screen and (max-width: 992px) {
     &:last-child {
       margin-bottom: 0;

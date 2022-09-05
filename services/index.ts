@@ -80,15 +80,15 @@ export const getDevelopmentById = async (id: number) => {
 export const getPropertyTypes = () => {
   return [
     {key: "Todos", value: -1},
-    {key: "Terreno", value: 1},
-    {key: "Departamento", value: 2},
-    {key: "Casa", value: 3},
-    {key: "Emprendimiento", value: 4},
-    {key: "Oficina", value: 5},
+    {key: "Casas", value: 3},
+    {key: "Departamentos", value: 2},
     {key: "PH", value: 13},
-    {key: "Local", value: 7},
-    {key: "Campo", value: 9},
-    {key: "Cochera", value: 10},
+    {key: "Emprendimientos", value: 4},
+    {key: "Terrenos", value: 1},
+    {key: "Oficinas", value: 5},
+    {key: "Cocheras", value: 10},
+    {key: "Locales", value: 7},
+    {key: "Campos", value: 9},
   ]
 }
 

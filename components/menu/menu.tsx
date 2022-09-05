@@ -88,9 +88,9 @@ export const Menu = ({ theme = "light" }: MenuProps) => {
           </MenuInfoItem> */}
 
           <MenuInfoItem>
-            <Link href="https://api.whatsapp.com/send?phone=5491169462894&text=Hola%20Belga!%20%F0%9F%91%8B%20Quisiera%20hacerles%20una%20consulta.">
+            <Link href="https://api.whatsapp.com/send?phone=5491152633393&text=Hola%20Belga!%20%F0%9F%91%8B%20Quisiera%20hacerles%20una%20consulta.">
               <a className="info--link" target="_blank">
-                <WhatsappIcon /> +54 11 6946 2894
+                <WhatsappIcon /> +54 11 5263 3393
               </a>
             </Link>
           </MenuInfoItem>
@@ -173,7 +173,7 @@ export const Menu = ({ theme = "light" }: MenuProps) => {
                 <a className="burger--menu-link">
                   <HeartIcon className="heart--icon" />
                   <LinkText>
-                    Favoritos <UnderlineLinkBurger />
+                    Favoritas <UnderlineLinkBurger />
                   </LinkText>
                 </a>
               </Link>

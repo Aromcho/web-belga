@@ -518,7 +518,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
 
           {properties && (
             <SimilarProps>
-              <Title title="Propiedades similares" buttonStyle="outline red" />
+              <Title title="PROPIEDADES SIMILARES" buttonStyle="outline red" />
 
               <PropList>
                 {properties.map((item: any, k: number) => (

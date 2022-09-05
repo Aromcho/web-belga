@@ -64,7 +64,7 @@ const Favorites = observer(() => {
             <Status
               img="/images/empty_img_heart.gif"
               text="Tené a mano tus propiedades favoritas."
-              textButton="AGREGÁ TUS FAVORITOS"
+              textButton="AGREGÁ TUS FAVORITAS"
               buttonStyle="secondary shine"
               linkButton={PATHS.VENTA}
             />

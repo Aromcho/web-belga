@@ -13,6 +13,9 @@ export const PropertyListWrapper = styled.div`
     @media screen and (max-width: 1200px) {
       display: flex;
     }
+    @media screen and (max-width: 600px) {
+      max-width: 87%;
+    }
   }
 `;
 export const IconCloseWrapper = styled.ul`

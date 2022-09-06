@@ -231,8 +231,8 @@ export const BurgerMenu = styled.div`
   }
 
   .comprar--button-mobile {
-    width: 90%;
-    max-width: 300px;
+    width: calc(100% - 48px);
+    max-width: inherit;
     display: none;
     flex: 0 0 auto;
     margin: 50px auto 30px;
@@ -526,9 +526,6 @@ export const MenuContainer = styled.div`
     }
     ${MenuBrandWrapper} {
       height: 55px;
-      @media screen and (max-width: 840px) {
-        width: 120px;
-      }
       ${MenuBrand} {
         opacity: 0;
       }

@@ -645,7 +645,7 @@ export const PropertyList = observer(
                     handleOrderChange(formData.order === "ASC" ? "DESC" : "ASC")
                   }
                 >
-                  Ordernar por Precio <ChevronUpIcon className="order--icon" />
+                  Ordenar por Precio <ChevronUpIcon className="order--icon" />
                 </RowContent>
               )}
             </ContentWrapper>

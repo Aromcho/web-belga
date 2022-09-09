@@ -17,6 +17,7 @@ export interface QuoteCardProps {
   quote: string;
   author: string;
   logo: string;
+  id?: string;
 }
 
 export const QuoteCard = ({
@@ -26,6 +27,7 @@ export const QuoteCard = ({
   quote,
   author,
   logo,
+  id
 }: QuoteCardProps) => {
   return (
     <QuoteContainer href={link ?? " "} target="_blank" className={className}>
@@ -34,7 +36,7 @@ export const QuoteCard = ({
       </QuoteRating>
       <QuoteText>{quote}</QuoteText>
       <QuoteAuthor>{author}</QuoteAuthor>
-      <QuoteLogo src={logo} />
+      <QuoteLogo src={logo} id={id} loading="lazy" />
     </QuoteContainer>
   );
 };

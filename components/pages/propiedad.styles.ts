@@ -405,6 +405,9 @@ export const FeaturesFooter = styled.div`
   width: 100%;
   border-bottom: 1px solid ${(props: any) => props.theme.black};
   margin: 60px auto 0;
+  &.nm{
+    margin: 0 auto;
+  }
   .button--planos {
     margin: 0 auto 30px;
     @media screen and (max-width: 992px) {

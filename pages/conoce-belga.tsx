@@ -212,7 +212,7 @@ const ConoceBelga = observer(() => {
                       destacados que brindan al mercado un asesoramiento
                       inmobiliario distinguido.
                     </HistoriaText>
-                    <HistoriaText>
+                    <HistoriaText id="valores">
                       Somos el lugar donde nacen las historias.
                     </HistoriaText>
                   </HistoriaTextWrapper>
@@ -221,7 +221,7 @@ const ConoceBelga = observer(() => {
             </Container>
           </HistoriaSection>
 
-          <ValoresSection id="valores">
+          <ValoresSection>
             <Container>
               <UnderlineTitle>
                 Los <u>Valores</u> que heredamos
@@ -289,12 +289,13 @@ const ConoceBelga = observer(() => {
                   author="Favio Novello"
                   logo="/images/google_logo.png"
                   link="https://www.google.com/search?q=belga+juramento&oq=belga+juramento&aqs=chrome..69i57j0i22i30j69i60.5296j0j7&sourceid=chrome&ie=UTF-8#lrd=0x95bcb5d2fa0f781d:0x7a96ad3b6c0351f2,1"
+                  id="belga"
                 />
               </QuoteList>
             </Container>
           </QuotesSection>
 
-          <SomosBelgaSection id="belga">
+          <SomosBelgaSection>
             <Container>
               <UnderlineTitle>
                 <u>Somos Belga</u>
@@ -413,9 +414,10 @@ const ConoceBelga = observer(() => {
                 />
               </StaffList>
             </Container>
+            <div id="servicios"></div>
           </SomosBelgaSection>
 
-          <ServiciosSection id="servicios">
+          <ServiciosSection>
             <Container>
               <UnderlineTitle>
                 Los <u>Servicios</u> que ofrecemos
@@ -575,9 +577,10 @@ const ConoceBelga = observer(() => {
                 <PortalesFooter>PUBLICACIÓN EN PORTALES</PortalesFooter>
               </PortalesContainer>
             </Container>
+            <div id="oficinas"></div>
           </ServiciosSection>
 
-          <OficinasSection id="oficinas">
+          <OficinasSection>
             <Container>
               <UnderlineTitle>
                 Nuestras <u>Oficinas</u>, nuestras casas

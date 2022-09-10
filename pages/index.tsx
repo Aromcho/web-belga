@@ -108,7 +108,9 @@ const Home = observer(({ properties, emprendimientos }: any) => {
       </Head>
 
       <HeroWrapper>
-        <BlackLayer />
+        <video autoPlay muted loop id="myVideo">
+          <source src="/home-video.mp4" type="video/mp4" />
+        </video>
         <Hero>
           <SocialSidebar />
         </Hero>

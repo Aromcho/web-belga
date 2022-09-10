@@ -312,14 +312,14 @@ export const SearchFormWrapper = styled.div`
 export const HeroWrapper = styled.div`
   width: 100%;
   height: 100vh;
-  background-image: url("/../images/home_bg_hero.jpg");
+  /* background-image: url("/../images/home_bg_hero.jpg");
   background-position: center;
   background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
   overflow: hidden;
   position: relative;
   @media screen and (max-width: 992px) {
-    background-image: url("/../images/home_bg_hero_mobile.jpg");
+    /* background-image: url("/../images/home_bg_hero_mobile.jpg"); */
   }
   @media screen and (max-width: 840px) {
     height: auto;
@@ -327,6 +327,14 @@ export const HeroWrapper = styled.div`
   }
   @media screen and (max-width: 460px) {
     height: 100vh;
+  }
+  video {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 `;
 

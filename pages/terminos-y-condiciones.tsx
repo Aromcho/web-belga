@@ -1,14 +1,12 @@
 import React from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { PATHS } from "config";
-import { observer } from "mobx-react-lite";
-import { useStore } from "stores";
 
 import { Layout, Container } from "components/layout";
-import { SocialSidebar } from "components/socialsidebar";
-import { BackToTop } from "components/backtotop";
 
-import { ArrowBackIcon } from "components/icons";
+const BackToTop = dynamic<any>(() => import("components/backtotop").then((mod) => mod.BackToTop))
+const SocialSidebar = dynamic<any>(() => import("components/socialsidebar").then((mod) => mod.SocialSidebar))
 
 import {
   TerminosContainer,
@@ -19,10 +17,7 @@ import {
   Subtitle,
 } from "components/pages/terminos.styles";
 
-const Terminos = observer(() => {
-  const {
-    rootStore: { userStore },
-  } = useStore();
+const Terminos = () => {
 
   return (
     <Layout backToTopFooter>
@@ -33,7 +28,7 @@ const Terminos = observer(() => {
           <BackWrapper>
             <Link href={PATHS.ROOT}>
               <a className="back--link">
-                <ArrowBackIcon />
+                <BackToTop />
                 Volver al inicio
               </a>
             </Link>
@@ -364,6 +359,6 @@ const Terminos = observer(() => {
       </TerminosContainer>
     </Layout>
   );
-});
+};
 
 export default Terminos;

@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { observer } from "mobx-react-lite";
 import { PATHS } from "config";
 import { classes, truncateWithEllipsis } from "helpers";
@@ -8,15 +9,15 @@ import { useMergeState } from "helpers/hooks";
 import Lightbox, { ImagesListType } from "react-spring-lightbox";
 
 import { Layout, Container } from "components/layout";
-import { ContactForm } from "components/forms/contactform";
-import { SocialSidebar } from "components/socialsidebar";
-import { BackToTop } from "components/backtotop";
-import { MemberCard } from "components/pages/conoce/memberCard";
-import { QuoteCard } from "components/pages/conoce/quoteCard";
 import { ArrowBackIcon, ArrowSubmitIcon, CloseIcon } from "components/icons";
 
+const SocialSidebar = dynamic<any>(() => import("components/socialsidebar").then((mod) => mod.SocialSidebar))
+const BackToTop = dynamic<any>(() => import("components/backtotop").then((mod) => mod.BackToTop))
+const MemberCard = dynamic<any>(() => import("components/pages/conoce/memberCard").then((mod) => mod.MemberCard))
+const QuoteCard = dynamic<any>(() => import("components/pages/conoce/quoteCard").then((mod) => mod.QuoteCard))
+const ContactForm = dynamic<any>(() => import("components/forms/contactform").then((mod) => mod.ContactForm))
+
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";

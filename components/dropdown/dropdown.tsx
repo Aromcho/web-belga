@@ -7,7 +7,7 @@ import {
   DivClose
 } from './dropdown.styles';
 
-export interface dropdownProps {
+export interface DropdownProps {
   className?: string;
   placeholder: string;
   children?: any;
@@ -15,7 +15,7 @@ export interface dropdownProps {
   close?: boolean;
 }
 
-export const Dropdown = ({value, className, placeholder, children, close}: dropdownProps) => {
+export const Dropdown = ({value, className, placeholder, children, close}: DropdownProps) => {
 
   React.useEffect(() => {
     if(typeof close === "boolean"){

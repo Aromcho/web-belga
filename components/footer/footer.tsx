@@ -1,19 +1,15 @@
-import React, { HtmlHTMLAttributes, useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { classes, getWindowDimensions } from "helpers";
 import { PATHS, SOCIAL } from "config";
 
-import { MapProps } from "components/map/map";
-const DynamicMap = dynamic<MapProps>(
-  () => import("components/map").then((mod) => mod.Map),
-  { ssr: false }
-);
-
 import { TitleWithIcon } from "components/titlewithicon";
-import { ContactForm } from "components/forms/contactform";
-import { BackToTop } from "components/backtotop";
+import { MapProps } from "components/map/map";
+const DynamicMap = dynamic<MapProps>(() => import("components/map").then((mod) => mod.Map), { ssr: false });
+const BackToTop = dynamic<any>(() => import("components/backtotop").then((mod) => mod.BackToTop))
+const ContactForm = dynamic<any>(() => import("components/forms/contactform").then((mod) => mod.ContactForm))
+
 import {
   FacebookCircleIcon,
   InstaCircleIcon,
@@ -62,7 +58,6 @@ export interface FooterProps {
 }
 
 export const Footer = ({ small = true, id, backToTopFooter }: FooterProps) => {
-  const router = useRouter();
 
   const legalInfo = {
     text: "*Para los casos de alquiler de vivienda, el monto máximo de comisión que se le puede requerir a los propietarios será el equivalente al cuatro con quince centésimos por ciento (4,15%) del valor total del respectivo contrato. Se encuentra prohibido cobrar comisiones inmobiliarias y gastos de gestoría de informes a los inquilinos que sean personas físicas.",
@@ -104,7 +99,6 @@ export const Footer = ({ small = true, id, backToTopFooter }: FooterProps) => {
   const setHigh = (n: number) => {
     setHighB(n);
     const item = data.find((item) => item.id === n);
-    // if(item) setCenter(item?.loc as any || { lat: -34.5608544, lon: -58.4557807, zoom: 13})
     if (item) setCenter(item?.loc as any);
   };
 

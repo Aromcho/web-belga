@@ -33,8 +33,6 @@ import {
 import {
   TelIcon,
   WhatsappIcon,
-  MenuBurgerIcon,
-  CloseIcon,
   BelgaIsoIcon,
   SearchIcon,
   HeartIcon,
@@ -78,14 +76,6 @@ export const Menu = ({ theme = "light" }: MenuProps) => {
           <MenuInfoItem>La imprenta</MenuInfoItem>
           <MenuInfoItem>Belgrano C</MenuInfoItem>
           <MenuInfoItem>Belgrano R</MenuInfoItem>
-
-          {/* <MenuInfoItem>
-            <Link href="tel:+541152633393">
-              <a className="info--link">
-                <TelIcon /> +54 11 5263 3393
-              </a>
-            </Link>
-          </MenuInfoItem> */}
 
           <MenuInfoItem>
             <Link href="https://api.whatsapp.com/send?phone=5491152633393&text=Hola%20Belga!%20%F0%9F%91%8B%20Quisiera%20hacerles%20una%20consulta.">
@@ -150,8 +140,6 @@ export const Menu = ({ theme = "light" }: MenuProps) => {
               <Line />
               <Line />
             </BurgerCrossCustom>
-            {/* <MenuBurgerIcon className={classes({ active: !showMenu })} />
-            <CloseIcon className={classes({ active: showMenu })} /> */}
           </IconWrapper>
         </BurgerButton>
 

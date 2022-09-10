@@ -1,12 +1,16 @@
 import React from "react";
 import { GetServerSideProps } from "next";
-import { Layout } from "components/layout";
+import dynamic from "next/dynamic";
 import { getProperties } from "services";
+
+import { Layout } from "components/layout";
 import { parseTokkoParameters, operationTypes } from "helpers/tokko";
-import { PropertyList } from "components/propertylist";
-import { BackToTop } from "components/backtotop";
-import Error404 from "./404";
-import Error500 from "./500";
+import { PropertyListProps } from "components/propertylist/propertylist";
+
+const Error500 = dynamic<any>(() => import("pages/500"))
+const Error404 = dynamic<any>(() => import("pages/404"))
+const BackToTop = dynamic<any>(() => import("components/backtotop").then((mod) => mod.BackToTop))
+const PropertyList = dynamic<PropertyListProps>(() => import("components/propertylist").then((mod) => mod.PropertyList))
 
 
 

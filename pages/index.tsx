@@ -1,11 +1,13 @@
 import React from "react";
+import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { PATHS } from "config";
 import { useRouter } from "next/router";
-import { GetServerSideProps } from "next";
-import { getDevelopments, getProperties } from "services";
+import dynamic from "next/dynamic";
+import { PATHS } from "config";
 import { observer } from "mobx-react-lite";
+
+import { getDevelopments, getProperties } from "services";
 import { useStore } from "stores";
 import { formatToMoney, getDropdownValue, Property } from "helpers";
 import { useMergeState } from "helpers/hooks";
@@ -13,16 +15,23 @@ import { neighborhoods } from "helpers/neighborhoods";
 import { getSearchUrl, propertiesSelectOptions } from "helpers/tokko";
 
 import { Layout, Container } from "components/layout";
-import { SocialSidebar } from "components/socialsidebar";
 import { Title } from "components/title";
-import { CardProp } from "components/cardprop";
-import { Input } from "components/input";
-import { Button } from "components/button";
-import { MultiRange } from "components/multirange";
-import { Dropdown } from "components/dropdown";
-import { Select } from "components/select";
 import { MailIcon, TelIcon, WhatsappIcon } from "components/icons";
-import { BackToTop } from "components/backtotop";
+
+import { SelectProps } from "components/select/select";
+import { InputProps } from "components/input/input";
+import { CardPropProps } from "components/cardprop/cardprop";
+import { MultiRangeProps } from "components/multirange/multirange";
+import { DropdownProps } from "components/dropdown/dropdown";
+
+const Button = dynamic<any>(() => import("components/button").then((mod) => mod.Button))
+const CardProp = dynamic<CardPropProps>(() => import("components/cardprop").then((mod) => mod.CardProp))
+const BackToTop = dynamic<any>(() => import("components/backtotop").then((mod) => mod.BackToTop))
+const SocialSidebar = dynamic<any>(() => import("components/socialsidebar").then((mod) => mod.SocialSidebar))
+const MultiRange = dynamic<MultiRangeProps>(() => import("components/multirange").then((mod) => mod.MultiRange))
+const Input = dynamic<InputProps>(() => import("components/input").then((mod) => mod.Input))
+const Select = dynamic<SelectProps>(() => import("components/select").then((mod) => mod.Select))
+const Dropdown = dynamic<DropdownProps>(() => import("components/dropdown").then((mod) => mod.Dropdown))
 
 import {
   HeroWrapper,
@@ -46,6 +55,7 @@ import {
   DropdownRow,
   RowLabel,
 } from "components/pages/home.styles";
+
 
 const Home = observer(({ properties, emprendimientos }: any) => {
   const {

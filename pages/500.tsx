@@ -1,10 +1,11 @@
 import React from "react";
 import Link from "next/link";
 import { PATHS, SOCIAL } from "config";
+import dynamic from "next/dynamic";
 
 import { Container, Layout } from "components/layout";
-import { Button } from "components/button";
-import { ArrowBackIcon } from "components/icons";
+const Button = dynamic<any>(() => import("components/button").then((mod) => mod.Button))
+const ArrowBackIcon = dynamic<any>(() => import("components/icons").then((mod) => mod.ArrowBackIcon))
 
 import {
   ErrorContainer,

@@ -1,47 +1,5 @@
 import styled from "@emotion/styled";
 
-export const HeroFooter = styled.div`
-  width: 100%;
-  max-width: 280px;
-  display: none;
-  justify-content: space-between;
-  margin: 50px auto 0;
-  @media screen and (max-width: 992px) {
-    display: flex;
-  }
-  .head--footer-link {
-    width: 55px;
-    height: 55px;
-    align-items: center;
-    flex: 0 0 auto;
-    background-color: ${(props: any) => props.theme.white};
-    border: 1px solid ${(props: any) => props.theme.primary};
-    border-radius: 100%;
-    display: flex;
-    justify-content: center;
-    svg {
-      width: 30px;
-      height: auto;
-      color: ${(props: any) => props.theme.secondary};
-    }
-
-    &.mail {
-      background-color: ${(props: any) => props.theme.secondary};
-      border-color: 1px solid ${(props: any) => props.theme.primary};
-      svg {
-        color: ${(props: any) => props.theme.white};
-      }
-    }
-    &.wsp {
-      background-color: ${(props: any) => props.theme.wspGreen};
-      border-color: ${(props: any) => props.theme.white};
-      svg {
-        color: ${(props: any) => props.theme.white};
-      }
-    }
-  }
-`;
-
 export const PropList = styled.div`
   width: 100%;
   display: flex;

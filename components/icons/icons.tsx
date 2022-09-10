@@ -224,11 +224,11 @@ export const CloseIcon = (props: any) => (
 
 export const TelIcon = (props: any) => (
   <svg
-    {...props}
     xmlns="http://www.w3.org/2000/svg"
     width="24"
     height="24"
     viewBox="0 0 24 24"
+    {...props}
   >
     <g transform="translate(-379 -277)">
       <rect width="24" height="24" transform="translate(379 277)" fill="none" />

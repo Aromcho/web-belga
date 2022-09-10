@@ -16,7 +16,6 @@ import { getSearchUrl, propertiesSelectOptions } from "helpers/tokko";
 
 import { Layout, Container } from "components/layout";
 import { Title } from "components/title";
-import { MailIcon, TelIcon, WhatsappIcon } from "components/icons";
 
 import { SelectProps } from "components/select/select";
 import { InputProps } from "components/input/input";
@@ -51,7 +50,6 @@ import {
   PriceText,
   PriceInputWrapper,
   InputDivider,
-  HeroFooter,
   DropdownRow,
   RowLabel,
 } from "components/pages/home.styles";
@@ -269,24 +267,6 @@ const Home = observer(({ properties, emprendimientos }: any) => {
                 link={PATHS.QUIEROVENDER}
               />
             </SearchRow>
-
-            <HeroFooter>
-              <Link href="tel:+541152633393">
-                <a className="head--footer-link phone" target="_blank">
-                  <TelIcon />
-                </a>
-              </Link>
-              <Link href="mailto:info@belga.com.ar">
-                <a className="head--footer-link mail" target="_blank">
-                  <MailIcon />
-                </a>
-              </Link>
-              <Link href="https://api.whatsapp.com/send?phone=5491169462894&text=Hola%20Belga!%20%F0%9F%91%8B%20Quisiera%20hacerles%20una%20consulta.">
-                <a className="head--footer-link wsp" target="_blank">
-                  <WhatsappIcon />
-                </a>
-              </Link>
-            </HeroFooter>
           </SearchFormWrapper>
         </Container>
       </HeroWrapper>

@@ -19,6 +19,41 @@ export const Container = styled.div`
   }
 `;
 
+export const HeroFooter = styled.div`
+  width: 100%;
+  max-width: 87%;
+  display: none;
+  @media screen and (max-width: 992px) {
+    justify-content: space-between;
+    position: fixed;
+    display: flex;
+    bottom: 15%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 999999999
+  }
+  .head--footer-link {
+    width: 89px;
+    height: 30px;
+    align-items: center;
+    flex: 0 0 auto;
+    background-color: ${(props: any) => props.theme.secondary};
+    /* border-radius: 100%; */
+    display: flex;
+    justify-content: center;
+    svg {
+      width: 15px;
+      height: auto;
+      color: ${(props: any) => props.theme.white};
+    }
+
+    &.wsp {
+      background-color: ${(props: any) => props.theme.wspGreen};
+    }
+  }
+`;
+
 export const GlobalStyles = css`
   a,
   abbr,
@@ -206,3 +241,5 @@ export const GlobalStyles = css`
     }
   }
 `;
+
+

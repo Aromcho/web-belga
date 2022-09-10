@@ -1,16 +1,18 @@
 import React from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { PATHS } from "config";
 import { observer } from "mobx-react-lite";
 import { useStore } from "stores";
 import { Property } from "helpers";
-import axios from "axios";
 
 import { Layout, Container } from "components/layout";
-import { PropertyList } from "components/propertylist";
-import { ContactForm } from "components/forms/contactform";
-import { ArrowBackIcon } from "components/icons";
-import { Status } from "components/status";
+import { PropertyListProps } from "components/propertylist/propertylist";
+
+const PropertyList = dynamic<PropertyListProps>(() => import("components/propertylist").then((mod) => mod.PropertyList))
+const ContactForm = dynamic<any>(() => import("components/forms/contactform").then((mod) => mod.ContactForm))
+const Status = dynamic<any>(() => import("components/status").then((mod) => mod.Status))
+const ArrowBackIcon = dynamic<any>(() => import("components/icons").then((mod) => mod.ArrowBackIcon))
 
 import {
   FavoritesContainer,
@@ -27,18 +29,21 @@ const Favorites = observer(() => {
   const [favs, setFavs] = React.useState<Property[]>([]);
   const [status, setStatus] = React.useState<string>("loading");
 
+  const getFavorites = async () => {
+    const axios = (await import("axios")).default;
+    axios
+      .get("/api/favorites", {
+        params: { list: userStore.favorites.join(",") },
+      })
+      .then(({ data }) => {
+        setFavs(data);
+        setStatus("finish");
+      });
+  }
+
   React.useEffect(() => {
     if (userStore.favorites.length > 0) {
-      axios
-        .get("/api/favorites", {
-          params: { list: userStore.favorites.join(",") },
-        })
-        .then(({ data }) => {
-          setFavs(data);
-          setStatus("finish");
-        });
-
-      // setFavs()
+      getFavorites();
     } else {
       setStatus("empty");
     }

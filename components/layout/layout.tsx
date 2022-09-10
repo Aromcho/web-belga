@@ -1,8 +1,12 @@
 import React from "react";
+import dynamic from "next/dynamic";
 import { Global as GlobalStyling } from "@emotion/react";
 
-import { Footer } from "components/footer";
-import { Menu } from "components/menu";
+import { MenuProps } from "components/menu/menu";
+import { FooterProps } from "components/footer/footer";
+
+const Menu = dynamic<MenuProps>(() => import("components/menu").then((mod) => mod.Menu))
+const Footer = dynamic<FooterProps>(() => import("components/footer").then((mod) => mod.Footer))
 
 import { LayoutWrapper, GlobalStyles } from "./layout.styles";
 

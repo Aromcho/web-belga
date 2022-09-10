@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { observer } from "mobx-react-lite";
 
 import { CardProp } from "components/cardprop";
 import { ArrowBackIcon, ChevronUpIcon, CloseIcon } from "components/icons";
 import { ContactForm } from "components/forms/contactform";
-import { Select } from "components/select";
 import { Container } from "components/layout";
 
 import { classes, getDropdownValue, Property } from "helpers";
@@ -23,11 +23,16 @@ import { useStore } from "stores";
 import { PATHS } from "config";
 
 import { DropdownRow, RowLabel } from "components/pages/home.styles";
-import { Dropdown } from "components/dropdown";
-import { Input } from "components/input";
 import { Button } from "components/button";
-import { SaveSearch } from "components/savesearch";
-import { SocialSidebar } from "components/socialsidebar";
+import { SelectProps } from "components/select/select";
+import { DropdownProps } from "components/dropdown/dropdown";
+import { InputProps } from "components/input/input";
+
+const Input = dynamic<InputProps>(() => import("components/input").then((mod) => mod.Input))
+const Dropdown = dynamic<DropdownProps>(() => import("components/dropdown").then((mod) => mod.Dropdown))
+const SaveSearch = dynamic<any>(() => import("components/savesearch").then((mod) => mod.SaveSearch))
+const SocialSidebar = dynamic<any>(() => import("components/socialsidebar").then((mod) => mod.SocialSidebar))
+const Select = dynamic<SelectProps>(() => import("components/select").then((mod) => mod.Select))
 
 import {
   FiltersContainer,
@@ -46,7 +51,7 @@ import {
   IconCloseWrapper,
 } from "./propertylist.styles";
 
-export interface propertylistProps {
+export interface PropertyListProps {
   properties: Property[];
   filters?: boolean;
   saveSearch?: boolean;
@@ -77,7 +82,7 @@ export const PropertyList = observer(
     withForm = true,
     withCount = true,
     paddingTop,
-  }: propertylistProps) => {
+  }: PropertyListProps) => {
     const {
       rootStore: { userStore },
     } = useStore();

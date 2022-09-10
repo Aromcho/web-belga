@@ -1,9 +1,12 @@
 import React from "react";
 import { GetServerSideProps } from "next";
-import { Layout } from "components/layout";
+import dynamic from "next/dynamic";
 import { getProperties } from "services";
-import { PropertyList } from "components/propertylist";
-import { BackToTop } from "components/backtotop";
+
+import { Layout } from "components/layout";
+import { PropertyListProps } from "components/propertylist/propertylist";
+const BackToTop = dynamic<any>(() => import("components/backtotop").then((mod) => mod.BackToTop))
+const PropertyList = dynamic<PropertyListProps>(() => import("components/propertylist").then((mod) => mod.PropertyList))
 
 const PropertySearch = ({ data }: any) => {
   return (

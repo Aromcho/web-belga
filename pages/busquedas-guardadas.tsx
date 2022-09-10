@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { PATHS } from "config";
+import dynamic from "next/dynamic";
 import { observer } from "mobx-react-lite";
 import { useStore } from "stores";
+import { PATHS } from "config";
 
 import { Layout, Container } from "components/layout";
 import { ArrowBackIcon } from "components/icons";
-import { ContactForm } from "components/forms/contactform";
-import { Status } from "components/status";
-import { BusquedaCard } from "components/busquedacard";
+
+import { BusquedaCardProps } from "components/busquedacard/busquedacard";
+const BusquedaCard = dynamic<BusquedaCardProps>(() => import("components/busquedacard").then((mod) => mod.BusquedaCard))
+const Status = dynamic<any>(() => import("components/status").then((mod) => mod.Status))
+const ContactForm = dynamic<any>(() => import("components/forms/contactform").then((mod) => mod.ContactForm))
 
 import {
   BackWrapper,

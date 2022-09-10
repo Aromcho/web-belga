@@ -1,23 +1,21 @@
 import React from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+
 import { PATHS } from "config";
-import { observer } from "mobx-react-lite";
-import { useStore } from "stores";
+
 import { Layout, Container } from "components/layout";
-import { VenderForm } from "components/forms/venderform";
 import { ArrowBackIcon } from "components/icons";
+const VenderForm = dynamic<any>(() => import("components/forms/venderform").then((mod) => mod.VenderForm))
 
 import {
   QuieroVenderContainer,
   BackWrapper,
   FormWrapper,
 } from "components/pages/quieroVender.styles";
-import { classes, getWindowDimensions } from "helpers";
+import { getWindowDimensions } from "helpers";
 
-const QuieroVender = observer(() => {
-  const {
-    rootStore: { userStore },
-  } = useStore();
+const QuieroVender = () => {
 
   /* Handle resize screen */
   const [windowDimensions, setWindowDimensions] = React.useState(
@@ -51,6 +49,6 @@ const QuieroVender = observer(() => {
       </QuieroVenderContainer>
     </Layout>
   );
-});
+};
 
 export default QuieroVender;

@@ -1,6 +1,7 @@
 import React from "react";
 import parse from "html-react-parser";
 import dynamic from "next/dynamic";
+import Head from "next/head";
 import { GetServerSideProps } from "next";
 import { Layout, Container } from "components/layout";
 import {
@@ -12,22 +13,21 @@ import { PATHS } from "config";
 import Link from "next/link";
 import { useMergeState } from "helpers/hooks";
 import { classes, getDevelopmentsData } from "helpers";
-import { MapProps } from "components/map/map";
-const DynamicMap = dynamic<MapProps>(
-  () => import("components/map").then((mod) => mod.Map),
-  { ssr: false }
-);
-import Head from "next/head";
 import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Lightbox, { ImagesListType } from "react-spring-lightbox";
 
 import { Button } from "components/button";
-import { ContactForm } from "components/forms/contactform";
-import { BackToTop } from "components/backtotop";
-import { SocialSidebar } from "components/socialsidebar";
-import Error404 from "pages/404";
-import Error500 from "pages/500";
+import { MapProps } from "components/map/map";
+const DynamicMap = dynamic<MapProps>(
+  () => import("components/map").then((mod) => mod.Map),
+  { ssr: false }
+);
+const ContactForm = dynamic<any>(() => import("components/forms/contactform").then((mod) => mod.ContactForm))
+const SocialSidebar = dynamic<any>(() => import("components/socialsidebar").then((mod) => mod.SocialSidebar))
+const BackToTop = dynamic<any>(() => import("components/backtotop").then((mod) => mod.BackToTop))
+const Error500 = dynamic<any>(() => import("pages/500"))
+const Error404 = dynamic<any>(() => import("pages/404"))
 
 import {
   PropContainer,
@@ -61,8 +61,6 @@ import {
   MoreItem,
   MoreItemText,
   MapProp,
-  SimilarProps,
-  PropList,
 
   /* LigthBox */
   ArrowGallery,

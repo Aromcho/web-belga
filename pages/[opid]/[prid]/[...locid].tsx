@@ -1,11 +1,15 @@
 import React from "react";
 import { GetServerSideProps } from "next";
-import { Layout } from "components/layout";
+import dynamic from "next/dynamic";
+
 import { getProperties } from "services";
 import { parseTokkoParameters } from "helpers/tokko";
-import { PropertyList } from "components/propertylist";
-import Error404 from 'pages/404';
-import Error500 from 'pages/500';
+
+import { Layout } from "components/layout";
+import { PropertyListProps } from "components/propertylist/propertylist";
+const PropertyList = dynamic<PropertyListProps>(() => import("components/propertylist").then((mod) => mod.PropertyList))
+const Error500 = dynamic<any>(() => import("pages/500"))
+const Error404 = dynamic<any>(() => import("pages/404"))
 
 const PropertySearch = ({ data, statusCode, query }: any) => {
   if (statusCode === 404) return <Error404 />

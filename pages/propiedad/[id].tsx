@@ -1,27 +1,27 @@
 import React from "react";
+import { GetServerSideProps } from "next";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import Head from "next/head";
-import parse from "html-react-parser";
 import { useMergeState } from "helpers/hooks";
 import { classes, formatToMoney } from "helpers";
 import { getProperties, getPropertyById } from "services";
 import { PATHS } from "config";
-import { GetServerSideProps } from "next";
 import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Lightbox, { ImagesListType } from "react-spring-lightbox";
 
-import { MapProps } from "components/map/map";
 import { Layout, Container } from "components/layout";
-import { Button } from "components/button";
-import { ContactForm } from "components/forms/contactform";
 import { Title } from "components/title";
-import { CardProp } from "components/cardprop";
-import { BackToTop } from "components/backtotop";
-import { SocialSidebar } from "components/socialsidebar";
-import Error404 from "pages/404";
-import Error500 from "pages/500";
+import { MapProps } from "components/map/map";
+import { CardPropProps } from "components/cardprop/cardprop";
+const Button = dynamic<any>(() => import("components/button").then((mod) => mod.Button))
+const ContactForm = dynamic<any>(() => import("components/forms/contactform").then((mod) => mod.ContactForm))
+const CardProp = dynamic<CardPropProps>(() => import("components/cardprop").then((mod) => mod.CardProp))
+const BackToTop = dynamic<any>(() => import("components/backtotop").then((mod) => mod.BackToTop))
+const SocialSidebar = dynamic<any>(() => import("components/socialsidebar").then((mod) => mod.SocialSidebar))
+const Error500 = dynamic<any>(() => import("pages/500"))
+const Error404 = dynamic<any>(() => import("pages/404"))
 import {
   ArrowBackIcon,
   ArrowSubmitIcon,
@@ -491,9 +491,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
             <BodyDesc>
               <DescTitle>Descripción</DescTitle>
 
-              <DescText>
-                {parse(property.rich_description ?? property.description)}
-              </DescText>
+              {property.description && <DescText dangerouslySetInnerHTML={{__html: property.description}} />}
             </BodyDesc>
           </BodyProp>
 

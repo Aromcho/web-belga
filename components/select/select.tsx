@@ -5,7 +5,7 @@ import {
   SelectWrapper
 } from './select.styles';
 
-export interface selectProps {
+export interface SelectProps {
   options: {
     value: string | number;
     label: string
@@ -24,7 +24,7 @@ export interface selectProps {
   fixes?: boolean;
 }
 
-export const Select = ({value, onChange, isSearchable = true, hideSelectedOptions = false, className, options, isMulti = false, styles, placeholder, fixes = false}: selectProps) => {
+export const Select = ({value, onChange, isSearchable = true, hideSelectedOptions = false, className, options, isMulti = false, styles, placeholder, fixes = false}: SelectProps) => {
   return (
     <SelectWrapper className={className}>
       <CustomSelect 

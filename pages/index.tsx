@@ -21,7 +21,7 @@ import { Button } from "components/button";
 import { MultiRange } from "components/multirange";
 import { Dropdown } from "components/dropdown";
 import { Select } from "components/select";
-import { MailIcon, TelIcon, WhatsappIcon } from "components/icons";
+import { MailIconSend, TelIcon, WhatsappIcon } from "components/icons";
 import { BackToTop } from "components/backtotop";
 
 import {
@@ -268,7 +268,7 @@ const Home = observer(({ properties, emprendimientos }: any) => {
               </Link>
               <Link href="mailto:info@belga.com.ar">
                 <a className="head--footer-link mail" target="_blank">
-                  <MailIcon />
+                  <MailIconSend />
                 </a>
               </Link>
               <Link href="https://api.whatsapp.com/send?phone=5491169462894&text=Hola%20Belga!%20%F0%9F%91%8B%20Quisiera%20hacerles%20una%20consulta.">

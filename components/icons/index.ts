@@ -13,6 +13,7 @@ export {
   TelIcon,
   BelgaIsoIcon,
   MailIcon,
+  MailIconSend,
   LocationIcon,
   SearchIcon,
   HeartIcon,

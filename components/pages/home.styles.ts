@@ -24,11 +24,12 @@ export const HeroFooter = styled.div`
       height: auto;
       color: ${(props: any) => props.theme.secondary};
     }
-
+    
     &.mail {
       background-color: ${(props: any) => props.theme.secondary};
       border-color: 1px solid ${(props: any) => props.theme.primary};
       svg {
+        width: 39px;
         color: ${(props: any) => props.theme.white};
       }
     }

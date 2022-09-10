@@ -4,7 +4,7 @@ import { Global as GlobalStyling } from "@emotion/react";
 
 import { MenuProps } from "components/menu/menu";
 import { FooterProps } from "components/footer/footer";
-import { MailIcon, TelIcon, WhatsappIcon } from "components/icons";
+import { MailIconSend, TelIcon, WhatsappIcon } from "components/icons";
 
 const Menu = dynamic<MenuProps>(() => import("components/menu").then((mod) => mod.Menu))
 const Footer = dynamic<FooterProps>(() => import("components/footer").then((mod) => mod.Footer))
@@ -30,7 +30,7 @@ export const Layout = ({ children, menuTheme, footerSmall }: LayoutProps) => {
           <TelIcon />
         </a>
         <a href="mailto:info@belga.com.ar" className="head--footer-link mail" target="_blank">
-          <MailIcon />
+          <MailIconSend />
         </a>
         <a href="https://api.whatsapp.com/send?phone=5491169462894&text=Hola%20Belga!%20%F0%9F%91%8B%20Quisiera%20hacerles%20una%20consulta." className="head--footer-link wsp" target="_blank">
           <WhatsappIcon />

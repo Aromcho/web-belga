@@ -23,14 +23,30 @@ import { CardPropProps } from "components/cardprop/cardprop";
 import { MultiRangeProps } from "components/multirange/multirange";
 import { DropdownProps } from "components/dropdown/dropdown";
 
-const Button = dynamic<any>(() => import("components/button").then((mod) => mod.Button))
-const CardProp = dynamic<CardPropProps>(() => import("components/cardprop").then((mod) => mod.CardProp))
-const BackToTop = dynamic<any>(() => import("components/backtotop").then((mod) => mod.BackToTop))
-const SocialSidebar = dynamic<any>(() => import("components/socialsidebar").then((mod) => mod.SocialSidebar))
-const MultiRange = dynamic<MultiRangeProps>(() => import("components/multirange").then((mod) => mod.MultiRange))
-const Input = dynamic<InputProps>(() => import("components/input").then((mod) => mod.Input))
-const Select = dynamic<SelectProps>(() => import("components/select").then((mod) => mod.Select))
-const Dropdown = dynamic<DropdownProps>(() => import("components/dropdown").then((mod) => mod.Dropdown))
+const Button = dynamic<any>(() =>
+  import("components/button").then((mod) => mod.Button)
+);
+const CardProp = dynamic<CardPropProps>(() =>
+  import("components/cardprop").then((mod) => mod.CardProp)
+);
+const BackToTop = dynamic<any>(() =>
+  import("components/backtotop").then((mod) => mod.BackToTop)
+);
+const SocialSidebar = dynamic<any>(() =>
+  import("components/socialsidebar").then((mod) => mod.SocialSidebar)
+);
+const MultiRange = dynamic<MultiRangeProps>(() =>
+  import("components/multirange").then((mod) => mod.MultiRange)
+);
+const Input = dynamic<InputProps>(() =>
+  import("components/input").then((mod) => mod.Input)
+);
+const Select = dynamic<SelectProps>(() =>
+  import("components/select").then((mod) => mod.Select)
+);
+const Dropdown = dynamic<DropdownProps>(() =>
+  import("components/dropdown").then((mod) => mod.Dropdown)
+);
 
 import {
   HeroWrapper,
@@ -53,7 +69,6 @@ import {
   DropdownRow,
   RowLabel,
 } from "components/pages/home.styles";
-
 
 const Home = observer(({ properties, emprendimientos }: any) => {
   const {

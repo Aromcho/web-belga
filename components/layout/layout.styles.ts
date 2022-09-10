@@ -43,7 +43,7 @@ export const HeroFooter = styled.div`
     display: flex;
     justify-content: center;
     svg {
-      width: 15px;
+      width: 18px;
       height: auto;
       color: ${(props: any) => props.theme.white};
     }

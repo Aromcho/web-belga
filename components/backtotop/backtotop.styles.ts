@@ -11,7 +11,7 @@ export const BackToTopContainer = styled.div`
   pointer-events: none;
   z-index: 99999999999999;
   position: fixed;
-  bottom: 5%;
+  bottom: 13%;
   right: 30px;
   &:hover {
     cursor: pointer;

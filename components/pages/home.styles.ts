@@ -224,6 +224,9 @@ export const SearchRow = styled.div`
   }
   &.second--row {
     margin-bottom: 10px;
+    @media screen and (max-width: 992px) {
+      margin-bottom: 0px;
+    }
   }
   &.third--row {
     margin-top: -10px;
@@ -270,7 +273,7 @@ export const SearchRow = styled.div`
       @media screen and (max-width: 992px) {
         width: 100%;
         max-width: 100%;
-        margin: 0 0 25px 0;
+        margin: 0 0 15px 0;
       }
       input {
         @media screen and (max-width: 992px) {

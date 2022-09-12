@@ -27,7 +27,7 @@ export const HeroFooter = styled.div`
     justify-content: space-between;
     position: fixed;
     display: flex;
-    bottom: 15%;
+    bottom: 5%;
     left: 0;
     right: 0;
     margin: auto;
@@ -35,7 +35,7 @@ export const HeroFooter = styled.div`
   }
   .head--footer-link {
     width: 89px;
-    height: 30px;
+    height: 38px;
     align-items: center;
     flex: 0 0 auto;
     background-color: ${(props: any) => props.theme.secondary};
@@ -43,7 +43,7 @@ export const HeroFooter = styled.div`
     display: flex;
     justify-content: center;
     svg {
-      width: 18px;
+      width: 20px;
       height: auto;
       color: ${(props: any) => props.theme.white};
     }

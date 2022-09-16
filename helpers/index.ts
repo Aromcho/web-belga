@@ -150,7 +150,7 @@ export const getPropertyValuesForFilter = (v: string) => {
   }
 };
 
-export const getDropdownValue = (min: any, max: any, type?: string) => {
+export const getDropdownValue = (min: any, max: any, type?: string, search = false) => {
   let st = "";
 
   if (typeof min === "string") {
@@ -161,8 +161,10 @@ export const getDropdownValue = (min: any, max: any, type?: string) => {
     if (max === "") max = 0;
     else max = parseInt(max);
   }
-
-  if (min === 0 && max === 0) return "";
+  
+  if(!min) min = 0
+  if(!max) max = 0
+  
   if (min > 0 && max == 0) st = `Min. ${type ?? ""} ${min}`;
   if (max > 0 && min == 0) st = `Max. ${type ?? ""} ${max}`;
   if (max > 0 && min > 0) {
@@ -173,6 +175,15 @@ export const getDropdownValue = (min: any, max: any, type?: string) => {
     }
   }
   if (max === min) st = `${type ?? "Min."} ${min}`;
+
+  if(search){
+    if(min === 0 && max === 0) {
+      st = '-'
+    }
+  } else {
+    if (min === 0 && max === 0) return "";
+  }
+
   return st;
 };
 

@@ -12,7 +12,7 @@ export const InfoPos = styled.div`
     max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 14px;
+    font-size: 10px;
     text-align: left;
   }
 `;
@@ -29,7 +29,7 @@ export const InfoName = styled.div`
     max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 14px;
+    font-size: 12px;
     text-align: left;
     margin: 0 auto 10px;
   }
@@ -68,7 +68,8 @@ export const MemberImg = styled.div`
   filter: grayscale(1);
   transition: all 0.3s ease-in-out;
   @media screen and (max-width: 640px) {
-    height: 163px;
+    height: auto;
+    padding-top: 100%;
     filter: grayscale(0);
   }
 `;

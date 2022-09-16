@@ -174,9 +174,9 @@ export const getSearchUrl = (params: any) => {
   if (params.max_baths && params.max_baths > 0)
     query["baths_to"] = params.max_baths;
   if (params.parking_lot_to && params.parking_lot_to > 0)
-    query["baths_from"] = params.parking_lot_to;
+    query["parking_lot_to"] = params.parking_lot_to;
   if (params.parking_lot_from && params.parking_lot_from > 0)
-    query["baths_to"] = params.parking_lot_from;
+    query["parking_lot_from"] = params.parking_lot_from;
 
   if (params.order) query["order"] = params.order;
 

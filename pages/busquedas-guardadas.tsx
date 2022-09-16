@@ -19,6 +19,7 @@ import {
   FormWrapper,
   Title,
   BusquedasList,
+  Subtitle,
 } from "components/pages/busquedasGuardadas.styles";
 
 const BusquedasGuardadas = observer(() => {
@@ -73,6 +74,9 @@ const BusquedasGuardadas = observer(() => {
                 ))}
               </BusquedasList>
 
+              <Container>
+                <Subtitle>Encontrá lo que estás buscando.</Subtitle>
+              </Container>
               <FormWrapper>
                 <ContactForm full />
               </FormWrapper>

@@ -14,7 +14,6 @@ import {
   QueryProp,
 } from "./busquedacard.styles";
 import { formatToMoney, getDropdownValue } from "helpers";
-import { getSearchUrl } from "helpers/tokko";
 
 export interface BusquedaCardProps {
   className?: string;
@@ -37,14 +36,6 @@ export const BusquedaCard = ({
       <BusquedaWrapper>
         <QueryList>
           <QueryColumn>
-            {search.locid?.length > 0 && (
-              <Query>
-                <QueryProp>Barrio</QueryProp>
-                <QueryProp className="capitalize">
-                  {search.locid?.join(", ")}
-                </QueryProp>
-              </Query>
-            )}
             {search.opid && (
               <Query>
                 <QueryProp>Tipo de Operación</QueryProp>
@@ -62,12 +53,22 @@ export const BusquedaCard = ({
                 <QueryProp>Cocheras</QueryProp>
                 <QueryProp>
                   {getDropdownValue(
-                    search?.parking_lot_to ?? 1,
-                    search?.parking_lot_from ?? 5
+                    search?.parking_lot_to,
+                    search?.parking_lot_from,
+                    undefined,
+                    true
                   )}
                 </QueryProp>
               </Query>
             }
+            {search.locid?.length > 0 && (
+              <Query>
+                <QueryProp>Barrio</QueryProp>
+                <QueryProp className="capitalize">
+                  {search.locid?.join(", ")}
+                </QueryProp>
+              </Query>
+            )}
           </QueryColumn>
           <QueryColumn>
             {
@@ -75,8 +76,10 @@ export const BusquedaCard = ({
                 <QueryProp>Dormitorios</QueryProp>
                 <QueryProp>
                   {getDropdownValue(
-                    search?.rooms_from ?? 1,
-                    search?.rooms_to ?? 5
+                    search?.rooms_from,
+                    search?.rooms_to,
+                    undefined,
+                    true
                   )}
                 </QueryProp>
               </Query>
@@ -86,8 +89,10 @@ export const BusquedaCard = ({
                 <QueryProp>Baños</QueryProp>
                 <QueryProp>
                   {getDropdownValue(
-                    search?.baths_to ?? 2,
-                    search?.baths_from ?? 5
+                    search?.baths_to,
+                    search?.baths_from,
+                    undefined,
+                    true
                   )}
                 </QueryProp>
               </Query>
@@ -97,12 +102,11 @@ export const BusquedaCard = ({
                 <QueryProp>Precio</QueryProp>
                 <QueryProp>
                   {getDropdownValue(
-                    search?.price_from ?? 1,
-                    search?.price_to ?? "",
-                    "USD"
+                    search?.price_from,
+                    search?.price_to,
+                    "USD",
+                    true
                   )}
-                  {!search?.price_to &&
-                    ` - Max. USD ${formatToMoney(3000000, false, "", false)}`}
                 </QueryProp>
               </Query>
             }
@@ -115,7 +119,8 @@ export const BusquedaCard = ({
         className="button--busqueda"
         onClick={(e: any) => {
           e.preventDefault();
-          router.push(search.url);
+          console.log(search.url)
+          // router.push(search.url);
         }}
       />
     </BusquedaContainer>

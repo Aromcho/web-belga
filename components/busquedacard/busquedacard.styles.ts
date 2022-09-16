@@ -66,7 +66,7 @@ export const QueryColumn = styled.div`
 export const QueryList = styled.div`
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10%;
   justify-content: space-between;
   @media screen and (max-width: 1100px) {
@@ -83,7 +83,7 @@ export const QueryList = styled.div`
 export const BusquedaWrapper = styled.div`
   width: 90%;
   margin: 0 auto;
-  padding: 30px 0;
+  padding: 30px 0 60px;
   position: relative;
   @media screen and (max-width: 840px) {
     padding-bottom: 0;
@@ -93,7 +93,7 @@ export const BusquedaWrapper = styled.div`
 export const BusquedaContainer = styled.div`
   width: 100%;
   border: 1px solid ${(props: any) => props.theme.black};
-  padding: 30px 20px 0;
+  padding: 50px 20px 0;
   margin-bottom: 60px;
   position: relative;
   @media screen and (max-width: 992px) {
@@ -131,7 +131,7 @@ export const BusquedaContainer = styled.div`
   .button--busqueda {
     max-width: 220px;
     text-transform: uppercase;
-    margin: 25px auto 0;
+    margin: 0 auto;
     position: relative;
     top: 20px;
   }

@@ -503,10 +503,16 @@ export const MenuContainer = styled.div`
             &.burger {
               ${Line} {
                 &:first-of-type {
-                  /* top: 18px; */
+                  top: 18px;
+                  @media screen and (max-width: 992px) {
+                    top: 15px;
+                  }
                 }
                 &:last-of-type {
-                  /* top: 39px; */
+                  top: 39px;
+                  @media screen and (max-width: 992px) {
+                    top: 42px;
+                  }
                 }
               }
             }

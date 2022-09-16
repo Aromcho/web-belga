@@ -12,7 +12,7 @@ export const Title = styled.div`
   font-weight: 600;
   text-align: center;
   text-transform: uppercase;
-  margin: 0 auto 60px;
+  margin: 0 auto 80px;
   @media screen and (max-width: 992px) {
     margin: 0 auto 20px;
   }
@@ -20,7 +20,7 @@ export const Title = styled.div`
 
 export const FormWrapper = styled.div`
   width: 100%;
-  margin: 100px auto;
+  margin: 80px auto;
   display: block;
 `;
 
@@ -56,5 +56,18 @@ export const BusquedasContainer = styled.div`
   padding-top: 150px;
   @media screen and (max-width: 840px) {
     padding-top: 100px;
+  }
+`;
+
+export const Subtitle = styled.h4`
+  width: 100%;
+  color: ${(props: any) => props.theme.black};
+  font-size: 48px;
+  font-weight: 100;
+  line-height: 54px;
+  text-align: center;
+  margin: 100px auto 80px;
+  @media screen and (max-width: 992px) {
+    margin: 50px auto;
   }
 `;

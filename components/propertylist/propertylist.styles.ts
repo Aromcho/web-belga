@@ -87,7 +87,7 @@ export const FiltersWrapperMobile = styled.div`
     margin: 250px auto 20px;
   }
   @media screen and (max-width: 740px) {
-    margin: 0 auto 20px;
+    margin: 80px auto 20px;
   }
   .input--general {
     @media screen and (max-width: 1200px) {

@@ -129,9 +129,9 @@ export const OficinasSection = styled.section`
   width: 100%;
   background-color: ${(props: any) => props.theme.white};
   margin: 0 auto;
-  padding: 60px 0 0;
+  padding: 47px 0 0 ;
   @media screen and (max-width: 992px) {
-    padding: 60px 0 30px;
+    padding: 47px 0 30px;
   }
 `;
 
@@ -168,8 +168,8 @@ export const PortalesList = styled.div`
   margin: 0 auto;
   @media screen and (max-width: 740px) {
     grid-template-columns: repeat(2, 1fr);
-    row-gap: 60px;
-    margin-bottom: 60px;
+    row-gap: 47px;
+    margin-bottom: 47px;
   }
 `;
 
@@ -198,8 +198,7 @@ export const PortalesContainer = styled.div`
   border: 1px solid ${(props: any) => props.theme.black};
   margin: 0 auto;
   @media screen and (max-width: 740px) {
-    height: auto;
-    padding: 60px 0 0 0;
+    padding: 47px 0 0 0;
   }
 `;
 
@@ -248,7 +247,7 @@ export const ServiciosSection = styled.section`
   margin: 0 auto;
   padding: 60px 0;
   @media screen and (max-width: 992px) {
-    padding: 60px 0 0;
+    padding: 47px 0 0 ;
   }
 `;
 export const IndexCounter = styled.div`
@@ -350,7 +349,7 @@ export const SwiperContainerGallery = styled.div`
     width: 100%;
     overflow: visible;
     @media screen and (max-width: 460px) {
-      overflow: hidden;
+      /* overflow: hidden; */
     }
     .swiper-slide {
       align-items: flex-start;
@@ -482,7 +481,7 @@ export const SomosBelgaSection = styled.section`
   margin: 0 auto;
   padding: 30px 0 60px;
   @media screen and (max-width: 992px) {
-    padding: 60px 0 0;
+    padding: 47px 0 0 ;
   }
 `;
 
@@ -513,7 +512,7 @@ export const QuotesSection = styled.section`
   margin: 0 auto;
   padding: 60px 0;
   @media screen and (max-width: 992px) {
-    padding: 60px 0 0;
+    padding: 47px 0 0 ;
   }
 `;
 
@@ -647,7 +646,7 @@ export const HistoriaLeft = styled.div`
   width: 50%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   @media screen and (max-width: 992px) {
     margin-right: auto;
   }

@@ -174,7 +174,7 @@ export const getDropdownValue = (min: any, max: any, type?: string, search = fal
       st = `${type ?? ""} Min. ${min} - Max. ${max}`;
     }
   }
-  if (max === min) st = `${type ?? "Min."} ${min}`;
+  if (max === min) st = `${type ?? ""} ${min}`;
 
   if(search){
     if(min === 0 && max === 0) {

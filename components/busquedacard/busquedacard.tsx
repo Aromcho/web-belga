@@ -48,27 +48,23 @@ export const BusquedaCard = ({
                 <QueryProp className="capitalize">{search.prid}</QueryProp>
               </Query>
             )}
-            {
-              <Query>
-                <QueryProp>Cocheras</QueryProp>
-                <QueryProp>
-                  {getDropdownValue(
-                    search?.parking_lot_to,
-                    search?.parking_lot_from,
-                    undefined,
-                    true
-                  )}
-                </QueryProp>
-              </Query>
-            }
-            {search.locid?.length > 0 && (
-              <Query>
-                <QueryProp>Barrio</QueryProp>
-                <QueryProp className="capitalize">
-                  {search.locid?.join(", ")}
-                </QueryProp>
-              </Query>
-            )}
+            <Query>
+              <QueryProp>Cocheras</QueryProp>
+              <QueryProp>
+                {getDropdownValue(
+                  search?.parking_lot_from,
+                  search?.parking_lot_to,
+                  undefined,
+                  true
+                )}
+              </QueryProp>
+            </Query>
+            <Query>
+              <QueryProp>Barrio</QueryProp>
+              <QueryProp className="capitalize">
+                {search.locid?.join(", ") ?? "-"}
+              </QueryProp>
+            </Query>
           </QueryColumn>
           <QueryColumn>
             {
@@ -89,8 +85,8 @@ export const BusquedaCard = ({
                 <QueryProp>Baños</QueryProp>
                 <QueryProp>
                   {getDropdownValue(
-                    search?.baths_to,
                     search?.baths_from,
+                    search?.baths_to,
                     undefined,
                     true
                   )}
@@ -119,8 +115,7 @@ export const BusquedaCard = ({
         className="button--busqueda"
         onClick={(e: any) => {
           e.preventDefault();
-          console.log(search.url)
-          // router.push(search.url);
+          router.push(search.url);
         }}
       />
     </BusquedaContainer>

@@ -67,7 +67,7 @@ export const MemberImg = styled.div`
   justify-content: center;
   filter: grayscale(1);
   transition: all 0.3s ease-in-out;
-  @media screen and (max-width: 640px) {
+  @media screen and (max-width: 900px) {
     height: auto;
     padding-top: 100%;
     filter: grayscale(0);

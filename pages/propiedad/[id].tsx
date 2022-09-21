@@ -415,7 +415,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
                 )}
               </FeaturesGrid>
 
-              <FeaturesFooter className={classes({"nm": !(property?.files?.length > 0)})}>
+              <FeaturesFooter>
                 {property?.files?.length > 0 && (
                   <Button
                     className="button--planos"

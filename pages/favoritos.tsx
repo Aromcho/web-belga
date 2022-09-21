@@ -63,46 +63,44 @@ const Favorites = observer(() => {
           </BackWrapper>
         </Container>
 
-        <Container>
-          {status === "loading" && <Status text="Cargando..." />}
-          {status === "empty" && (
-            <Status
-              img="/images/empty_img_heart.gif"
-              text="Tené a mano tus propiedades favoritas."
-              textButton="AGREGÁ TUS FAVORITAS"
-              buttonStyle="secondary shine"
-              linkButton={PATHS.VENTA}
+        {status === "loading" && <Status text="Cargando..." />}
+        {status === "empty" && (
+          <Status
+            img="/images/empty_img_heart.gif"
+            text="Tené a mano tus propiedades favoritas."
+            textButton="AGREGÁ TUS FAVORITAS"
+            buttonStyle="secondary shine"
+            linkButton={PATHS.VENTA}
+          />
+        )}
+        {status === "finish" && (
+          <>
+            <Container>
+              <Title>TU SELECCIÓN DE FAVORITAS</Title>
+            </Container>
+
+            <PropertyList
+              properties={favs}
+              filters={false}
+              meta={{
+                total_count: favs.length,
+                limit: 26,
+                offset: 0,
+                next: "",
+                previous: "",
+              }}
+              saveSearch={false}
+              back={false}
+              withForm={false}
+              withCount={false}
+              paddingTop={0}
             />
-          )}
-          {status === "finish" && (
-            <>
-              <Container>
-                <Title>TU SELECCIÓN DE FAVORITAS</Title>
-              </Container>
 
-              <PropertyList
-                properties={favs}
-                filters={false}
-                meta={{
-                  total_count: favs.length,
-                  limit: 26,
-                  offset: 0,
-                  next: "",
-                  previous: "",
-                }}
-                saveSearch={false}
-                back={false}
-                withForm={false}
-                withCount={false}
-                paddingTop={0}
-              />
-
-              <FormWrapper>
-                <ContactForm full />
-              </FormWrapper>
-            </>
-          )}
-        </Container>
+            <FormWrapper>
+              <ContactForm full />
+            </FormWrapper>
+          </>
+        )}
       </FavoritesContainer>
     </Layout>
   );

@@ -586,6 +586,14 @@ export const PropertyList = observer(
                     }}
                   />
                 </RowInputsMobile>
+                <RowInputsMobile>
+                <Button
+                  className="filter--button btn-mobile"
+                  type="secondary shine"
+                  text="Aplicar filtros"
+                  onClick={handleSubmit}
+                />
+                </RowInputsMobile>
 
                 {saveSearch && (
                   <RowContent className="bold save--search-mobile">

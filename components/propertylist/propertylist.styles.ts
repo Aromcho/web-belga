@@ -16,9 +16,12 @@ export const PropertyListWrapper = styled.div`
     @media screen and (max-width: 600px) {
       max-width: 87%;
     }
+    &.btn-mobile{
+      margin: 0 auto;
+    }
   }
 `;
-export const IconCloseWrapper = styled.ul`
+export const IconCloseWrapper = styled.div`
   width: 80px;
   height: 60px;
   align-items: center;
@@ -31,7 +34,7 @@ export const IconCloseWrapper = styled.ul`
   }
 `;
 
-export const FiltersHeader = styled.ul`
+export const FiltersHeader = styled.div`
   width: 100%;
   height: 60px;
   background-color: ${(props: any) => props.theme.white};

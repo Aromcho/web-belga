@@ -380,11 +380,13 @@ const PropertyDetail = ({
               </FeaturesGrid>
 
               <FeaturesFooter>
-                <Button
-                  className="button--planos"
-                  text="Ver planos"
-                  type="outline red"
-                />
+              {property?.files?.length > 0 && (
+                  <Button
+                    className="button--planos"
+                    text="Ver planos"
+                    type="outline red"
+                  />
+              )}
               </FeaturesFooter>
 
               <MoreInfo>

@@ -140,7 +140,7 @@ export const FiltersContainer = styled.div`
     opacity: 0;
     overflow-x: hidden;
     overflow-y: auto;
-    z-index: 99999999;
+    z-index: 99999999999;
     position: fixed;
     top: 0;
     left: 0;

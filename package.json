@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 8001",
     "cc": "node scripts/create_component $1"
   },
   "dependencies": {

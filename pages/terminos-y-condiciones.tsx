@@ -1,12 +1,10 @@
 import React from "react";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import { PATHS } from "config";
+import { BackToTop } from "components/backtotop";
+import { SocialSidebar } from "components/socialsidebar";
 
 import { Layout, Container } from "components/layout";
-
-const BackToTop = dynamic<any>(() => import("components/backtotop").then((mod) => mod.BackToTop))
-const SocialSidebar = dynamic<any>(() => import("components/socialsidebar").then((mod) => mod.SocialSidebar))
 
 import {
   TerminosContainer,

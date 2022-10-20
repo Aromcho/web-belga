@@ -32,7 +32,7 @@ export const Layout = ({ children, menuTheme, footerSmall }: LayoutProps) => {
         <a href="mailto:info@belga.com.ar" className="head--footer-link mail" target="_blank">
           <MailIconSend />
         </a>
-        <a href="https://api.whatsapp.com/send?phone=5491169462894&text=Hola%20Belga!%20%F0%9F%91%8B%20Quisiera%20hacerles%20una%20consulta." className="head--footer-link wsp" target="_blank">
+        <a href="https://api.whatsapp.com/send?phone=5491152633393&text=Hola%20Belga!%20%F0%9F%91%8B%20Quisiera%20hacerles%20una%20consulta." className="head--footer-link wsp" target="_blank">
           <WhatsappIcon />
         </a>
       </HeroFooter>

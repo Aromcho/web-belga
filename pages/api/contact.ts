@@ -42,6 +42,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       res.status(200).json({code: 1})
     })
     .catch((response: any) => {
-      res.status(400).json({code: 0, error: response})
+      res.status(400).json({code: 0, error: {"asd": process.env.MJ_APIKEY_PUBLIC, "qwe": process.env.MJ_APIKEY_PRIVATE}})
     });
 }

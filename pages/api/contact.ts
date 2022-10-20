@@ -41,7 +41,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     .then(() => {
       res.status(200).json({code: 1})
     })
-    .catch(() => {
-      res.status(400).json({code: 0})
+    .catch((response: any) => {
+      res.status(400).json({code: 0, error: response})
     });
 }

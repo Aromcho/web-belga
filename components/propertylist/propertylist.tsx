@@ -629,7 +629,7 @@ export const PropertyList = observer(
               {withCount && (
                 <RowContent className="count">
                   {`${meta?.total_count} ${
-                    meta?.total_count > 1 ? "resultados" : "resultado"
+                    meta?.total_count > 1 ? "Resultados" : "Resultado"
                   }`}
                 </RowContent>
               )}

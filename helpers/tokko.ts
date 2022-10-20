@@ -60,6 +60,8 @@ export const parseTokkoParameters = (query: any) => {
   // property_types
   if (query.prid && query.prid !== "todos") {
     query["property_types"] = [propertyTypes[query.prid]];
+    // handles emprendimientos
+    if(query["property_types"] === 4) window.location.href = "/emprendimientos"
     delete query.prid;
   }
 
@@ -143,6 +145,7 @@ export const getSearchUrl = (params: any) => {
       : `/${getKeyByValue(operationTypes, params.operation_type[0])}`;
 
   if (params.property_type && params.property_type > 0) {
+    if(params.property_type === 4) window.location.href = "/emprendimientos"
     url = url + `/${getKeyByValue(propertyTypes, params.property_type)}`;
   } else {
     url = url + `/todos`;

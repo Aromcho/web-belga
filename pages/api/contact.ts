@@ -27,13 +27,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           Subject: body.subject || "Contacto",
           TextPart: `
             Nueva consulta ${body.subject || "Contacto"}
+            URL: ${body.url}
             Nombre: ${body.name}.
             Telefono de contacto: ${body.phone}.
             E-mail: ${body.email}
-            ${body.direction ?? `Direccion: ${body.direction}`}
-            ${body.message ?? `Mensaje: ${body.message}`}
-            ${body.property ?? `Tipo de Propiedad: ${body.property}`}
-            ${body.url ?? `URL: ${body.url}`}
+            Mensaje: ${body.message ?? body.message}
+            Tipo de Propiedad: ${body.property ?? body.property}
+            Direccion: ${body.direction ?? body.direction}
           `,
         }
       ]

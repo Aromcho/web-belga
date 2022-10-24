@@ -31,7 +31,7 @@ export const ContactForm = ({ className, full }: ContactFormProps) => {
     property: "",
     message: "",
     url: "",
-    subject: "Cotacto desde la home",
+    subject: "Contacto desde la web",
   });
 
   const [error, setError] = useMergeState({
@@ -44,6 +44,10 @@ export const ContactForm = ({ className, full }: ContactFormProps) => {
     status: "",
     text: "",
   });
+
+  React.useEffect(() => {
+    setData({url: window.location.href});
+  }, [])
 
   const handleSubmit = (e: any) => {
     e.preventDefault();

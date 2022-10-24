@@ -43,6 +43,10 @@ export const VenderForm = ({ className }: ContactFormProps) => {
     text: "",
   });
 
+  React.useEffect(() => {
+    setData({url: window.location.href});
+  }, [])
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
     setError({

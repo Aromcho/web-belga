@@ -449,12 +449,12 @@ const PropertyDetail = ({
           <MapProp>
             <DynamicMap
               marker={{
-                lon: property.branch.geo_long,
-                lat: property.branch.geo_lat,
+                lon: property.geo_long,
+                lat: property.geo_lat,
               }}
               center={{
-                lon: property.branch.geo_long,
-                lat: property.branch.geo_lat,
+                lon: property.geo_long,
+                lat: property.geo_lat,
               }}
               zoom={15}
             />

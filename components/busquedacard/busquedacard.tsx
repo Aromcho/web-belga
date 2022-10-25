@@ -13,7 +13,7 @@ import {
   Query,
   QueryProp,
 } from "./busquedacard.styles";
-import { formatToMoney, getDropdownValue } from "helpers";
+import { getDropdownValue } from "helpers";
 
 export interface BusquedaCardProps {
   className?: string;

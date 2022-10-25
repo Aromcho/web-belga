@@ -239,6 +239,10 @@ export const GlobalStyles = css`
     #nprogress .bar {
       z-index: 9999999999999;
     }
+    #nprogress .spinner {
+      display: none!important;
+    }
+
   }
 `;
 

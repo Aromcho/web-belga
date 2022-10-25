@@ -3,6 +3,8 @@ import parse from "html-react-parser";
 import dynamic from "next/dynamic";
 import Head from "next/head";
 import { GetServerSideProps } from "next";
+import { observer } from "mobx-react-lite";
+import { useStore } from "stores";
 import { Layout, Container } from "components/layout";
 import {
   getDevelopmentById,
@@ -81,7 +83,7 @@ import {
   WhatsappIcon,
 } from "components/icons";
 
-const PropertyDetail = ({
+const PropertyDetail = observer(({
   properties,
   property,
   statusCode,
@@ -90,8 +92,9 @@ const PropertyDetail = ({
   if (statusCode === 404) return <Error404 />
   if (statusCode >= 500) return <Error500 />
 
-  /* Handle like prop */
-  const [isLiked, setIsLiked] = React.useState<boolean>(false);
+  const {
+    rootStore: { userStore },
+  } = useStore();
 
   /* Handle media content */
   const images = property?.photos?.map((item: any, k: number) => (
@@ -159,12 +162,10 @@ const PropertyDetail = ({
       <PropContainer>
         <Container>
           <BackWrapper className={classes("inversion")}>
-            <Link href={PATHS.EMPRENDIMIENTOS}>
-              <a className="back--link">
-                <ArrowBackIcon />
-                Volver a la búsqueda
-              </a>
-            </Link>
+            <a className="back--link" onClick={() => history.state.idx > 0 ? history.back() : window.location.href = PATHS.EMPRENDIMIENTOS}>
+              <ArrowBackIcon />
+              Volver a la búsqueda
+            </a>
           </BackWrapper>
 
           <HeadProp className={classes("inversion")}>
@@ -172,8 +173,8 @@ const PropertyDetail = ({
               <HeadAddress>
                 {property.address}
                 <LikeWrapper
-                  className={classes("inversion", { liked: isLiked })}
-                  onClick={() => setIsLiked(!isLiked)}
+                  className={classes("inversion", { liked: userStore.favorites.includes(property.id) })}
+                  onClick={() => userStore.toggleFavorite(property.id)}
                 >
                   <HeartIcon className="icon--heart" />
                 </LikeWrapper>
@@ -189,8 +190,8 @@ const PropertyDetail = ({
               <HeadInfo>{property.location?.name}</HeadInfo>
               <HeadShare>
                 <LikeWrapper
-                  className={classes("mobile", "inversion", { liked: isLiked })}
-                  onClick={() => setIsLiked(!isLiked)}
+                  className={classes("mobile inversion", { liked: userStore.favorites.includes(property.id) })}
+                  onClick={() => userStore.toggleFavorite(property.id)}
                 >
                   <HeartIcon className="icon--heart" />
                 </LikeWrapper>
@@ -465,7 +466,7 @@ const PropertyDetail = ({
       </PropContainer>
     </Layout>
   );
-};
+});
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   let props: any = {};

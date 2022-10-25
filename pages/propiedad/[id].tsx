@@ -4,12 +4,14 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import Head from "next/head";
 import { useMergeState } from "helpers/hooks";
+import { observer } from "mobx-react-lite";
 import { classes, formatToMoney } from "helpers";
 import { getProperties, getPropertyById } from "services";
 import { PATHS } from "config";
 import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Lightbox, { ImagesListType } from "react-spring-lightbox";
+import { useStore } from "stores";
 
 import { Layout, Container } from "components/layout";
 import { Title } from "components/title";
@@ -81,15 +83,18 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-const PropertyDetail = ({ properties, property, statusCode }: any) => {
-  console.log(property, properties);
+const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
 
+  console.log(property)
+  
+  
   if (statusCode === 404) return <Error404 />
   if (statusCode >= 500) return <Error500 />
-
-  /* Handle like prop*/
-  const [isLiked, setIsLiked] = React.useState<boolean>(false);
-
+  
+  const {
+    rootStore: { userStore },
+  } = useStore();
+  
   /* Handle media content */
   const images = property?.photos?.map((item: any, k: number) => (
     <MediaImg key={k} style={{ backgroundImage: `url(${item.image})` }} />
@@ -165,21 +170,19 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
       <PropContainer>
         <Container>
           <BackWrapper>
-            <Link href={PATHS.ROOT}>
-              <a className="back--link">
-                <ArrowBackIcon />
-                Volver a la búsqueda
-              </a>
-            </Link>
+            <a className="back--link" onClick={() => history.state.idx > 0 ? history.back() : window.location.href = PATHS.ROOT}>
+              <ArrowBackIcon />
+              Volver a la búsqueda
+            </a>
           </BackWrapper>
 
           <HeadProp>
             <HeadAddressPrice>
               <HeadAddress>
-                {property.address}
+                {property.type.name} en {property.address}
                 <LikeWrapper
-                  className={classes({ liked: isLiked })}
-                  onClick={() => setIsLiked(!isLiked)}
+                  className={classes({ liked: userStore.favorites.includes(property.id) })}
+                  onClick={() => userStore.toggleFavorite(property.id)}
                 >
                   <HeartIcon className="icon--heart" />
                 </LikeWrapper>
@@ -196,11 +199,11 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
             <HeadDivisor />
 
             <HeadInfoShare>
-              <HeadInfo>{property.location?.name}</HeadInfo>
+              <HeadInfo>{property.type.name} en {property.location?.name}</HeadInfo>
               <HeadShare>
                 <LikeWrapper
-                  className={classes("mobile", { liked: isLiked })}
-                  onClick={() => setIsLiked(!isLiked)}
+                  className={classes("mobile", { liked: userStore.favorites.includes(property.id) })}
+                  onClick={() => userStore.toggleFavorite(property.id)}
                 >
                   <HeartIcon className="icon--heart" />
                 </LikeWrapper>
@@ -455,10 +458,12 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
 
                 <MoreItem>
                   <MoreItemTitle>Superficies</MoreItemTitle>
-                  <MoreItemText>
-                    <b>Sup. Cubierta: </b>
-                    {`${Math.round(property?.roofed_surface)} m2`}
-                  </MoreItemText>
+                  {Math.round(property?.roofed_surface) > 0 && (
+                    <MoreItemText>
+                      <b>Sup. Cubierta: </b>
+                      {`${Math.round(property?.roofed_surface)} m2`}
+                    </MoreItemText>
+                  )}
                   {Math.round(property?.semiroofed_surface) > 0 && (
                     <MoreItemText>
                       <b>Sup. Semicubierta: </b>
@@ -526,7 +531,7 @@ const PropertyDetail = ({ properties, property, statusCode }: any) => {
       </PropContainer>
     </Layout>
   );
-};
+});
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   let props: any = {};

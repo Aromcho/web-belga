@@ -96,9 +96,11 @@ const Favorites = observer(() => {
               paddingTop={0}
             />
 
-            <FormWrapper>
-              <ContactForm full />
-            </FormWrapper>
+            <Container>
+              <FormWrapper>
+                <ContactForm full />
+              </FormWrapper>
+            </Container>
           </>
         )}
       </FavoritesContainer>

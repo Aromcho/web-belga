@@ -9,7 +9,7 @@ import { ArrowBackIcon, ChevronUpIcon, CloseIcon } from "components/icons";
 import { ContactForm } from "components/forms/contactform";
 import { Container } from "components/layout";
 
-import { classes, getDropdownValue, Property } from "helpers";
+import { formatToMoney, classes, getDropdownValue, Property } from "helpers";
 import { neighborhoods } from "helpers/neighborhoods";
 import {
   getSearchUrl,

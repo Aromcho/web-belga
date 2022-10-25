@@ -165,11 +165,11 @@ export const getDropdownValue = (min: any, max: any, type?: string, search = fal
   if(!min) min = 0
   if(!max) max = 0
   
-  if (min > 0 && max == 0) st = `Min. ${type ?? ""} ${min}`;
-  if (max > 0 && min == 0) st = `Max. ${type ?? ""} ${max}`;
+  if (min > 0 && max == 0) st = `Min. ${type ?? ""} ${type === "USD" ? formatToMoney(min) : min}`;
+  if (max > 0 && min == 0) st = `Max. ${type ?? ""} ${type === "USD" ? formatToMoney(max) : max}`;
   if (max > 0 && min > 0) {
     if (type === "USD") {
-      st = `${type ?? ""} ${min} - ${max}`;
+      st = `${type ?? ""} ${formatToMoney(min)} - ${formatToMoney(max)}`;
     } else {
       st = `${type ?? ""} Min. ${min} - Max. ${max}`;
     }

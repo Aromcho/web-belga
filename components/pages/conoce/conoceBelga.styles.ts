@@ -818,6 +818,7 @@ export const BackWrapper = styled.div`
     align-items: center;
     display: flex;
     color: ${(props: any) => props.theme.black};
+    cursor: pointer;
     font-size: 14px;
     font-weight: 600;
     text-transform: uppercase;

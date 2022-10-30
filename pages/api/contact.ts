@@ -45,3 +45,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       res.status(400).json({code: 0, error: err.statusCode, body: err.body})
     });
 }
+
+// curl --dump-header - -H "Content-Type: application/json" -X POST --data '{"text": "asdasdads","name": "contactoprueba","email": "prueba@prueba.com", "properties": [1,2], "cellphone": "111"}' http://tokkobroker.com/api/v1/webcontact/\?key\=0ec754e9e60d69817226012d2d0aaf3f15583490

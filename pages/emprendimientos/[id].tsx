@@ -172,12 +172,12 @@ const PropertyDetail = observer(({
             <HeadAddressPrice>
               <HeadAddress>
                 {property.address}
-                <LikeWrapper
+                {/* <LikeWrapper
                   className={classes("inversion", { liked: userStore.favorites.includes(property.id) })}
                   onClick={() => userStore.toggleFavorite(property.id)}
                 >
                   <HeartIcon className="icon--heart" />
-                </LikeWrapper>
+                </LikeWrapper> */}
               </HeadAddress>
               {devPropertiesData.min_price && (
                 <HeadPrice>{`Venta Desde ${devPropertiesData.currency} ${devPropertiesData.min_price}`}</HeadPrice>
@@ -189,12 +189,12 @@ const PropertyDetail = observer(({
             <HeadInfoShare>
               <HeadInfo>{property.location?.name}</HeadInfo>
               <HeadShare>
-                <LikeWrapper
+                {/* <LikeWrapper
                   className={classes("mobile inversion", { liked: userStore.favorites.includes(property.id) })}
                   onClick={() => userStore.toggleFavorite(property.id)}
                 >
                   <HeartIcon className="icon--heart" />
-                </LikeWrapper>
+                </LikeWrapper> */}
                 Enviar por
                 <Link
                   href={`https://api.whatsapp.com/send?text=Encontr%C3%A9%20esta%20excelente%20propiedad!%0D%0Ahttps://web-belga.vercel.app/propiedad/${property.id.toString()}`}

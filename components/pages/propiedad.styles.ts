@@ -506,11 +506,11 @@ export const BodyProp = styled.div`
         width: 100%;
         max-width: 500px;
         margin: 0 auto;
-        padding: 50px;
+        padding: 50px 6.5%;
       }
     }
     ${BodyFeatures} {
-      padding: 50px 40px 90px;
+      padding: 50px 6.5% 90px;
       background-color: ${(props: any) => props.theme.black};
       ${FeaturesGrid} {
         @media screen and (max-width: 992px) {
@@ -560,7 +560,7 @@ export const HeadShare = styled.div`
   color: ${(props: any) => props.theme.black};
   display: flex;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
   @media screen and (max-width: 992px) {
     width: 100%;
     text-align: right;
@@ -576,7 +576,7 @@ export const HeadShare = styled.div`
       width: 20px;
       height: auto;
       color: ${(props: any) => props.theme.black};
-      margin-left: 10px;
+      margin-left: 15px;
       transition: all 0.3s ease-in-out;
       @media screen and (max-width: 992px) {
         width: 27px;
@@ -597,7 +597,7 @@ export const HeadInfo = styled.div`
   color: ${(props: any) => props.theme.black};
   display: flex;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
   @media screen and (max-width: 992px) {
     width: 100%;
     text-align: left;
@@ -631,7 +631,7 @@ export const HeadPrice = styled.div`
   color: ${(props: any) => props.theme.black};
   display: flex;
   font-size: 24px;
-  font-weight: 500;
+  font-weight: 400;
   @media screen and (max-width: 992px) {
     width: 100%;
     font-size: 18px;

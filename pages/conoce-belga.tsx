@@ -609,29 +609,31 @@ const ConoceBelga = observer(() => {
               </OfficeMainTex>
             </MainOffice>
 
-            <OfficeList>
-              <OfficeListItem>
-                <OfficeTextWrapper>
-                  <OfficeTextName>BELGRANO C</OfficeTextName>
-                  <OfficeTextLoc>Juramento 2102</OfficeTextLoc>
-                  <OfficeText>
-                    Te esperamos en el centro de Belgrano, a 2 cuadras del
-                    reconocido cruce de Av. Cabildo con Juramento.
-                  </OfficeText>
-                </OfficeTextWrapper>
-              </OfficeListItem>
+            <Container>
+              <OfficeList>
+                <OfficeListItem>
+                  <OfficeTextWrapper>
+                    <OfficeTextName>BELGRANO C</OfficeTextName>
+                    <OfficeTextLoc>Juramento 2102</OfficeTextLoc>
+                    <OfficeText>
+                      Te esperamos en el centro de Belgrano, a 2 cuadras del
+                      reconocido cruce de Av. Cabildo con Juramento.
+                    </OfficeText>
+                  </OfficeTextWrapper>
+                </OfficeListItem>
 
-              <OfficeListItem>
-                <OfficeTextWrapper>
-                  <OfficeTextName>BELGRANO R</OfficeTextName>
-                  <OfficeTextLoc>Superí 1485</OfficeTextLoc>
-                  <OfficeText>
-                    Nos encontramos a metros de una de las calles más hermosas
-                    de Belgrano, Av. de los Incas. ¡Vení a visitarnos!
-                  </OfficeText>
-                </OfficeTextWrapper>
-              </OfficeListItem>
-            </OfficeList>
+                <OfficeListItem>
+                  <OfficeTextWrapper>
+                    <OfficeTextName>BELGRANO R</OfficeTextName>
+                    <OfficeTextLoc>Superí 1485</OfficeTextLoc>
+                    <OfficeText>
+                      Nos encontramos a metros de una de las calles más hermosas
+                      de Belgrano, Av. de los Incas. ¡Vení a visitarnos!
+                    </OfficeText>
+                  </OfficeTextWrapper>
+                </OfficeListItem>
+              </OfficeList>
+            </Container>
           </OficinasSection>
 
           <FormWrapper>

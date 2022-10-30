@@ -86,7 +86,7 @@ export const CardProp = ({
           <DescWrapper>
             <Desc>{inversion ? property.name : property.location?.name}</Desc>
             <Address>{inversion ? property.location?.name : property.address}</Address>
-            {inversion && <Bedrooms>{`${property.suite_amount} ambientes`}</Bedrooms>}
+            {/* {inversion && <Bedrooms>{`${property.suite_amount} ambientes`}</Bedrooms>} */}
           </DescWrapper>
           {!inversion &&
             <LikeWrapper className={classes({ liked: isLiked })} onClick={handleLike}>

@@ -527,6 +527,7 @@ export const PropertyList = observer(
                     className="dropdown--input half"
                     type="number"
                     placeHolder="Min."
+                    value={formData.min_rooms}
                     min={0}
                     onChange={(e) => {
                       setFormData({ min_rooms: e.currentTarget.value });
@@ -537,6 +538,7 @@ export const PropertyList = observer(
                     type="number"
                     placeHolder="Max."
                     min={formData?.min_rooms}
+                    value={formData?.max_rooms}
                     onChange={(e) => {
                       setFormData({ max_rooms: e.currentTarget.value });
                     }}
@@ -550,6 +552,7 @@ export const PropertyList = observer(
                     type="number"
                     placeHolder="Min."
                     min={0}
+                    value={formData.min_baths}
                     onChange={(e) => {
                       setFormData({ min_baths: e.currentTarget.value });
                     }}
@@ -559,6 +562,7 @@ export const PropertyList = observer(
                     type="number"
                     placeHolder="Max."
                     min={0}
+                    value={formData.max_baths}
                     onChange={(e) => {
                       setFormData({ max_baths: e.currentTarget.value });
                     }}
@@ -572,6 +576,7 @@ export const PropertyList = observer(
                     type="number"
                     placeHolder="Min."
                     min={0}
+                    value={formData.parking_lot_from}
                     onChange={(e) => {
                       setFormData({ parking_lot_to: e.currentTarget.value });
                     }}
@@ -581,6 +586,7 @@ export const PropertyList = observer(
                     type="number"
                     placeHolder="Max."
                     min={0}
+                    value={formData.parking_lot_to}
                     onChange={(e) => {
                       setFormData({ parking_lot_from: e.currentTarget.value });
                     }}

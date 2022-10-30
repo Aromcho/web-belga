@@ -39,7 +39,6 @@ export const OfficeTextWrapper = styled.div`
 `;
 
 export const OfficeListItem = styled.div`
-  width: 50%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -54,6 +53,10 @@ export const OfficeListItem = styled.div`
   }
 `;
 
+export const OfficeListContainer = styled.div`
+
+`
+
 export const OfficeList = styled.div`
   width: 100%;
   height: 340px;
@@ -62,7 +65,7 @@ export const OfficeList = styled.div`
   justify-content: space-between;
   margin: 0 auto;
   @media screen and (max-width: 992px) {
-    max-width: 87%;
+    max-width: 100%;
     height: auto;
     flex-flow: column;
     margin-top: 30px;
@@ -131,7 +134,7 @@ export const OficinasSection = styled.section`
   margin: 0 auto;
   padding: 47px 0 0 ;
   @media screen and (max-width: 992px) {
-    padding: 47px 0 30px;
+    padding: 60px 0;
   }
 `;
 
@@ -247,7 +250,7 @@ export const ServiciosSection = styled.section`
   margin: 0 auto;
   padding: 60px 0;
   @media screen and (max-width: 992px) {
-    padding: 47px 0 0 ;
+    padding: 30px 0 0;
   }
 `;
 export const IndexCounter = styled.div`
@@ -481,7 +484,7 @@ export const SomosBelgaSection = styled.section`
   margin: 0 auto;
   padding: 30px 0 60px;
   @media screen and (max-width: 992px) {
-    padding: 47px 0 0 ;
+    /* padding: 47px 0 0 ; */
   }
 `;
 
@@ -511,9 +514,9 @@ export const QuotesSection = styled.section`
   background-color: ${(props: any) => props.theme.white};
   margin: 0 auto;
   padding: 60px 0;
-  @media screen and (max-width: 992px) {
+  /* @media screen and (max-width: 992px) {
     padding: 47px 0 0 ;
-  }
+  } */
 `;
 
 export const ValoresListText = styled.div`
@@ -634,7 +637,8 @@ export const HistoriaRight = styled.div`
 
 export const HistoriaGif = styled.img`
   width: 100%;
-  max-width: 550px;
+  /* max-width: 550px; */
+  max-width: 100%;
   height: auto;
   margin: 0 auto;
   @media screen and (max-width: 992px) {

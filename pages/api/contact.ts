@@ -22,7 +22,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           To: [
             {email: 'info@belga.com.ar'},
             {email: 'AR5054@resultadistas.com'},
-            {email: 'alfieri.juan@gmail.com'},
           ],
           Subject: body.subject || "Contacto",
           TextPart: `

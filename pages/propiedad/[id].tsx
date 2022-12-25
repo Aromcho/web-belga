@@ -84,9 +84,6 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
-
-  console.log(property)
-  
   
   if (statusCode === 404) return <Error404 />
   if (statusCode >= 500) return <Error500 />
@@ -104,6 +101,12 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
       <iframe src={item.player_url} />
     </IframeWrapper>
   ));
+
+  const [isLiked, setIsLiked] = React.useState(false);
+  
+  React.useEffect(() => {
+    setIsLiked(userStore.isFavorite(property.id));
+  }, []);
 
   /* Handle modal gallery */
   const [modalContent, setModalContent] = useMergeState({
@@ -155,7 +158,7 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
         <meta property="og:site_name" content="Belga Inmobiliaria" />
         <meta
           property="og:image"
-          content="https://web-belga.vercel.app/images/og_image.png"
+          content="https://belga.com.ar/images/og_image.png"
         />
         <link
           rel="stylesheet"
@@ -179,7 +182,7 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
           <HeadProp>
             <HeadAddressPrice>
               <HeadAddress>
-                {property.type.name} en {property.address}
+                {property.address}
                 <LikeWrapper
                   className={classes({ liked: userStore.favorites.includes(property.id) })}
                   onClick={() => userStore.toggleFavorite(property.id)}
@@ -202,21 +205,24 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
               <HeadInfo>{property.type.name} en {property.location?.name}</HeadInfo>
               <HeadShare>
                 <LikeWrapper
-                  className={classes("mobile", { liked: userStore.favorites.includes(property.id) })}
-                  onClick={() => userStore.toggleFavorite(property.id)}
+                  className={classes("mobile", { liked: isLiked })}
+                  onClick={() => {
+                    userStore.toggleFavorite(property.id)
+                    setIsLiked(!isLiked);
+                  }}
                 >
                   <HeartIcon className="icon--heart" />
                 </LikeWrapper>
                 Enviar por
                 <Link
-                  href={`https://api.whatsapp.com/send?text=Encontr%C3%A9%20esta%20excelente%20propiedad!%0D%0Ahttps://web-belga.vercel.app/propiedad/${property.id.toString()}`}
+                  href={`https://api.whatsapp.com/send?text=Encontr%C3%A9%20esta%20excelente%20propiedad!%0D%0Ahttps://belga.com.ar/propiedad/${property.id.toString()}`}
                 >
                   <a target="_blank">
                     <WhatsappIcon />
                   </a>
                 </Link>
                 <Link
-                  href={`mailto:mail@server.com?subject=Encontr%C3%A9%20esta%20excelente%20propiedad!&body=Direcci%C3%B3n%3A%0D%0A${
+                  href={`mailto:?subject=Encontr%C3%A9%20esta%20excelente%20propiedad!&body=Direcci%C3%B3n%3A%0D%0A${
                     property.address
                   }%0D%0A%0D%0ADescripci%C3%B3n%3A%0D%0A${
                     property.location?.name
@@ -226,7 +232,8 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
                     property?.operations[0]?.prices[0]?.currency
                   } ${formatToMoney(
                     property?.operations[0]?.prices[0]?.price
-                  )}`}
+                  )}%0D%0A%0D%0AFicha%3A%0D%0A
+                  https://belga.com.ar/propiedad/${property.id.toString()}`}
                 >
                   <a target="_blank">
                     <MailIcon />

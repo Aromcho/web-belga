@@ -2,8 +2,7 @@ import {
   Model,
   model,
   modelAction,
-  prop,
-  tProp
+  prop
 } from 'mobx-keystone'
 
 
@@ -42,6 +41,11 @@ export class UserStore extends Model({
       this.searchs = [...this.searchs, newQ]
     }
     window.localStorage.setItem('belga_searchs', JSON.stringify(this.searchs))
+  }
+
+  isFavorite(id: string | number){
+    if(typeof id === "string") id = parseInt(id)
+    return this.favorites.includes(id)
   }
 
   @modelAction

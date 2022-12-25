@@ -272,7 +272,7 @@ const ConoceBelga = observer(() => {
                   className="quote"
                   rating={4}
                   quote={truncateWithEllipsis(
-                    "Hoy 22/6 se concretó la operación de compra-venta. Un Placer trabajar con Inmobiliaria Belga. Todo salió perfecto, a tiempo y lo mejor de todo es la gente que trabaja,  que hace de la inmobiliaria un lugar de confianza y prestigio. Estoy muy agradecida a todos desde las chicas que te reciben en el local,  hasta los agentes inmobiliarios especialmente Martín que fue el que acompañó el proceso. Gracias a todos!!!",
+                    "Hoy 22/6 se concretó la operación de compra-venta. Un Placer trabajar con Inmobiliaria Belga. Todo salió perfecto, a tiempo y lo mejor de todo es la gente que trabaja, que hace de la inmobiliaria un lugar de confianza y prestigio. Estoy muy agradecida a todos desde las chicas que te reciben en el local,  hasta los agentes inmobiliarios especialmente Martín que fue el que acompañó el proceso. Gracias a todos!!!",
                     400
                   )}
                   author="Andrea Gallis"

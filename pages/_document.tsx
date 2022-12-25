@@ -20,7 +20,7 @@ class Document extends NextDocument<Props> {
           <meta property="og:site_name" content="Belga Inmobiliaria" />
           <meta
             property="og:image"
-            content="https://web-belga.vercel.app/images/og_image.png"
+            content="https://belga.com.ar/images/og_image.png"
           />
 
           {/* Favicon */}

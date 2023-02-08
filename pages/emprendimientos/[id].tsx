@@ -92,9 +92,8 @@ const PropertyDetail = observer(({
   if (statusCode === 404) return <Error404 />
   if (statusCode >= 500) return <Error500 />
 
-  const {
-    rootStore: { userStore },
-  } = useStore();
+
+  console.log(property)
 
   /* Handle media content */
   const images = property?.photos?.map((item: any, k: number) => (
@@ -140,9 +139,9 @@ const PropertyDetail = observer(({
     <Layout menuTheme="dark">
       <Head>
         {/*OpenGraph metadata*/}
-        <title>Propiedad | {property.address}</title>
+        <title>Propiedad | {property.fake_address}</title>
         <meta property="og:type" content="Website" />
-        <meta property="og:title" content={`Propiedad | ${property.address}`} />
+        <meta property="og:title" content={`Propiedad | ${property.fake_address}`} />
         <meta
           property="og:description"
           content="	Nuestra misión: Ofrecer la mas alta calidad de servicios inmobiliarios, buscando continuamente mejorar y ampliar la gama de servicios ofrecidos con el fin de satisfacer las necesidades de nuestros clientes actuales y futuros"
@@ -171,13 +170,7 @@ const PropertyDetail = observer(({
           <HeadProp className={classes("inversion")}>
             <HeadAddressPrice>
               <HeadAddress>
-                {property.address}
-                {/* <LikeWrapper
-                  className={classes("inversion", { liked: userStore.favorites.includes(property.id) })}
-                  onClick={() => userStore.toggleFavorite(property.id)}
-                >
-                  <HeartIcon className="icon--heart" />
-                </LikeWrapper> */}
+                {property.fake_address}
               </HeadAddress>
               {devPropertiesData.min_price && (
                 <HeadPrice>{`Venta Desde ${devPropertiesData.currency} ${devPropertiesData.min_price}`}</HeadPrice>
@@ -189,17 +182,11 @@ const PropertyDetail = observer(({
             <HeadInfoShare>
               <HeadInfo>{property.location?.name}</HeadInfo>
               <HeadShare>
-                {/* <LikeWrapper
-                  className={classes("mobile inversion", { liked: userStore.favorites.includes(property.id) })}
-                  onClick={() => userStore.toggleFavorite(property.id)}
-                >
-                  <HeartIcon className="icon--heart" />
-                </LikeWrapper> */}
                 Enviar por
                 <a target="_blank" href={`https://api.whatsapp.com/send?text=Encontr%C3%A9%20esta%20excelente%20propiedad!%0D%0Ahttps://belga.com.ar/propiedad/${property.id.toString()}`}>
                   <WhatsappIcon />
                 </a>
-                <a target="_blank" href={`mailto:?subject=${property.address} - Belga&body=Encontr%C3%A9%20esta%20excelente%20propiedad%20que%20te%20puede%20interesar%20https://belga.com.ar/propiedad/${property.id.toString()}`}>
+                <a target="_blank" href={`mailto:?subject=${property.fake_address} - Belga&body=Encontr%C3%A9%20esta%20excelente%20propiedad%20que%20te%20puede%20interesar%20https://belga.com.ar/propiedad/${property.id.toString()}`}>
                   <MailIcon />
                 </a>
               </HeadShare>

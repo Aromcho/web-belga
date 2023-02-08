@@ -84,7 +84,7 @@ export const CardProp = ({
       <FooterProp>
         <Info>
           <DescWrapper>
-            <Desc>{inversion ? property.name : property.location?.name}</Desc>
+            <Desc>{inversion ? property.fake_address : property.location?.name}</Desc>
             <Address>{inversion ? property.location?.name : property.address}</Address>
             {/* {inversion && <Bedrooms>{`${property.suite_amount} ambientes`}</Bedrooms>} */}
           </DescWrapper>

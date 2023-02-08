@@ -79,6 +79,7 @@ export interface Property {
     }[];
   }[];
   address: string;
+  fake_address?: string;
   total_surface: number;
   suite_amount: number;
   bathroom_amount: number;

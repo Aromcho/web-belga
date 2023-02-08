@@ -167,7 +167,7 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
         ></link>
       </Head>
 
-      <BackToTop color="red" />
+      {/* <BackToTop color="red" /> */}
       <SocialSidebar color="red" showWithOffset />
 
       <PropContainer>

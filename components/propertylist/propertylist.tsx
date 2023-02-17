@@ -710,7 +710,7 @@ export const PropertyList = observer(
               )}
             </PaginationWrapper>
           )}
-          {withForm && <ContactForm full />}
+          {withForm && false && <ContactForm full />}
         </Container>
       </PropertyListWrapper>
     );

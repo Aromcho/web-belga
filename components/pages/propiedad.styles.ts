@@ -681,9 +681,6 @@ export const LikeWrapper = styled.div`
     cursor: pointer;
     svg {
       transform: scale(1.2);
-      @media screen and (max-width: 992px) {
-        transform: none;
-      }
     }
   }
   &.liked {

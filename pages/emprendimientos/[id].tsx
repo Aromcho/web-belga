@@ -12,7 +12,6 @@ import {
   getProperties,
 } from "services";
 import { PATHS } from "config";
-import Link from "next/link";
 import { useMergeState } from "helpers/hooks";
 import { classes, getDevelopmentsData } from "helpers";
 import { Navigation } from "swiper";

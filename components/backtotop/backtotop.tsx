@@ -17,10 +17,10 @@ export const BackToTop = ({
 }: BackToTopProps) => {
   const [showBtn, setShowBtn] = useState<boolean>(false);
   const goToTop = () => {
-    // window.scrollTo({
-    //   top: 0,
-    //   behavior: "smooth",
-    // });
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   useEffect(() => {

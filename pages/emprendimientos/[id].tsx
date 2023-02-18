@@ -300,7 +300,7 @@ const PropertyDetail = observer(({
               <FeaturesGrid>
                 {property?.age && (
                   <Feature>
-                    <FtHead>{property?.age}</FtHead>
+                    <FtHead>{property?.age == "-1" ? "En construcción" : property?.age}</FtHead>
                     <FtImg src="/images/icons/prop_antiguedad.svg" />
                     <FtBottom>Antigüedad</FtBottom>
                   </Feature>

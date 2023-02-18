@@ -433,6 +433,9 @@ export const FtHead = styled.div`
   font-size: 15px;
   font-weight: 600;
   margin: 0 auto 20px;
+  @media screen and (max-width: 600px) {
+    white-space: nowrap;
+  }
 `;
 
 export const Feature = styled.div`
@@ -446,7 +449,6 @@ export const FeaturesGrid = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
   grid-column-gap: 0px;
   grid-row-gap: 40px;
   align-items: center;

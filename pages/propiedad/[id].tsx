@@ -348,13 +348,13 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
           <BodyProp>
             <BodyFeatures>
               <FeaturesGrid>
-                <Feature>
+              {property?.age ? property?.type.name !== "Terreno" && <Feature>
                   <FtHead>
-                    {property?.age === 0 ? "A estrenar" : property?.age}
+                    {property.age === 0 ? "A estrenar" : property.age == "-1" ? "En construcción" : property.age}
                   </FtHead>
                   <FtImg src="/images/icons/prop_antiguedad.svg" />
                   <FtBottom>Antigüedad</FtBottom>
-                </Feature>
+                </Feature> : null}
                 {Math.round(property?.roofed_surface) > 0 && (
                   <Feature>
                     <FtHead>{Math.round(property?.roofed_surface)}</FtHead>
@@ -409,11 +409,6 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
                     </FtBottom>
                   </Feature>
                 )}
-                {/* <Feature>
-                  <FtHead>{property?.web_price ? "Si" : "No"}</FtHead>
-                  <FtImg src="/images/icons/prop_credito.svg" />
-                  <FtBottom>Apto Crédito</FtBottom>
-                </Feature> */}
                 {property?.expenses > 0 && (
                   <Feature>
                     <FtHead>
@@ -456,7 +451,7 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
                       <b>Orientación: </b> {property?.orientation}
                     </MoreItemText>
                   )}
-                  {property?.property_condition && (
+                  {property?.property_condition && property?.property_condition !== "---" && (
                     <MoreItemText>
                       <b>Condición: </b> {property?.property_condition}
                     </MoreItemText>
@@ -533,7 +528,7 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
             </SimilarProps>
           )}
 
-          {/* <ContactForm full /> */}
+          <ContactForm full />
         </Container>
       </PropContainer>
     </Layout>

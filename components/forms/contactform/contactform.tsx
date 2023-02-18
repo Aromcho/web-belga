@@ -22,6 +22,7 @@ export interface ContactFormProps {
 
 export const ContactForm = ({ className, full }: ContactFormProps) => {
   const [state, setState] = React.useState("send");
+  const [display, setDisplay] = React.useState(false);
 
   const [data, setData] = useMergeState({
     name: "",
@@ -47,6 +48,7 @@ export const ContactForm = ({ className, full }: ContactFormProps) => {
 
   React.useEffect(() => {
     setData({url: window.location.href});
+    setDisplay(true);
   }, [])
 
   const handleSubmit = (e: any) => {
@@ -100,6 +102,8 @@ export const ContactForm = ({ className, full }: ContactFormProps) => {
         }, 1500);
       });
   };
+
+  if(!display) return null
 
   return (
     <ContactFormContainer className={classes(className, { full })}>

@@ -9,7 +9,7 @@ import { ArrowBackIcon, ChevronUpIcon, CloseIcon } from "components/icons";
 import { ContactForm } from "components/forms/contactform";
 import { Container } from "components/layout";
 
-import { formatToMoney, classes, getDropdownValue, Property } from "helpers";
+import { classes, getDropdownValue, Property } from "helpers";
 import { neighborhoods } from "helpers/neighborhoods";
 import {
   getSearchUrl,
@@ -108,9 +108,17 @@ export const PropertyList = observer(
         });
       if (query?.rooms_from) setFormData({ min_rooms: query?.rooms_from });
       if (query?.rooms_to) setFormData({ max_rooms: query?.rooms_to });
+
       if (query?.order) setFormData({ order: query?.order });
+
       if (query?.price_from) setFormData({ price_from: query?.price_from });
       if (query?.price_to) setFormData({ price_to: query?.price_to });
+
+      if (query?.baths_from) setFormData({ min_baths: query?.bath_from });
+      if (query?.baths_to) setFormData({ max_baths: query?.baths_to });
+      
+      if (query?.parking_lot_from) setFormData({ parking_lot_from: query?.parking_lot_from });
+      if (query?.parking_lot_to) setFormData({ parking_lot_to: query?.parking_lot_to });
     }, [query]);
 
     const [formData, setFormData] = useMergeState<any>({
@@ -710,7 +718,7 @@ export const PropertyList = observer(
               )}
             </PaginationWrapper>
           )}
-          {withForm && false && <ContactForm full />}
+          {withForm && <ContactForm full />}
         </Container>
       </PropertyListWrapper>
     );

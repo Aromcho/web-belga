@@ -609,7 +609,6 @@ const ConoceBelga = observer(() => {
               </OfficeMainTex>
             </MainOffice>
 
-            <Container>
               <OfficeList>
                 <OfficeListItem>
                   <OfficeTextWrapper>
@@ -633,7 +632,6 @@ const ConoceBelga = observer(() => {
                   </OfficeTextWrapper>
                 </OfficeListItem>
               </OfficeList>
-            </Container>
           </OficinasSection>
 
           <FormWrapper>

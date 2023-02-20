@@ -114,9 +114,9 @@ export const PropertyList = observer(
       if (query?.price_from) setFormData({ price_from: query?.price_from });
       if (query?.price_to) setFormData({ price_to: query?.price_to });
 
-      if (query?.baths_from) setFormData({ min_baths: query?.bath_from });
+      if (query?.baths_from) setFormData({ min_baths: query?.baths_from });
       if (query?.baths_to) setFormData({ max_baths: query?.baths_to });
-      
+
       if (query?.parking_lot_from) setFormData({ parking_lot_from: query?.parking_lot_from });
       if (query?.parking_lot_to) setFormData({ parking_lot_to: query?.parking_lot_to });
     }, [query]);

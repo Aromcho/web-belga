@@ -62,7 +62,7 @@ const BusquedasGuardadas = observer(() => {
               </Container>
 
               <BusquedasList>
-                {userStore.searchs?.map((item, key) => (
+                {userStore.searchs.slice().reverse()?.map((item, key) => (
                   <BusquedaCard
                     key={key}
                     search={item}

@@ -39,6 +39,7 @@ export const OfficeTextWrapper = styled.div`
 `;
 
 export const OfficeListItem = styled.div`
+  width: 50%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -637,10 +638,9 @@ export const HistoriaRight = styled.div`
 
 export const HistoriaGif = styled.img`
   width: 100%;
-  /* max-width: 550px; */
-  max-width: 100%;
+  max-width: 93%;
   height: auto;
-  margin: 0 auto;
+  margin: 0;
   @media screen and (max-width: 992px) {
     margin: 0 0 60px 0;
   }
@@ -794,7 +794,7 @@ export const MenuHero = styled.div`
 
 export const HeroWrapper = styled.div`
   width: 100%;
-  height: calc(100vh - 151px);
+  height: calc(100vh - 91px);
   display: flex;
   align-items: flex-end;
   background-position: center;
@@ -845,7 +845,7 @@ export const BackWrapper = styled.div`
 export const ConoceBelgaContainer = styled.div`
   width: 100%;
   height: auto;
-  padding-top: 151px;
+  padding-top: 91px;
   @media screen and (max-width: 992px) {
     padding-top: 115px;
   }

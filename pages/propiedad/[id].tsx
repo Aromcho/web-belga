@@ -84,6 +84,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
+
+  console.log(property)
   
   if (statusCode === 404) return <Error404 />
   if (statusCode >= 500) return <Error500 />
@@ -148,7 +150,7 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
         />
         <meta
           property="og:description"
-          content="	Nuestra misión: Ofrecer la mas alta calidad de servicios inmobiliarios, buscando continuamente mejorar y ampliar la gama de servicios ofrecidos con el fin de satisfacer las necesidades de nuestros clientes actuales y futuros"
+          content={property.publication_title || property.address }
         />
         <meta
           property="og:url"
@@ -158,7 +160,7 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
         <meta property="og:site_name" content="Belga Inmobiliaria" />
         <meta
           property="og:image"
-          content="https://belga.com.ar/images/og_image.png"
+          content={property.photos.find((item: any) => item.is_front_cover).image || "https://belga.com.ar/images/og_image.png"}
         />
         <link
           rel="stylesheet"

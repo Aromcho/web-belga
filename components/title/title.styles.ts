@@ -23,6 +23,7 @@ export const TitleText = styled.h2`
     width: 100%;
     justify-content: center;
     text-align: center;
+    margin: 0;
   }
 `;
 

@@ -103,6 +103,7 @@ export const PropList = styled.div`
     }
     @media screen and (max-width: 740px) {
       width: 100%;
+      max-width: 100%;
     }
   }
 `;
@@ -826,5 +827,15 @@ export const PropContainer = styled.div`
   padding: 150px 0 50px;
   @media screen and (max-width: 992px) {
     padding: 116px 0 70px;
+  }
+`;
+
+
+export const ButtonMobileWrapper = styled.div`
+  display: none;
+  @media screen and (max-width: 992px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `;

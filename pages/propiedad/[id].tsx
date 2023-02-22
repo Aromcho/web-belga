@@ -64,6 +64,7 @@ import {
   FtHead,
   FtImg,
   FtBottom,
+  ButtonMobileWrapper,
   FeaturesFooter,
   MoreInfo,
   MoreItemTitle,
@@ -520,13 +521,16 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
 
           {properties && (
             <SimilarProps>
-              <Title title="PROPIEDADES SIMILARES" buttonStyle="outline red" />
+              <Title title="PROPIEDADES SIMILARES" buttonStyle="outline red" linkButton={PATHS.HIGHLIGHTED} />
 
               <PropList>
                 {properties.map((item: any, k: number) => (
                   <CardProp key={k} className="card--prop" property={item} />
                 ))}
               </PropList>
+              <ButtonMobileWrapper>
+                <Button className='button--title' text={"Ver Mas"} type={"outline red"} link={PATHS.HIGHLIGHTED} />
+              </ButtonMobileWrapper>
             </SimilarProps>
           )}
 

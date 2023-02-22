@@ -513,6 +513,7 @@ export const PropertyList = observer(
                     className="dropdown--input half"
                     type="number"
                     placeHolder="Desde"
+                    value={formData.price_from}
                     min={0}
                     onChange={(e) => {
                       setFormData({ price_from: e.currentTarget.value });
@@ -523,6 +524,7 @@ export const PropertyList = observer(
                     type="number"
                     placeHolder="Hasta"
                     min={0}
+                    value={formData.price_to}
                     onChange={(e) => {
                       setFormData({ price_to: e.currentTarget.value });
                     }}

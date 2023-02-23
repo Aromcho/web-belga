@@ -161,7 +161,7 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
         <meta property="og:site_name" content="Belga Inmobiliaria" />
         <meta
           property="og:image"
-          content={property.photos.find((item: any) => item.is_front_cover).image || "https://belga.com.ar/images/og_image.png"}
+          content={property.photos.find((item: any) => item.is_front_cover)?.image || "https://belga.com.ar/images/og_image.png"}
         />
         <link
           rel="stylesheet"

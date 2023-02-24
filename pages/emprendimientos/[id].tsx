@@ -138,10 +138,14 @@ const PropertyDetail = observer(({
     <Layout menuTheme="dark">
       <Head>
         {/*OpenGraph metadata*/}
-        <title>Propiedad | {property.fake_address}</title>
+        <title>{property.fake_address} | Belga Emprendimientos</title>
+        <meta
+          key="og:title" property="og:title"
+          content={`${property.fake_address} | Belga Emprendimientos`}
+        />
         <meta
           key="og:description" property="og:description"
-          content="Nuestra misión: Ofrecer la mas alta calidad de servicios inmobiliarios, buscando continuamente mejorar y ampliar la gama de servicios ofrecidos con el fin de satisfacer las necesidades de nuestros clientes actuales y futuros"
+          content="Conocé nuestros emprendimientos y más"
         />
         <meta
           key="og:url" property="og:url"
@@ -378,25 +382,25 @@ const PropertyDetail = observer(({
                   <MoreItemTitle>Superficies</MoreItemTitle>
                   {devPropertiesData?.roofed_surface && (
                     <MoreItemText>
-                      <b>Sup. Cubierta:</b>
+                      <b>Sup. Cubierta: </b>
                       {`${devPropertiesData?.roofed_surface} m2`}
                     </MoreItemText>
                   )}
                   {devPropertiesData?.semiroofed_surface && (
                     <MoreItemText>
-                      <b>Sup. Semicubierta:</b>
+                      <b>Sup. Semicubierta: </b>
                       {`${devPropertiesData?.semiroofed_surface} m2`}
                     </MoreItemText>
                   )}
                   {devPropertiesData?.unroofed_surface && (
                     <MoreItemText>
-                      <b>Sup. Descubieta:</b>
+                      <b>Sup. Descubieta: </b>
                       {`${devPropertiesData?.unroofed_surface} m2`}
                     </MoreItemText>
                   )}
                   {devPropertiesData?.total_surface && (
                     <MoreItemText>
-                      <b>Sup. Total:</b>
+                      <b>Sup. Total: </b>
                       {`${devPropertiesData?.total_surface} m2`}
                     </MoreItemText>
                   )}

@@ -6,7 +6,6 @@ export const propertiesSelectOptions = [
   { value: 3, label: "Casas" },
   { value: 2, label: "Departamentos" },
   { value: 13, label: "PH" },
-  { value: 4, label: "Emprendimientos" },
   { value: 1, label: "Terrenos" },
   { value: 5, label: "Oficinas" },
   { value: 10, label: "Cocheras" },

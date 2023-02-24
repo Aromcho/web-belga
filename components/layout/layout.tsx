@@ -10,6 +10,7 @@ const Menu = dynamic<MenuProps>(() => import("components/menu").then((mod) => mo
 const Footer = dynamic<FooterProps>(() => import("components/footer").then((mod) => mod.Footer))
 
 import { LayoutWrapper, GlobalStyles, HeroFooter } from "./layout.styles";
+import Link from "next/link";
 
 export interface LayoutProps {
   children?: React.ReactNode;
@@ -26,9 +27,11 @@ export const Layout = ({ children, menuTheme, footerSmall }: LayoutProps) => {
       {children}
       <Footer small={footerSmall} id="contacto" backToTopFooter/>
       <HeroFooter>
-        <a href="tel:+541152633393" className="head--footer-link phone" target="_blank">
-          <TelIcon />
-        </a>
+        <Link href="tel:+541152633393">
+          <a className="head--footer-link phone">
+            <TelIcon />
+          </a>
+        </Link>
         <a href="mailto:info@belga.com.ar" className="head--footer-link mail" target="_blank">
           <MailIconSend />
         </a>

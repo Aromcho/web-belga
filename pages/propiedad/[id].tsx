@@ -5,7 +5,7 @@ import Link from "next/link";
 import Head from "next/head";
 import { useMergeState } from "helpers/hooks";
 import { observer } from "mobx-react-lite";
-import { classes, formatToMoney } from "helpers";
+import { classes, formatToMoney, getWindowDimensions } from "helpers";
 import { getProperties, getPropertyById } from "services";
 import { PATHS } from "config";
 import { Navigation } from "swiper";
@@ -138,6 +138,8 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
     .map((item: any, k: number) => {
       return { src: `${item.image}`, loading: "lazy" };
     });
+
+  const windowSize = getWindowDimensions();
 
   return (
     <Layout menuTheme="light">
@@ -352,7 +354,7 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
               <FeaturesGrid>
               {property?.age ? property?.type.name !== "Terreno" && <Feature>
                   <FtHead>
-                    {property.age === 0 ? "A estrenar" : property.age == "-1" ? "En construcción" : property.age}
+                    {property.age === 0 ? "A estrenar" : property.age == "-1" ? (windowSize || 800) > 600 ? "En construcción" : "En constr." : property.age}
                   </FtHead>
                   <FtImg src="/images/icons/prop_antiguedad.svg" />
                   <FtBottom>Antigüedad</FtBottom>

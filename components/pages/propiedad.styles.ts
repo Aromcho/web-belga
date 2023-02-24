@@ -837,5 +837,10 @@ export const ButtonMobileWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-bottom: 60px;
+    border-bottom: 1px solid black;
+    .button--title{
+      max-width: 100%;
+    }
   }
 `;

@@ -141,7 +141,7 @@ const PropertyDetail = observer(({
         <title>Propiedad | {property.fake_address}</title>
         <meta
           key="og:description" property="og:description"
-          content="	Nuestra misión: Ofrecer la mas alta calidad de servicios inmobiliarios, buscando continuamente mejorar y ampliar la gama de servicios ofrecidos con el fin de satisfacer las necesidades de nuestros clientes actuales y futuros"
+          content="Nuestra misión: Ofrecer la mas alta calidad de servicios inmobiliarios, buscando continuamente mejorar y ampliar la gama de servicios ofrecidos con el fin de satisfacer las necesidades de nuestros clientes actuales y futuros"
         />
         <meta
           key="og:url" property="og:url"

@@ -1,4 +1,5 @@
-import NextDocument, { Html, Head, Main, NextScript } from "next/document";
+import NextDocument, { Html, Head as DocumentHead, Main, NextScript } from "next/document";
+import Head from 'next/head';
 import React from "react";
 
 type Props = {};
@@ -7,6 +8,7 @@ class Document extends NextDocument<Props> {
   render() {
     return (
       <Html>
+        <DocumentHead />
         <Head>
           {/*OpenGraph metadata*/}
           <meta key="og:type" property="og:type" content="Website" />
@@ -14,7 +16,7 @@ class Document extends NextDocument<Props> {
           <meta
             key="og:description"
             property="og:description"
-            content="	Nuestra misión: Ofrecer la mas alta calidad de servicios inmobiliarios, buscando continuamente mejorar y ampliar la gama de servicios ofrecidos con el fin de satisfacer las necesidades de nuestros clientes actuales y futuros"
+            content="Nuestra misión: Ofrecer la mas alta calidad de servicios inmobiliarios, buscando continuamente mejorar y ampliar la gama de servicios ofrecidos con el fin de satisfacer las necesidades de nuestros clientes actuales y futuros"
           />
           <meta key="og:url" property="og:url" content="https://www.belga.com.ar/" />
           <meta key="og:type" property="og:type" content="Website" />

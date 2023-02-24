@@ -142,7 +142,6 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
   return (
     <Layout menuTheme="light">
       <Head>
-        {/*OpenGraph metadata*/}
         <title>{property.address} | Belga Propiedades</title>
         <meta
           key="og:description" property="og:description"

@@ -9,18 +9,20 @@ class Document extends NextDocument<Props> {
       <Html>
         <Head>
           {/*OpenGraph metadata*/}
-          <meta property="og:type" content="Website" />
-          <meta property="og:title" content="Belga Inmobiliaria" />
+          <meta key="og:type" property="og:type" content="Website" />
+          <meta key="og:title" property="og:title" content="Belga Inmobiliaria" />
           <meta
+            key="og:description"
             property="og:description"
             content="	Nuestra misión: Ofrecer la mas alta calidad de servicios inmobiliarios, buscando continuamente mejorar y ampliar la gama de servicios ofrecidos con el fin de satisfacer las necesidades de nuestros clientes actuales y futuros"
           />
-          <meta property="og:url" content="https://www.belga.com.ar/" />
-          <meta property="og:type" content="Website" />
-          <meta property="og:site_name" content="Belga Inmobiliaria" />
+          <meta key="og:url" property="og:url" content="https://www.belga.com.ar/" />
+          <meta key="og:type" property="og:type" content="Website" />
+          <meta key="og:site_name" property="og:site_name" content="Belga Inmobiliaria" />
           <meta
             property="og:image"
             content="https://belga.com.ar/images/og_image.png"
+            key="og:image"
           />
 
           {/* Favicon */}

@@ -144,24 +144,20 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
       <Head>
         {/*OpenGraph metadata*/}
         <title>{property.address} | Belga Propiedades</title>
-        <meta property="og:type" content="Website" />
         <meta
-          property="og:title"
-          content={`${property.address} | Belga Propiedades`}
-        />
-        <meta
-          property="og:description"
+          key="og:description" property="og:description"
           content={property.publication_title || property.address }
         />
         <meta
-          property="og:url"
-          content={`https://www.belga.com.ar/${property.id.toString()}`}
+          key="og:url" property="og:url"
+          content={`https://www.belga.com.ar/propiedad/${property.id.toString()}`}
         />
-        <meta property="og:type" content="Website" />
-        <meta property="og:site_name" content="Belga Inmobiliaria" />
+        <meta key="og:type" property="og:type" content="Website" />
+        <meta key="og:site_name" property="og:site_name" content="Belga Inmobiliaria" />
         <meta
           property="og:image"
           content={property.photos.find((item: any) => item.is_front_cover)?.image || property.photos[0]?.image || "https://belga.com.ar/images/og_image.png"}
+          key="og:image"
         />
         <link
           rel="stylesheet"
@@ -424,7 +420,7 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
               </FeaturesGrid>
 
               <FeaturesFooter>
-                {property?.files?.length > 0 && (
+                {planoGallery.length > 0 && (
                   <Button
                     className="button--planos"
                     text="Ver planos"

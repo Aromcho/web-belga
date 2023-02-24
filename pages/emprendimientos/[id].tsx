@@ -139,19 +139,15 @@ const PropertyDetail = observer(({
       <Head>
         {/*OpenGraph metadata*/}
         <title>Propiedad | {property.fake_address}</title>
-        <meta property="og:type" content="Website" />
-        <meta property="og:title" content={`Propiedad | ${property.fake_address}`} />
         <meta
-          property="og:description"
+          key="og:description" property="og:description"
           content="	Nuestra misión: Ofrecer la mas alta calidad de servicios inmobiliarios, buscando continuamente mejorar y ampliar la gama de servicios ofrecidos con el fin de satisfacer las necesidades de nuestros clientes actuales y futuros"
         />
         <meta
-          property="og:url"
-          content={`https://www.belga.com.ar/${property.id.toString()}`}
+          key="og:url" property="og:url"
+          content={`https://www.belga.com.ar/emprendimientos/${property.id.toString()}`}
         />
-        <meta property="og:type" content="Website" />
-        <meta property="og:site_name" content="Belga Inmobiliaria" />
-        <meta property="og:image" content={`${property?.photos[0]?.image}`} />
+        <meta key="og:image" property="og:image" content={`${property?.photos[0]?.image}` || "https://belga.com.ar/images/og_image.png" } />
       </Head>
 
       <BackToTop color="black" />

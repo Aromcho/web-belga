@@ -146,6 +146,7 @@ export const PropertyList = observer(
 
     const handleSubmit = (e: any) => {
       e.preventDefault();
+      setShowFilter(false);
       router.push(getSearchUrl(formData));
     };
 
@@ -244,7 +245,7 @@ export const PropertyList = observer(
                   value={getDropdownValue(
                     formData.min_rooms,
                     formData.max_rooms,
-                    "Dormitorios"
+                    "Dorms."
                   )}
                 >
                   <DropdownRow>
@@ -588,7 +589,7 @@ export const PropertyList = observer(
                     min={0}
                     value={formData.parking_lot_from}
                     onChange={(e) => {
-                      setFormData({ parking_lot_to: e.currentTarget.value });
+                      setFormData({ parking_lot_from: e.currentTarget.value });
                     }}
                   />
                   <Input
@@ -598,7 +599,7 @@ export const PropertyList = observer(
                     min={0}
                     value={formData.parking_lot_to}
                     onChange={(e) => {
-                      setFormData({ parking_lot_from: e.currentTarget.value });
+                      setFormData({ parking_lot_to: e.currentTarget.value });
                     }}
                   />
                 </RowInputsMobile>

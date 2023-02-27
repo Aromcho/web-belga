@@ -144,10 +144,10 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
   return (
     <Layout menuTheme="light">
       <Head>
-        <title>{property.address} | Belga Propiedades</title>
+        <title>{property.address} | Belga Inmobiliaria</title>
         <meta
           key="og:title" property="og:title"
-          content={`${property.address} | Belga Propiedades`}
+          content={`${property.address} | Belga Inmobiliaria`}
         />
         <meta
           key="og:description" property="og:description"

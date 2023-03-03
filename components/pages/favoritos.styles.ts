@@ -24,7 +24,7 @@ export const BackWrapper = styled.div`
   margin-bottom: 40px;
   .back--link {
     align-items: center;
-    display: flex;
+    display: inline-flex;
     color: ${(props: any) => props.theme.black};
     cursor: pointer;
     font-size: 14px;

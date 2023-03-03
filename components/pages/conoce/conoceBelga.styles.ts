@@ -821,7 +821,7 @@ export const BackWrapper = styled.div`
   }
   .back--link {
     align-items: center;
-    display: flex;
+    display: inline-flex;
     color: ${(props: any) => props.theme.black};
     cursor: pointer;
     font-size: 14px;

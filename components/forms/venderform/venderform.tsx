@@ -51,14 +51,14 @@ export const VenderForm = ({ className }: ContactFormProps) => {
     e.preventDefault();
     setError({
       name: data.name === "",
-      email: data.name === "",
-      phone: data.name === "",
+      email: data.email === "",
+      phone: data.phone === "",
     });
     if (
       (error.name || error.email || error.phone,
       data.name === "",
-      data.name === "",
-      data.name === "")
+      data.email === "",
+      data.phone === "")
     ) {
       setStatus({
         status: "error",

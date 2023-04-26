@@ -26,7 +26,7 @@ export const Layout = ({ children, menuTheme, footerSmall }: LayoutProps) => {
       <Menu theme={menuTheme} />
       {children}
       <Footer small={footerSmall} id="contacto" backToTopFooter/>
-      <HeroFooter>
+      <HeroFooter id="menuFooter">
         <Link href="tel:+541152633393">
           <a className="head--footer-link phone">
             <TelIcon />

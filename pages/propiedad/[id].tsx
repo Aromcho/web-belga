@@ -24,6 +24,7 @@ const BackToTop = dynamic<any>(() => import("components/backtotop").then((mod) =
 const SocialSidebar = dynamic<any>(() => import("components/socialsidebar").then((mod) => mod.SocialSidebar))
 const Error500 = dynamic<any>(() => import("pages/500"))
 const Error404 = dynamic<any>(() => import("pages/404"))
+const Property = dynamic<any>(() => import("components/print/property"))
 import {
   ArrowBackIcon,
   ArrowSubmitIcon,
@@ -83,17 +84,14 @@ import {
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { PrintIcon } from "components/icons/icons";
 
 const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
 
-  console.log(property)
-  
   if (statusCode === 404) return <Error404 />
   if (statusCode >= 500) return <Error500 />
   
-  const {
-    rootStore: { userStore },
-  } = useStore();
+  const { rootStore: { userStore } } = useStore();
   
   /* Handle media content */
   const images = property?.photos?.map((item: any, k: number) => (
@@ -168,13 +166,14 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/css/ol.css"
           type="text/css"
-        ></link>
+        />
       </Head>
 
       <BackToTop color="red" />
       <SocialSidebar color="red" showWithOffset />
 
-      <PropContainer>
+      <Property property={property} />
+      <PropContainer id="propItem">
         <Container>
           <BackWrapper>
             <a className="back--link" onClick={() => history.state.idx > 0 ? history.back() : window.location.href = PATHS.ROOT}>
@@ -243,6 +242,7 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
                     <MailIcon />
                   </a>
                 </Link>
+                <a style={{cursor: "pointer"}}><PrintIcon onClick={() => window.print()} /></a>
               </HeadShare>
             </HeadInfoShare>
           </HeadProp>

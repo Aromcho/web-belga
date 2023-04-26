@@ -70,7 +70,7 @@ export const Menu = ({ theme = "light" }: MenuProps) => {
   const isMobile = windowDimensions && windowDimensions <= 1100;
 
   return (
-    <MenuContainer className={classes(theme, { sticky })}>
+    <MenuContainer className={classes(theme, { sticky })} id="menuItem">
       <MenuInfo>
         <MenuInfoList>
           <MenuInfoItem>La imprenta</MenuInfoItem>

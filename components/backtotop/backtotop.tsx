@@ -33,6 +33,7 @@ export const BackToTop = ({
     <BackToTopContainer
       className={classes(className, color ?? "red", { show: showBtn })}
       onClick={() => goToTop()}
+      id="backTop"
     >
       <ArrowBackIcon className="icon--arrow" />
     </BackToTopContainer>

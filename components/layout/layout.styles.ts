@@ -242,7 +242,6 @@ export const GlobalStyles = css`
     #nprogress .spinner {
       display: none!important;
     }
-
   }
 `;
 

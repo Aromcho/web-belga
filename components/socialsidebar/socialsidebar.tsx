@@ -41,6 +41,7 @@ export const SocialSidebar = ({
     <SidebarContainer
       className={classes(className, color ?? "yellow", { show: showSidebar })}
       style={{ zIndex: zIndex }}
+      id="socialSidebar"
     >
       <Link href={`${SOCIAL.INSTA}`}>
         <a className="social--link" target="_blank">

@@ -43,6 +43,10 @@ export const HeaderSubtitle = styled.span`
   line-height: 22px;
   font-weight: 400;
   margin-top: 10px;
+  text-overflow: ellipsis;
+  max-width: 940px;
+  overflow: hidden;
+  white-space: nowrap;
 `
 
 export const HeaderLabel = styled.span`
@@ -174,7 +178,7 @@ export const Price = styled.span`
 `;
 
 export const PrintStyle = css`
-  #pdfItem {
+  /* #pdfItem {
     display: none;
   }
   
@@ -201,7 +205,7 @@ export const PrintStyle = css`
     #menuFooter {
       display: none;
     }
-  }
+  } */
 
   @page { 
     size: A4 landscape;

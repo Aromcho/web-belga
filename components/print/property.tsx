@@ -42,11 +42,8 @@ const Property = ({property}: any) => {
     return { src: `${item.image}`, loading: "lazy" };
   });
 
-  const [amount, setAmount] = React.useState(12)
-
-  // React.useEffect(() => {
-  //   setAmount(Math.ceil(document.getElementById('div')!.clientHeight / 600) * 4);
-  // })
+  const amount = Math.ceil(property.description.split(/\r\n|\r|\n/).length / 2.90)
+  console.log(photoGallery.length, amount)
   
   return (
     <PropertyPDF id="pdfItem">
@@ -66,8 +63,8 @@ const Property = ({property}: any) => {
       <ContentWrapper>
         <LeftColumn>
           <IconList>
-            {Math.round(property?.roofed_surface) > 0 && <IconItem>
-              <IconLabel>{Math.round(property?.roofed_surface)}</IconLabel>
+            {Math.round(property?.total_surface) > 0 && <IconItem>
+              <IconLabel>{Math.round(property?.total_surface)}</IconLabel>
               <IconImage src="/images/svg/m2.svg" />
             </IconItem>}
             {Math.round(property?.suite_amount) > 0 && <IconItem>

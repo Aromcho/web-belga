@@ -178,7 +178,7 @@ export const Price = styled.span`
 `;
 
 export const PrintStyle = css`
-  /* #pdfItem {
+  #pdfItem {
     display: none;
   }
   
@@ -205,7 +205,7 @@ export const PrintStyle = css`
     #menuFooter {
       display: none;
     }
-  } */
+  }
 
   @page { 
     size: A4 landscape;

@@ -43,7 +43,7 @@ const Property = ({property}: any) => {
   });
 
   const amount = Math.ceil(property.description.split(/\r\n|\r|\n/).length / 2.90)
-  console.log(photoGallery.length, amount)
+  console.log(photoGallery.length, amount, property.description.split(/\r\n|\r|\n/).length)
   
   return (
     <PropertyPDF id="pdfItem">

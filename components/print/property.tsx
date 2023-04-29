@@ -5,7 +5,6 @@ import { GlobalStyles } from "../layout/layout.styles";
 import { formatToMoney } from "helpers";
 
 import {
-  PrintStyle,
   PropertyPDF,
   Header,
   Logo,
@@ -30,11 +29,11 @@ import {
   Price,
   Rooms,
   Disclaimer,
-  Divider
+  PrintStyle
 } from "./styles.styles";
 import { url } from 'inspector';
 
-const Property = ({property}: any) => {
+const Property = ({property, photoAmount}: any) => {
 
   const photoGallery: {src: string}[] = property?.photos
   ?.filter((item: any) => !item.is_blueprint)
@@ -42,14 +41,17 @@ const Property = ({property}: any) => {
     return { src: `${item.image}`, loading: "lazy" };
   });
 
-  const asd = Math.ceil(property.description.split(/\r\n|\r|\n/).length / 2.90) - 2
-  const amount = asd % 2 == 0 ? asd : asd - 1;
+  // const asd = Math.ceil(property.description.split(/\r\n|\r|\n/).length / 2.90) - 2
+  
+  const amount = photoAmount % 2 == 0 ? photoAmount : photoAmount - 1;
   console.log(photoGallery.length, amount, property.description.split(/\r\n|\r|\n/).length)
+
+  console.log(property)
   
   return (
     <PropertyPDF id="pdfItem">
-      <GlobalStyling styles={GlobalStyles} />
       <GlobalStyling styles={PrintStyle} />
+      <GlobalStyling styles={GlobalStyles} />
       <thead><th><td style={{display: "flex"}}>
       <Header>
         <Logo src="/images/print_logo.svg" alt="Belga" style={{}} />

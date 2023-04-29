@@ -85,6 +85,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { PrintIcon } from "components/icons/icons";
+import { PrintStyle } from "components/print/styles.styles";
+import { Global as GlobalStyling } from "@emotion/react";
 
 const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
 
@@ -139,6 +141,12 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
 
   const windowSize = getWindowDimensions();
 
+  const [amount, setAmount] = React.useState(0);
+
+  React.useEffect(() => {
+    setAmount(Math.ceil((document.querySelector('#propDesctText')!.clientHeight / 600) * 6) + 2)
+  })
+
   return (
     <Layout menuTheme="light">
       <Head>
@@ -172,7 +180,8 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
       <BackToTop color="red" />
       <SocialSidebar color="red" showWithOffset />
 
-      <Property property={property} />
+      <Property property={property} photoAmount={amount} />
+      <GlobalStyling styles={PrintStyle} />
       <PropContainer id="propItem">
         <Container>
           <BackWrapper>
@@ -502,7 +511,7 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
             <BodyDesc>
               <DescTitle>Descripción</DescTitle>
 
-              {property.description && <DescText dangerouslySetInnerHTML={{__html: property.description}} />}
+              {property.description && <DescText id="propDesctText" dangerouslySetInnerHTML={{__html: property.description}} />}
             </BodyDesc>
           </BodyProp>
 

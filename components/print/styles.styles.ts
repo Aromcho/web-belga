@@ -69,7 +69,8 @@ export const RightColumn = styled.div`
 
 export const IconList = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 70px;
   margin: 47px 0 63px;
 `;
 

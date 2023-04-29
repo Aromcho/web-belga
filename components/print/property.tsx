@@ -42,7 +42,8 @@ const Property = ({property}: any) => {
     return { src: `${item.image}`, loading: "lazy" };
   });
 
-  const amount = Math.ceil(property.description.split(/\r\n|\r|\n/).length / 2.90)
+  const asd = Math.ceil(property.description.split(/\r\n|\r|\n/).length / 2.90)
+  const amount = asd % 2 == 0 ? asd : asd - 1;
   console.log(photoGallery.length, amount, property.description.split(/\r\n|\r|\n/).length)
   
   return (

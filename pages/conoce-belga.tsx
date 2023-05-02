@@ -318,7 +318,7 @@ const ConoceBelga = observer(() => {
                   rightInfo
                 />
 
-                <MemberCard
+                {/* <MemberCard
                   className="member--card"
                   name="Alejandrina Juarez"
                   img="/images/somos_belga/somos_alejandrina_juarez.jpg"
@@ -412,7 +412,7 @@ const ConoceBelga = observer(() => {
                   img="/images/somos_belga/somos_gabriela_santiago.jpg"
                   name="Gabriela Santiago Vélez"
                   position="Creativa"
-                />
+                /> */}
               </StaffList>
             </Container>
             <div id="servicios"></div>

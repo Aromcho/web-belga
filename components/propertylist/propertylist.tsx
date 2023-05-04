@@ -101,10 +101,10 @@ export const PropertyList = observer(
       if (query?.locid)
         setFormData({
           locations: localidades
-            .filter((item) =>
+            .filter((item: any) =>
               query?.locid.includes(item.label.toLowerCase())
             )
-            .map((item) => item.value),
+            .map((item: any) => item.value),
         });
       if (query?.rooms_from) setFormData({ min_rooms: query?.rooms_from });
       if (query?.rooms_to) setFormData({ max_rooms: query?.rooms_to });

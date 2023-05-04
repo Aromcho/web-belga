@@ -442,7 +442,7 @@ export const PropertyList = observer(
                   className="input--general full select"
                   options={localidades}
                   isMulti={true}
-                  value={localidades.filter((item) =>
+                  value={localidades.filter((item: any) =>
                     formData.locations.includes(item.value)
                   )}
                   placeholder="Barrios"
@@ -469,7 +469,7 @@ export const PropertyList = observer(
                   className="input--general full select"
                   options={localidades}
                   isMulti={true}
-                  value={localidades.filter((item) =>
+                  value={localidades.filter((item: any) =>
                     formData.locations.includes(item.value)
                   )}
                   placeholder="Barrios"

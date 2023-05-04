@@ -7,11 +7,10 @@ import dynamic from "next/dynamic";
 import { PATHS } from "config";
 import { observer } from "mobx-react-lite";
 
-import { getDevelopments, getProperties } from "services";
+import { getDevelopments, getNeighborhoods, getProperties } from "services";
 import { useStore } from "stores";
 import { formatToMoney, getDropdownValue, Property } from "helpers";
 import { useMergeState } from "helpers/hooks";
-import { neighborhoods } from "helpers/neighborhoods";
 import { getSearchUrl, propertiesSelectOptions } from "helpers/tokko";
 
 import { Layout, Container } from "components/layout";
@@ -52,6 +51,7 @@ import {
   DropdownRow,
   RowLabel,
 } from "components/pages/home.styles";
+import axios from "axios";
 
 const Home = observer(({ properties, emprendimientos }: any) => {
   const {
@@ -79,7 +79,16 @@ const Home = observer(({ properties, emprendimientos }: any) => {
     router.push(getSearchUrl(formData));
   };
 
-  const localidades = neighborhoods.map((item) => ({
+  const [barrios, setBarrios] = React.useState<any>([]);
+
+  React.useEffect(() => {
+    axios('/api/neighborhoods')
+    .then(({data}) => {
+      setBarrios(data)
+    })
+  }, [])
+
+  const localidades = barrios.map((item: any) => ({
     value: item?.location_id,
     label: item?.location_name,
   }));

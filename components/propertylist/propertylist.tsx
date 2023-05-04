@@ -10,7 +10,6 @@ import { ContactForm } from "components/forms/contactform";
 import { Container } from "components/layout";
 
 import { classes, getDropdownValue, Property } from "helpers";
-import { neighborhoods } from "helpers/neighborhoods";
 import {
   getSearchUrl,
   operationArray,
@@ -50,6 +49,7 @@ import {
   FiltersHeader,
   IconCloseWrapper,
 } from "./propertylist.styles";
+import axios from "axios";
 
 export interface PropertyListProps {
   properties: Property[];
@@ -153,7 +153,16 @@ export const PropertyList = observer(
     const currentPage = meta?.offset / meta?.limit + 1;
     const maxPage = Math.ceil(meta?.total_count / meta?.limit);
 
-    const localidades = neighborhoods.map((item) => ({
+    const [barrios, setBarrios] = React.useState<any>([]);
+
+    React.useEffect(() => {
+      axios('/api/neighborhoods')
+      .then(({data}) => {
+        setBarrios(data)
+      })
+    }, [])
+
+    const localidades = barrios.map((item: any) => ({
       value: item.location_id,
       label: item.location_name,
     }));

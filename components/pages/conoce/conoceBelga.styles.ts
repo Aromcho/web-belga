@@ -457,11 +457,11 @@ export const SwiperContainerGallery = styled.div`
 
 export const StaffList = styled.div`
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-
+  display: flex;
+  gap: 17px;
   @media screen and (max-width: 992px) {
-    grid-template-columns: repeat(2, 1fr);
+    flex-direction: column;
+    gap: 30px;
   }
 
   .member--card {
@@ -479,13 +479,78 @@ export const StaffList = styled.div`
   }
 `;
 
+export const StaffItem = styled.div`
+  display: flex;
+  width: 50%;
+  border-bottom: 1px solid #C62025;
+  @media screen and (max-width: 992px) {
+    width: 100%;;
+  }
+  .name{
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    @media screen and (max-width: 992px) {
+      font-size: 12px;
+      line-height: 15px;
+    }
+  }
+  .low-name{
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 400;
+    margin-bottom: 40px;
+    @media screen and (max-width: 992px) {
+      margin-bottom: 0;
+      font-size: 10px;
+      line-height: 12px;
+    }
+  }
+  .mobile{
+    display: none;
+    @media screen and (max-width: 992px) {
+      display: inline;
+    }
+  }
+  .desktop{
+    @media screen and (max-width: 992px) {
+      display: none;
+    }
+  }
+`
+export const LeftContent = styled.div`
+  width: calc(100% - 250px);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: column;
+  @media screen and (max-width: 992px) {
+    width: calc(100% - 155px);
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+`
+export const RightContent = styled.div`
+  width: 250px;
+  @media screen and (max-width: 992px) {
+    width: 155px;
+  }
+`
+
+export const StaffImage = styled.img`
+  width: 100%;;
+  position: relative;
+  top: 2px;
+`
+
 export const SomosBelgaSection = styled.section`
   width: 100%;
   background-color: ${(props: any) => props.theme.white};
   margin: 0 auto;
-  padding: 30px 0 60px;
+  padding: 60px 0;
   @media screen and (max-width: 992px) {
-    /* padding: 47px 0 0 ; */
+    padding: 0 0 60px;
   }
 `;
 

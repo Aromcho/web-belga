@@ -76,6 +76,10 @@ import {
   OfficeTextName,
   OfficeTextLoc,
   OfficeText,
+  LeftContent,
+  StaffItem,
+  RightContent,
+  StaffImage
 } from "components/pages/conoce/conoceBelga.styles";
 
 const ConoceBelga = observer(() => {
@@ -303,21 +307,28 @@ const ConoceBelga = observer(() => {
               </UnderlineTitle>
 
               <StaffList>
-                <MemberCard
-                  className="member--card"
-                  img="/images/somos_belga/somos_martin_gallegos.jpg"
-                  name="Martín Gallegos"
-                  position="CEO"
-                />
-
-                <MemberCard
-                  className="member--card img-bottom"
-                  img="/images/somos_belga/somos_lucas_jooris.jpg"
-                  name="Lucas Jooris"
-                  position="CEO"
-                  rightInfo
-                />
-
+                <StaffItem>
+                  <LeftContent>
+                    <span className="name">Martín Gallegos</span>
+                    <span className="low-name desktop">CEO | CUCICBA 5111 - CMCPSI 6528</span>
+                    <span className="low-name mobile">CEO</span>
+                    <span className="low-name mobile">CUCICBA 5111 - CMCPSI 6528</span>
+                  </LeftContent>
+                  <RightContent>
+                    <StaffImage src="/images/new/martin.png" loading="lazy" />
+                  </RightContent>
+                </StaffItem>
+                <StaffItem>
+                  <LeftContent>
+                    <span className="name">Lucas Jooris</span>
+                    <span className="low-name desktop">CEO | CUCICBA 8347</span>
+                    <span className="low-name mobile">CEO</span>
+                    <span className="low-name mobile">CUCICBA 8347</span>
+                  </LeftContent>
+                  <RightContent>
+                    <StaffImage src="/images/new/lucas.png" loading="lazy" />
+                  </RightContent>
+                </StaffItem>
                 {/* <MemberCard
                   className="member--card"
                   name="Alejandrina Juarez"

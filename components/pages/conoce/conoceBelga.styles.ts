@@ -535,15 +535,16 @@ export const LeftContent = styled.div`
 `
 export const RightContent = styled.div`
   width: 250px;
+  height: 250px;
   @media screen and (max-width: 992px) {
     width: 155px;
+    height: 155px;
   }
 `
 
 export const StaffImage = styled.img`
   width: 100%;;
   position: relative;
-  top: 2.5px;
 `
 
 export const SomosBelgaSection = styled.section`

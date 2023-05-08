@@ -500,10 +500,12 @@ export const StaffItem = styled.div`
     line-height: 16px;
     font-weight: 400;
     margin-bottom: 40px;
+    text-align: center;
     @media screen and (max-width: 992px) {
       margin-bottom: 0;
       font-size: 10px;
       line-height: 12px;
+      text-align: left;
     }
   }
   .mobile{
@@ -541,7 +543,7 @@ export const RightContent = styled.div`
 export const StaffImage = styled.img`
   width: 100%;;
   position: relative;
-  top: 2px;
+  top: 2.5px;
 `
 
 export const SomosBelgaSection = styled.section`

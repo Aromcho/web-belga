@@ -31,7 +31,6 @@ import {
   Disclaimer,
   PrintStyle
 } from "./styles.styles";
-import { url } from 'inspector';
 
 const Property = ({property, photoAmount}: any) => {
 
@@ -41,12 +40,8 @@ const Property = ({property, photoAmount}: any) => {
     return { src: `${item.image}`, loading: "lazy" };
   });
 
-  // const asd = Math.ceil(property.description.split(/\r\n|\r|\n/).length / 2.90) - 2
   
   const amount = photoAmount % 2 == 0 ? photoAmount : photoAmount - 1;
-  console.log(photoGallery.length, amount, property.description.split(/\r\n|\r|\n/).length)
-
-  console.log(property)
   
   return (
     <PropertyPDF id="pdfItem">
@@ -104,7 +99,6 @@ const Property = ({property, photoAmount}: any) => {
             </BottomRight>
           </BottomWrapper>
           <GalleryList className="fixes">
-            {/* {photoGallery.slice(4, amount).map(item => <GalleryItemImage src={item.src} />)} */}
             {photoGallery.slice(4, amount).map(item => <GalleryItem style={{backgroundImage: `url("${item.src}")`}} />)}
           </GalleryList>
         </RightColumn>

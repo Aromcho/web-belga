@@ -144,7 +144,8 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
   const [amount, setAmount] = React.useState(0);
 
   React.useEffect(() => {
-    setAmount(Math.ceil((document.querySelector('#propDesctText')!.clientHeight / 600) * 6) + 2)
+    const h = document.querySelector('#propDesctText')!.clientHeight + 300;
+    setAmount(Math.ceil((h / 600) * 6) + 4)
   })
 
   return (

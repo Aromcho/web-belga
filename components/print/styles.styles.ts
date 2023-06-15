@@ -118,7 +118,7 @@ export const GalleryList = styled.div`
 
 export const GalleryItem = styled.div`
   width: calc(50% - 11px);
-  height: 164px;
+  height: 158px;
   /* aspect-ratio: 2/1; */
   background-size: cover;
   background-repeat: no-repeat;

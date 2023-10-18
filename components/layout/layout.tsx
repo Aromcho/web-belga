@@ -76,6 +76,8 @@ export const Layout = ({ children, menuTheme, footerSmall }: LayoutProps) => {
           href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap"
           rel="stylesheet"
         />
+
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-KBVCVZE3RH"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments)} gtag('js', new Date()); gtag('config', 'G-KBVCVZE3RH'); </script>
       </Head>
 
       <GlobalStyling styles={GlobalStyles} />

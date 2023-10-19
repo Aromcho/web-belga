@@ -64,16 +64,6 @@ class Document extends NextDocument<Props> {
           />
         </Head>
         <body>
-          <Script src="https://www.googletagmanager.com/gtag/js?id=G-KBVCVZE3RH" />
-          <Script id="google-analytics">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-    
-              gtag('config', 'G-KBVCVZE3RH');
-            `}
-          </Script>
           <Main />
           <NextScript />
         </body>

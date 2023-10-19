@@ -77,7 +77,16 @@ export const Layout = ({ children, menuTheme, footerSmall }: LayoutProps) => {
           rel="stylesheet"
         />
 
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-KBVCVZE3RH"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments)} gtag('js', new Date()); gtag('config', 'G-KBVCVZE3RH'); </script>
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-KBVCVZE3RH" />
+        <Script id="google-analytics">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+  
+            gtag('config', 'G-KBVCVZE3RH');
+          `}
+        </Script>
       </Head>
 
       <GlobalStyling styles={GlobalStyles} />

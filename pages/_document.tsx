@@ -61,8 +61,16 @@ class Document extends NextDocument<Props> {
             href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap"
             rel="stylesheet"
           />
-          <script async src="https://www.googletagmanager.com/gtag/js?id=G-KBVCVZE3RH"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments)} gtag('js', new Date()); gtag('config', 'G-KBVCVZE3RH'); </script>
-
+          <Script src="https://www.googletagmanager.com/gtag/js?id=G-KBVCVZE3RH" />
+          <Script id="google-analytics">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+    
+              gtag('config', 'G-KBVCVZE3RH');
+            `}
+          </Script>
         </Head>
         <body>
           <Main />

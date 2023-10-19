@@ -1,5 +1,6 @@
 import NextDocument, { Html, Head as DocumentHead, Main, NextScript } from "next/document";
 import Head from 'next/head';
+import Script from 'next/script';
 import React from "react";
 
 type Props = {};

@@ -1,6 +1,7 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import Head from 'next/head';
+import Script from 'next/script';
 import { Global as GlobalStyling } from "@emotion/react";
 
 import { MenuProps } from "components/menu/menu";

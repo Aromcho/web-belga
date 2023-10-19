@@ -62,6 +62,8 @@ class Document extends NextDocument<Props> {
             href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap"
             rel="stylesheet"
           />
+        </Head>
+        <body>
           <Script src="https://www.googletagmanager.com/gtag/js?id=G-KBVCVZE3RH" />
           <Script id="google-analytics">
             {`
@@ -72,8 +74,6 @@ class Document extends NextDocument<Props> {
               gtag('config', 'G-KBVCVZE3RH');
             `}
           </Script>
-        </Head>
-        <body>
           <Main />
           <NextScript />
         </body>

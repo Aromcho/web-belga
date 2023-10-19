@@ -1,4 +1,5 @@
 import { AppContext } from 'next/app'
+import Script from 'next/script'
 import { ThemeProvider } from '@emotion/react';
 import { getSnapshot } from 'mobx-keystone'
 import NextNProgress from "nextjs-progressbar";

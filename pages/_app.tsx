@@ -10,7 +10,7 @@ import { theme } from 'helpers/theme';
 export default function App({ Component, pageProps, initialState }: any) {
   return (
     <>
-     <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-KBVCVZE3RH" />
+      <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-KBVCVZE3RH" />
       <Script
         id='google-analytics'
         strategy="afterInteractive"
@@ -22,6 +22,19 @@ export default function App({ Component, pageProps, initialState }: any) {
             gtag('config', 'G-KBVCVZE3RH', {
               page_path: window.location.pathname,
             });
+          `,
+        }}
+      />
+      <Script
+        id='google-tag-manager'
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-KM8CG8GC');
           `,
         }}
       />

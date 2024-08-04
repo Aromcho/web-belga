@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propiedad en Venta</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background-color: #F2A900;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        .header .logo {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            height: 40px;
+        }
+        .property-details {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .property-image {
+            flex: 2;
+            padding: 10px;
+        }
+        .property-image img {
+            width: 100%;
+            height: auto;
+        }
+        .property-info {
+            flex: 1;
+            padding: 10px;
+        }
+        .property-info .price {
+            font-size: 24px;
+            color: #28A745;
+        }
+        .property-info .features {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+        .property-info .qr-code {
+            margin-top: 20px;
+        }
+        .property-info .qr-code img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Dirección Ficticia de Tokko</h1>
+            <h2>Tipo de propiedad en Barrio</h2>
+            <img src="https://via.placeholder.com/40" alt="Logo" class="logo">
+        </div>
+        <div class="property-details">
+            <div class="property-image">
+                <img src="https://via.placeholder.com/600x400" alt="Imagen de la propiedad">
+            </div>
+            <div class="property-info">
+                <div class="price">USD 00.000.000</div>
+                <div class="features">7 Ambientes + 2 Cocheras</div>
+                <div class="qr-code">
+                    <img src="https://via.placeholder.com/100" alt="Código QR">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

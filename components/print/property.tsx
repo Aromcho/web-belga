@@ -7,8 +7,10 @@ import { formatToMoney } from "helpers";
 import {
   PropertyPDF,
   Header,
+  Footer,
   CenterColumn,
   CenterHeader,
+  MarcaAgua,
   MainTitlecontainer,
   MainPriceContainer,
   CenterHeaderTitle,
@@ -102,7 +104,8 @@ const Property = ({ property, photoAmount }: any) => {
                     <img key={index} src={item.src} alt={`Small property image ${index + 1}`} style={{ width: '100%', height: '30%' }} />
                     
                   ))}
-                  <QRCode size={80} value={`https://www.belga.com.ar/propiedad/${property.id.toString()}`} style={{ marginBottom: "10px" }} />
+                  <QRCode size={80} value={`https://www.belga.com.ar/propiedad/${property.id.toString()}`} style={{ marginBottom: "30px" }} />
+                  <MarcaAgua>BLEGA INMOBILIARIA S.A.</MarcaAgua>
                 </SmallImages>
               </GridContainer>
             </CenterColumn>
@@ -163,6 +166,16 @@ const Property = ({ property, photoAmount }: any) => {
           </td>
         </tr>
       </tbody>
+      <tfoot>
+      <tr>
+          <td colSpan={2}>
+            <Footer>
+              
+            </Footer>
+          </td>
+        </tr>
+      </tfoot>
+     
     </PropertyPDF>
   )
   

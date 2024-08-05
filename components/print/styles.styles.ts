@@ -14,10 +14,17 @@ export const Header = styled.div`
   align-items: flex-start;
   text-align: left;
   margin-bottom: 15px;
+  padding-top:35px;
+  padding-left:35px;
 `;
 
 
 /* new version */
+export const MarcaAgua = styled.span`
+
+`;
+
+
 export const AddressSecundaryTitle = styled.p`
   font-size: 24px;
   line-height: 26px;
@@ -72,7 +79,7 @@ export const MainPriceCoin = styled.span`
 `;
 
 export const MainPriceContainer = styled.div`
-  
+  position: relative;
    margin-right: 30px;
    margin-left: 30px;
    margin-top: 30px;
@@ -91,16 +98,27 @@ export const MainPrice = styled.span`
 
 export const MainTitlecontainer = styled.div`
   position: relative;
-  top:-48px;
+  top: -90px;
   display: flex;
   justify-content: space-between;
   background-color: white;
   width: 100vw;
   padding-right: 10px;
 `;
+export const GridContainer = styled.div`
+ position: relative;
+ top: -765px; 
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 0;
+  padding-left: 35px;
+  padding-right: 35px;
+  gap: 20px;
+`;
 export const CenterHeader = styled.div`
   position: absolute;
-  top: -10px;
+  top: -15px;
   width: 100%;
   height: 100px;
   background: #F1B332;
@@ -108,6 +126,13 @@ export const CenterHeader = styled.div`
   justify-content: end;
   align-items: flex-center;
   text-align: left;
+`;
+export const Footer = styled.div`
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
 `;
 
 export const CenterHeaderContent = styled.div`
@@ -138,17 +163,7 @@ export const CenterColumn = styled.div`
   padding: 0;
 `;
 
-export const GridContainer = styled.div`
-position: relative;
-  top:-52px;
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  margin: 0;
-  padding-left: 35px;
-  padding-right: 35px;
-  gap: 20px;
-`;
+
 
 export const MainImage = styled.div`
   flex: 3;
@@ -274,6 +289,8 @@ export const GalleryItemImage = styled.img`
 
 
 export const ContentWrapper = styled.div`
+position: relative;
+ top: -790px; 
   align-items: flex-start;
   display: flex;
   gap: 15px;
@@ -331,6 +348,11 @@ export const PrintStyle = css`
     }
     #menuFooter {
       display: none;
+    }
+      tfoot {
+    position: relative;
+    bottom: 0;
+    width: 100%;
     }
   }
 

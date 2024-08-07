@@ -82,9 +82,6 @@ const Property = ({ property, photoAmount }: any) => {
           <td colSpan={2}>
          
             <CenterColumn>
-              <CenterHeader>
-                <ImgLogo src="/images/logo-print-new.png" alt="" />
-              </CenterHeader>
               <MainTitlecontainer>
                 <TitleNew>
                   <AddressTitle>{property.address}</AddressTitle>
@@ -108,6 +105,9 @@ const Property = ({ property, photoAmount }: any) => {
                   <MarcaAgua>BLEGA INMOBILIARIA S.A.</MarcaAgua>
                 </SmallImages>
               </GridContainer>
+              <CenterHeader>
+                <ImgLogo src="/images/logo-print-new.png" alt="" />
+              </CenterHeader>
             </CenterColumn>
           </td>
         </tr>

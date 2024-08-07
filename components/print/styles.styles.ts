@@ -21,6 +21,9 @@ export const Header = styled.div`
 
 /* new version */
 export const MarcaAgua = styled.span`
+  font-size: 12px;
+  position: relative;
+  top: -15px;
 
 `;
 
@@ -28,6 +31,8 @@ export const MarcaAgua = styled.span`
 export const AddressSecundaryTitle = styled.p`
   font-size: 24px;
   line-height: 26px;
+      font-weight: 300;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,18 +41,19 @@ export const AddressSecundaryTitle = styled.p`
     margin: 0 7px;
   }
     margin-left: 8px;
-    font-weight: 500;
 
 `;
 
 export const AddressTitle = styled.span`
   font-size: 44px;
+    font-weight: 300;
+
   `;
 export const TitleNew = styled.span`
    padding-left: 35px;
   font-size: 24px;
   line-height: 26px;
-  font-weight: 700;
+  font-weight: 500;
   span {
     margin: 0 7px;
   }
@@ -63,9 +69,9 @@ export const Price = styled.span`
   text-align: end;
 `;
 export const ImgLogo = styled.img`
-  width: 165px;
+  width: 135px;
   height: 40px;
-  margin-right: 30px;
+  margin-left: 50px;
   margin-top: 40px;
 `;
 export const MainPriceCoin = styled.span`
@@ -98,32 +104,35 @@ export const MainPrice = styled.span`
 
 export const MainTitlecontainer = styled.div`
   position: relative;
-  top: -90px;
+  top: -150px;
   display: flex;
   justify-content: space-between;
   background-color: white;
   width: 100vw;
   padding-right: 10px;
+  padding-bottom: 50px;
+  
 `;
 export const GridContainer = styled.div`
  position: relative;
- top: -765px; 
+ top: -815px; 
   display: flex;
   flex-direction: row;
   width: 100%;
+  height: 95%;
   margin: 0;
-  padding-left: 35px;
-  padding-right: 35px;
-  gap: 20px;
+  padding-left: 85px;
+  padding-right: 85px;
+  gap: 30px;
 `;
 export const CenterHeader = styled.div`
   position: absolute;
-  top: -15px;
+  bottom: 0;
   width: 100%;
-  height: 100px;
+  height: 110px;
   background: #F1B332;
   display: flex;
-  justify-content: end;
+  justify-content: start;
   align-items: flex-center;
   text-align: left;
 `;
@@ -166,6 +175,7 @@ export const CenterColumn = styled.div`
 
 
 export const MainImage = styled.div`
+  height: 90%;
   flex: 3;
 `;
 
@@ -174,7 +184,7 @@ export const SmallImages = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-    gap: 20px;
+    gap: 30px;
 `;
 export const Rooms = styled.p`
   mergitn-top: 10px;

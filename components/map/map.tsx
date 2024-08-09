@@ -6,9 +6,13 @@ import { Tile as TileLayer } from 'ol/layer';
 import { Point } from 'ol/geom';
 import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
+import { FaMapMarkerAlt } from 'react-icons/fa';
 
 import {
-  MapWrapper
+  MapWrapper,
+  MapContainer,
+  PlaceholderImage,
+  MapIcon,
 } from './map.styles';
 import { normalStyle, hgihStyle } from './helpers';
 
@@ -19,18 +23,16 @@ export interface MapProps {
   zoom?: number;
 }
 
-export const Map = ({center, zoom, marker, markers}: MapProps) => {
-
+export const Map = ({ center, zoom, marker, markers }: MapProps) => {
   const [stMap, setMap] = React.useState<ol.Map>();
   const mapElement = React.useRef<HTMLDivElement>(null);
+  const [mapVisible, setMapVisible] = React.useState(false);
 
-  const [vectorLayer, ] = React.useState(
+  const [vectorLayer] = React.useState(
     new VectorLayer({
       source: new VectorSource({}),
-      style: [
-       normalStyle
-      ],
-      zIndex: 20
+      style: [normalStyle],
+      zIndex: 20,
     })
   );
 
@@ -49,56 +51,73 @@ export const Map = ({center, zoom, marker, markers}: MapProps) => {
     if(center) stMap?.getView().setCenter(fromLonLat([center.lon, center.lat]))
     if(zoom) stMap?.getView().setZoom(zoom);
   }, [center])
-  
 
   React.useEffect(() => {
-    const initialMap = new ol.Map({
-      layers: [
-        new TileLayer({
-          source: new XYZ({
-            url: `https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}.png`
+    if (mapVisible) { // Solo inicializar el mapa cuando mapVisible es true
+      const initialMap = new ol.Map({
+        layers: [
+          new TileLayer({
+            source: new XYZ({
+              url: `https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}.png`,
+            }),
+            preload: Infinity,
+            zIndex: 2,
+            maxZoom: 28,
           }),
-          preload: Infinity,
-          zIndex: 2,
-          maxZoom: 28
+          vectorLayer,
+        ],
+        view: new ol.View({
+          center: center ? fromLonLat([center.lon, center.lat]) : [0, 0],
+          zoom: zoom ?? 4,
+          maxZoom: 19,
         }),
-        vectorLayer
-      ],
-      view: new ol.View({
-        center: center ? fromLonLat([center.lon, center.lat]) : [0, 0],
-        zoom: zoom ?? 4,
-        maxZoom: 19
-      }),
-      target: mapElement?.current || undefined
-    });
-
-    setMap(initialMap);
-
-    if(marker){
-      var iconFeature = new ol.Feature({
-        geometry: new Point(fromLonLat([marker.lon, marker.lat]))
+        target: mapElement?.current || undefined,
       });
-      vectorLayer?.getSource()!.addFeature(iconFeature);
-    }
 
-    if(markers){
-      markers.forEach((item, i) => {
+      setMap(initialMap);
+
+      if (marker) {
         var iconFeature = new ol.Feature({
-          geometry: new Point(fromLonLat([item.lon, item.lat])),
-          id: item.id
+          geometry: new Point(fromLonLat([marker.lon, marker.lat])),
         });
-        iconFeature.setId(item.id)
         vectorLayer?.getSource()!.addFeature(iconFeature);
-      });
+      }
+
+      if (markers) {
+        markers.forEach((item, i) => {
+          var iconFeature = new ol.Feature({
+            geometry: new Point(fromLonLat([item.lon, item.lat])),
+            id: item.id,
+          });
+          iconFeature.setId(item.id);
+          vectorLayer?.getSource()!.addFeature(iconFeature);
+        });
+      }
+
+      return () => {
+        initialMap.setTarget(undefined);
+      };
     }
+  }, [mapVisible]) // Se vuelve a ejecutar el efecto al cambiar mapVisible
 
-
-    return () => {
-      initialMap.setTarget(undefined);
-    };
-  }, [])
+  // Función para manejar el clic en el botón o la imagen
+  const handleToggleMap = () => {
+    setMapVisible(true);
+  };
 
   return (
-    <MapWrapper ref={mapElement} />
+    <MapContainer>
+      {/* Imagen de marcador de posición */}
+      {!mapVisible && (
+        <PlaceholderImage onClick={handleToggleMap}>
+          <MapIcon>
+            <FaMapMarkerAlt size={32} />
+          </MapIcon>
+        </PlaceholderImage>
+      )}
+
+      {/* Mapa real, inicialmente oculto */}
+      {mapVisible && <MapWrapper ref={mapElement} />}
+    </MapContainer>
   );
 };

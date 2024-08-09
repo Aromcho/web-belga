@@ -315,22 +315,10 @@ export const SearchFormWrapper = styled.div`
 export const HeroWrapper = styled.div`
   width: 100%;
   height: 100vh;
-  /* background-image: url("/../images/home_bg_hero.jpg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat; */
   overflow: hidden;
   position: relative;
-  @media screen and (max-width: 992px) {
-    /* background-image: url("/../images/home_bg_hero_mobile.jpg"); */
-  }
-  @media screen and (max-width: 840px) {
-    height: auto;
-    padding: 100px 0 80px;
-  }
-  @media screen and (max-width: 460px) {
-    height: 100vh;
-  }
+
+  /* Estilo del video */
   video {
     position: fixed;
     top: 0;
@@ -338,8 +326,44 @@ export const HeroWrapper = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
+
+    @media screen and (max-width: 992px) {
+      display: none; /* Ocultar el video en pantallas móviles */
+    }
+  }
+
+  /* Estilo de la imagen de fondo */
+  .background-image {
+    display: none; /* Ocultar la imagen en pantallas grandes */
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    @media screen and (max-width: 992px) {
+      display: block; /* Mostrar la imagen en pantallas móviles */
+    }
+  }
+
+  /* Capa negra transparente para móviles */
+  .overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Capa negra transparente */
+    z-index: 2;
+
+    @media screen and (max-width: 992px) {
+      display: block; /* Mostrar la capa en pantallas móviles */
+    }
   }
 `;
+
 
 export const DropdownRow = styled.div`
   display: flex;

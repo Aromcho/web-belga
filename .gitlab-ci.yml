@@ -1,10 +1,9 @@
 stages:
   - build
   - test
-  - deploy
 
 # Job para compilar el código
-build-job:
+build:
   stage: build
   script:
     - echo "Compilando el código..."
@@ -12,30 +11,10 @@ build-job:
     - echo "Compilación completa."
 
 # Job para pruebas unitarias
-unit-test-job:
+test:
   stage: test
   script:
     - echo "Ejecutando pruebas unitarias..."
     # Reemplaza el siguiente comando con el script real para ejecutar pruebas unitarias
     - sleep 30  # Simula un tiempo de espera para la ejecución de pruebas
-    - echo "Cobertura de código: 90%"
-
-# Job para el linting del código
-lint-test-job:
-  stage: test
-  script:
-    - echo "Ejecutando linting del código..."
-    # Reemplaza el siguiente comando con el script real para ejecutar linting
-    - sleep 10  # Simula un tiempo de espera para el linting
-    - echo "No se encontraron problemas de linting."
-
-# Job para desplegar la aplicación
-deploy-job:
-  stage: deploy
-  environment: production
-  script:
-    - echo "Desplegando la aplicación..."
-    # Reemplaza el siguiente comando con el script real para desplegar tu aplicación
-    - echo "Aplicación desplegada exitosamente."
-
 

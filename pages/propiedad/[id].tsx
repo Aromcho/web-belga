@@ -96,6 +96,7 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
   const { rootStore: { userStore } } = useStore();
   
   /* Handle media content */
+  
   const images = property?.photos?.map((item: any, k: number) => (
     <MediaImg key={k} style={{ backgroundImage: `url(${item.image})` }} />
   ));

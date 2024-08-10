@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
@@ -51,7 +52,7 @@ import {
   DropdownRow,
   RowLabel,
 } from "components/pages/home.styles";
-import axios from "axios";
+
 
 const Home = observer(({ properties, emprendimientos }: any) => {
   const {
@@ -100,185 +101,196 @@ const Home = observer(({ properties, emprendimientos }: any) => {
       </Head>
 
       <HeroWrapper>
-        <video autoPlay muted loop id="myVideo">
-          <source src="/home-video.mp4" type="video/mp4" />
-        </video>
-        <Hero>
-          <SocialSidebar />
-        </Hero>
-        <Container className="hero--container align--center">
-          <SearchFormWrapper>
-            <SearchRow className="first--row">
-              <Select
-                className="white first--row-input input--general"
-                options={[
-                  { value: 1, label: "Venta" },
-                  { value: 2, label: "Alquiler" },
-                ]}
-                isSearchable={false}
-                isMulti={true}
-                placeholder="Tipo de Operación"
-                onChange={(opt) => {
-                  setFormData({
-                    operation_type: opt.map(
-                      (item: { value: number }) => item.value
-                    ),
-                  });
-                }}
-                fixes={true}
-              />
+  <video autoPlay muted loop className="video">
+    <source src="/home-video.mp4" type="video/mp4" />
+  </video>
 
-              <Select
-                className="white first--row-input input--general"
-                options={propertiesSelectOptions}
-                isSearchable={false}
-                placeholder="Tipo de Propiedad"
-                onChange={(opt) => {
-                  setFormData({ property_type: opt.value });
-                }}
-                fixes={true}
-              />
+  <img
+    src="/Foto_Portada.jpg"
+    alt="Portada"
+    className="background-image"
+  />
 
-              <Dropdown
-                className="white first--row-input"
-                placeholder="Dormitorios"
-                close={close.rooms}
-                value={getDropdownValue(
-                  formData?.min_rooms,
-                  formData?.max_rooms,
-                  "Dorms."
+  {/* Capa negra transparente sobre la imagen de fondo */}
+  <div className="overlay"></div>
+
+  <Hero>
+    <SocialSidebar />
+  </Hero>
+  <Container className="hero--container align--center">
+    <SearchFormWrapper>
+      <SearchRow className="first--row">
+        <Select
+          className="white first--row-input input--general"
+          options={[
+            { value: 1, label: "Venta" },
+            { value: 2, label: "Alquiler" },
+          ]}
+          isSearchable={false}
+          isMulti={true}
+          placeholder="Tipo de Operación"
+          onChange={(opt) => {
+            setFormData({
+              operation_type: opt.map(
+                (item: { value: number }) => item.value
+              ),
+            });
+          }}
+          fixes={true}
+        />
+
+        <Select
+          className="white first--row-input input--general"
+          options={propertiesSelectOptions}
+          isSearchable={false}
+          placeholder="Tipo de Propiedad"
+          onChange={(opt) => {
+            setFormData({ property_type: opt.value });
+          }}
+          fixes={true}
+        />
+
+        <Dropdown
+          className="white first--row-input"
+          placeholder="Dormitorios"
+          close={close.rooms}
+          value={getDropdownValue(
+            formData?.min_rooms,
+            formData?.max_rooms,
+            "Dorms."
+          )}
+        >
+          <DropdownRow>
+            <RowLabel>Min.</RowLabel>
+            <Input
+              className="input--general"
+              type="number"
+              placeHolder="-"
+              min={0}
+              value={formData?.min_rooms}
+              onChange={(e) => {
+                setFormData({ min_rooms: e?.currentTarget?.value });
+              }}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  setFormData({ min_rooms: e?.currentTarget?.value });
+                  setClose({ rooms: !close.rooms });
+                }
+              }}
+            />
+          </DropdownRow>
+          <DropdownRow>
+            <RowLabel>Max.</RowLabel>
+            <Input
+              className="input--general"
+              type="number"
+              placeHolder="-"
+              min={formData?.min_rooms}
+              value={formData?.max_rooms}
+              onChange={(e) => {
+                setFormData({ max_rooms: e?.currentTarget?.value });
+              }}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  setFormData({ max_rooms: e?.currentTarget?.value });
+                  setClose({ rooms: !close.rooms });
+                }
+              }}
+            />
+          </DropdownRow>
+        </Dropdown>
+      </SearchRow>
+
+      <SearchRow className="second--row">
+        <Select
+          options={localidades}
+          isMulti={true}
+          placeholder="Barrios"
+          hideSelectedOptions={true}
+          styles={{
+            container: (provided: any, state: any) => ({
+              ...provided,
+              marginBottom: 15,
+            }),
+          }}
+          onChange={(opt) => {
+            setFormData({
+              locations: opt.map((item: { value: number }) => item.value),
+            });
+          }}
+        />
+      </SearchRow>
+
+      <SearchRow className="third--row">
+        <RangeWrapper>
+          <PriceText>Precio</PriceText>
+
+          <PriceRange className="range--home">
+            <MultiRange
+              customWidth={336}
+              min={0}
+              max={3000000}
+              step={20000}
+              onChange={({ minVal, maxVal }: any) => {
+                setFormData({ price_from: minVal, price_to: maxVal });
+              }}
+            />
+            <PriceInputWrapper>
+              <Input
+                className="input--price bottomLine"
+                type="text"
+                maxLength={15}
+                value={formatToMoney(
+                  formData.price_from.toString(),
+                  true,
+                  "USD",
+                  false
                 )}
-              >
-                <DropdownRow>
-                  <RowLabel>Min.</RowLabel>
-                  <Input
-                    className="input--general"
-                    type="number"
-                    placeHolder="-"
-                    min={0}
-                    value={formData?.min_rooms}
-                    onChange={(e) => {
-                      setFormData({ min_rooms: e?.currentTarget?.value });
-                    }}
-                    onKeyPress={(e) => {
-                      if (e.key === "Enter") {
-                        setFormData({ min_rooms: e?.currentTarget?.value });
-                        setClose({ rooms: !close.rooms });
-                      }
-                    }}
-                  />
-                </DropdownRow>
-                <DropdownRow>
-                  <RowLabel>Max.</RowLabel>
-                  <Input
-                    className="input--general"
-                    type="number"
-                    placeHolder="-"
-                    min={formData?.min_rooms}
-                    value={formData?.max_rooms}
-                    onChange={(e) => {
-                      setFormData({ max_rooms: e?.currentTarget?.value });
-                    }}
-                    onKeyPress={(e) => {
-                      if (e.key === "Enter") {
-                        setFormData({ max_rooms: e?.currentTarget?.value });
-                        setClose({ rooms: !close.rooms });
-                      }
-                    }}
-                  />
-                </DropdownRow>
-              </Dropdown>
-            </SearchRow>
-
-            <SearchRow className="second--row">
-              <Select
-                options={localidades}
-                isMulti={true}
-                placeholder="Barrios"
-                hideSelectedOptions={true}
-                styles={{
-                  container: (provided: any, state: any) => ({
-                    ...provided,
-                    marginBottom: 15,
-                  }),
-                }}
-                onChange={(opt) => {
-                  setFormData({
-                    locations: opt.map((item: { value: number }) => item.value),
-                  });
-                }}
               />
-            </SearchRow>
-
-            <SearchRow className="third--row">
-              <RangeWrapper>
-                <PriceText>Precio</PriceText>
-
-                <PriceRange className="range--home">
-                  <MultiRange
-                    customWidth={336}
-                    min={0}
-                    max={3000000}
-                    step={20000}
-                    onChange={({ minVal, maxVal }: any) => {
-                      setFormData({ price_from: minVal, price_to: maxVal });
-                    }}
-                  />
-                  <PriceInputWrapper>
-                    <Input
-                      className="input--price bottomLine"
-                      type="text"
-                      maxLength={15}
-                      value={formatToMoney(
-                        formData.price_from.toString(),
+              <InputDivider />
+              <Input
+                className="input--price bottomLine"
+                type="text"
+                maxLength={15}
+                value={
+                  formData.price_to >= 3000000
+                    ? formatToMoney(
+                        formData.price_to.toString(),
+                        true,
+                        "USD +",
+                        false
+                      )
+                    : formatToMoney(
+                        formData.price_to.toString(),
                         true,
                         "USD",
                         false
-                      )}
-                    />
-                    <InputDivider />
-                    <Input
-                      className="input--price bottomLine"
-                      type="text"
-                      maxLength={15}
-                      value={
-                        formData.price_to >= 3000000
-                          ? formatToMoney(
-                              formData.price_to.toString(),
-                              true,
-                              "USD +",
-                              false
-                            )
-                          : formatToMoney(
-                              formData.price_to.toString(),
-                              true,
-                              "USD",
-                              false
-                            )
-                      }
-                    />
-                  </PriceInputWrapper>
-                </PriceRange>
-              </RangeWrapper>
-
-              <Button
-                className="third--row-button"
-                text="Buscar"
-                type="secondary shine"
-                onClick={handleSubmit}
+                      )
+                }
               />
-            </SearchRow>
+            </PriceInputWrapper>
+          </PriceRange>
+        </RangeWrapper>
 
-            <SearchRow className="fourth--row">
-              <Button
-                className="fourth--row-button"
-                text="Quiero vender"
-                link={PATHS.QUIEROVENDER}
-              />
-            </SearchRow>
-          </SearchFormWrapper>
-        </Container>
-      </HeroWrapper>
+        <Button
+          className="third--row-button"
+          text="Buscar"
+          type="secondary shine"
+          onClick={handleSubmit}
+        />
+      </SearchRow>
+
+      <SearchRow className="fourth--row">
+        <Button
+          className="fourth--row-button"
+          text="Quiero vender"
+          link={PATHS.QUIEROVENDER}
+        />
+      </SearchRow>
+    </SearchFormWrapper>
+  </Container>
+</HeroWrapper>
+
 
       <SeleccionSection>
         <Seleccion>

@@ -12,6 +12,7 @@ import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Lightbox, { ImagesListType } from "react-spring-lightbox";
 import { useStore } from "stores";
+import { FaMapMarkerAlt } from 'react-icons/fa';
 
 import { Layout, Container } from "components/layout";
 import { Title } from "components/title";
@@ -74,6 +75,8 @@ import {
   MapProp,
   SimilarProps,
   PropList,
+  MapIcon,
+  PlaceholderImage,
 
   /* LigthBox */
   ArrowGallery,
@@ -89,7 +92,13 @@ import { PrintStyle } from "components/print/styles.styles";
 import { Global as GlobalStyling } from "@emotion/react";
 
 const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
+  const [mapVisible, setMapVisible] = React.useState(false);
 
+  const handleToggleMap = () => {
+    setMapVisible(true);
+  };
+
+  
   if (statusCode === 404) return <Error404 />
   if (statusCode >= 500) return <Error500 />
   
@@ -147,7 +156,7 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
     const h = document.querySelector('#propDesctText')!.clientHeight + 300;
     setAmount(Math.ceil((h / 600) * 6) + 4)
   })
-
+  
   return (
     <Layout menuTheme="light">
       <Head>
@@ -517,18 +526,28 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
           </BodyProp>
 
           <MapProp>
-            <DynamicMap
-              marker={{
-                lon: property.geo_long,
-                lat: property.geo_lat,
-              }}
-              center={{
-                lon: property.geo_long,
-                lat: property.geo_lat,
-              }}
-              zoom={15}
-            />
-          </MapProp>
+  {!mapVisible && (
+    <PlaceholderImage onClick={handleToggleMap}>
+      <MapIcon>
+        <FaMapMarkerAlt size={32} />
+      </MapIcon>
+    </PlaceholderImage>
+  )}
+  
+  {mapVisible && (
+    <DynamicMap
+      marker={{
+        lon: property.geo_long,
+        lat: property.geo_lat,
+      }}
+      center={{
+        lon: property.geo_long,
+        lat: property.geo_lat,
+      }}
+      zoom={15}
+    />
+  )}
+</MapProp>
 
           {properties && (
             <SimilarProps>
@@ -552,28 +571,75 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
   );
 });
 
+interface Property {
+  id: number;
+  address: string;
+  operations: {
+    prices: {
+      price: number;
+      currency: string;
+    }[];
+    operation_type: string;
+  }[];
+  photos: { image: string; is_front_cover?: boolean }[];
+}
+
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   let props: any = {};
 
   try {
-    const property = await getPropertyById(parseInt(query.id as string));
+    // Obtener la propiedad actual
+    const property = await getPropertyById(parseInt(query.id as string)) as Property;
 
-    // Only get starred & ventas
-    const { objects } = await getProperties({
+    if (!property) {
+      return {
+        notFound: true,
+      };
+    }
+
+    // Calcular el rango de precios (+/- 20% del precio de la propiedad actual)
+    const propertyPrice = property.operations[0]?.prices[0]?.price;
+    const minPrice = propertyPrice * 0.8;
+    const maxPrice = propertyPrice * 1.2;
+
+    // Obtener todas las propiedades destacadas
+    const { objects: allProperties } = await getProperties({
       params: {
         filters: [["is_starred_on_web", "=", true]],
         operation_types: [1],
-        limit: 2,
       },
+    }) as { objects: Property[] };
+
+    if (!allProperties) {
+      return {
+        notFound: true,
+      };
+    }
+
+    // Filtrar propiedades dentro del rango de precio
+    const filteredProperties = allProperties.filter((item: Property) => {
+      const price = item.operations[0]?.prices[0]?.price;
+      return price >= minPrice && price <= maxPrice;
     });
+
+    // Ordenar las propiedades para que primero aparezcan las más baratas
+    const sortedProperties = filteredProperties.sort((a, b) => {
+      return a.operations[0]?.prices[0]?.price - b.operations[0]?.prices[0]?.price;
+    });
+
+    // Limitar las propiedades similares a dos
+    const limitedProperties = sortedProperties.slice(0, 2);
 
     props = {
       property,
-      properties: objects,
+      properties: limitedProperties,
     };
-  } catch (e: any) {
-    props = {
-      statusCode: e.response.status,
+  } catch (e) {
+    console.error("Error fetching properties:", e);
+    return {
+      props: {
+        statusCode: 500,
+      },
     };
   }
 

@@ -44,3 +44,4 @@ export const MapIcon = styled.div`
   border-radius: 50%;
   padding: 5px;
 `;
+

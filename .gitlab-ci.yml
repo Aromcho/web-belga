@@ -1,7 +1,6 @@
 stages:
   - build
   - test
-  - deploy
 
 # Job para compilar el código
 build:
@@ -18,15 +17,4 @@ test:
     - echo "Ejecutando pruebas unitarias..."
     # Reemplaza el siguiente comando con el script real para ejecutar pruebas unitarias
     - sleep 30  # Simula un tiempo de espera para la ejecución de pruebas
-    - echo "Pruebas unitarias completadas."
-
-# Job para desplegar en Vercel
-deploy:
-  stage: deploy
-  script:
-    - echo "Desplegando en Vercel..."
-    - npm i -g vercel  # Instalar Vercel CLI
-    - vercel --prod --token $VERCEL_TOKEN  # Despliegue usando Vercel CLI
-  only:
-    - main  # Desplegar solo cuando se haga push a la rama main
 

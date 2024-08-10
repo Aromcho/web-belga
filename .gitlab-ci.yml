@@ -1,6 +1,7 @@
 stages:
   - build
   - test
+  - deploy  # Nueva etapa para el despliegue
 
 # Job para compilar el código
 build:
@@ -18,3 +19,11 @@ test:
     # Reemplaza el siguiente comando con el script real para ejecutar pruebas unitarias
     - sleep 30  # Simula un tiempo de espera para la ejecución de pruebas
 
+# Job para despliegue
+deploy_production:
+  stage: deploy
+  script:
+    - echo "Deploying to production server..."
+     - ssh -o StrictHostKeyChecking=no lucio@149.28.104.220 "cd /home/alfi/web-belga && git pull origin master && yarn install && yarn build && nohup yarn start > app.log 2>&1 &"
+  only:
+    - master  # Se ejecuta solo en la rama master

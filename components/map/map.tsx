@@ -19,7 +19,7 @@ import { normalStyle, hgihStyle } from './helpers';
 export interface MapProps {
   center?: { lon: number; lat: number };
   marker?: { lon: number; lat: number };
-  markers?: { lon: number; lat: number, high?: boolean, id: string}[];
+  markers?: { lon: number; lat: number, high?: boolean, id: string }[];
   zoom?: number;
 }
 
@@ -37,23 +37,29 @@ export const Map = ({ center, zoom, marker, markers }: MapProps) => {
   );
 
   React.useEffect(() => {
-    const hihglighted = markers?.find(item => !!item.high)
-    vectorLayer.getSource()?.getFeatures().forEach(ft => {
-      if(ft.getId() === hihglighted?.id){
-        ft.setStyle(hgihStyle);
-      } else {
-        ft.setStyle(normalStyle);
-      }
-    })
-  }, [markers])
+    if (markers) {
+      const highlighted = markers.find(item => !!item.high);
+      vectorLayer.getSource()?.getFeatures().forEach(ft => {
+        if (ft.getId() === highlighted?.id) {
+          ft.setStyle(hgihStyle);
+        } else {
+          ft.setStyle(normalStyle);
+        }
+      });
+    }
+  }, [markers, vectorLayer]);
 
   React.useEffect(() => {
-    if(center) stMap?.getView().setCenter(fromLonLat([center.lon, center.lat]))
-    if(zoom) stMap?.getView().setZoom(zoom);
-  }, [center])
+    if (center && stMap) {
+      stMap.getView().setCenter(fromLonLat([center.lon, center.lat]));
+    }
+    if (zoom && stMap) {
+      stMap.getView().setZoom(zoom);
+    }
+  }, [center, zoom, stMap]);
 
   React.useEffect(() => {
-    if (mapVisible) { // Solo inicializar el mapa cuando mapVisible es true
+    if (mapVisible && mapElement.current) {
       const initialMap = new ol.Map({
         layers: [
           new TileLayer({
@@ -71,26 +77,26 @@ export const Map = ({ center, zoom, marker, markers }: MapProps) => {
           zoom: zoom ?? 4,
           maxZoom: 19,
         }),
-        target: mapElement?.current || undefined,
+        target: mapElement.current,
       });
 
       setMap(initialMap);
 
       if (marker) {
-        var iconFeature = new ol.Feature({
+        const iconFeature = new ol.Feature({
           geometry: new Point(fromLonLat([marker.lon, marker.lat])),
         });
-        vectorLayer?.getSource()!.addFeature(iconFeature);
+        vectorLayer.getSource()?.addFeature(iconFeature);
       }
 
       if (markers) {
-        markers.forEach((item, i) => {
-          var iconFeature = new ol.Feature({
+        markers.forEach(item => {
+          const iconFeature = new ol.Feature({
             geometry: new Point(fromLonLat([item.lon, item.lat])),
             id: item.id,
           });
           iconFeature.setId(item.id);
-          vectorLayer?.getSource()!.addFeature(iconFeature);
+          vectorLayer.getSource()?.addFeature(iconFeature);
         });
       }
 
@@ -98,16 +104,14 @@ export const Map = ({ center, zoom, marker, markers }: MapProps) => {
         initialMap.setTarget(undefined);
       };
     }
-  }, [mapVisible]) // Se vuelve a ejecutar el efecto al cambiar mapVisible
+  }, [mapVisible, center, zoom, marker, markers, vectorLayer]);
 
-  // Función para manejar el clic en el botón o la imagen
   const handleToggleMap = () => {
     setMapVisible(true);
   };
 
   return (
     <MapContainer>
-      {/* Imagen de marcador de posición */}
       {!mapVisible && (
         <PlaceholderImage onClick={handleToggleMap}>
           <MapIcon>
@@ -116,7 +120,6 @@ export const Map = ({ center, zoom, marker, markers }: MapProps) => {
         </PlaceholderImage>
       )}
 
-      {/* Mapa real, inicialmente oculto */}
       {mapVisible && <MapWrapper ref={mapElement} />}
     </MapContainer>
   );

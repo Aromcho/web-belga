@@ -12,20 +12,19 @@ import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Lightbox, { ImagesListType } from "react-spring-lightbox";
 import { useStore } from "stores";
-import { FaMapMarkerAlt } from 'react-icons/fa';
 
 import { Layout, Container } from "components/layout";
 import { Title } from "components/title";
-import { MapProp2 } from "components/mapProp2/mapProp2";
+import { MapProps } from "components/mapProp2/mapProp2";
 import { CardPropProps } from "components/cardprop/cardprop";
-const Button = dynamic<any>(() => import("components/button").then((mod) => mod.Button))
-const ContactForm = dynamic<any>(() => import("components/forms/contactform").then((mod) => mod.ContactForm))
-const CardProp = dynamic<CardPropProps>(() => import("components/cardprop").then((mod) => mod.CardProp))
-const BackToTop = dynamic<any>(() => import("components/backtotop").then((mod) => mod.BackToTop))
-const SocialSidebar = dynamic<any>(() => import("components/socialsidebar").then((mod) => mod.SocialSidebar))
-const Error500 = dynamic<any>(() => import("pages/500"))
-const Error404 = dynamic<any>(() => import("pages/404"))
-const Property = dynamic<any>(() => import("components/print/property"))
+const Button = dynamic<any>(() => import("components/button").then((mod) => mod.Button));
+const ContactForm = dynamic<any>(() => import("components/forms/contactform").then((mod) => mod.ContactForm));
+const CardProp = dynamic<CardPropProps>(() => import("components/cardprop").then((mod) => mod.CardProp));
+const BackToTop = dynamic<any>(() => import("components/backtotop").then((mod) => mod.BackToTop));
+const SocialSidebar = dynamic<any>(() => import("components/socialsidebar").then((mod) => mod.SocialSidebar));
+const Error500 = dynamic<any>(() => import("pages/500"));
+const Error404 = dynamic<any>(() => import("pages/404"));
+const Property = dynamic<any>(() => import("components/print/property"));
 import {
   ArrowBackIcon,
   ArrowSubmitIcon,
@@ -94,12 +93,10 @@ import { Global as GlobalStyling } from "@emotion/react";
 import { FaMapMarkerAlt } from 'react-icons/fa';
 
 const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
-  const [mapVisible, setMapVisible] = React.useState(false);
-
   const [mapVisible, setMapVisible] = useState(false); // Estado para manejar la visibilidad del mapa
 
-  if (statusCode === 404) return <Error404 />
-  if (statusCode >= 500) return <Error500 />
+  if (statusCode === 404) return <Error404 />;
+  if (statusCode >= 500) return <Error500 />;
   
   const { rootStore: { userStore } } = useStore();
   
@@ -155,8 +152,12 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
   React.useEffect(() => {
     const h = document.querySelector('#propDesctText')!.clientHeight + 300;
     setAmount(Math.ceil((h / 600) * 6) + 4)
-  })
+  });
   
+  const handleToggleMap = () => {
+    setMapVisible(true);
+  };
+
   return (
     <Layout menuTheme="light">
       <Head>
@@ -526,30 +527,28 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
           </BodyProp>
 
           <MapProp>
-  {!mapVisible && (
-    <PlaceholderImage onClick={handleToggleMap}>
-      <MapIcon>
-        <FaMapMarkerAlt size={32} />
-      </MapIcon>
-    </PlaceholderImage>
-  )}
-  
-  {mapVisible && (
-    <DynamicMap
-      marker={{
-        lon: property.geo_long,
-        lat: property.geo_lat,
-      }}
-      center={{
-        lon: property.geo_long,
-        lat: property.geo_lat,
-      }}
-      zoom={15}
-    />
-  )}
-</MapProp>
+            {!mapVisible && (
+              <PlaceholderImage onClick={handleToggleMap}>
+                <MapIcon>
+                  <FaMapMarkerAlt size={32} />
+                </MapIcon>
+              </PlaceholderImage>
+            )}
 
-           
+            {mapVisible && (
+              <DynamicMap
+                marker={{
+                  lon: property.geo_long,
+                  lat: property.geo_lat,
+                }}
+                center={{
+                  lon: property.geo_long,
+                  lat: property.geo_lat,
+                }}
+                zoom={15}
+              />
+            )}
+          </MapProp>
 
           {properties && (
             <SimilarProps>

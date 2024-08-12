@@ -153,7 +153,6 @@ export const PlaceholderImage = styled.div`
   background-position: center;
   cursor: pointer;
   transition: opacity 0.3s ease-in-out;
-  position: relative; // Para que el ícono pueda estar posicionado correctamente
 
   &:hover {
     opacity: 0.8;

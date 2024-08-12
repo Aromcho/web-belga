@@ -73,5 +73,6 @@ export const MapProp2 = ({ center, zoom, marker, markers }: MapProps) => {
     };
   }, [center, zoom, marker, markers]);
 
-  return <MapWrapper ref={mapElement} />;
+  return (
+  <MapWrapper ref={mapElement} />);
 };

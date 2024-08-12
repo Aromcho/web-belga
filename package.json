@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "NODE_OPTIONS=--openssl-legacy-provider next dev",
     "build": "next build",
-    "start": "next start -p 8001",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider next start -p 8001",
     "cc": "node scripts/create_component $1"
   },
   "dependencies": {

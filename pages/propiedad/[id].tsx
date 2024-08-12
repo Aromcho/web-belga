@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { GetServerSideProps } from "next";
 import dynamic from "next/dynamic";
 import Link from "next/link";
@@ -15,7 +15,7 @@ import { useStore } from "stores";
 
 import { Layout, Container } from "components/layout";
 import { Title } from "components/title";
-import { MapProps } from "components/map/map";
+import { MapProp2 } from "components/mapProp2/mapProp2";
 import { CardPropProps } from "components/cardprop/cardprop";
 const Button = dynamic<any>(() => import("components/button").then((mod) => mod.Button))
 const ContactForm = dynamic<any>(() => import("components/forms/contactform").then((mod) => mod.ContactForm))
@@ -35,7 +35,7 @@ import {
 } from "components/icons";
 
 const DynamicMap = dynamic<MapProps>(
-  () => import("components/map").then((mod) => mod.Map),
+  () => import("components/mapProp2/mapProp2").then((mod) => mod.MapProp2),
   { ssr: false }
 );
 
@@ -79,7 +79,8 @@ import {
   ArrowGallery,
   HeaderGallery,
   IndexCounter,
-} from "components/pages/propiedad.styles";
+  
+} from "components/pages/propiedad.styles"; // Asegúrate de que estas importaciones sean correctas
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -87,8 +88,11 @@ import "swiper/css/pagination";
 import { PrintIcon } from "components/icons/icons";
 import { PrintStyle } from "components/print/styles.styles";
 import { Global as GlobalStyling } from "@emotion/react";
+import { FaMapMarkerAlt } from 'react-icons/fa';
 
 const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
+
+  const [mapVisible, setMapVisible] = useState(false); // Estado para manejar la visibilidad del mapa
 
   if (statusCode === 404) return <Error404 />
   if (statusCode >= 500) return <Error500 />
@@ -489,7 +493,7 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
                   )}
                   {Math.round(property?.unroofed_surface) > 0 && (
                     <MoreItemText>
-                      <b>Sup. Descubieta: </b>
+                      <b>Sup. Descubierta: </b>
                       {`${Math.round(property?.unroofed_surface)} m2`}
                     </MoreItemText>
                   )}
@@ -530,6 +534,8 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
               zoom={15}
             />
           </MapProp>
+
+           
 
           {properties && (
             <SimilarProps>

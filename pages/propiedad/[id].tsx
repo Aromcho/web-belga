@@ -75,7 +75,6 @@ import {
   SimilarProps,
   PropList,
   MapIcon,
-  PlaceholderImage,
 
   /* LigthBox */
   ArrowGallery,
@@ -83,7 +82,7 @@ import {
   IndexCounter,
   
 } from "components/pages/propiedad.styles"; // Asegúrate de que estas importaciones sean correctas
-
+import { PlaceholderImage } from "components/mapProp2/mapProp2.styles"
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";

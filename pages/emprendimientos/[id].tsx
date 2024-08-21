@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import parse from "html-react-parser";
 import dynamic from "next/dynamic";
 import Head from "next/head";
@@ -19,9 +20,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Lightbox, { ImagesListType } from "react-spring-lightbox";
 
 import { Button } from "components/button";
-import { MapProps } from "components/map/map";
+import { MapProps } from "components/mapProp2/mapProp2";
 const DynamicMap = dynamic<MapProps>(
-  () => import("components/map").then((mod) => mod.Map),
+  () => import("components/mapProp2/mapProp2").then((mod) => mod.MapProp2),
   { ssr: false }
 );
 const ContactForm = dynamic<any>(() => import("components/forms/contactform").then((mod) => mod.ContactForm))
@@ -62,6 +63,7 @@ import {
   MoreItem,
   MoreItemText,
   MapProp,
+  MapIcon,
 
   /* LigthBox */
   ArrowGallery,
@@ -81,6 +83,8 @@ import {
   MailIcon,
   WhatsappIcon,
 } from "components/icons";
+import { FaMapMarkerAlt } from 'react-icons/fa';
+import { PlaceholderImage } from "components/mapProp2/mapProp2.styles"
 
 const PropertyDetail = observer(({
   properties,
@@ -90,6 +94,8 @@ const PropertyDetail = observer(({
 }: any) => {
   if (statusCode === 404) return <Error404 />
   if (statusCode >= 500) return <Error500 />
+
+  const [mapVisible, setMapVisible] = useState(false); // Estado para manejar la visibilidad del mapa
 
 
   console.log(property)
@@ -133,6 +139,10 @@ const PropertyDetail = observer(({
   );
 
   const devPropertiesData = getDevelopmentsData(property_subs);
+
+  const handleToggleMap = () => {
+    setMapVisible(true);
+  };
 
   return (
     <Layout menuTheme="dark">
@@ -426,17 +436,27 @@ const PropertyDetail = observer(({
           </BodyProp>
 
           <MapProp>
-            <DynamicMap
-              marker={{
-                lon: property.geo_long,
-                lat: property.geo_lat,
-              }}
-              center={{
-                lon: property.geo_long,
-                lat: property.geo_lat,
-              }}
-              zoom={15}
-            />
+            {!mapVisible && (
+              <PlaceholderImage onClick={handleToggleMap}>
+                <MapIcon>
+                  <FaMapMarkerAlt size={32} />
+                </MapIcon>
+              </PlaceholderImage>
+            )}
+
+            {mapVisible && (
+              <DynamicMap
+                marker={{
+                  lon: property.geo_long,
+                  lat: property.geo_lat,
+                }}
+                center={{
+                  lon: property.geo_long,
+                  lat: property.geo_lat,
+                }}
+                zoom={15}
+              />
+            )}
           </MapProp>
 
           <ContactForm full />

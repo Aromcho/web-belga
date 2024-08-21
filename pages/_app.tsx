@@ -5,8 +5,38 @@ import { getSnapshot } from 'mobx-keystone'
 import NextNProgress from "nextjs-progressbar";
 import { StoreProvider, initStore } from 'stores'
 import { theme } from 'helpers/theme';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
-export default function App({ Component, pageProps, initialState }: any) {
+interface ScrollPositions {
+  [url: string]: number;
+}
+
+function MyApp({ Component, pageProps, initialState }: any) {
+  const router = useRouter();
+  const [scrollPositions, setScrollPositions] = useState<ScrollPositions>({});
+
+  useEffect(() => {
+    const handleRouteChangeStart = (url: string) => {
+      setScrollPositions((prevPositions) => ({
+        ...prevPositions,
+        [router.asPath]: window.scrollY,
+      }));
+    };
+
+    const handleRouteChangeComplete = (url: string) => {
+      window.scrollTo(0, scrollPositions[url] || 0);
+    };
+
+    router.events.on('routeChangeStart', handleRouteChangeStart);
+    router.events.on('routeChangeComplete', handleRouteChangeComplete);
+
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChangeStart);
+      router.events.off('routeChangeComplete', handleRouteChangeComplete);
+    };
+  }, [router, scrollPositions]);
+
   return (
     <>
       <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-KBVCVZE3RH" />
@@ -37,22 +67,22 @@ export default function App({ Component, pageProps, initialState }: any) {
           `,
         }}
       />
-    <StoreProvider snapshot={initialState}>
-      <ThemeProvider theme={theme}>
-        <NextNProgress
-          color="#C62025"
-          startPosition={0.2}
-          height={3}
-          showOnShallow={true}
-        />
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </StoreProvider>
+      <StoreProvider snapshot={initialState}>
+        <ThemeProvider theme={theme}>
+          <NextNProgress
+            color="#C62025"
+            startPosition={0.2}
+            height={3}
+            showOnShallow={true}
+          />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </StoreProvider>
     </>
   )
 }
 
-App.getInitialProps = async ({ Component, ctx }: AppContext) => {
+MyApp.getInitialProps = async ({ Component, ctx }: AppContext) => {
   const store = initStore()
 
   let pageProps = {}
@@ -63,4 +93,5 @@ App.getInitialProps = async ({ Component, ctx }: AppContext) => {
   return { initialState: getSnapshot(store), pageProps }
 }
 
-
+export default MyApp;
+  

@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-  "dev": "NODE_OPTIONS=--openssl-legacy-provider next dev",
-  "build": "next build",
-  "start": "next start -p 8001",
-  "cc": "node scripts/create_component $1"
-},
+    "dev": "NODE_OPTIONS=--openssl-legacy-provider next dev",
+  "build": "NODE_OPTIONS=--openssl-legacy-provider next build",
+  "start": "NODE_OPTIONS=--openssl-legacy-provider next start -p 8001",
+    "cc": "node scripts/create_component $1"
+  },
   "dependencies": {
     "@babel/core": "^7.15.8",
     "@emotion/core": "^11.0.0",
@@ -22,6 +22,7 @@
     "mobx-keystone": "^0.63.1",
     "mobx-react-lite": "^3.2.1",
     "next": "11.1.2",
+    "next-restore-scroll": "^1.2.1",
     "nextjs-progressbar": "^0.0.14",
     "node-mailjet": "^5.1.1",
     "ol": "^6.14.1",

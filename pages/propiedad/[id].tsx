@@ -12,6 +12,8 @@ import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Lightbox, { ImagesListType } from "react-spring-lightbox";
 import { useStore } from "stores";
+ import {parseTokkoParameters,propertyTypes } from "helpers/tokko";
+ import {getKeyByValue} from "helpers";
 
 import { Layout, Container } from "components/layout";
 import { Title } from "components/title";
@@ -246,7 +248,7 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
                 <Link
                   href={`mailto:?subject=Encontr%C3%A9%20esta%20excelente%20propiedad!&body=Direcci%C3%B3n%3A%0D%0A${
                     property.address
-                  }%0D%0A%0D%0ADescripci%C3%B3n%3A%0D%0A${
+                  }%0D%0A%0D%0ADescripci%C3%Bn%3A%0D%0A${
                     property.location?.name
                   }%0D%0A%0D%0APrecio%3A%0D%0A${
                     property?.operations[0]?.operation_type
@@ -574,6 +576,9 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
 interface Property {
   id: number;
   address: string;
+  type: {
+    name: string;
+  };
   operations: {
     prices: {
       price: number;
@@ -602,38 +607,40 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     const minPrice = propertyPrice * 0.8;
     const maxPrice = propertyPrice * 1.2;
 
-    // Obtener todas las propiedades destacadas
-    const { objects: allProperties } = await getProperties({
-      params: {
-        filters: [["is_starred_on_web", "=", true]],
-        operation_types: [1],
-      },
-    }) as { objects: Property[] };
+    // Preparar los parámetros para buscar propiedades similares
+    const params = parseTokkoParameters({
+      prid: getKeyByValue(propertyTypes, property.type.name.toLowerCase()),
+      price_from: minPrice,
+      price_to: maxPrice,
+      operation_types: [1,2], // Solo ventas
+      limit: 26, // Limitar los resultados para evitar grandes cargas de datos
+    });
 
-    if (!allProperties) {
-      return {
-        notFound: true,
+    // Obtener propiedades similares utilizando el tipo de propiedad y el rango de precios
+    const { objects: filteredProperties } = await getProperties({ params }) as { objects: Property[] };
+
+    // Si no se encuentran propiedades dentro del rango, buscar las más cercanas por precio
+    if (!filteredProperties || filteredProperties.length === 0) {
+      const fallbackParams = parseTokkoParameters({
+        prid: getKeyByValue(propertyTypes, property.type.name.toLowerCase()),
+        operation_types: [1], // Solo ventas
+        limit: 26, // Limitar los resultados
+        order_by: "price",
+        order: "ASC",
+      });
+
+      const { objects: closestProperties } = await getProperties({ params: fallbackParams }) as { objects: Property[] };
+
+      props = {
+        property,
+        properties: closestProperties.slice(0, 2),
+      };
+    } else {
+      props = {
+        property,
+        properties: filteredProperties.slice(0, 2),
       };
     }
-
-    // Filtrar propiedades dentro del rango de precio
-    const filteredProperties = allProperties.filter((item: Property) => {
-      const price = item.operations[0]?.prices[0]?.price;
-      return price >= minPrice && price <= maxPrice;
-    });
-
-    // Ordenar las propiedades para que primero aparezcan las más baratas
-    const sortedProperties = filteredProperties.sort((a, b) => {
-      return a.operations[0]?.prices[0]?.price - b.operations[0]?.prices[0]?.price;
-    });
-
-    // Limitar las propiedades similares a dos
-    const limitedProperties = sortedProperties.slice(0, 2);
-
-    props = {
-      property,
-      properties: limitedProperties,
-    };
   } catch (e) {
     console.error("Error fetching properties:", e);
     return {

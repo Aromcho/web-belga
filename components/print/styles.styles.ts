@@ -175,7 +175,7 @@ export const CenterColumn = styled.div`
 
 
 export const MainImage = styled.div`
-  height: 450px;
+  height: 90%;
   flex: 3;
 `;
 

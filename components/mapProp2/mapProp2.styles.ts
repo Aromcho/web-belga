@@ -20,11 +20,12 @@ export const MapWrapper = styled.div`
 export const PlaceholderImage = styled.div`
   width: 100%;
   height: 100%;
-  background-image: url('/images/map2.png'); // Asegúrate de que la ruta sea correcta
+  background-image: url('/images/map.png'); // Asegúrate de que la ruta sea correcta
   background-size: cover;
   background-position: center;
   cursor: pointer;
   transition: opacity 0.3s ease-in-out;
+  position: relative; // Para que el ícono pueda estar posicionado correctamente
 
   &:hover {
     opacity: 0.8;

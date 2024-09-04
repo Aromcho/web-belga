@@ -1,1 +1,0 @@
-export { MapProp2 } from './mapProp2';

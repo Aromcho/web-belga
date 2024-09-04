@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { GetServerSideProps } from "next";
 import dynamic from "next/dynamic";
 import Link from "next/link";
@@ -15,16 +15,16 @@ import { useStore } from "stores";
 
 import { Layout, Container } from "components/layout";
 import { Title } from "components/title";
-import { MapProps } from "components/mapProp2/mapProp2";
+import { MapProps } from "components/map/map";
 import { CardPropProps } from "components/cardprop/cardprop";
-const Button = dynamic<any>(() => import("components/button").then((mod) => mod.Button));
-const ContactForm = dynamic<any>(() => import("components/forms/contactform").then((mod) => mod.ContactForm));
-const CardProp = dynamic<CardPropProps>(() => import("components/cardprop").then((mod) => mod.CardProp));
-const BackToTop = dynamic<any>(() => import("components/backtotop").then((mod) => mod.BackToTop));
-const SocialSidebar = dynamic<any>(() => import("components/socialsidebar").then((mod) => mod.SocialSidebar));
-const Error500 = dynamic<any>(() => import("pages/500"));
-const Error404 = dynamic<any>(() => import("pages/404"));
-const Property = dynamic<any>(() => import("components/print/property"));
+const Button = dynamic<any>(() => import("components/button").then((mod) => mod.Button))
+const ContactForm = dynamic<any>(() => import("components/forms/contactform").then((mod) => mod.ContactForm))
+const CardProp = dynamic<CardPropProps>(() => import("components/cardprop").then((mod) => mod.CardProp))
+const BackToTop = dynamic<any>(() => import("components/backtotop").then((mod) => mod.BackToTop))
+const SocialSidebar = dynamic<any>(() => import("components/socialsidebar").then((mod) => mod.SocialSidebar))
+const Error500 = dynamic<any>(() => import("pages/500"))
+const Error404 = dynamic<any>(() => import("pages/404"))
+const Property = dynamic<any>(() => import("components/print/property"))
 import {
   ArrowBackIcon,
   ArrowSubmitIcon,
@@ -35,7 +35,7 @@ import {
 } from "components/icons";
 
 const DynamicMap = dynamic<MapProps>(
-  () => import("components/mapProp2/mapProp2").then((mod) => mod.MapProp2),
+  () => import("components/map").then((mod) => mod.Map),
   { ssr: false }
 );
 
@@ -74,15 +74,12 @@ import {
   MapProp,
   SimilarProps,
   PropList,
-  MapIcon,
-  PlaceholderImage2,
 
   /* LigthBox */
   ArrowGallery,
   HeaderGallery,
   IndexCounter,
-  
-} from "components/pages/propiedad.styles"; // Asegúrate de que estas importaciones sean correctas
+} from "components/pages/propiedad.styles";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -90,18 +87,15 @@ import "swiper/css/pagination";
 import { PrintIcon } from "components/icons/icons";
 import { PrintStyle } from "components/print/styles.styles";
 import { Global as GlobalStyling } from "@emotion/react";
-import { FaMapMarkerAlt } from 'react-icons/fa';
 
 const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
-  const [mapVisible, setMapVisible] = useState(false); // Estado para manejar la visibilidad del mapa
 
-  if (statusCode === 404) return <Error404 />;
-  if (statusCode >= 500) return <Error500 />;
+  if (statusCode === 404) return <Error404 />
+  if (statusCode >= 500) return <Error500 />
   
   const { rootStore: { userStore } } = useStore();
   
   /* Handle media content */
-  
   const images = property?.photos?.map((item: any, k: number) => (
     <MediaImg key={k} style={{ backgroundImage: `url(${item.image})` }} />
   ));
@@ -152,11 +146,7 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
   React.useEffect(() => {
     const h = document.querySelector('#propDesctText')!.clientHeight + 300;
     setAmount(Math.ceil((h / 600) * 6) + 4)
-  });
-  
-  const handleToggleMap = () => {
-    setMapVisible(true);
-  };
+  })
 
   return (
     <Layout menuTheme="light">
@@ -498,7 +488,7 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
                   )}
                   {Math.round(property?.unroofed_surface) > 0 && (
                     <MoreItemText>
-                      <b>Sup. Descubierta: </b>
+                      <b>Sup. Descubieta: </b>
                       {`${Math.round(property?.unroofed_surface)} m2`}
                     </MoreItemText>
                   )}
@@ -527,27 +517,17 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
           </BodyProp>
 
           <MapProp>
-            {!mapVisible && (
-              <PlaceholderImage2 onClick={handleToggleMap}>
-                <MapIcon>
-                  <FaMapMarkerAlt size={32} />
-                </MapIcon>
-              </PlaceholderImage2>
-            )}
-
-            {mapVisible && (
-              <DynamicMap
-                marker={{
-                  lon: property.geo_long,
-                  lat: property.geo_lat,
-                }}
-                center={{
-                  lon: property.geo_long,
-                  lat: property.geo_lat,
-                }}
-                zoom={15}
-              />
-            )}
+            <DynamicMap
+              marker={{
+                lon: property.geo_long,
+                lat: property.geo_lat,
+              }}
+              center={{
+                lon: property.geo_long,
+                lat: property.geo_lat,
+              }}
+              zoom={15}
+            />
           </MapProp>
 
           {properties && (
@@ -572,75 +552,28 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
   );
 });
 
-interface Property {
-  id: number;
-  address: string;
-  operations: {
-    prices: {
-      price: number;
-      currency: string;
-    }[];
-    operation_type: string;
-  }[];
-  photos: { image: string; is_front_cover?: boolean }[];
-}
-
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   let props: any = {};
 
   try {
-    // Obtener la propiedad actual
-    const property = await getPropertyById(parseInt(query.id as string)) as Property;
+    const property = await getPropertyById(parseInt(query.id as string));
 
-    if (!property) {
-      return {
-        notFound: true,
-      };
-    }
-
-    // Calcular el rango de precios (+/- 20% del precio de la propiedad actual)
-    const propertyPrice = property.operations[0]?.prices[0]?.price;
-    const minPrice = propertyPrice * 0.8;
-    const maxPrice = propertyPrice * 1.2;
-
-    // Obtener todas las propiedades destacadas
-    const { objects: allProperties } = await getProperties({
+    // Only get starred & ventas
+    const { objects } = await getProperties({
       params: {
         filters: [["is_starred_on_web", "=", true]],
         operation_types: [1],
+        limit: 2,
       },
-    }) as { objects: Property[] };
-
-    if (!allProperties) {
-      return {
-        notFound: true,
-      };
-    }
-
-    // Filtrar propiedades dentro del rango de precio
-    const filteredProperties = allProperties.filter((item: Property) => {
-      const price = item.operations[0]?.prices[0]?.price;
-      return price >= minPrice && price <= maxPrice;
     });
-
-    // Ordenar las propiedades para que primero aparezcan las más baratas
-    const sortedProperties = filteredProperties.sort((a, b) => {
-      return a.operations[0]?.prices[0]?.price - b.operations[0]?.prices[0]?.price;
-    });
-
-    // Limitar las propiedades similares a dos
-    const limitedProperties = sortedProperties.slice(0, 2);
 
     props = {
       property,
-      properties: limitedProperties,
+      properties: objects,
     };
-  } catch (e) {
-    console.error("Error fetching properties:", e);
-    return {
-      props: {
-        statusCode: 500,
-      },
+  } catch (e: any) {
+    props = {
+      statusCode: e.response.status,
     };
   }
 

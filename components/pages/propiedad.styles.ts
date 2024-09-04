@@ -117,24 +117,20 @@ export const SimilarProps = styled.div`
 `;
 
 export const MapProp = styled.div`
-  position: relative;
-  width: 100%;
-  height: 0;  // La altura inicial es 0 para no mostrar el mapa hasta que se haga clic en la imagen
-  padding-bottom: 45%;
+  width: 100vw;
+  height: 0;
   margin-bottom: 80px;
+  padding-bottom: 45%;
   transform: translateX(-50%);
   overflow: hidden;
   position: relative;
   left: 50%;
-  
   @media screen and (max-width: 992px) {
     margin-bottom: 60px;
   }
-  
   @media screen and (max-width: 460px) {
     padding-bottom: 120%;
   }
-  
   > * {
     width: 100%;
     height: 100%;
@@ -142,48 +138,6 @@ export const MapProp = styled.div`
     top: 0;
     left: 0;
   }
-`;
-
-// Imagen de marcador de posición
-export const PlaceholderImage = styled.div`
-  width: 100%;
-  height: 100%;
-  background-image: url('/images/map.png'); // Asegúrate de que la ruta sea correcta
-  background-size: cover;
-  background-position: center;
-  cursor: pointer;
-  transition: opacity 0.3s ease-in-out;
-
-  &:hover {
-    opacity: 0.8;
-  }
-`;
-export const PlaceholderImage2 = styled.div`
-  width: 100%;
-  height: 100%;
-  background-image: url('/images/map2.png'); // Asegúrate de que la ruta sea correcta
-  background-size: cover;
-  background-position: center;
-  cursor: pointer;
-  transition: opacity 0.3s ease-in-out;
-
-  &:hover {
-    opacity: 0.8;
-  }
-`;
-
-// Icono del mapa
-export const MapIcon = styled.div`
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 50%;
-  padding: 5px;
 `;
 
 export const MediaImg = styled.div`
@@ -890,4 +844,3 @@ export const ButtonMobileWrapper = styled.div`
     }
   }
 `;
-

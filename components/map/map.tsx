@@ -6,121 +6,99 @@ import { Tile as TileLayer } from 'ol/layer';
 import { Point } from 'ol/geom';
 import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
-import { FaMapMarkerAlt } from 'react-icons/fa';
 
 import {
-  MapWrapper,
-  MapContainer,
-  PlaceholderImage,
-  MapIcon,
+  MapWrapper
 } from './map.styles';
 import { normalStyle, hgihStyle } from './helpers';
 
 export interface MapProps {
   center?: { lon: number; lat: number };
   marker?: { lon: number; lat: number };
-  markers?: { lon: number; lat: number, high?: boolean, id: string }[];
+  markers?: { lon: number; lat: number, high?: boolean, id: string}[];
   zoom?: number;
 }
 
-export const Map = ({ center, zoom, marker, markers }: MapProps) => {
+export const Map = ({center, zoom, marker, markers}: MapProps) => {
+
   const [stMap, setMap] = React.useState<ol.Map>();
   const mapElement = React.useRef<HTMLDivElement>(null);
-  const [mapVisible, setMapVisible] = React.useState(false);
 
-  const [vectorLayer] = React.useState(
+  const [vectorLayer, ] = React.useState(
     new VectorLayer({
       source: new VectorSource({}),
-      style: [normalStyle],
-      zIndex: 20,
+      style: [
+       normalStyle
+      ],
+      zIndex: 20
     })
   );
 
   React.useEffect(() => {
-    if (markers) {
-      const highlighted = markers.find(item => !!item.high);
-      vectorLayer.getSource()?.getFeatures().forEach(ft => {
-        if (ft.getId() === highlighted?.id) {
-          ft.setStyle(hgihStyle);
-        } else {
-          ft.setStyle(normalStyle);
-        }
-      });
-    }
-  }, [markers, vectorLayer]);
+    const hihglighted = markers?.find(item => !!item.high)
+    vectorLayer.getSource()?.getFeatures().forEach(ft => {
+      if(ft.getId() === hihglighted?.id){
+        ft.setStyle(hgihStyle);
+      } else {
+        ft.setStyle(normalStyle);
+      }
+    })
+  }, [markers])
 
   React.useEffect(() => {
-    if (center && stMap) {
-      stMap.getView().setCenter(fromLonLat([center.lon, center.lat]));
-    }
-    if (zoom && stMap) {
-      stMap.getView().setZoom(zoom);
-    }
-  }, [center, zoom, stMap]);
+    if(center) stMap?.getView().setCenter(fromLonLat([center.lon, center.lat]))
+    if(zoom) stMap?.getView().setZoom(zoom);
+  }, [center])
+  
 
   React.useEffect(() => {
-    if (mapVisible && mapElement.current) {
-      const initialMap = new ol.Map({
-        layers: [
-          new TileLayer({
-            source: new XYZ({
-              url: `https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}.png`,
-            }),
-            preload: Infinity,
-            zIndex: 2,
-            maxZoom: 28,
+    const initialMap = new ol.Map({
+      layers: [
+        new TileLayer({
+          source: new XYZ({
+            url: `https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}.png`
           }),
-          vectorLayer,
-        ],
-        view: new ol.View({
-          center: center ? fromLonLat([center.lon, center.lat]) : [0, 0],
-          zoom: zoom ?? 4,
-          maxZoom: 19,
+          preload: Infinity,
+          zIndex: 2,
+          maxZoom: 28
         }),
-        target: mapElement.current,
+        vectorLayer
+      ],
+      view: new ol.View({
+        center: center ? fromLonLat([center.lon, center.lat]) : [0, 0],
+        zoom: zoom ?? 4,
+        maxZoom: 19
+      }),
+      target: mapElement?.current || undefined
+    });
+
+    setMap(initialMap);
+
+    if(marker){
+      var iconFeature = new ol.Feature({
+        geometry: new Point(fromLonLat([marker.lon, marker.lat]))
       });
-
-      setMap(initialMap);
-
-      if (marker) {
-        const iconFeature = new ol.Feature({
-          geometry: new Point(fromLonLat([marker.lon, marker.lat])),
-        });
-        vectorLayer.getSource()?.addFeature(iconFeature);
-      }
-
-      if (markers) {
-        markers.forEach(item => {
-          const iconFeature = new ol.Feature({
-            geometry: new Point(fromLonLat([item.lon, item.lat])),
-            id: item.id,
-          });
-          iconFeature.setId(item.id);
-          vectorLayer.getSource()?.addFeature(iconFeature);
-        });
-      }
-
-      return () => {
-        initialMap.setTarget(undefined);
-      };
+      vectorLayer?.getSource()!.addFeature(iconFeature);
     }
-  }, [mapVisible, center, zoom, marker, markers, vectorLayer]);
 
-  const handleToggleMap = () => {
-    setMapVisible(true);
-  };
+    if(markers){
+      markers.forEach((item, i) => {
+        var iconFeature = new ol.Feature({
+          geometry: new Point(fromLonLat([item.lon, item.lat])),
+          id: item.id
+        });
+        iconFeature.setId(item.id)
+        vectorLayer?.getSource()!.addFeature(iconFeature);
+      });
+    }
+
+
+    return () => {
+      initialMap.setTarget(undefined);
+    };
+  }, [])
 
   return (
-    <MapContainer>
-      {!mapVisible && (
-        <PlaceholderImage onClick={handleToggleMap}>
-          <MapIcon>
-            <FaMapMarkerAlt size={32} />
-          </MapIcon>
-        </PlaceholderImage>
-      )}
-
-      {mapVisible && <MapWrapper ref={mapElement} />}
-    </MapContainer>
+    <MapWrapper ref={mapElement} />
   );
 };

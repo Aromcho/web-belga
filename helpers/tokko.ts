@@ -42,11 +42,7 @@ export const parseTokkoParameters = (query: any) => {
 
   // Locations
   if (query.locid) {
-    const locations = query.locid.map((item: string) =>
-      neighborhoods.find(
-        (loc) => item.toLowerCase().replace("-", "") === loc.location_name.toLowerCase()
-      )
-    );
+    const locations = query.locid.map((item: string) => neighborhoods.find(loc => item.toLowerCase().replace("-", "") === loc.location_name.toLowerCase()));
     if (locations)
       query["current_localization_id"] = locations.map(
         (item: any) => item.location_id
@@ -62,11 +58,9 @@ export const parseTokkoParameters = (query: any) => {
 
   // property_types
   if (query.prid && query.prid !== "todos") {
-    query["property_types"] = query.prid.split(",").map((prid: string) => propertyTypes[prid]);  // Convertir a array
-    // Si incluye emprendimientos, redirigir
-    if (query["property_types"].includes(propertyTypes["emprendimientos"])) {
-      window.location.href = "/emprendimientos";
-    }
+    query["property_types"] = [propertyTypes[query.prid]];
+    // handles emprendimientos
+    if(query["property_types"] === 4) window.location.href = "/emprendimientos"
     delete query.prid;
   }
 
@@ -149,11 +143,9 @@ export const getSearchUrl = (params: any) => {
       ? `/todos`
       : `/${getKeyByValue(operationTypes, params.operation_type[0])}`;
 
-  if (params.property_type && params.property_type.length > 0) {
-    const propertyTypeValues = params.property_type.map((type: number) =>
-      getKeyByValue(propertyTypes, type)
-    );
-    url = url + `/${propertyTypeValues.join(",")}`;
+  if (params.property_type && params.property_type > 0) {
+    if(params.property_type === 4) window.location.href = "/emprendimientos"
+    url = url + `/${getKeyByValue(propertyTypes, params.property_type)}`;
   } else {
     url = url + `/todos`;
   }
@@ -199,4 +191,4 @@ export const getSearchUrl = (params: any) => {
         .join("&");
 
   return url;
-}; 
+};

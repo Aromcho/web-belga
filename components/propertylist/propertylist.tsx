@@ -27,11 +27,11 @@ import { SelectProps } from "components/select/select";
 import { DropdownProps } from "components/dropdown/dropdown";
 import { InputProps } from "components/input/input";
 
-const Input = dynamic<InputProps>(() => import("components/input").then((mod) => mod.Input));
-const Dropdown = dynamic<DropdownProps>(() => import("components/dropdown").then((mod) => mod.Dropdown));
-const SaveSearch = dynamic<any>(() => import("components/savesearch").then((mod) => mod.SaveSearch));
-const SocialSidebar = dynamic<any>(() => import("components/socialsidebar").then((mod) => mod.SocialSidebar));
-const Select = dynamic<SelectProps>(() => import("components/select").then((mod) => mod.Select));
+const Input = dynamic<InputProps>(() => import("components/input").then((mod) => mod.Input))
+const Dropdown = dynamic<DropdownProps>(() => import("components/dropdown").then((mod) => mod.Dropdown))
+const SaveSearch = dynamic<any>(() => import("components/savesearch").then((mod) => mod.SaveSearch))
+const SocialSidebar = dynamic<any>(() => import("components/socialsidebar").then((mod) => mod.SocialSidebar))
+const Select = dynamic<SelectProps>(() => import("components/select").then((mod) => mod.Select))
 
 import {
   FiltersContainer,
@@ -96,7 +96,7 @@ export const PropertyList = observer(
             .map((item: string) => parseInt(item)),
         });
       if (query?.prid && query?.prid !== "todos") {
-        setFormData({ property_type: query.prid.split(",").map((item: string) => propertyTypes[item]) });
+        setFormData({ property_type: propertyTypes[query?.prid] });
       }
       if (query?.locid)
         setFormData({
@@ -128,7 +128,7 @@ export const PropertyList = observer(
       min_baths: "",
       max_baths: "",
       operation_type: [1],
-      property_type: [],
+      property_type: -1,
       price_from: 0,
       price_to: 0,
       parking_lot_to: "",
@@ -238,15 +238,12 @@ export const PropertyList = observer(
                   className="input--general select"
                   options={propertiesSelectOptions}
                   isSearchable={false}
-                  isMulti={true}  // Permite selección múltiple
                   value={propertiesSelectOptions.filter(
-                    (item) => formData.property_type.includes(item.value)
+                    (item) => formData.property_type === item.value
                   )}
                   placeholder="Tipo de Propiedad"
                   onChange={(opt) => {
-                    setFormData({
-                      property_type: opt.map((item: { value: number }) => item.value),  // Maneja múltiples selecciones
-                    });
+                    setFormData({ property_type: opt.value });
                   }}
                 />
 
@@ -616,12 +613,12 @@ export const PropertyList = observer(
                   />
                 </RowInputsMobile>
                 <RowInputsMobile>
-                  <Button
-                    className="filter--button btn-mobile"
-                    type="secondary shine"
-                    text="Aplicar filtros"
-                    onClick={handleSubmit}
-                  />
+                <Button
+                  className="filter--button btn-mobile"
+                  type="secondary shine"
+                  text="Aplicar filtros"
+                  onClick={handleSubmit}
+                />
                 </RowInputsMobile>
 
                 {saveSearch && (

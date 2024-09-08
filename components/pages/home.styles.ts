@@ -317,6 +317,7 @@ export const HeroWrapper = styled.div`
   height: 100vh;
   overflow: hidden;
   position: relative;
+  
 
   /* Estilo del video */
   video {
@@ -326,6 +327,8 @@ export const HeroWrapper = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
+      background-video: url("/home-video.mp4");
+
 
     @media screen and (max-width: 992px) {
       display: none; /* Ocultar el video en pantallas móviles */

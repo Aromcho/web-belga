@@ -126,6 +126,7 @@ export const MapProp = styled.div`
   overflow: hidden;
   position: relative;
   left: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
   
   @media screen and (max-width: 992px) {
     margin-bottom: 60px;
@@ -161,16 +162,20 @@ export const PlaceholderImage = styled.div`
 
 // Icono del mapa
 export const MapIcon = styled.div`
+  width: 100%;
+  height:100%;
   position: absolute;
-  top: 10px;
-  right: 10px;
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 50%;
   padding: 5px;
+  backdrop-filter: blur(2px);
+
+  h1{
+  margin: 0 10px;
+  }
 `;
 
 export const MediaImg = styled.div`

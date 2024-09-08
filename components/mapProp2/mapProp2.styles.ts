@@ -7,6 +7,7 @@ export const MapContainer = styled.div`
   width: 100%;
   height: 100%;  // Ajusta la altura según sea necesario
   overflow: hidden;
+  
 `;
 
 // Estilo del mapa, inicialmente oculto
@@ -14,6 +15,7 @@ export const MapWrapper = styled.div`
   width: 100%;
   height: 100%;
   transition: height 0.3s ease-in-out;
+  background-color: black;
 `;
 
 // Imagen de marcador de posición

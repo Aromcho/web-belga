@@ -6,6 +6,8 @@ export const MapContainer = styled.div`
   width: 100%;
   height: 100%;  // Ajusta la altura según sea necesario
   overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.5);
+
 `;
 
 // Estilo del mapa, inicialmente oculto
@@ -25,7 +27,7 @@ export const PlaceholderImage = styled.div`
   cursor: pointer;
   transition: opacity 0.3s ease-in-out;
   position: relative; // Para que el ícono pueda estar posicionado correctamente
-
+  
   &:hover {
     opacity: 0.8;
   }
@@ -36,7 +38,7 @@ export const MapIcon = styled.div`
   position: absolute;
   top: 10px;
   right: 10px;
-  color: #fff;
+  color: #F1B332;
   display: flex;
   align-items: center;
   justify-content: center;

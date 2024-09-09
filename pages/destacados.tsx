@@ -16,7 +16,7 @@ const PropertySearch = ({ data }: any) => {
         properties={data.objects}
         meta={data.meta}
         saveSearch={false}
-        filters={false}
+        filters={true}
         withCount={false}
       />
     </Layout>

@@ -532,7 +532,7 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
               <PlaceholderImage onClick={handleToggleMap}>
                 <MapIcon>
                   <FaMapMarkerAlt size={32} />
-                  <h1> Ver mapa</h1>
+                    <h1 style={{ fontSize: '16px', fontWeight: 500 }}> VER MAPA</h1>
                 </MapIcon>
               </PlaceholderImage>
             )}

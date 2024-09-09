@@ -64,8 +64,6 @@ export const Select = ({value, onChange, isSearchable = true, hideSelectedOption
             height: 40,
             "@media only screen and (max-width: 992px)": {
               height: 38,
-              bottom: fixes ? 5 : "auto",
-              right: fixes ? 3 : "auto"
             },
           }),
           control: (provided: any, state: any) => ({

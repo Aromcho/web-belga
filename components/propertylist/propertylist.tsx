@@ -245,7 +245,9 @@ export const PropertyList = observer(
                   placeholder="Tipo de Propiedad"
                   onChange={(opt) => {
                     setFormData({
-                      property_type: opt.map((item: { value: number }) => item.value),  // Maneja múltiples selecciones
+                      property_type: opt.map(
+                        (item: { value: number }) => item.value
+                      ),  // Maneja múltiples selecciones
                     });
                   }}
                 />
@@ -507,19 +509,25 @@ export const PropertyList = observer(
                   }}
                 />
 
-                <Select
-                  className="input--general select"
-                  options={propertiesSelectOptions}
-                  isSearchable={false}
-                  value={propertiesSelectOptions.filter(
-                    (item) => formData.property_type === item.value
-                  )}
-                  placeholder="Tipo de Propiedad"
-                  onChange={(opt) => {
-                    setFormData({ property_type: opt.value });
-                  }}
-                />
-
+              <Select
+                className="input--general select"
+                isSearchable={false}
+                options={propertiesSelectOptions}
+                isMulti={true} // Enable multi-selection for property types
+                placeholder="Tipo de Propiedad"
+                value={propertiesSelectOptions.filter((item) =>
+                  formData.property_type.includes(item.value)
+                )}
+                onChange={(opt) => {
+                  setFormData({
+                    property_type: opt.map(
+                      (item: { value: number }) => item.value
+                    ),
+                  });
+                }}
+              />
+                
+                
                 <RowFilterSubtitle>Precio</RowFilterSubtitle>
                 <RowInputsMobile>
                   <Input

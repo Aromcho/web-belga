@@ -277,7 +277,7 @@ export const SearchRow = styled.div`
       }
       input {
         @media screen and (max-width: 992px) {
-          height: 45px;
+          height: auto;
           background-color: transparent;
           border: 2px solid ${(props: any) => props.theme.white};
           color: ${(props: any) => props.theme.white};

@@ -141,6 +141,7 @@ const Home = observer(({ properties, emprendimientos }: any) => {
 
               <Select
                 className="white first--row-input input--general"
+                isSearchable={false}
                 options={propertiesSelectOptions}
                 isMulti={true} // Enable multi-selection for property types
                 value={propertiesSelectOptions.filter((item) =>

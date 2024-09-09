@@ -169,7 +169,7 @@ export const MapIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.700);
   padding: 5px;
   backdrop-filter: blur(2px);
 

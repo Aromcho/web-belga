@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-  "build": "NODE_OPTIONS=--openssl-legacy-provider next build",
-  "start": "NODE_OPTIONS=--openssl-legacy-provider next start -p 8001",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider next build",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider next start -p 8001",
     "cc": "node scripts/create_component $1"
   },
   "dependencies": {
@@ -28,6 +28,7 @@
     "ol": "^6.14.1",
     "react": "17.0.2",
     "react-bootstrap": "^2.10.4",
+    "react-bootstrap-icons": "^1.11.4",
     "react-dom": "17.0.2",
     "react-icons": "^5.2.1",
     "react-qr-code": "^2.0.11",

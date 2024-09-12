@@ -86,8 +86,7 @@ export const Layout = ({ children, menuTheme, footerSmall }: LayoutProps) => {
       <HeroFooter id="menuFooter">
         <Link href="tel:+541152633393">
           <a className="head--footer-link phone">
-          <TelephoneFill /> 
-          {/* <TelIcon /> */}
+          <TelIcon /> 
             
           </a>
         </Link>

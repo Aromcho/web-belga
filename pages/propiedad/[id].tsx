@@ -27,6 +27,8 @@ const SocialSidebar = dynamic<any>(() => import("components/socialsidebar").then
 const Error500 = dynamic<any>(() => import("pages/500"));
 const Error404 = dynamic<any>(() => import("pages/404"));
 const Property = dynamic<any>(() => import("components/print/property"));
+const MapaInteractivo = dynamic(() => import("components/MapaInteractivo/MapaInteractivo"), { ssr: false });
+
 import {
   ArrowBackIcon,
   ArrowSubmitIcon,
@@ -528,28 +530,12 @@ const PropertyDetail = observer(({ properties, property, statusCode }: any) => {
           </BodyProp>
 
           <MapProp>
-            {!mapVisible && (
-              <PlaceholderImage onClick={handleToggleMap}>
-                <MapIcon>
-                  <FaMapMarkerAlt size={32} />
-                    <h1 style={{ fontSize: '16px', fontWeight: 500 }}> VER MAPA</h1>
-                </MapIcon>
-              </PlaceholderImage>
-            )}
-
-            {mapVisible && (
-              <DynamicMap
-                marker={{
-                  lon: property.geo_long,
-                  lat: property.geo_lat,
-                }}
-                center={{
-                  lon: property.geo_long,
-                  lat: property.geo_lat,
-                }}
-                zoom={15}
-              />
-            )}
+              <MapaInteractivo 
+              lat={property.geo_lat}
+              lng={property.geo_long}
+              zoom={16} // Puedes ajustar el zoom según tu necesidad
+              address={property.address} // Dirección que se mostrará en el popup
+            />
           </MapProp>
 
           {properties && (

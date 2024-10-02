@@ -126,7 +126,6 @@ export const MapProp = styled.div`
   overflow: hidden;
   position: relative;
   left: 50%;
-  background-color: rgba(0, 0, 0, 0.5);
   
   @media screen and (max-width: 992px) {
     margin-bottom: 60px;

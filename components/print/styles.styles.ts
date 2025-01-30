@@ -45,7 +45,7 @@ export const AddressSecundaryTitle = styled.p`
 `;
 
 export const AddressTitle = styled.span`
-  font-size: 44px;
+  font-size: 40px;
     font-weight: 300;
 
   `;
